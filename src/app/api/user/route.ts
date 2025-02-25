@@ -4,9 +4,9 @@ import log from "@/lib/log";
 import { updateUserSchema } from "@/lib/validations/user";
 
 export const PATCH = guard(
-  async ({ user, body }) => {
+  async ({ user, body, plan }) => {
     try {
-      await updateUser(user.id, body);
+      await updateUser(user.id, body, plan);
 
       return new Response(null, { status: 200 });
     } catch (err) {
