@@ -1,4 +1,3 @@
-import { getBlurDataURL } from "@/lib/sharp";
 import { cn } from "@/lib/utils";
 import "@/styles/prose.css";
 import type {
@@ -17,7 +16,6 @@ const mdxRemoteOptions: MDXRemoteOptions = {
 
 const mdxComponents: MDXComponents = {
   img: async (props) => {
-    const blurDataURL = await getBlurDataURL(undefined, props.src!);
     return (
       <Image
         src={props.src!}
@@ -26,8 +24,6 @@ const mdxComponents: MDXComponents = {
         height={0}
         sizes="100vw"
         className="w-full h-auto"
-        blurDataURL={blurDataURL}
-        placeholder="blur"
         quality={80}
         priority
       />

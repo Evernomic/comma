@@ -64,7 +64,6 @@ model User {
   lsId               String?      @unique
   lsVariantId        String?
   lsCurrentPeriodEnd DateTime?
-  showBranding       Boolean      @default(true)
   accounts           Account[]
   sessions           Session[]
   articles           Article[]

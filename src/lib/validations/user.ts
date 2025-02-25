@@ -29,6 +29,5 @@ export const updateUserSchema = z
     linkedin: z.string().trim().nullable(),
     contactEmail: z.string().trim().nullable(),
     password: z.string().nullable(),
-    showBranding: z.boolean(),
   })
   .partial();

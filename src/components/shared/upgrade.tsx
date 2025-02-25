@@ -11,13 +11,13 @@ export default function Upgrade({
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 w-full h-full backdrop-blur-sm flex rounded-md border text-sm border-gray-3 flex-col justify-center gap-2 z-10 items-center",
+        "absolute left-0 top-0 w-full h-full backdrop-blur-sm flex rounded-md border border-gray-3 flex-col justify-center gap-2 z-10 items-center",
         className,
       )}
     >
       <p className="max-w-[400px] text-center text-secondary ">
         {!title
-          ? "You can't use this feature in the free plan. Upgrade to Pro plan to proceed."
+          ? "You can't use this feature in the free plan. Upgrade to a Pro plan to proceed."
           : title}
       </p>
       <NavButton
