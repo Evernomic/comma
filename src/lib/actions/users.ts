@@ -1,5 +1,4 @@
 "use server";
-import { UserSubscriptionPlan } from "@/types";
 import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import type { User } from "@prisma/client";
 import type * as z from "zod";
@@ -9,22 +8,12 @@ import type { updateUserSchema } from "../validations/user";
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
-export async function updateUser(
-  userId: string,
-  data: UpdateUserSchema,
-  plan: UserSubscriptionPlan,
-) {
-  const { showBranding, ...rest } = data;
+export async function updateUser(userId: string, data: UpdateUserSchema) {
   await db.user.update({
     where: {
       id: userId,
     },
-    data: {
-      ...rest,
-      ...(showBranding !== undefined && {
-        showBranding: plan.isPro ? showBranding : true,
-      }),
-    },
+    data,
   });
 }
 

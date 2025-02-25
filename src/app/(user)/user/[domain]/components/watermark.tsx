@@ -4,8 +4,8 @@ import type { User } from "@prisma/client";
 import Link from "next/link";
 
 export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
-  const res = await getUserViaEdge(undefined, undefined, user.id);
-  if (!res.showBranding) {
+  const plan = await getUserViaEdge(undefined, undefined, user.id);
+  if (plan.isPro) {
     return null;
   }
   return (
