@@ -57,7 +57,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (
-    (hostname === appDomain || hostname.endsWith(vercelDomain)) &&
+    (hostname === `www.${appDomain}` || hostname.endsWith(vercelDomain)) &&
     !hostname.startsWith("app") &&
     !hostname.includes("localhost")
   ) {
