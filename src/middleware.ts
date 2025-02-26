@@ -51,7 +51,7 @@ export default async function middleware(req: NextRequest) {
     const domain = hostname.split(`.${legacyUserDomain}`)[0];
 
     return NextResponse.redirect(
-      new URL(url.pathname + url.search, `http://${domain}.${userDomain}`),
+      new URL(url.pathname + url.search, `https://${domain}.${userDomain}`),
       { status: 308 },
     );
   }
