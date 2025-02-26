@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_URL}/api/bookmarks/t/:id`,
         permanent: false,
-      }
+      },
     ];
   },
   images: {
