@@ -1,6 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
 import { isSiteProtected } from "./lib/edge";
+import { notAllowedUsernames } from "./lib/validations/user";
 
 export const config = {
   matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"],
@@ -56,7 +57,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (
-    (hostname.endsWith(appDomain) || hostname.endsWith(vercelDomain)) &&
+    (hostname === appDomain || hostname.endsWith(vercelDomain)) &&
     !hostname.startsWith("app") &&
     !hostname.includes("localhost")
   ) {
@@ -86,7 +87,7 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
-  if (hostname.endsWith(`.${userDomain}`) && hostname.endsWith(`.${userDomain}`)) {
+  if (hostname.endsWith(`.${userDomain}`) && !notAllowedUsernames.find(u => hostname.split(`.${userDomain}`)[0] === u)) {
     const domain = hostname.split(`.${userDomain}`)[0];
     const password = await isSiteProtected(domain);
     if (password) {
