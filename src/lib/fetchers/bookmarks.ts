@@ -104,7 +104,7 @@ export async function getBookmarksExport(
     },
   });
 
-  const filename = `nucelo_bookmarks_export.csv`;
+  const filename = `comma_bookmarks_export.csv`;
 
   const content = json2csv(
     bookmarks.map(({ collection, createdAt, updatedAt, ...bookmark }) => {

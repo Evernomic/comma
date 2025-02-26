@@ -158,7 +158,7 @@ export default function AppCommand({ user }: { user: User }) {
         {
           command: () =>
             window.open(
-              `https://${user.domain || `${user.username}.nucelo.co`}`,
+              `https://${user.domain || `${user.username}.comma.to`}`,
               "_blank",
             ),
           children: (
@@ -185,7 +185,7 @@ export default function AppCommand({ user }: { user: User }) {
           ),
         },
         {
-          command: () => window.open("https://nucelo.com/home", "_blank"),
+          command: () => window.open("https://comma.to/home", "_blank"),
           children: (
             <>
               <Icons.logo size={18} /> Home page

@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Nucelo App",
-    short_name: "Nucelo",
-    description: "Nucelo – an open source blogging platform",
+    name: "Comma",
+    short_name: "Comma",
+    description: "Comma – an open source blogging platform",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

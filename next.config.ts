@@ -5,22 +5,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "app.nucelo.co",
-          },
-        ],
-        destination: `${process.env.NEXT_PUBLIC_APP_URL}/:path*`,
-        permanent: false,
-      },
-      {
         source: "/:id",
         has: [
           {
             type: "host",
-            value: "go.nucelo.co",
+            value: "go.comma.to",
           },
         ],
         destination: `${process.env.NEXT_PUBLIC_URL}/api/bookmarks/t/:id`,
@@ -31,7 +20,30 @@ const nextConfig: NextConfig = {
         destination: `${process.env.NEXT_PUBLIC_APP_URL}/:path*`,
         permanent: false,
       },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: `${process.env.NEXT_PUBLIC_LEGACY_APP_DOMAIN}`
+          }
+        ],
+        destination: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: `app.${process.env.NEXT_PUBLIC_LEGACY_APP_DOMAIN}`,
+          }
+        ],
+        destination: `${process.env.NEXT_PUBLIC_LEGACY_APP_URL}/:path*`,
+        permanent: true,
+      }
     ];
+
   },
   images: {
     remotePatterns: [

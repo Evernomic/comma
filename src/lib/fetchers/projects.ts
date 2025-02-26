@@ -128,7 +128,7 @@ export async function getProjectExport(
     throw new Error("Permission denied");
   }
 
-  const filename = `nucelo_export_project_${project.slug}.md`;
+  const filename = `comma_export_project_${project.slug}.md`;
   const { content: projectContent, createdAt, updatedAt, ...props } = project;
   const frontmatter = jsonToFrontmatter({
     ...props,

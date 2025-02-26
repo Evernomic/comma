@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 export const dynamic = "force-static";
 
 export const metadata = generateSEO({
-  template: "Nucelo",
+  template: "Comma",
 });
 
 export default async function MarketingPageLayout({

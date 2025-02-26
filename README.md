@@ -1,12 +1,12 @@
-# Nucelo
+# Comma
 
 Open source minimal blogging platform.
 
-<a href="https://nucelo.com" >
-  <img alt="Thumbnail of Nucelo" src="https://nucelo.com/_static/og.png">
+<a href="https://comma.to" >
+  <img alt="Thumbnail of Comma" src="https://comma.to/_static/og.png">
 </a>
 
-<h3  align="center">Nucelo</h3>
+<h3  align="center">Comma</h3>
 <p align="center">an open-source minimal blogging platform</p>
 
 ## Features
@@ -31,4 +31,4 @@ Open source minimal blogging platform.
 
 ## License
 
-Nucelo is open source under the [GNU Affero General Public License](https://github.com/ArianAdeli/nucelo/blob/main/LICENSE) Version 3 (AGPLv3) or any later version.
+Comma is open source under the [GNU Affero General Public License](https://github.com/ArianAdeli/comma/blob/main/LICENSE) Version 3 (AGPLv3) or any later version.

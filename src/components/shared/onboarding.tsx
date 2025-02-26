@@ -57,7 +57,7 @@ export default function Onboarding() {
   return (
     <div className="w-[400px] mx-auto p-10 flex flex-col items-center justify-center min-h-screen ">
       <div>
-        <h2 className="text-xl">Welcome to Nucelo</h2>
+        <h2 className="text-xl">Welcome to Comma</h2>
         <p className="text-gray-1 text-sm mt-2">
           We just need a few details to finish creating your account. You can
           always change this later.

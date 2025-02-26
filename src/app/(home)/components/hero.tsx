@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="section-container pt-40 pb-20">
       <div className="flex flex-col items-center gap-2">
         <AnimatedLogo size={70} />
-        <h3 className="font-medium text-2xl section-title mt-3">Nucelo</h3>
+        <h3 className="font-medium text-2xl section-title mt-3">Comma</h3>
         <p className="text-gray-4 text-center">
           <Balancer>{marketingConfig.headline}</Balancer>
         </p>

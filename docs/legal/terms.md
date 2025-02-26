@@ -1,4 +1,4 @@
-These Terms of Service ("Terms") govern your use of the Nucelo platform ("Platform"), a blogging service that allows users to create and share content. By accessing or using the Platform, you agree to comply with these Terms. We offer both free and paid plans. If you do not agree to any part of these Terms, you should not use the Platform.
+These Terms of Service ("Terms") govern your use of the Comma platform ("Platform"), a blogging service that allows users to create and share content. By accessing or using the Platform, you agree to comply with these Terms. We offer both free and paid plans. If you do not agree to any part of these Terms, you should not use the Platform.
 
 ## **User Behavior and Content Policy**
 
@@ -18,7 +18,7 @@ In case of a violation of these Terms, we reserve the right to suspend or termin
 
 ## **Limitation of Liability**
 
-To the fullest extent permitted by law, Nucelo shall not be held liable for any indirect, incidental, special, consequential, or punitive damages arising from the use of the Platform.
+To the fullest extent permitted by law, Comma shall not be held liable for any indirect, incidental, special, consequential, or punitive damages arising from the use of the Platform.
 
 ## **Privacy and Data Usage**
 
@@ -26,8 +26,8 @@ We do not share user data with third parties. Only one cookie is used for user i
 
 ## **Governing Law**
 
-These Terms and all agreements related to the services provided by Nucelo are governed by the laws of the country where Nucelo is headquartered and will be interpreted according to those laws.
+These Terms and all agreements related to the services provided by Comma are governed by the laws of the country where Comma is headquartered and will be interpreted according to those laws.
 
 ## **Contact Us**
 
-If you have any questions regarding these Terms, you can contact us at [help@nucelo.com](mailto:help@nucelo.com).
+If you have any questions regarding these Terms, you can contact us at [help@comma.to](mailto:help@comma.to).

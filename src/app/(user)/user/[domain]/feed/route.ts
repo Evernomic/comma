@@ -74,7 +74,7 @@ export async function GET(
   });
   bookmarks.forEach((bookmark) => {
     const [url, updatedAt] = [
-      `https://go.nucelo.co/${bookmark.id}`,
+      `https://go.comma.to/${bookmark.id}`,
       bookmark.updatedAt,
     ];
     feed.addItem({

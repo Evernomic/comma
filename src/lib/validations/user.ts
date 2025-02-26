@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { validUsernameRegex } from "../constants";
 
-const notAllowedUsernames = ["app", "go", "www"];
+export const notAllowedUsernames = ["app", "go", "www"];
 
 export const updateUserSchema = z
   .object({

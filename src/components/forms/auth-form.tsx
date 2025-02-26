@@ -120,7 +120,7 @@ export default function AuthForm() {
           <div className="flex flex-col items-center gap-4">
             <Icons.logo size={50} />
             <h1 className="text-center text-2xl font-medium">
-              Welcome to Nucelo
+              Welcome to Comma
             </h1>
           </div>
           <div className="flex gap-2 flex-col">
