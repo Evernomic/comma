@@ -22,7 +22,7 @@ const authOptions: NextAuthOptions = {
   },
   providers: [
     EmailProvider({
-      from: "Nucelo <verify@nucelo.com>",
+      from: "Comma <verify@comma.to>",
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         if (process.env.NODE_ENV === "development") {
           console.log(url);
@@ -31,7 +31,7 @@ const authOptions: NextAuthOptions = {
         await resend.emails.send({
           from: provider.from as string,
           to: identifier as string,
-          subject: "Welcome to Nucelo",
+          subject: "Welcome to Comma",
           react: MagicLinkEmail({ url }),
         });
       },

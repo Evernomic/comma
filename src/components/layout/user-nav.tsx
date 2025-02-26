@@ -47,7 +47,7 @@ export default function UserNav({ user, segment }: Props) {
             href={
               user?.domain
                 ? `https://${user.domain}`
-                : `https://${user?.username}.nucelo.co`
+                : `https://${user?.username}.comma.to`
             }
             target="_blank"
           >

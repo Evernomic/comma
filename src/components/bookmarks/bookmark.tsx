@@ -24,7 +24,7 @@ export default function Bookmark({
     <div className="-mx-2 flex min-h-5  max-md:h-auto relative items-center  gap-4 rounded-md p-2 text-sm transition-colors hover:bg-gray-3  max-md:flex-col max-md:items-start max-md:gap-1">
       <Link
         aria-label={`Visit ${bookmark?.title}`}
-        href={`https://go.nucelo.co/${bookmark.id}`}
+        href={`https://go.comma.to/${bookmark.id}`}
         className="absolute left-0 top-0 w-full py-2 h-full"
         target="_blank"
         prefetch={false}

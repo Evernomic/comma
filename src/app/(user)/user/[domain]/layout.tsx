@@ -33,7 +33,7 @@ export async function generateMetadata({
     description: user.seoDescription || undefined,
     image:
       user.ogImage ||
-      `https://nucelo.com/api/og/user?username=${user.name || user.username}`,
+      `https://comma.to/api/og/user?username=${user.name || user.username}`,
     icons: [
       `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
     ],

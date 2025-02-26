@@ -94,7 +94,7 @@ export async function sendNewsletter(
     await Promise.all([
       ...emails.map((e) => {
         sendNewsletterEmail({
-          from: `${user?.name} from Nucelo <notify@nucelo.com>`,
+          from: `${user?.name} from Comma <notify@comma.to>`,
           to: e.email,
           subject: "I shared a new article.",
           newsletter: {
@@ -102,7 +102,7 @@ export async function sendNewsletter(
             author: user.name || user.username,
             articleURL: user.domain
               ? `https://${user.domain}/articles/${article.slug}`
-              : `https://${user.username}.nucelo.co/articles/${article.slug}`,
+              : `https://${user.username}.comma.to/articles/${article.slug}`,
             published: formatDate(article.publishedAt),
             subId: e.id,
           },

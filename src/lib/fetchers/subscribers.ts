@@ -29,7 +29,7 @@ export async function getSubscibersExport(
     },
   });
 
-  const filename = `nucelo_subscribers_export.csv`;
+  const filename = `comma_subscribers_export.csv`;
 
   const content = json2csv(
     subscribers.map(({ createdAt, ...subscriber }) => {

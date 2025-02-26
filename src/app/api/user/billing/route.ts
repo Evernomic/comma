@@ -61,7 +61,7 @@ export const POST = guard(
           },
           productOptions: {
             redirectUrl: billingUrl,
-            receiptButtonText: "Back to Nucelo",
+            receiptButtonText: "Back to Comma",
           },
         },
       );

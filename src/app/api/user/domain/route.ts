@@ -10,7 +10,7 @@ const bodySchema = z.object({
     .optional()
     .nullable()
     .refine(
-      (value) => !value?.includes("nucelo.co"),
+      (value) => !value?.includes("comma.to"),
       "You cannot use this domain as your own custom domain.",
     ),
 });

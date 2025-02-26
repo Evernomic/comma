@@ -56,7 +56,7 @@ export const GET = guard(
       return new Response(buffer, {
         headers: {
           "Content-Type": "application/zip",
-          "Content-Disposition": `attachment; filename=nucelo_article_analytics_export.zip`,
+          "Content-Disposition": `attachment; filename=comma_article_analytics_export.zip`,
         },
       });
     } catch (err) {

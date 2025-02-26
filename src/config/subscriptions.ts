@@ -40,7 +40,7 @@ export const freePlan: Plan = {
   ],
   action: {
     text: "Get started",
-    link: "https://app.nucelo.com/signup",
+    link: "https://app.comma.to/signup",
   },
 } as const;
 
@@ -84,6 +84,6 @@ export const proPlan: Plan = {
   ],
   action: {
     text: "Get started",
-    link: "https://app.nucelo.com/signup",
+    link: "https://app.comma.to/signup",
   },
 } as const;

@@ -160,7 +160,7 @@ export default function CustomDomain({
             <Config
               type={subdomain ? "CNAME" : "A"}
               name={subdomain ? subdomain : "@"}
-              value={subdomain ? "cname.nucelo.co." : "76.76.21.21"}
+              value={subdomain ? "cname.comma.to." : "76.76.21.21"}
             />
           )}
         </div>

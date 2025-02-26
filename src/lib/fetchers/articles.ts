@@ -143,7 +143,7 @@ export async function getArticleExport(
     throw new Error("Permission denied");
   }
 
-  const filename = `nucelo_export_article_${article.slug}.md`;
+  const filename = `comma_export_article_${article.slug}.md`;
   const {
     content: articleContent,
     createdAt,

@@ -1,6 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
 import { isSiteProtected } from "./lib/edge";
+import { notAllowedUsernames } from "./lib/validations/user";
 
 export const config = {
   matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"],
@@ -47,7 +48,15 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
+  if(hostname.endsWith(`.${process.env.NEXT_PUBLIC_LEGACY_USER_DOMAIN}`)) {
+    const username = hostname.split(`.${process.env.NEXT_PUBLIC_LEGACY_USER_DOMAIN}`)[0]
+    return NextResponse.redirect(`https://${username}.${userDomain}`)
+  }
+
   if (hostname.endsWith(`.${userDomain}`)) {
+    if(notAllowedUsernames.find(u => u === hostname.split(`.${userDomain}`)[0])) {
+        return NextResponse.next()
+    }
     const domain = hostname.split(`.${userDomain}`)[0];
     const password = await isSiteProtected(domain);
     if (password) {

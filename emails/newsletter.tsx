@@ -15,7 +15,7 @@ import {
 export default function Newsletter({
   title = "Test article",
   author = "Author",
-  articleURL = "https://nucelo.com",
+  articleURL = siteConfig.url,
   published = "Jun 15, 2024",
   subId = "subId",
 }: NewsletterProps) {
@@ -62,7 +62,7 @@ export default function Newsletter({
           </Link>
           <Text style={footer}>
             <Link href={siteConfig.url} target="_blank" style={link}>
-              nucelo.com
+              comma.to
             </Link>
             <Link
               href={`${siteConfig.url}/unsubscribe?subId=${subId}`}

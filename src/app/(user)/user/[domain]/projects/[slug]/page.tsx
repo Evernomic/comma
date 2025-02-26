@@ -45,7 +45,7 @@ export async function generateMetadata({
     seoTitle: project.seoTitle ?? project.title,
     image:
       project.ogImage ||
-      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.isProtected ? "&locked=true" : ""}`,
+      `https://comma.to/api/og/post?title=${project.title}&username=${user.username || user.name}${project.isProtected ? "&locked=true" : ""}`,
     icons: [
       `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
     ],

@@ -1,5 +1,5 @@
 {
-  "name": "nucelo",
+  "name": "comma",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",

@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = generateSEO({
-  template: "Nucelo",
+  template: "Comma",
   noIndex: true,
 });
 

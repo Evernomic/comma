@@ -10,8 +10,9 @@ import {
   Text,
 } from "@react-email/components";
 import Footer from "./components/footer";
+import { siteConfig } from "@/config/site";
 
-const MagicLinkEmail = ({ url = "https://nucelo.com" }: { url: string }) => (
+const MagicLinkEmail = ({ url = siteConfig.url }: { url: string }) => (
   <Html>
     <Head>
       <Font

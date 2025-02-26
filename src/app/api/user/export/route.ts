@@ -34,7 +34,7 @@ export const GET = guard(async ({ user }) => {
     return new Response(buffer, {
       headers: {
         "Content-Type": "application/zip",
-        "Content-Disposition": "attachment; filename=nucelo_export.zip",
+        "Content-Disposition": "attachment; filename=comma_export.zip",
       },
     });
   } catch (err) {

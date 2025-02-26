@@ -36,7 +36,7 @@ export default async function Settings() {
       />
       <Form
         endpoint={endpoint}
-        suffix=".nucelo.co"
+        suffix=".comma.to"
         title="Your username"
         description="This username will be used for the subdomain."
         helpText="Please use 36 characters at maximum."
