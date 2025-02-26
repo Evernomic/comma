@@ -4,6 +4,7 @@ import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
 import { getUser } from "@/lib/fetchers/users";
+import { getUserSubscription } from "@/lib/subscription";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -17,6 +18,8 @@ export default async function Settings() {
   if (!user) {
     return notFound();
   }
+  
+  const plan = await getUserSubscription(user.id)
   return (
     <div className="flex flex-col gap-2">
       <Form
@@ -99,6 +102,20 @@ export default async function Settings() {
           defaultValue: user.password || "",
         }}
       />
+            <Form
+        title="Show branding"
+        description="Show or hide branding"
+        endpoint={endpoint}
+        required={false}
+        inputData={{
+          type: "checkbox",
+          name: "showBranding",
+          defaultChecked: user.showBranding,
+        }}
+        toggle
+        proFeature={!plan.isPro}
+
+/>
       <Form title="Export" endpoint={`${endpoint}/export`} asChild>
         <ExportButton
           text="Export all data"
