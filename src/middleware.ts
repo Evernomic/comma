@@ -18,7 +18,7 @@ export default async function middleware(req: NextRequest) {
   const legacyUserDomain = process.env.NEXT_PUBLIC_LEGACY_USER_DOMAIN as string;
   const vercelDomain = ".vercel.app";
   
-  if (hostname === appDomain && !hostname.includes("localhost")) {
+  if (hostname === `www.${appDomain}` && !hostname.includes("localhost")) {
     if (path === "/" && session) {
       return NextResponse.redirect(process.env.NEXT_PUBLIC_APP_URL as string);
     }
