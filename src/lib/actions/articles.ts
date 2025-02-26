@@ -94,7 +94,7 @@ export async function sendNewsletter(
     await Promise.all([
       ...emails.map((e) => {
         sendNewsletterEmail({
-          from: `${user?.name} from Comma <notify@comma.to>`,
+          from: `${user?.name} from Comma <notify@mail.comma.to>`,
           to: e.email,
           subject: "I shared a new article.",
           newsletter: {

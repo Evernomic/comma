@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
     login: "https://app.comma.to/login",
     twitter: "https://x.com/arianadeliii",
     github: "https://github.com/ArianAdeli/comma",
-    help: "mailto:help@comma.to",
+    help: "mailto:hi@comma.to",
     demo: "https://arian.comma.to",
   },
 } as const;
