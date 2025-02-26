@@ -47,9 +47,6 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
-  if(hostname === process.env.NEXT_PUBLIC_LEGACY_APP_DOMAIN!) {
-    return NextResponse.redirect(new URL(req.nextUrl.pathname + req.nextUrl.search, process.env.NEXT_PUBLIC_APP_URL), {status: 308})
-  }
 
   if(hostname.endsWith(`.${process.env.NEXT_PUBLIC_LEGACY_USER_DOMAIN}`)) {
     const username = hostname.split(`.${process.env.NEXT_PUBLIC_LEGACY_USER_DOMAIN}`)[0]
