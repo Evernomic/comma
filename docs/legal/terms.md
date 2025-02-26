@@ -30,4 +30,4 @@ These Terms and all agreements related to the services provided by Comma are gov
 
 ## **Contact Us**
 
-If you have any questions regarding these Terms, you can contact us at [help@comma.to](mailto:help@comma.to).
+If you have any questions regarding these Terms, you can contact us at [hi@comma.to](mailto:hi@comma.to).

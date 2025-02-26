@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
     await Promise.all([
       createSubscriber(user.id, body.data),
       resend.emails.send({
-        from: "Comma Notify <notify@comma.to>",
+        from: "Comma Notify <notify@mail.comma.to>",
         to: user.email,
         subject: "New Subscriber",
         react: NewSubscriber({

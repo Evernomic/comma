@@ -22,7 +22,7 @@ const authOptions: NextAuthOptions = {
   },
   providers: [
     EmailProvider({
-      from: "Comma <verify@comma.to>",
+      from: "Comma <verify@mail.comma.to>",
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         if (process.env.NODE_ENV === "development") {
           console.log(url);
