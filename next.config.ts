@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: { appIsrStatus: false },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/:id",
