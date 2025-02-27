@@ -8,14 +8,11 @@ import { notFound } from "next/navigation";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers();
-  const host = headersList.get("host") as string;
+  const host = headersList.get("host")!;
   const url = `https://${host}`;
-  const userDomain = `.${process.env.NEXT_PUBLIC_USER_DOMAIN as string}`;
+  const userDomain = `.${process.env.NEXT_PUBLIC_USER_DOMAIN!}`;
 
-  if (
-    host.endsWith(process.env.NEXT_PUBLIC_APP_DOMAIN as string) &&
-    !host.startsWith("app")
-  ) {
+  if (host === `www.${process.env.NEXT_PUBLIC_APP_DOMAIN!}`) {
     return [
       {
         url,
