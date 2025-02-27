@@ -29,6 +29,6 @@ export const updateUserSchema = z
     contactEmail: z.string().trim().nullable(),
     password: z.string().nullable(),
     showBranding: z.boolean(),
-    category: z.enum(categoryValues).nullable()
+    category: z.enum(categoryValues)
   })
   .partial();
