@@ -3,7 +3,7 @@
 Open source minimal blogging platform.
 
 <a href="https://comma.to" >
-  <img alt="Thumbnail of Comma" src="https://comma.to/_static/og.png">
+  <img alt="Thumbnail of Comma" src="https://comma.to/_static/og.svg">
 </a>
 
 <h3  align="center">Comma</h3>
