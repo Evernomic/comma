@@ -1,7 +1,7 @@
 "use server";
 import { UserSubscriptionPlan } from "@/types";
 import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import type { User } from "@prisma/client";
+import type { User, UserCategory } from "@prisma/client";
 import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
@@ -14,7 +14,7 @@ export async function updateUser(
   data: UpdateUserSchema,
   plan: UserSubscriptionPlan,
 ) {
-  const { showBranding, ...rest } = data;
+  const { showBranding, category, ...rest } = data;
   await db.user.update({
     where: {
       id: userId,
@@ -24,6 +24,7 @@ export async function updateUser(
       ...(showBranding !== undefined && {
         showBranding: plan.isPro ? showBranding : true,
       }),
+      ...(category && {category: category as UserCategory})
     },
   });
 }

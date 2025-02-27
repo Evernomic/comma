@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import type React from "react";
@@ -11,6 +10,8 @@ import { Switch } from "../ui/switch";
 import { Textarea } from "../ui/textarea";
 import { toast } from "../ui/use-toast";
 import Upgrade from "../shared/upgrade";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import type { SelectOption } from "@/types";
 
 interface FormProps {
   title: string;
@@ -24,9 +25,9 @@ interface FormProps {
   required?: boolean;
   prefix?: string;
   suffix?: string;
-
   asChild?: boolean;
   toggle?: boolean;
+  selectOptions?: SelectOption[]
   children?: React.ReactNode;
   proFeature?: boolean
 }
@@ -46,6 +47,7 @@ export default function Form({
   required = true,
   asChild = false,
   toggle = false,
+  selectOptions = undefined,
   proFeature = false,
 }: FormProps) {
   const [saving, startTransition] = useTransition();
@@ -126,52 +128,67 @@ export default function Form({
                       type="submit"
                       onCheckedChange={(checked) => setValue(checked)}
                       defaultChecked={inputData?.defaultChecked}
+                      disabled={saving}
                     />{" "}
                     <label>
                       {inputData?.defaultChecked ? "Enabled" : "Disabled"}
                     </label>
                   </div>
+                ) : selectOptions && selectOptions?.length > 0 ? (
+                  <div>
+                    <Select defaultValue={inputData?.defaultValue as string} onValueChange={val => setValue(val)} disabled={saving}>
+                      <SelectTrigger className="w-[250px] max-md:w-full">
+                        <SelectValue placeholder={inputData?.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {selectOptions.map(option => (
+                          <SelectItem value={option.value} key={`option--${option.value}`}>{option.title}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 ) : (
                   <div className="flex items-center relative w-max">
-                    {prefix && (
-                      <span className="h-5 rounded-l-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-r-0 text-sm text-gray-4">
-                        {prefix}
-                      </span>
+                  {prefix && (
+                    <span className="h-5 rounded-l-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-r-0 text-sm text-gray-4">
+                      {prefix}
+                    </span>
+                  )}
+                  <Input
+                    {...inputData}
+                    type={
+                      inputData?.type === "password" && showPassword
+                        ? "text"
+                        : (inputData?.type ?? "text")
+                    }
+                    value={value}
+                    autoComplete="off"
+                    disabled={saving}
+                    className={cn(
+                      "w-[250px] max-md:w-full",
+                      prefix ? "rounded-l-none " : "",
+                      suffix ? "rounded-r-none" : "",
                     )}
-                    <Input
-                      {...inputData}
-                      type={
-                        inputData?.type === "password" && showPassword
-                          ? "text"
-                          : (inputData?.type ?? "text")
-                      }
-                      value={value}
-                      autoComplete="off"
-                      className={cn(
-                        "w-[250px] max-md:w-full",
-                        prefix ? "rounded-l-none " : "",
-                        suffix ? "rounded-r-none" : "",
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                  {inputData?.type === "password" && (
+                    <span
+                      className="text-gray-4 cursor-pointer absolute right-3"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      {showPassword ? (
+                        <Icons.eye size={18} />
+                      ) : (
+                        <Icons.eyeOff size={18} />
                       )}
-                      onChange={(e) => setValue(e.target.value)}
-                    />
-                    {inputData?.type === "password" && (
-                      <span
-                        className="text-gray-4 cursor-pointer absolute right-3"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      >
-                        {showPassword ? (
-                          <Icons.eye size={18} />
-                        ) : (
-                          <Icons.eyeOff size={18} />
-                        )}
-                      </span>
-                    )}
-                    {suffix && (
-                      <span className="h-5 rounded-r-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-l-0 text-sm text-gray-4">
-                        {suffix}
-                      </span>
-                    )}
-                  </div>
+                    </span>
+                  )}
+                  {suffix && (
+                    <span className="h-5 rounded-r-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-l-0 text-sm text-gray-4">
+                      {suffix}
+                    </span>
+                  )}
+                </div>
                 )}
               </>
             ) : (

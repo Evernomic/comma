@@ -3,31 +3,51 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { userCategories } from "@/lib/constants";
 import { slugify } from "@/lib/utils";
+import { categoryValues } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const schema = z.object({
   name: z.string().min(1),
   username: z.string().min(1),
+  category: z.enum(categoryValues),
 });
 
 type FormData = z.infer<typeof schema>;
 
-export default function Onboarding() {
+export default function Onboarding({
+  user,
+}: {
+  user: Pick<User, "name" | "username">;
+}) {
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   const {
     handleSubmit,
+    control,
     register,
     setValue,
     watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      name: user?.name!,
+      username: user.username,
+    }
   });
 
   const name = watch("name");
@@ -38,6 +58,7 @@ export default function Onboarding() {
         body: JSON.stringify({
           name: data.name,
           username: data.username,
+          category: data.category
         }),
       });
       if (!res.ok) {
@@ -84,6 +105,27 @@ export default function Onboarding() {
         {errors?.username && (
           <b className="text-xs text-danger">{errors.username.message}</b>
         )}
+        <Controller
+          control={control}
+          {...register("category")}
+          render={({ field: { onChange } }) => (
+            <Select disabled={isLoading} onValueChange={onChange}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {userCategories.map((option) => (
+                  <SelectItem
+                    value={option.value}
+                    key={`option--${option.value}`}
+                  >
+                    {option.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         <Button disabled={!isValid} isPending={isLoading}>
           Start writing
         </Button>

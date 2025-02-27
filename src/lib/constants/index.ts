@@ -1,3 +1,4 @@
+import type { SelectOption } from "@/types";
 import type { SWRConfiguration } from "swr";
 
 export const swrOptions: SWRConfiguration = {
@@ -36,3 +37,13 @@ export const analyticsSources = {
   analytics: "na",
   bookmarks: "nb",
 } as const;
+
+export const userCategories: SelectOption[] = [
+  { title: "Investor", value: "Investor" },
+  { title: "Developer", value: "Developer" },
+  { title: "Designer", value: "Designer" },
+  { title: "Founder", value: "Founder" },
+  { title: "Freelancer", value: "Freelancer" },
+  { title: "Writer", value: "Writer" },
+  { title: "Other", value: "Other" }
+] as const

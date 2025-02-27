@@ -3,6 +3,7 @@ import DeleteForm from "@/components/forms/delete-form";
 import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
+import { userCategories } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
 import { getUserSubscription } from "@/lib/subscription";
 import type { Metadata } from "next";
@@ -59,6 +60,18 @@ export default async function Settings() {
           maxLength: 32,
         }}
         required={false}
+      />
+       <Form
+        endpoint={endpoint}
+        title="Category"
+        description="This category will be used for search functionality on the explore page."
+        selectOptions={userCategories}
+        inputData={{
+          placeholder: "Select category",
+          name: "category",
+          defaultValue: user.category ?? undefined
+        }}
+        required
       />
       <Form
         title="About"

@@ -40,19 +40,30 @@ model Session {
   @@map("sessions")
 }
 
+enum UserCategory {
+  Investor
+  Developer
+  Designer
+  Founder
+  Freelancer
+  Writer
+  Other
+}
+
 model User {
-  id                 String       @id @default(cuid())
+  id                 String        @id @default(cuid())
   name               String?
-  username           String       @unique @default(cuid())
+  username           String        @unique @default(cuid())
   title              String?
-  email              String       @unique
-  domain             String?      @unique
+  email              String        @unique
+  domain             String?       @unique
   emailVerified      DateTime?
   image              String?
-  createdAt          DateTime     @default(now()) @map("created_at")
-  updatedAt          DateTime     @default(now()) @map("updated_at")
-  about              String?      @db.Text
-  newsletter         Boolean      @default(false)
+  category           UserCategory?
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @default(now()) @map("updated_at")
+  about              String?       @db.Text
+  newsletter         Boolean       @default(false)
   seoTitle           String?
   seoDescription     String?
   ogImage            String?
@@ -61,7 +72,7 @@ model User {
   linkedin           String?
   dribbble           String?
   contactEmail       String?
-  lsId               String?      @unique
+  lsId               String?       @unique
   lsVariantId        String?
   lsCurrentPeriodEnd DateTime?
   accounts           Account[]
@@ -72,7 +83,7 @@ model User {
   subscribers        Subscriber[]
   collections        Collection[]
   password           String?
-  showBranding       Boolean      @default(true)
+  showBranding       Boolean       @default(true)
 
   @@map("users")
 }
