@@ -1,10 +1,10 @@
 import { marketingConfig } from "@/config/marketing";
-import { getBlurDataURL } from "@/lib/sharp";
+// import { getBlurDataURL } from "@/lib/sharp";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const CustomImage = async ({ src, alt }: { src: string; alt: string }) => {
-  const blurDataURL = await getBlurDataURL(src);
+  // const blurDataURL = await getBlurDataURL(src);
 
   return (
     <div
@@ -21,8 +21,8 @@ const CustomImage = async ({ src, alt }: { src: string; alt: string }) => {
         sizes="100vw"
         className="w-full"
         quality={80}
-        blurDataURL={blurDataURL}
-        placeholder="blur"
+        // blurDataURL={blurDataURL}
+        // placeholder="blur"
         priority
       />
     </div>

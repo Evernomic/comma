@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: { appIsrStatus: false },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/:id",
@@ -13,8 +13,7 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: `${process.env.NEXT_PUBLIC_URL}/api/bookmarks/t/:id`,
-        permanent: false,
-      }
+      },
     ];
   },
   images: {
