@@ -23,7 +23,6 @@ export async function getSubscibersExport(
       userId,
     },
     select: {
-      name: true,
       email: true,
       createdAt: true,
     },

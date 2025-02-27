@@ -14,24 +14,6 @@ import DeleteSubscriber from "./delete-subscriber";
 
 export const columns: ColumnDef<Subscriber>[] = [
   {
-    accessorKey: "name",
-    header: ({ column }) => {
-      const isAsc = column.getIsSorted() === "asc";
-      const Icon = Icons[isAsc ? "chevronUp" : "chevronDown"];
-
-      return (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => column.toggleSorting(isAsc)}
-        >
-          Name
-          <Icon size={18} />
-        </Button>
-      );
-    },
-  },
-  {
     accessorKey: "email",
     header: ({ column }) => {
       const isAsc = column.getIsSorted() === "asc";

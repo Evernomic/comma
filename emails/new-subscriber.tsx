@@ -13,9 +13,9 @@ import {
 import Footer from "./components/footer";
 
 const NewSubscriber = ({
-  name = "John Doe ( john@doe.com )",
+  email = "john@doe.com",
 }: {
-  name: string;
+  email: string;
 }) => (
   <Html>
     <Head>
@@ -36,7 +36,7 @@ const NewSubscriber = ({
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
           New subscriber
         </Heading>
-        <Text style={{ fontWeight: "bold" }}>{name}</Text>
+        <Text style={{ fontWeight: "bold" }}>{email}</Text>
         <Text style={{ fontSize: 14 }}>subscribed to your newsletter</Text>
         <Link
           href={`${siteConfig.links.app}/settings/subscribers`}

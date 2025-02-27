@@ -52,7 +52,7 @@ export default async function UserLayout({ children, params }: LayoutProps) {
     return notFound();
   }
   return (
-    <div className="mx-auto flex min-h-screen w-[700px] flex-col  max-md:w-full py-20 max-md:pt-10 max-md:px-4 ">
+    <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full py-20 max-md:pt-10 max-md:px-4 ">
       <main className="w-full flex-1">{children}</main>
       <Command user={user} />
       <Track />

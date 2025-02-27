@@ -7,7 +7,7 @@ type SubscriberSchema = z.infer<typeof subscribeSchema>;
 
 export async function createSubscriber(userId: string, data: SubscriberSchema) {
   return await db.subscriber.create({
-    data: { name: data.name, email: data.email, userId },
+    data: { email: data.email, userId },
   });
 }
 

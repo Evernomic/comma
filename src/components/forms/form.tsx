@@ -191,7 +191,7 @@ export default function Form({
       </div>
       <footer className="flex h-auto flex-row items-center   justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
         <div className={cn("text-sm text-gray-4", error ? "text-danger" : "")}>
-          {saving ? (
+          {saving && toggle ? (
             <Icons.spinner className="animate-spin" size={15} />
           ) : (
             error || helpText

@@ -6,7 +6,8 @@ import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Subscribe from "./components/subscribe";
+import Subscribe from "./components/feed";
+import NavButton from "@/components/layout/nav-button";
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -27,7 +28,7 @@ export default async function ArticlesPage({ params }: ArticlesPageProps) {
   return (
     <AppShell>
       <AppHeader title="Articles">
-        <Subscribe username={user.username} newsletter={user.newsletter} />
+        <NavButton  href='/' aria-label="Subscribe newsletter">Subscribe</NavButton>
       </AppHeader>
       <div>
         {articles.map((article) => (

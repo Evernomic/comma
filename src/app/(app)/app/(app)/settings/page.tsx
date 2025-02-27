@@ -103,7 +103,7 @@ export default async function Settings() {
         }}
       />
             <Form
-        title="Show branding"
+        title="Branding"
         description="Show or hide branding"
         endpoint={endpoint}
         required={false}

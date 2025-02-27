@@ -11,6 +11,7 @@ import Connect from "./components/connect";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import Projects from "./components/projects";
+import Newsletter from "./articles/components/newsletter";
 
 export const revalidate = 60;
 
@@ -57,6 +58,7 @@ export default async function Home({ params }: PageProps) {
       )}
       <div className="flex flex-col gap-6">
         <About content={user.about as string} />
+        {user.newsletter && <Newsletter username={user.username} />}
         <Articles articles={articles} />
         <Projects projects={projects} />
         <Bookmarks bookmarks={bookmarks} />

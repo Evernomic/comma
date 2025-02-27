@@ -9,7 +9,6 @@ import type { NextRequest } from "next/server";
 import * as z from "zod";
 
 const subscribeNewsletterPatchSchema = z.object({
-  name: z.string().min(1),
   email: z.string().email(),
   username: z.string().min(1),
 });
@@ -67,7 +66,7 @@ export async function POST(req: NextRequest) {
         to: user.email,
         subject: "New Subscriber",
         react: NewSubscriber({
-          name: `${body.data.name} ( ${body.data.email} )`,
+          email: body.data.email
         }),
         headers: {
           "X-Entity-Ref-ID": nanoid(),
