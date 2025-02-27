@@ -140,3 +140,8 @@ export type User = Omit<
   | "createdAt"
   | "updatedAt"
 >;
+
+export type SelectOption = {
+  title: string;
+  value: string
+}

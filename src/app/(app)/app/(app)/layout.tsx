@@ -21,8 +21,8 @@ export default async function AppLayout({
   if (!user) {
     return notFound();
   }
-  if (!user.name) {
-    return <Onboarding />;
+  if (!user.name || !user.category) {
+    return <Onboarding user={user} />;
   }
   return (
     <div className="mx-auto flex min-h-screen w-[700px] flex-col  max-md:px-4  pb-10 max-md:w-full">
