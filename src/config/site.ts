@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Comma is an open source blogging platform with a minimal and beautiful page.",
   url: "https://comma.to",
-  ogImage: "https://comma.to/_static/og.png",
+  ogImage: "https://comma.to/_static/og.svg",
   links: {
     home: "https://comma.to/home",
     app: "https://app.comma.to",

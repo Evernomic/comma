@@ -27,7 +27,8 @@ export default async function middleware(req: NextRequest) {
     ".vercel.app",
   ];
 
-  if (hostname.includes(legacyUserDomain)) {
+  // burda endswith legacy user domain || legacy app domain
+  if (hostname.endsWith(legacyAppDomain) || hostname.endsWith(legacyUserDomain)) {
     if (hostname.startsWith("app") && hostname.endsWith(legacyAppDomain)) {
       return NextResponse.redirect(
         new URL(url.pathname + url.search, process.env.NEXT_PUBLIC_APP_URL!),
