@@ -60,6 +60,7 @@ model User {
   emailVerified      DateTime?
   image              String?
   category           UserCategory?
+  location           String?
   createdAt          DateTime      @default(now()) @map("created_at")
   updatedAt          DateTime      @default(now()) @map("updated_at")
   about              String?       @db.Text

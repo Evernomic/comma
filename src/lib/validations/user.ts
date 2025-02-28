@@ -1,7 +1,12 @@
 import * as z from "zod";
 import { userCategories, validUsernameRegex } from "../constants";
+import { countries } from "../constants/countries";
 export const notAllowedUsernames = ["app", "go", "www"];
-export const categoryValues = userCategories.map(c => c.value) as [string, ...string[]];
+export const categoryValues = userCategories.map((c) => c.value) as [
+  string,
+  ...string[],
+];
+export const locationValues = Object.keys(countries) as [string, ...string[]];
 export const updateUserSchema = z
   .object({
     name: z.string().min(1).max(48),
@@ -29,6 +34,7 @@ export const updateUserSchema = z
     contactEmail: z.string().trim().nullable(),
     password: z.string().nullable(),
     showBranding: z.boolean(),
-    category: z.enum(categoryValues)
+    category: z.enum(categoryValues),
+    location: z.enum(locationValues),
   })
   .partial();
