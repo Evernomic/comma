@@ -7,6 +7,7 @@ import { getUserByDomain } from "@/lib/fetchers/users";
 import { formatDate, generateSEO } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Newsletter from "../components/newsletter";
 export const revalidate = 60;
 
 interface ArticlePageProps {
@@ -90,6 +91,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </AppHeader>
       <MDX source={article.content} />
+      <div className="mt-5">
+        <Newsletter username={user.username} />
+      </div>
       <div className="mt-5 flex justify-between items-center">
         {article?.previousArticle && (
           <NavButton

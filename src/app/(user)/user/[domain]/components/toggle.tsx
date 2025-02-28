@@ -13,7 +13,7 @@ export default function CommandMenuToggle() {
       aria-label="Navigation"
       variant="secondary"
     >
-      <Icons.command size={15} />
+      <Icons.menu size={15} />
     </Button>
   );
 }
