@@ -11,6 +11,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
+import NewsletterForm from "./newsletter-form";
+import { User } from "@prisma/client";
 
 const feeds = [
   {
@@ -25,8 +27,9 @@ const feeds = [
   },
 ] as const;
 
-export default function Feed() {
+export default function Feed({username}: {username: string}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showNewsletterForm, setShowNewsletterForm] = useState<boolean>(false)
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -43,7 +46,7 @@ export default function Feed() {
         <DialogHeader>
           <DialogTitle className="items-center">Feed</DialogTitle>
         </DialogHeader>
-        <div className="flex gap-2 justify-between">
+        <div className="grid grid-cols-3 gap-2 max-md:grid-cols-1">
           {feeds.map((feed) => (
             <NavButton
               href={feed.href}
@@ -51,7 +54,7 @@ export default function Feed() {
               iconSize={18}
               size="wide"
               className="w-full"
-              buttonClassname="h-16 text-base"
+              buttonClassname="h-16 text-base gap-2"
               direction="ltr"
               icon="rss"
               key={feed.type}
@@ -59,7 +62,16 @@ export default function Feed() {
               {feed.title}
             </NavButton>
           ))}
+          <Button
+              onClick={() => setShowNewsletterForm(prev => !prev)}
+              variant="secondary"
+              size="wide"
+              className="w-full gap-2 h-16 text-base "
+            >
+            <Icons.mail size={18} />  Email
+            </Button>
         </div>
+        {showNewsletterForm && <NewsletterForm username={username} prefix="feed-subscribe"/>}
       </DialogContent>
     </Dialog>
   );

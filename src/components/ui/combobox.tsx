@@ -51,7 +51,7 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-full justify-between data-[state=open]:bg-gray-3 text-secondary text-sm enabled:hover:bg-gray-3 disabled:bg-gray-3 disabled:opacity-100",
+            "w-full justify-between data-[state=open]:bg-gray-3 text-secondary text-sm hover:!bg-inherit disabled:bg-gray-3 disabled:opacity-100",
             className,
           )}
           disabled={disabled}
