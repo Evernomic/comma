@@ -3,15 +3,16 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { userCategories } from "@/lib/constants";
+import { userCategories, userLocations } from "@/lib/constants";
 import { slugify } from "@/lib/utils";
-import { categoryValues } from "@/lib/validations/user";
+import { categoryValues, locationValues } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
+import { Combobox } from "../ui/combobox";
 import {
   Select,
   SelectContent,
@@ -24,6 +25,7 @@ const schema = z.object({
   name: z.string().min(1),
   username: z.string().min(1),
   category: z.enum(categoryValues),
+  location: z.enum(locationValues),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -31,7 +33,7 @@ type FormData = z.infer<typeof schema>;
 export default function Onboarding({
   user,
 }: {
-  user: Pick<User, "name" | "username">;
+  user: Pick<User, "name" | "username" | "category">;
 }) {
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
@@ -47,18 +49,26 @@ export default function Onboarding({
     defaultValues: {
       name: user?.name!,
       username: user.username,
-    }
+      category: user.category!,
+    },
   });
 
-  const name = watch("name");
+  const name = watch("name")
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
       const res = await fetch("/api/user", {
         method: "PATCH",
         body: JSON.stringify({
-          name: data.name,
-          username: data.username,
-          category: data.category
+          ...(user.name !== data.name && {
+            name: data.name
+          }),
+          ...(user.username !== data.username && {
+            username: data.username
+          }),
+          ...(user.category !== data.category && {
+            category: data.category
+          }),
+          location: data.location
         }),
       });
       if (!res.ok) {
@@ -108,8 +118,12 @@ export default function Onboarding({
         <Controller
           control={control}
           {...register("category")}
-          render={({ field: { onChange } }) => (
-            <Select disabled={isLoading} onValueChange={onChange}>
+          render={({ field: { onChange, value } }) => (
+            <Select
+              defaultValue={value}
+              disabled={isLoading}
+              onValueChange={onChange}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -124,6 +138,19 @@ export default function Onboarding({
                 ))}
               </SelectContent>
             </Select>
+          )}
+        />
+        <Controller
+          control={control}
+          {...register("location")}
+          render={({ field: { onChange, value } }) => (
+            <Combobox
+              defaultValue={value}
+              onValueChange={onChange}
+              disabled={isLoading}
+              placeholder="Select country"
+              options={userLocations}
+            />
           )}
         />
         <Button disabled={!isValid} isPending={isLoading}>

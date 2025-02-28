@@ -3,7 +3,7 @@ import DeleteForm from "@/components/forms/delete-form";
 import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
-import { userCategories } from "@/lib/constants";
+import { userCategories, userLocations } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
 import { getUserSubscription } from "@/lib/subscription";
 import type { Metadata } from "next";
@@ -19,8 +19,8 @@ export default async function Settings() {
   if (!user) {
     return notFound();
   }
-  
-  const plan = await getUserSubscription(user.id)
+
+  const plan = await getUserSubscription(user.id);
   return (
     <div className="flex flex-col gap-2">
       <Form
@@ -61,7 +61,7 @@ export default async function Settings() {
         }}
         required={false}
       />
-       <Form
+      <Form
         endpoint={endpoint}
         title="Category"
         description="This category will be used for search functionality on the explore page."
@@ -69,7 +69,20 @@ export default async function Settings() {
         inputData={{
           placeholder: "Select category",
           name: "category",
-          defaultValue: user.category ?? undefined
+          defaultValue: user.category ?? undefined,
+        }}
+        required
+      />
+      <Form
+        endpoint={endpoint}
+        title="Location"
+        description="This location will be used for search functionality on the explore page."
+        selectType="combobox"
+        selectOptions={userLocations}
+        inputData={{
+          placeholder: "Select country",
+          name: "location",
+          defaultValue: user.location ?? undefined,
         }}
         required
       />
@@ -115,7 +128,7 @@ export default async function Settings() {
           defaultValue: user.password || "",
         }}
       />
-            <Form
+      <Form
         title="Branding"
         description="Show or hide branding"
         endpoint={endpoint}
@@ -127,8 +140,7 @@ export default async function Settings() {
         }}
         toggle
         proFeature={!plan.isPro}
-
-/>
+      />
       <Form title="Export" endpoint={`${endpoint}/export`} asChild>
         <ExportButton
           text="Export all data"

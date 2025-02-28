@@ -1,5 +1,6 @@
 import type { SelectOption } from "@/types";
 import type { SWRConfiguration } from "swr";
+import { countries } from "./countries";
 
 export const swrOptions: SWRConfiguration = {
   revalidateOnFocus: false,
@@ -45,5 +46,14 @@ export const userCategories: SelectOption[] = [
   { title: "Founder", value: "Founder" },
   { title: "Freelancer", value: "Freelancer" },
   { title: "Writer", value: "Writer" },
-  { title: "Other", value: "Other" }
-] as const
+  { title: "Other", value: "Other" },
+] as const;
+
+export const userLocations: SelectOption[] = Object.entries(countries).map(
+  (c) => {
+    return {
+      title: c[1],
+      value: c[0],
+    };
+  },
+);

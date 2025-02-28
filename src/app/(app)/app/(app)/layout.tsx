@@ -21,7 +21,7 @@ export default async function AppLayout({
   if (!user) {
     return notFound();
   }
-  if (!user.name || !user.category) {
+  if (!user.name || !user.category || !user.location) {
     return <Onboarding user={user} />;
   }
   return (

@@ -18,7 +18,6 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
-import NavButton from "./nav-button";
 
 export default function UserPageCommand({ user }: { user: User }) {
   const { isOpen, toggle, setOpen } = useNavigation(
@@ -117,8 +116,8 @@ export default function UserPageCommand({ user }: { user: User }) {
         </CommandList>
       </CommandDialog>
       {pathname !== "/" && (
-        <nav className="fixed w-full pointer-events-none flex flex-col items-start max-md:justify-end left-0 top-0 max-md:bottom-0">
-          <div className="z-50 w-[640px] max-md:pl-4 py-4.4 max-md:w-full mx-auto pointer-events-auto flex gap-1 items-center">
+        <nav className="fixed w-full pointer-events-none flex flex-col max-md:justify-end left-0 top-0 max-md:bottom-0">
+          <div className="z-50 w-[640px] max-md:pr-4 py-4.4 max-md:w-full mx-auto pointer-events-auto flex gap-1 items-center justify-end">
             <Button
               onClick={() => router.back()}
               size="icon"
@@ -127,21 +126,13 @@ export default function UserPageCommand({ user }: { user: User }) {
             >
               <Icons.arrowLeft size={16} />
             </Button>
-            <NavButton
-              href="/"
-              className="size-4.5"
-              size="icon"
-              icon="home"
-              buttonVariant="secondary"
-              aria-label="Back to home"
-            />
             <Button
               onClick={() => setOpen(true)}
               size="icon"
               variant="secondary"
               aria-label="Open navigation"
             >
-              <Icons.command size={15} />
+              <Icons.menu size={15} />
             </Button>
           </div>
         </nav>
