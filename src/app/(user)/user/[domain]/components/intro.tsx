@@ -26,8 +26,8 @@ export default function Intro({
         <h2 className="text-gray-4 text-sm">{user.title}</h2>
       </dt>
       <dd className="section-content flex-row gap-2  py-0">
-        <CommandMenuToggle />
         <Feed />
+        <CommandMenuToggle />
       </dd>
     </dl>
   );

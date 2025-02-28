@@ -36,7 +36,7 @@ export default function Feed() {
           aria-label="Subscribe newsletter or RSS feed"
           size="icon"
         >
-          <Icons.rss size={15} />
+          <Icons.plus size={15} />
         </Button>
       </DialogTrigger>
       <DialogContent>
