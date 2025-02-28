@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import Newsletter from "./newsletter";
+import EditNewsletterCTA from "./edit-newsletter-cta";
 
 export const metadata: Metadata = {
   title: "Subscribers",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 export default async function Subscribers() {
   const user = await getUser();
+
   if (!user) {
     return notFound();
   }
@@ -34,6 +36,7 @@ export default async function Subscribers() {
           <div className="w-full flex justify-between items-center mb-3">
             <div className="flex gap-2">
               <Badge>{subscribers.length} Subscribers</Badge>
+              <EditNewsletterCTA defaultNewsletterCta={user.newsletterCta} />
               <ExportButton
                 text="Export subscribers"
                 icon="download"

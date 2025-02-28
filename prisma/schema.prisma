@@ -65,6 +65,7 @@ model User {
   updatedAt          DateTime      @default(now()) @map("updated_at")
   about              String?       @db.Text
   newsletter         Boolean       @default(false)
+  newsletterCta      String?
   seoTitle           String?
   seoDescription     String?
   ogImage            String?

@@ -58,7 +58,7 @@ export default async function Home({ params }: PageProps) {
       )}
       <div className="flex flex-col gap-6">
         <About content={user.about as string} />
-        {user.newsletter && <Newsletter username={user.username} />}
+        {user.newsletter && <Newsletter user={user} />}
         <Articles articles={articles} />
         <Projects projects={projects} />
         <Bookmarks bookmarks={bookmarks} />

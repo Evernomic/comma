@@ -92,7 +92,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </AppHeader>
       <MDX source={article.content} />
       <div className="mt-5">
-        <Newsletter username={user.username} />
+        <Newsletter user={user} />
       </div>
       <div className="mt-5 flex justify-between items-center">
         {article?.previousArticle && (

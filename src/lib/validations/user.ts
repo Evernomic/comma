@@ -36,5 +36,6 @@ export const updateUserSchema = z
     showBranding: z.boolean(),
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
+    newsletterCta: z.string().max(300),
   })
   .partial();

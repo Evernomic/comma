@@ -33,7 +33,7 @@ type FormData = z.infer<typeof schema>;
 export default function Onboarding({
   user,
 }: {
-  user: Pick<User, "name" | "username" | "category">;
+  user: Pick<User, "name" | "username" | "category" | "location">;
 }) {
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
@@ -68,7 +68,9 @@ export default function Onboarding({
           ...(user.category !== data.category && {
             category: data.category
           }),
-          location: data.location
+          ...(user.location !== data.location && {
+            location: data.location
+          }),        
         }),
       });
       if (!res.ok) {
@@ -130,7 +132,7 @@ export default function Onboarding({
           {...register("category")}
           render={({ field: { onChange, value } }) => (
             <Select
-              defaultValue={value}
+              defaultValue={value ?? undefined}
               disabled={isLoading}
               onValueChange={onChange}
             >
