@@ -4,7 +4,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { userCategories, userLocations } from "@/lib/constants";
-import { slugify } from "@/lib/utils";
+import slugify from "slugify";
 import { categoryValues, locationValues } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { User } from "@prisma/client";
@@ -72,8 +72,10 @@ export default function Onboarding({
         }),
       });
       if (!res.ok) {
+        const err = await res.text()
         toast({
-          title: "Username already in use",
+          title: err,
+          variant: "destructive"
         });
       } else {
         router.push("/articles");
@@ -83,7 +85,15 @@ export default function Onboarding({
   };
 
   useEffect(() => {
-    setValue("username", slugify(name) ?? "");
+    if(name !== user.name) {
+      setValue("username", slugify(name,{
+        replacement: "",
+        remove: /[^a-zA-Z0-9]/g,
+        lower: true,
+        strict: true,
+        trim: true,
+      }) ?? "");
+    }
   }, [name]);
   return (
     <div className="w-[400px] mx-auto p-10 flex flex-col items-center justify-center min-h-screen ">
