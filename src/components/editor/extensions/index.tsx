@@ -13,7 +13,9 @@ import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import { Placeholder as ImagePlaceholder } from "../plugins/placeholder";
 import { SlashCommand } from "./slash-command";
+import Mathematics from '@aarkue/tiptap-math-extension'
 import { uploadImg } from "./upload-image";
+import { allowedMimeTypes } from "@/lib/constants";
 
 const CustomImage = TiptapImage.extend({
   addProseMirrorPlugins() {
@@ -74,6 +76,7 @@ export const TiptapExtensions = [
   Color,
   SlashCommand,
   Typography,
+  Mathematics,
   Link.extend({ inclusive: false }).configure({
     HTMLAttributes: {
       class:
@@ -82,11 +85,11 @@ export const TiptapExtensions = [
     autolink: true,
   }),
   FileHandler.configure({
-    allowedMimeTypes: ["image/png", "image/jpeg", "image/gif", "image/webp"],
+    allowedMimeTypes: [...allowedMimeTypes],
     onDrop: (editor, files) => uploadImg(files[0], editor.view),
   }),
   Markdown.configure({
-    html: false,
+    html: true,
     transformCopiedText: true,
     transformPastedText: true,
   }),
