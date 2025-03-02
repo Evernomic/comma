@@ -21,6 +21,14 @@ export const StorageFolders = [
   "editor-uploads",
 ] as const;
 
+export const allowedMimeTypes = [
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "image/webp",
+  "image/gif",
+] as const;
+
 export const analyticsEndpoint = {
   analytics: {
     primary: "nap",

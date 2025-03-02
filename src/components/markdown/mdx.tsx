@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import "@/styles/prose.css";
+import "katex/dist/katex.min.css"
 import type {
   MDXComponents,
   MDXRemoteOptions,
@@ -7,10 +8,13 @@ import type {
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import Image from "next/image";
 import remarkGfm from "remark-gfm";
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 const mdxRemoteOptions: MDXRemoteOptions = {
   mdxOptions: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
+    rehypePlugins: [rehypeKatex]
   },
 };
 
@@ -26,6 +30,7 @@ const mdxComponents: MDXComponents = {
         className="w-full h-auto"
         quality={80}
         priority
+        unoptimized
       />
     );
   },

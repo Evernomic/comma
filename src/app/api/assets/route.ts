@@ -1,4 +1,5 @@
 import { guard } from "@/lib/auth";
+import { allowedMimeTypes } from "@/lib/constants";
 import { put } from "@vercel/blob";
 import { customAlphabet } from "nanoid";
 
@@ -6,14 +7,8 @@ const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
 );
 
-const allowedContentTypes = [
-  "image/png",
-  "image/jpeg",
-  "image/jpg",
-  "image/webp",
-] as const;
 
-type ContentType = (typeof allowedContentTypes)[number];
+type ContentType = (typeof allowedMimeTypes)[number];
 
 export const PUT = guard(async ({ req }) => {
   try {
@@ -22,7 +17,7 @@ export const PUT = guard(async ({ req }) => {
       (req.headers.get("content-type") as ContentType) ||
       "application/octet-stream";
 
-    if (!allowedContentTypes.includes(contentType)) {
+    if (!allowedMimeTypes.includes(contentType)) {
       return new Response(null, { status: 406 });
     }
 

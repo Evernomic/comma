@@ -79,3 +79,11 @@
 .prose ul[class="contains-task-list"] > li > p {
   @apply has-[:checked]:text-gray-4 has-[:checked]:line-through has-[:checked]:decoration-2;
 }
+
+.prose span[data-latex][data-display="yes"] {
+  @apply block text-center
+}
+
+.prose p > span[data-latex][data-display="yes"] {
+  @apply block text-center
+}
