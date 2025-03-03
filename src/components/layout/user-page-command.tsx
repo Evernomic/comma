@@ -125,7 +125,7 @@ export default function UserPageCommand({ user }: { user: User }) {
               variant="secondary"
               aria-label="Back to home"
             >
-              <Icons.arrowLeft size={16} />
+              <Icons.arrowLeft size={15} />
             </Button>
             <div className="flex items-center gap-2">
               <Feed username={user.username} />
