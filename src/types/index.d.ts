@@ -1,6 +1,6 @@
 import type { Icons } from "@/components/shared/icons";
 import type { Subscription } from "@lemonsqueezy/lemonsqueezy.js";
-import type { Bookmark, Collection } from "@prisma/client";
+import type { User, Bookmark, Collection } from "@prisma/client";
 
 export type Icon = keyof typeof Icons;
 
