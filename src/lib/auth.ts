@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import type { Plan, UserSubscriptionPlan } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { User } from "@prisma/client";
@@ -22,7 +23,7 @@ const authOptions: NextAuthOptions = {
   },
   providers: [
     EmailProvider({
-      from: "Comma <verify@mail.comma.to>",
+      from: `Comma <verify@${siteConfig.mailDomain}>`,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         if (process.env.NODE_ENV === "development") {
           console.log(url);

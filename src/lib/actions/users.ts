@@ -6,6 +6,10 @@ import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
 import type { updateUserSchema } from "../validations/user";
+import {
+  workExperienceFormSchema,
+  workExperiencePatchSchema,
+} from "../validations/work-experience";
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
@@ -24,7 +28,7 @@ export async function updateUser(
       ...(showBranding !== undefined && {
         showBranding: plan.isPro ? showBranding : true,
       }),
-      ...(category && {category: category as UserCategory})
+      ...(category && { category: category as UserCategory }),
     },
   });
 }
@@ -78,4 +82,45 @@ export async function deleteUser(userId: string, lsId: string | null) {
       },
     }),
   ]);
+}
+
+type CreateWorkExperienceSchema = z.infer<typeof workExperienceFormSchema>;
+type UpdateWorkExperienceSchema = z.infer<typeof workExperiencePatchSchema>;
+
+export async function createWorkExperience(
+  userId: string,
+  data: CreateWorkExperienceSchema,
+) {
+  return await db.workExperience.create({
+    data: {
+      userId,
+      ...data,
+    },
+  });
+}
+
+export async function updateWorkExperience(
+  workExperienceId: string,
+  userId: string,
+  data: UpdateWorkExperienceSchema,
+) {
+  return await db.workExperience.update({
+    where: {
+      id: workExperienceId,
+      userId,
+    },
+    data,
+  });
+}
+
+export async function deleteWorkExperience(
+  workExperienceId: string,
+  userId: string,
+) {
+  return await db.workExperience.delete({
+    where: {
+      id: workExperienceId,
+      userId,
+    },
+  });
 }

@@ -1,4 +1,5 @@
 "use server";
+import { siteConfig } from "@/config/site";
 import Newsletter from "@/emails/newsletter";
 import type { NewsletterProps } from "@/types";
 import type { Article, User } from "@prisma/client";
@@ -8,7 +9,7 @@ import { db } from "../db";
 import { getSubscribersByUserId } from "../fetchers/subscribers";
 import { rateLimit } from "../ratelimit";
 import { resend } from "../resend";
-import { formatDate, slugify } from "../utils";
+import { formatDate, getPostPageURL, slugify } from "../utils";
 import type {
   articleCreateSchema,
   articlePatchSchema,
@@ -94,15 +95,13 @@ export async function sendNewsletter(
     await Promise.all([
       ...emails.map((e) => {
         sendNewsletterEmail({
-          from: `${user?.name} from Comma <notify@mail.comma.to>`,
+          from: `${user?.name} from Comma <notify@${siteConfig.mailDomain}>`,
           to: e.email,
           subject: "I shared a new article.",
           newsletter: {
             title: article.title,
             author: user.name || user.username,
-            articleURL: user.domain
-              ? `https://${user.domain}/articles/${article.slug}`
-              : `https://${user.username}.comma.to/articles/${article.slug}`,
+            articleURL: getPostPageURL("articles", article.slug, user),
             published: formatDate(article.publishedAt),
             subId: e.id,
           },

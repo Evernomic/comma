@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
-import Newsletter from "./newsletter";
 import EditNewsletterCTA from "./edit-newsletter-cta";
+import Newsletter from "./newsletter";
 
 export const metadata: Metadata = {
   title: "Subscribers",

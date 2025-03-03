@@ -3,6 +3,7 @@ import DeleteForm from "@/components/forms/delete-form";
 import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
+import { siteConfig } from "@/config/site";
 import { userCategories, userLocations } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
 import { getUserSubscription } from "@/lib/subscription";
@@ -37,7 +38,7 @@ export default async function Settings() {
       />
       <Form
         endpoint={endpoint}
-        suffix=".comma.to"
+        suffix={`.${siteConfig.userDomain}`}
         title="Your username"
         description="This username will be used for the subdomain."
         helpText="Please use 36 characters at maximum."

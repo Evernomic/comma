@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import {
   Body,
   Container,
@@ -10,7 +11,6 @@ import {
   Text,
 } from "@react-email/components";
 import Footer from "./components/footer";
-import { siteConfig } from "@/config/site";
 
 const MagicLinkEmail = ({ url = siteConfig.url }: { url: string }) => (
   <Html>

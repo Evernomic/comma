@@ -37,6 +37,9 @@ export type SiteConfig = {
   name: string;
   description: string;
   url: string;
+  domain: string;
+  userDomain: string;
+  mailDomain: string;
   ogImage: string;
   links: {
     home: string;
@@ -143,5 +146,5 @@ export type User = Omit<
 
 export type SelectOption = {
   title: string;
-  value: string
-}
+  value: string;
+};

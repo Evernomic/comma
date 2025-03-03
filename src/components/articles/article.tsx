@@ -29,7 +29,7 @@ export default async function Article({ article, admin }: Props) {
       />
 
       <div className="flex-1 flex gap-2 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
-        <span className="block text-gray-4 w-24 group-hover:text-secondary transition-colors">
+        <span className="block text-gray-4 w-28 group-hover:text-secondary transition-colors">
           {formatDate(article.publishedAt)}
         </span>
         <div>

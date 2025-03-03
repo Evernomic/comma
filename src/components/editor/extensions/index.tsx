@@ -1,3 +1,5 @@
+import { allowedMimeTypes } from "@/lib/constants";
+import Mathematics from "@aarkue/tiptap-math-extension";
 import FileHandler from "@tiptap-pro/extension-file-handler";
 import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
@@ -13,9 +15,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import { Placeholder as ImagePlaceholder } from "../plugins/placeholder";
 import { SlashCommand } from "./slash-command";
-import Mathematics from '@aarkue/tiptap-math-extension'
 import { uploadImg } from "./upload-image";
-import { allowedMimeTypes } from "@/lib/constants";
 
 const CustomImage = TiptapImage.extend({
   addProseMirrorPlugins() {

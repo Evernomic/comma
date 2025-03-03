@@ -18,9 +18,9 @@ export const appConfig: AppConfig = {
       icon: "bookmark",
     },
     {
-      title: "Analytics",
-      href: "/analytics",
-      icon: "areaChart",
+      title: "Work",
+      href: "/work",
+      icon: "bookmark",
     },
   ],
   settingsNav: [

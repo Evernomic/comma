@@ -11,7 +11,7 @@
 }
 
 .ProseMirror .image-placeholder {
-  @apply relative max-w-[700px] max-md:w-full rounded-md bg-gray-3;
+  @apply relative max-w-[700px] rounded-md bg-gray-3 max-md:w-full;
 
   & img {
     @apply h-auto opacity-50;

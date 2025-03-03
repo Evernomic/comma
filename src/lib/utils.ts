@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import type { BookmarkWithCollection } from "@/types";
-import type { Article, Project } from "@prisma/client";
+import type { Article, Project, User, WorkExperience } from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
 import { formatDate as format } from "date-fns";
 import type { Metadata } from "next";
@@ -113,6 +113,12 @@ export function sortBookmarks(
 ) {
   return bookmarks.filter((b) =>
     collection ? collection === b.collection?.name : b,
+  );
+}
+
+export function sortWorkExperiences(experiences: WorkExperience[]) {
+  return experiences.sort(
+    (a, b) => b.from - (a.to === "present" ? 1 : Number(a.to)),
   );
 }
 
@@ -307,4 +313,47 @@ export function jsonToFrontmatter(jsonData: object) {
     .join("\n");
 
   return `---\n${frontmatter}\n---\n\n`;
+}
+
+export function generateYearsInRange(from: number = 1990, to?: number) {
+  const targetYear = to ?? new Date().getFullYear();
+  return Array.from({ length: targetYear - from }).map(
+    (_, i) => targetYear - i,
+  );
+}
+
+export function getUserPageURL(user: Pick<User, "username" | "domain">) {
+  return `https://${!user.domain ? `${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}` : user.domain}`;
+}
+
+export function getPostPageURL(
+  type: "articles" | "projects",
+  slug: string,
+  user: Pick<User, "username" | "domain">,
+) {
+  return `${getUserPageURL(user)}/${type}/${slug}`;
+}
+
+export function getUserOgImage(
+  user: Pick<User, "ogImage" | "username" | "name">,
+) {
+  return `${process.env.NEXT_PUBLIC_URL}/api/og/user?username=${user.name ?? user.username}`;
+}
+
+export function getArticleOgImage(
+  article: Pick<Project, "ogImage" | "title">,
+  user: Pick<User, "username" | "domain" | "name">,
+) {
+  return `${process.env.NEXT_PUBLIC_URL}/api/og/post?title=${article.title}&username=${user.name ?? user.username}`;
+}
+
+export function getProjectOgImage(
+  project: Pick<Project, "ogImage" | "title"> & { isProtected?: boolean },
+  user: Pick<User, "username" | "domain" | "name">,
+) {
+  return `${process.env.NEXT_PUBLIC_URL}/api/og/post?title=${project.title}&username=${user.name ?? user.username}${project.isProtected ? "&locked=true" : ""}`;
+}
+
+export function getUserFavicon(user: Pick<User, "username">) {
+  return `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`;
 }

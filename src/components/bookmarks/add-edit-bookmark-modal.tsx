@@ -39,11 +39,13 @@ export default function AddEditBookmarkModal({
   bookmark,
   edit,
   open = false,
+  closeBookmarkOperations,
 }: {
   collections?: Collection[];
   bookmark?: Bookmark;
   edit?: boolean;
   open?: boolean;
+  closeBookmarkOperations?: () => void;
 }) {
   const [showAddEditBookmarkModal, setShowAddEditBookmarkModal] =
     useState<boolean>(open);
@@ -110,6 +112,7 @@ export default function AddEditBookmarkModal({
       });
     }
     setShowAddEditBookmarkModal(false);
+    closeBookmarkOperations?.();
     reset();
     router.refresh();
 

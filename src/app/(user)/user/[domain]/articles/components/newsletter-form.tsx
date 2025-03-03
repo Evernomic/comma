@@ -10,7 +10,13 @@ import type * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
 
-export default function NewsletterForm({username, prefix = "newsletter"}: {username: string; prefix?: string}) {
+export default function NewsletterForm({
+  username,
+  prefix = "newsletter",
+}: {
+  username: string;
+  prefix?: string;
+}) {
   const [pending, startTransition] = useTransition();
 
   const {
@@ -47,32 +53,28 @@ export default function NewsletterForm({username, prefix = "newsletter"}: {usern
     });
   };
   return (
-
-        <form
-          id={`${prefix}-subscribe-newsletter`}
-          className="flex gap-2 items-center"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            disabled={pending}
-            {...register("email")}
-          />
-          {errors.email && (
-            <p className="text-xs font-bold text-danger">
-              {errors.email.message}
-            </p>
-          )}
-          <Button
-            isPending={pending}
-            variant="secondary"
-            className="px-12"
-            form={`${prefix}-subscribe-newsletter`}
-          >
-            Subscribe
-          </Button>
-        </form>
-
+    <form
+      id={`${prefix}-subscribe-newsletter`}
+      className="flex gap-2 items-center"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Input
+        type="email"
+        placeholder="Enter your email"
+        disabled={pending}
+        {...register("email")}
+      />
+      {errors.email && (
+        <p className="text-xs font-bold text-danger">{errors.email.message}</p>
+      )}
+      <Button
+        isPending={pending}
+        variant="secondary"
+        className="px-12"
+        form={`${prefix}-subscribe-newsletter`}
+      >
+        Subscribe
+      </Button>
+    </form>
   );
 }

@@ -4,7 +4,13 @@ import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
 import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { formatDate, generateSEO } from "@/lib/utils";
+import {
+  formatDate,
+  generateSEO,
+  getArticleOgImage,
+  getUserFavicon,
+  getUserPageURL,
+} from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Newsletter from "../components/newsletter";
@@ -35,21 +41,19 @@ export async function generateMetadata({
     return notFound();
   }
 
-  const path = `/articles/${article.slug}`;
+  const [url, ogImage, favicon] = [
+    getUserPageURL(user),
+    getArticleOgImage(article, user),
+    getUserFavicon(user),
+  ];
   return generateSEO({
     title: article.title,
     seoTitle: article.seoTitle ?? article.title,
     description: article.seoDescription || undefined,
-    image:
-      article.ogImage ||
-      `https://comma.to/api/og/post?title=${article.title}&username=${user.username || user.name}`,
-    icons: [
-      `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
-    ],
+    image: ogImage,
+    icons: [favicon],
     canonicalURL: article.canonicalURL || undefined,
-    url: user.domain
-      ? `https://${user.domain}${path}`
-      : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
+    url,
   });
 }
 

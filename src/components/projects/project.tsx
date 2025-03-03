@@ -24,8 +24,8 @@ export default function Project({ project, admin }: Props) {
         className="absolute left-0 top-0 w-full py-2 h-full"
         aria-label={`${project.title}`}
       />
-      <div className="flex-1 flex gap-1   items-start max-md:flex-col">
-        <span className="w-10 text-gray-4 truncate group-hover:text-secondary transition-colors text-left">
+      <div className="flex-1 flex gap-2   items-start max-md:flex-col">
+        <span className="w-28 text-gray-4 truncate group-hover:text-secondary transition-colors text-left">
           {project.year}
         </span>
         <div className="w-full  flex flex-1  flex-col">

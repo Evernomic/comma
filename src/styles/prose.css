@@ -45,7 +45,7 @@
   ul[class="contains-task-list"]
   > li[class="task-list-item"]
   > ul[class="contains-task-list"] {
-  @apply pl-4.4 my-2;
+  @apply my-2 pl-4.4;
 }
 .prose ul[class="contains-task-list"] {
   @apply my-4 pl-0;
@@ -81,9 +81,9 @@
 }
 
 .prose span[data-latex][data-display="yes"] {
-  @apply block text-center
+  @apply block text-center;
 }
 
 .prose p > span[data-latex][data-display="yes"] {
-  @apply block text-center
+  @apply block text-center;
 }

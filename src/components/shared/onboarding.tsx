@@ -4,13 +4,13 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { userCategories, userLocations } from "@/lib/constants";
-import slugify from "slugify";
 import { categoryValues, locationValues } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
+import slugify from "slugify";
 import * as z from "zod";
 import { Combobox } from "../ui/combobox";
 import {
@@ -53,31 +53,31 @@ export default function Onboarding({
     },
   });
 
-  const name = watch("name")
+  const name = watch("name");
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
       const res = await fetch("/api/user", {
         method: "PATCH",
         body: JSON.stringify({
           ...(user.name !== data.name && {
-            name: data.name
+            name: data.name,
           }),
           ...(user.username !== data.username && {
-            username: data.username
+            username: data.username,
           }),
           ...(user.category !== data.category && {
-            category: data.category
+            category: data.category,
           }),
           ...(user.location !== data.location && {
-            location: data.location
-          }),        
+            location: data.location,
+          }),
         }),
       });
       if (!res.ok) {
-        const err = await res.text()
+        const err = await res.text();
         toast({
           title: err,
-          variant: "destructive"
+          variant: "destructive",
         });
       } else {
         router.push("/articles");
@@ -87,14 +87,17 @@ export default function Onboarding({
   };
 
   useEffect(() => {
-    if(name !== user.name) {
-      setValue("username", slugify(name,{
-        replacement: "",
-        remove: /[^a-zA-Z0-9]/g,
-        lower: true,
-        strict: true,
-        trim: true,
-      }) ?? "");
+    if (name !== user.name) {
+      setValue(
+        "username",
+        slugify(name, {
+          replacement: "",
+          remove: /[^a-zA-Z0-9]/g,
+          lower: true,
+          strict: true,
+          trim: true,
+        }) ?? "",
+      );
     }
   }, [name]);
   return (

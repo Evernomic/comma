@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/components/ui/use-toast";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { getPostPageURL } from "@/lib/utils";
 import type { Icon } from "@/types";
 import type { Article, Project, User } from "@prisma/client";
 import Link from "next/link";
@@ -37,9 +38,7 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
   const [saving, setSaving] = useState<boolean>(false);
   const postPath = `/${type}/${post.id}`;
   const [_, copy] = useCopyToClipboard();
-  const postURL = user.domain
-    ? `https://${user.domain}/${type}/${post.slug}`
-    : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}/${type}/${post.slug}`;
+  const postURL = getPostPageURL(type, post.slug, user);
   const actions: PostAction[] = [
     {
       title: "Settings",

@@ -1,8 +1,8 @@
 "use client";
 
 import "@/styles/editor.css";
-import "katex/dist/katex.min.css"
 import { EditorContent, useEditor } from "@tiptap/react";
+import "katex/dist/katex.min.css";
 import { useRouter } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
 import TextareaAutosize from "react-textarea-autosize";

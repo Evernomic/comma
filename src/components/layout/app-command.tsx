@@ -1,6 +1,8 @@
 "use client";
 import { appConfig } from "@/config/app";
+import { siteConfig } from "@/config/site";
 import useAppCommand from "@/hooks/use-app-command";
+import { getUserPageURL } from "@/lib/utils";
 import type { Icon } from "@/types";
 import type { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -156,11 +158,7 @@ export default function AppCommand({ user }: { user: User }) {
       heading: "General",
       items: [
         {
-          command: () =>
-            window.open(
-              `https://${user.domain || `${user.username}.comma.to`}`,
-              "_blank",
-            ),
+          command: () => window.open(getUserPageURL(user), "_blank"),
           children: (
             <>
               <Icons.arrowUpRight size={18} /> Your page
@@ -185,7 +183,7 @@ export default function AppCommand({ user }: { user: User }) {
           ),
         },
         {
-          command: () => window.open("https://comma.to/home", "_blank"),
+          command: () => window.open(siteConfig.links.home, "_blank"),
           children: (
             <>
               <Icons.logo size={18} /> Home page
