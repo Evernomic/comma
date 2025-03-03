@@ -89,6 +89,7 @@ export default function EditNewsletterCTA({
             placeholder="Type..."
             maxLength={300}
             disabled={pending}
+            className="field-sizing-content"
             {...register("newsletterCTA")}
           />
           <div className="flex justify-between items-center">

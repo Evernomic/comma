@@ -12,11 +12,7 @@ import {
 } from "@react-email/components";
 import Footer from "./components/footer";
 
-const NewSubscriber = ({
-  email = "john@doe.com",
-}: {
-  email: string;
-}) => (
+const NewSubscriber = ({ email = "john@doe.com" }: { email: string }) => (
   <Html>
     <Head>
       <Font

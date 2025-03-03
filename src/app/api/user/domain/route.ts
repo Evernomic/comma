@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { updateDomain } from "@/lib/actions/users";
 import { guard } from "@/lib/auth";
 import { validDomainRegex } from "@/lib/constants";
@@ -10,7 +11,7 @@ const bodySchema = z.object({
     .optional()
     .nullable()
     .refine(
-      (value) => !value?.includes("comma.to"),
+      (value) => !value?.includes(siteConfig.domain),
       "You cannot use this domain as your own custom domain.",
     ),
 });

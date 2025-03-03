@@ -2,12 +2,11 @@ import Article from "@/components/articles/article";
 import NoArticlesPlaceholder from "@/components/articles/no-articles-placeholder";
 import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
+import NavButton from "@/components/layout/nav-button";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Subscribe from "./components/feed";
-import NavButton from "@/components/layout/nav-button";
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -28,7 +27,9 @@ export default async function ArticlesPage({ params }: ArticlesPageProps) {
   return (
     <AppShell>
       <AppHeader title="Articles">
-        <NavButton  href='/' aria-label="Subscribe newsletter">Subscribe</NavButton>
+        <NavButton href="/" aria-label="Subscribe newsletter">
+          Subscribe
+        </NavButton>
       </AppHeader>
       <div>
         {articles.map((article) => (

@@ -7,7 +7,6 @@ const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
 );
 
-
 type ContentType = (typeof allowedMimeTypes)[number];
 
 export const PUT = guard(async ({ req }) => {

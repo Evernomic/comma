@@ -1,5 +1,5 @@
 /** @type {import('prettier').Config} */
-const config  = {
+const config = {
   trailingComma: "all",
   semi: true,
   bracketSpacing: true,

@@ -59,10 +59,7 @@ export function Combobox({
           {value
             ? options.find((option) => option.value === value)?.title
             : placeholder}
-          <Icons.chevronsUpDown
-            size={20}
-            className="text-gray-4"
-          />
+          <Icons.chevronsUpDown size={20} className="text-gray-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="ml-0 size-auto p-0 border-0">

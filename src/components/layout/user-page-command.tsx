@@ -119,7 +119,7 @@ export default function UserPageCommand({ user }: { user: User }) {
         <nav className="fixed w-full pointer-events-none flex flex-col max-md:justify-end left-0 top-0 max-md:bottom-0">
           <div className="z-50 w-[640px] max-md:pr-4 py-4.4 max-md:w-full mx-auto pointer-events-auto flex gap-1 items-center justify-end">
             <Button
-              onClick={() => router.push('/')}
+              onClick={() => router.push("/")}
               size="icon"
               variant="secondary"
               aria-label="Back to home"

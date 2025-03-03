@@ -32,7 +32,9 @@ export const GET = guard(
         return new Response(null, { status: 403 });
       }
 
-      const filteredProperties = analyticsProperties.filter(p => p !== "page")
+      const filteredProperties = analyticsProperties.filter(
+        (p) => p !== "page",
+      );
 
       const allData = await Promise.all(
         filteredProperties.map((property) =>

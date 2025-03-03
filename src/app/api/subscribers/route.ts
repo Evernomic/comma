@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import NewSubscriber from "@/emails/new-subscriber";
 import { createSubscriber, isSubscriberExist } from "@/lib/actions/subscribers";
 import { getUserById } from "@/lib/fetchers/users";
@@ -62,11 +63,11 @@ export async function POST(req: NextRequest) {
     await Promise.all([
       createSubscriber(user.id, body.data),
       resend.emails.send({
-        from: "Comma Notify <notify@mail.comma.to>",
+        from: `Comma Notify <notify@${siteConfig.mailDomain}>`,
         to: user.email,
         subject: "New Subscriber",
         react: NewSubscriber({
-          email: body.data.email
+          email: body.data.email,
         }),
         headers: {
           "X-Entity-Ref-ID": nanoid(),

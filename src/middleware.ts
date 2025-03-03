@@ -27,7 +27,10 @@ export default async function middleware(req: NextRequest) {
     ".vercel.app",
   ];
 
-  if (hostname.endsWith(legacyAppDomain) || hostname.endsWith(legacyUserDomain)) {
+  if (
+    hostname.endsWith(legacyAppDomain) ||
+    hostname.endsWith(legacyUserDomain)
+  ) {
     if (hostname.startsWith("app") && hostname.endsWith(legacyAppDomain)) {
       return NextResponse.redirect(
         new URL(url.pathname + url.search, process.env.NEXT_PUBLIC_APP_URL!),
@@ -87,7 +90,10 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
-  if (hostname.endsWith(`.${userDomain}`) && !notAllowedUsernames.find(u => hostname.split(`.${userDomain}`)[0] === u)) {
+  if (
+    hostname.endsWith(`.${userDomain}`) &&
+    !notAllowedUsernames.find((u) => hostname.split(`.${userDomain}`)[0] === u)
+  ) {
     const domain = hostname.split(`.${userDomain}`)[0];
     const password = await isSiteProtected(domain);
     if (password) {

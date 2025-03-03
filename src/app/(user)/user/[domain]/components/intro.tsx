@@ -1,6 +1,6 @@
 import type { User } from "@prisma/client";
-import CommandMenuToggle from "./toggle";
 import Feed from "../articles/components/feed";
+import CommandMenuToggle from "./toggle";
 
 export default function Intro({
   user,

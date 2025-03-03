@@ -11,7 +11,10 @@ import UserNav from "./user-nav";
 
 interface Props {
   links: MainNavItem[];
-  user: Pick<User, "name" | "email" | "image" | "username" | "domain"> | null;
+  user: Pick<
+    User,
+    "name" | "email" | "image" | "username" | "domain" | "lsId"
+  > | null;
 }
 
 export default function AppNav({ links, user }: Props) {

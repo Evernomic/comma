@@ -1,5 +1,6 @@
 "use client";
 
+import { siteConfig } from "@/config/site";
 import { validDomainRegex } from "@/lib/constants";
 import { cn, getSubdomain } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -160,7 +161,9 @@ export default function CustomDomain({
             <Config
               type={subdomain ? "CNAME" : "A"}
               name={subdomain ? subdomain : "@"}
-              value={subdomain ? "cname.comma.to." : "76.76.21.21"}
+              value={
+                subdomain ? `cname.${siteConfig.userDomain}.` : "76.76.21.21"
+              }
             />
           )}
         </div>

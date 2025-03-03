@@ -1,5 +1,5 @@
 "use client";
-import type { Collection } from "@prisma/client";
+import type { WorkExperience } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import { Icons } from "../shared/icons";
@@ -17,32 +17,30 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-
 import { toast } from "../ui/use-toast";
-import AddEditBookmarkModal, { type Bookmark } from "./add-edit-bookmark-modal";
+import AddEditExperienceModal from "./add-edit-work-experience";
 
 interface Props {
-  bookmark: Bookmark;
-  collections?: Collection[];
+  experience: WorkExperience;
 }
 
-async function deleteBookmark(bookmarkId: string) {
-  const response = await fetch(`/api/bookmarks/${bookmarkId}`, {
+async function deleteExperience(experienceId: string) {
+  const response = await fetch(`/api/user/work/${experienceId}`, {
     method: "DELETE",
   });
 
   if (!response?.ok) {
     toast({
       title: "Something went wrong.",
-      description: "Your post was not deleted. Please try again.",
+      description: "Your experience was not deleted. Please try again.",
     });
   }
 
   return true;
 }
 
-export default function BookmarkOperations({ bookmark, collections }: Props) {
-  const [showBookmarkOperations, setShowBookmarkOperations] =
+export default function ExperienceOperations({ experience }: Props) {
+  const [showExperienceOperations, setShowExperienceOperations] =
     useState<boolean>(false);
 
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
@@ -53,10 +51,13 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
     <>
       <DropdownMenu
         modal={false}
-        open={showBookmarkOperations}
-        onOpenChange={setShowBookmarkOperations}
+        open={showExperienceOperations}
+        onOpenChange={setShowExperienceOperations}
       >
-        <DropdownMenuTrigger aria-label="Bookmark Operations" asChild>
+        <DropdownMenuTrigger
+          aria-label="Delete or edit work experience"
+          asChild
+        >
           <Button
             size="icon"
             variant="ghost"
@@ -66,11 +67,10 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <AddEditBookmarkModal
-            bookmark={bookmark}
-            collections={collections}
+          <AddEditExperienceModal
+            experience={experience}
             edit
-            closeBookmarkOperations={() => setShowBookmarkOperations(false)}
+            closeExperienceOperations={() => setShowExperienceOperations(false)}
           />
           <Button
             size="sm"
@@ -86,7 +86,7 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              Are you sure you want to delete this bookmark?
+              Are you sure you want to delete this experience?
             </AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone.
@@ -107,7 +107,7 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
               onClick={async (e: FormEvent) => {
                 e.preventDefault();
                 setIsDeleteLoading(true);
-                const deleted = await deleteBookmark(bookmark.id);
+                const deleted = await deleteExperience(experience.id);
                 if (deleted) {
                   setIsDeleteLoading(false);
                   setShowDeleteAlert(false);

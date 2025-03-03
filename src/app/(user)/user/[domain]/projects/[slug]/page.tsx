@@ -5,7 +5,12 @@ import { Icons } from "@/components/shared/icons";
 import { Badge } from "@/components/ui/badge";
 import { getProject, getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { generateSEO } from "@/lib/utils";
+import {
+  generateSEO,
+  getPostPageURL,
+  getProjectOgImage,
+  getUserFavicon,
+} from "@/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,22 +41,20 @@ export async function generateMetadata({
     return notFound();
   }
 
-  const path = `/projects/${project.slug}`;
+  const [url, ogImage, favicon] = [
+    getPostPageURL("projects", project.slug, user),
+    getProjectOgImage(project, user),
+    getUserFavicon(user),
+  ];
   return generateSEO({
     title: project.title,
     ...(!project.isProtected && {
       description: project.seoDescription || project.description || undefined,
     }),
     seoTitle: project.seoTitle ?? project.title,
-    image:
-      project.ogImage ||
-      `https://comma.to/api/og/post?title=${project.title}&username=${user.username || user.name}${project.isProtected ? "&locked=true" : ""}`,
-    icons: [
-      `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
-    ],
-    url: user.domain
-      ? `https://${user.domain}${path}`
-      : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
+    image: ogImage,
+    icons: [favicon],
+    url,
   });
 }
 

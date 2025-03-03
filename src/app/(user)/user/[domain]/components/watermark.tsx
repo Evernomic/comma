@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/config/site";
 import { getUserViaEdge } from "@/lib/edge";
 import type { User } from "@prisma/client";
 import Link from "next/link";
@@ -10,7 +11,7 @@ export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
   }
   return (
     <Link
-      href="https://comma.to"
+      href={siteConfig.links.home}
       target="_blank"
       aria-label="Powered by Comma"
     >

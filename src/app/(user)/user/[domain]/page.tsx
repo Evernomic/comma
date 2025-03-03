@@ -2,16 +2,21 @@ import AppShell from "@/components/layout/app-shell";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
-import { getAllUserDomains, getUserByDomain } from "@/lib/fetchers/users";
+import {
+  getAllUserDomains,
+  getUserByDomain,
+  getWorkExperiencesByUser,
+} from "@/lib/fetchers/users";
 import { notFound } from "next/navigation";
+import Newsletter from "./articles/components/newsletter";
 import About from "./components/about";
 import Articles from "./components/articles";
 import Bookmarks from "./components/bookmarks";
 import Connect from "./components/connect";
+import WorkExperience from "./components/experience";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import Projects from "./components/projects";
-import Newsletter from "./articles/components/newsletter";
 
 export const revalidate = 60;
 
@@ -45,10 +50,11 @@ export default async function Home({ params }: PageProps) {
   if (!user) {
     return notFound();
   }
-  const [articles, projects, bookmarks] = await Promise.all([
+  const [articles, projects, bookmarks, experiences] = await Promise.all([
     getArticlesByAuthor(user.id, 5),
     getProjectsByAuthor(user.id, 5),
     getBookmarksByAuthor(user.id, 5),
+    getWorkExperiencesByUser(user.id),
   ]);
   return (
     <AppShell>
@@ -59,6 +65,7 @@ export default async function Home({ params }: PageProps) {
       <div className="flex flex-col gap-6">
         <About content={user.about as string} />
         {user.newsletter && <Newsletter user={user} />}
+        <WorkExperience experiences={experiences} />
         <Articles articles={articles} />
         <Projects projects={projects} />
         <Bookmarks bookmarks={bookmarks} />

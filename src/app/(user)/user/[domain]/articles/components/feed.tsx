@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import NewsletterForm from "./newsletter-form";
-import { User } from "@prisma/client";
 
 const feeds = [
   {
@@ -27,9 +26,9 @@ const feeds = [
   },
 ] as const;
 
-export default function Feed({username}: {username: string}) {
+export default function Feed({ username }: { username: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [showNewsletterForm, setShowNewsletterForm] = useState<boolean>(false)
+  const [showNewsletterForm, setShowNewsletterForm] = useState<boolean>(false);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -63,15 +62,17 @@ export default function Feed({username}: {username: string}) {
             </NavButton>
           ))}
           <Button
-              onClick={() => setShowNewsletterForm(prev => !prev)}
-              variant="secondary"
-              size="wide"
-              className="w-full gap-2 h-16 text-base "
-            >
-            <Icons.mail size={18} />  Email
-            </Button>
+            onClick={() => setShowNewsletterForm((prev) => !prev)}
+            variant="secondary"
+            size="wide"
+            className="w-full gap-2 h-16 text-base "
+          >
+            <Icons.mail size={18} /> Email
+          </Button>
         </div>
-        {showNewsletterForm && <NewsletterForm username={username} prefix="feed-subscribe"/>}
+        {showNewsletterForm && (
+          <NewsletterForm username={username} prefix="feed-subscribe" />
+        )}
       </DialogContent>
     </Dialog>
   );

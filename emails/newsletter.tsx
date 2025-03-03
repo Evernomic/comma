@@ -62,7 +62,7 @@ export default function Newsletter({
           </Link>
           <Text style={footer}>
             <Link href={siteConfig.url} target="_blank" style={link}>
-              comma.to
+              {siteConfig.domain}
             </Link>
             <Link
               href={`${siteConfig.url}/unsubscribe?subId=${subId}`}

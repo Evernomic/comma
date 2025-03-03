@@ -2,6 +2,7 @@
 import { getServerSession } from "next-auth";
 import authOptions from "../auth";
 import { db } from "../db";
+import getCurrentUser from "../session";
 
 export async function getUser() {
   const session = await getServerSession(authOptions);
@@ -56,6 +57,29 @@ export async function getAllUserDomains() {
     select: {
       username: true,
       domain: true,
+    },
+  });
+}
+
+export async function getWorkExperiences() {
+  const user = await getCurrentUser();
+  return await db.workExperience.findMany({
+    where: {
+      userId: user?.id,
+    },
+    orderBy: {
+      from: "desc",
+    },
+  });
+}
+
+export async function getWorkExperiencesByUser(userId: string) {
+  return await db.workExperience.findMany({
+    where: {
+      userId,
+    },
+    orderBy: {
+      from: "desc",
     },
   });
 }

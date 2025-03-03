@@ -1,7 +1,12 @@
 import Track from "@/components/analytics/track";
 import Command from "@/components/layout/user-page-command";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { generateSEO } from "@/lib/utils";
+import {
+  generateSEO,
+  getUserFavicon,
+  getUserOgImage,
+  getUserPageURL,
+} from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type React from "react";
@@ -23,20 +28,18 @@ export async function generateMetadata({
     return notFound();
   }
   const title = user.name || user.username;
-  const url = user.domain
-    ? `https://${user.domain}`
-    : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}`;
+  const [url, image, favicon] = [
+    getUserPageURL(user),
+    getUserOgImage(user),
+    getUserFavicon(user),
+  ];
   return generateSEO({
     title,
     template: title,
-    seoTitle: user.seoTitle || undefined,
-    description: user.seoDescription || undefined,
-    image:
-      user.ogImage ||
-      `https://comma.to/api/og/user?username=${user.name || user.username}`,
-    icons: [
-      `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
-    ],
+    seoTitle: user.seoTitle!,
+    description: user.seoDescription!,
+    image,
+    icons: [favicon],
     url,
     feeds: {
       rss: `${url}/feed`,

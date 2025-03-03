@@ -31,7 +31,7 @@ export async function getUserViaEdge(
     return {
       userId: user.id,
       isPro: false,
-      showBranding: true
+      showBranding: true,
     };
   }
 
@@ -43,7 +43,7 @@ export async function getUserViaEdge(
     return {
       userId: id,
       isPro: false,
-      showBranding: true
+      showBranding: true,
     };
   }
 
@@ -67,7 +67,7 @@ export async function getUserViaEdge(
   return {
     userId: id,
     isPro,
-    showBranding: user.showBranding
+    showBranding: user.showBranding,
   };
 }
 

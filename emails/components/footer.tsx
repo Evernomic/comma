@@ -19,7 +19,7 @@ export default function Footer() {
           color: "#606060",
         }}
       >
-        comma.to
+        {siteConfig.domain}
       </Link>
       , an open-source blogging platform,
       <br />

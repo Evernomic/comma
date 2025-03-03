@@ -2,7 +2,7 @@ import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { getSearchParams } from "@/lib/utils";
+import { getSearchParams, getUserPageURL } from "@/lib/utils";
 import { Article, Project } from "@prisma/client";
 import { Feed } from "feed";
 
@@ -24,7 +24,7 @@ export async function GET(
   if (!user) {
     return new Response(null, { status: 404 });
   }
-  const id = `https://${user.domain ?? `${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}`}`;
+  const id = getUserPageURL(user);
   const name = user.name || user.username;
   const author = {
     name,

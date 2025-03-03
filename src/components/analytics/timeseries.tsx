@@ -1,6 +1,6 @@
 import { swrOptions } from "@/lib/constants";
 import { fetcher } from "@/lib/utils";
-import { useCallback, use } from "react";
+import { use, useCallback } from "react";
 import useSWR from "swr";
 import { AnalyticsContext } from ".";
 import { Icons } from "../shared/icons";
