@@ -33,8 +33,8 @@ export default async function Subscribers() {
     <div className="flex flex-col gap-2 ">
       {user.newsletter ? (
         <>
-          <div className="w-full flex justify-between items-center mb-3">
-            <div className="flex gap-2">
+          <div className="w-full flex max-md:multi-[flex-col;gap-4;items-start] justify-between items-center mb-3">
+            <div className="flex gap-2 max-md:flex-col">
               <Badge>{subscribers.length} Subscribers</Badge>
               <EditNewsletterCTA defaultNewsletterCta={user.newsletterCta} />
               <ExportButton
