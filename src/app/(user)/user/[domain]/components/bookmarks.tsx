@@ -14,18 +14,15 @@ export default function Bookmarks({
   }
   return (
     <dl className="section-container">
-      <dt className="section-title link group">
-        <Link
-          href="/bookmarks"
-          className="absolute w-full h-full "
-          aria-label="View All Bookmarks"
-        />
-        <h3>Bookmarks</h3>
-        <Icons.arrowRight
-          size={16}
-          className="text-gray-4 group-hover:text-secondary"
-        />
-      </dt>
+      <Link href="/bookmarks" aria-label="View All Bookmarks">
+        <dt className="section-title link group">
+          <h3>Bookmarks</h3>
+          <Icons.arrowRight
+            size={16}
+            className="text-gray-4 group-hover:text-secondary"
+          />
+        </dt>
+      </Link>
       <dd className="section-content">
         {bookmarks.map((bookmark) => (
           <Bookmark
