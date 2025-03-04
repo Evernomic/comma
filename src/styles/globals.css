@@ -48,7 +48,7 @@
   }
 
   .section-title {
-    @apply relative flex items-center justify-between text-base;
+    @apply relative flex items-center justify-between text-base max-md:w-full;
   }
   .section-title.link {
     @apply -mx-4 rounded-md px-4 py-1 transition-colors hover:bg-gray-3;

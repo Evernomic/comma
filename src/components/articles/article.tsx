@@ -27,7 +27,7 @@ export default async function Article({ article, admin }: Props) {
       <Link
         href={`/articles/${admin ? article.id : article.slug}`}
         aria-label={`${article.title}`}
-        className="absolute left-0 top-0 w-full h-full"
+        className="absolute left-0 top-0 size-full"
       />
       <div className="flex-1 flex gap-4 items-center max-md:multi-[flex-col;items-start;gap-2]">
         {article.image && (
@@ -38,7 +38,7 @@ export default async function Article({ article, admin }: Props) {
             alt="Article icon"
           />
         )}
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <Balancer>{article.title}</Balancer>
           <p className="text-gray-4 text-xs">
             {formatDate(article.publishedAt)}
