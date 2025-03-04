@@ -4,6 +4,7 @@ import { appConfig } from "@/config/app";
 import { usePathname } from "next/navigation";
 import AppHeader from "./header";
 import NavButton from "./nav-button";
+import MobileSettingsNav from "./settings-mobile-nav";
 
 export default function SettingsNav() {
   const path = usePathname();
@@ -11,9 +12,8 @@ export default function SettingsNav() {
   return (
     <AppHeader
       title={current?.title || "Settings"}
-      className="gap-3 max-md:mb-2  max-[480px]:flex-col max-[480px]:items-start"
     >
-      <nav className="flex flex-row gap-2">
+      <nav className="flex gap-2 max-md:hidden">
         {appConfig.settingsNav.map((link) => (
           <NavButton
             href={link.href}
@@ -28,6 +28,7 @@ export default function SettingsNav() {
           </NavButton>
         ))}
       </nav>
+      <MobileSettingsNav links={appConfig.settingsNav}  currentPath={path}/>
     </AppHeader>
   );
 }
