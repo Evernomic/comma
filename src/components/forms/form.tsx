@@ -3,7 +3,14 @@ import { cn } from "@/lib/utils";
 import type { SelectOption } from "@/types";
 import { useRouter } from "next/navigation";
 import type React from "react";
-import { type FormEvent, useMemo, useState, useTransition } from "react";
+import {
+  cloneElement,
+  type FormEvent,
+  isValidElement,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import { Icons } from "../shared/icons";
 import Upgrade from "../shared/upgrade";
 import Button from "../ui/button";
@@ -121,7 +128,7 @@ export default function Form({
   return (
     <form
       className="overflow-hidden relative rounded-md border border-gray-2"
-      onSubmit={onSubmit}
+      onSubmit={(e) => (!asChild ? onSubmit(e) : e.preventDefault())}
     >
       {proFeature && <Upgrade />}
       <div className="flex flex-col gap-1 p-4">
@@ -231,13 +238,13 @@ export default function Form({
               />
             )}
           </div>
-        ) : (
-          children
-        )}
+        ) : isValidElement(children) ? (
+          cloneElement(children as any, { startTransition })
+        ) : null}
       </div>
       <footer className="flex h-auto flex-row items-center   justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
         <div className={cn("text-sm text-gray-4", error ? "text-danger" : "")}>
-          {saving && toggle ? (
+          {(saving && toggle) || (asChild && saving) ? (
             <Icons.spinner className="animate-spin" size={15} />
           ) : (
             error || helpText

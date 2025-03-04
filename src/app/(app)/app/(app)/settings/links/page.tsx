@@ -1,4 +1,5 @@
 import Form from "@/components/forms/form";
+import AppShell from "@/components/layout/app-shell";
 import { getUser } from "@/lib/fetchers/users";
 import type { Metadata } from "next";
 
@@ -10,7 +11,7 @@ export default async function Links() {
   const endpoint = "user";
 
   return (
-    <div className="flex flex-col gap-2">
+    <AppShell>
       <Form
         title="Twitter"
         description="This link will appear on your page."
@@ -70,6 +71,6 @@ export default async function Links() {
         endpoint={endpoint}
         required={false}
       />
-    </div>
+    </AppShell>
   );
 }

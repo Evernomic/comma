@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import type { BookmarkWithCollection } from "@/types";
+import type { BookmarkWithCollection, UserPageSection } from "@/types";
 import type { Article, Project, User, WorkExperience } from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
 import { formatDate as format } from "date-fns";
@@ -356,4 +356,19 @@ export function getProjectOgImage(
 
 export function getUserFavicon(user: Pick<User, "username">) {
   return `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`;
+}
+
+export function sortUserPageSections(
+  sections: UserPageSection[],
+  defaultOrder?: number[],
+) {
+  if (defaultOrder) {
+    sections.sort(
+      (a, b) =>
+        defaultOrder.findIndex((o) => o === a.position) -
+        defaultOrder.findIndex((o) => o === b.position),
+    );
+  }
+
+  return sections;
 }

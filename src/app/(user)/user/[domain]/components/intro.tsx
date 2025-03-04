@@ -1,24 +1,8 @@
-import type { User } from "@prisma/client";
+import type { User } from "@/types";
 import Feed from "../articles/components/feed";
 import CommandMenuToggle from "./toggle";
 
-export default function Intro({
-  user,
-}: {
-  user: Pick<
-    User,
-    | "about"
-    | "name"
-    | "title"
-    | "image"
-    | "github"
-    | "twitter"
-    | "dribbble"
-    | "contactEmail"
-    | "linkedin"
-    | "username"
-  >;
-}) {
+export default function Intro({ user }: { user: User }) {
   return (
     <dl className="section-container flex-row justify-between items-center mb-6">
       <dt className="section-title flex-col items-start">

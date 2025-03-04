@@ -7,16 +7,11 @@ import {
   getUserByDomain,
   getWorkExperiencesByUser,
 } from "@/lib/fetchers/users";
+import { sortUserPageSections } from "@/lib/utils";
 import { notFound } from "next/navigation";
-import Newsletter from "./articles/components/newsletter";
-import About from "./components/about";
-import Articles from "./components/articles";
-import Bookmarks from "./components/bookmarks";
-import Connect from "./components/connect";
-import WorkExperience from "./components/experience";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
-import Projects from "./components/projects";
+import sections from "./components/sections";
 
 export const revalidate = 60;
 
@@ -59,17 +54,23 @@ export default async function Home({ params }: PageProps) {
   return (
     <AppShell>
       <Intro user={user} />
-      {!user?.about?.trim().length && !articles.length && !projects.length && (
-        <NothingPlaceholder name={user.name || user.username} />
-      )}
+      {!user?.about?.trim().length &&
+        !articles.length &&
+        !projects.length &&
+        !bookmarks.length &&
+        !experiences.length && (
+          <NothingPlaceholder name={user.name || user.username} />
+        )}
       <div className="flex flex-col gap-6">
-        <About content={user.about as string} />
-        {user.newsletter && <Newsletter user={user} />}
-        <WorkExperience experiences={experiences} />
-        <Articles articles={articles} />
-        <Projects projects={projects} />
-        <Bookmarks bookmarks={bookmarks} />
-        <Connect user={user} />
+        {sortUserPageSections(sections, user.sectionsOrder).map((section) => (
+          <section.component
+            user={user}
+            projects={projects}
+            bookmarks={bookmarks}
+            experiences={experiences}
+            key={`${section.title.toLowerCase()}--${section.position}`}
+          />
+        ))}
       </div>
     </AppShell>
   );

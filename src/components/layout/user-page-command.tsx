@@ -1,5 +1,6 @@
 "use client";
 
+import Feed from "@/app/(user)/user/[domain]/articles/components/feed";
 import { getLinks, userPageConfig } from "@/config/user-page";
 import useNavigation from "@/hooks/use-navigation";
 import { User } from "@/types";
@@ -18,7 +19,6 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
-import Feed from "@/app/(user)/user/[domain]/articles/components/feed";
 
 export default function UserPageCommand({ user }: { user: User }) {
   const { isOpen, toggle, setOpen } = useNavigation(
@@ -125,20 +125,19 @@ export default function UserPageCommand({ user }: { user: User }) {
               variant="secondary"
               aria-label="Back to home"
             >
-              <Icons.arrowLeft size={16} />
+              <Icons.arrowLeft size={15} />
             </Button>
             <div className="flex items-center gap-2">
               <Feed username={user.username} />
-            <Button
-              onClick={() => setOpen(true)}
-              size="icon"
-              variant="secondary"
-              aria-label="Open navigation"
-            >
-              <Icons.menu size={15} />
-            </Button>
+              <Button
+                onClick={() => setOpen(true)}
+                size="icon"
+                variant="secondary"
+                aria-label="Open navigation"
+              >
+                <Icons.menu size={15} />
+              </Button>
             </div>
-
           </div>
         </nav>
       )}
