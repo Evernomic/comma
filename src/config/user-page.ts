@@ -24,6 +24,36 @@ export const userPageConfig: UserPageConfig = {
       icon: "bookmark",
     },
   ],
+  sections: [
+    {
+      title: "Newsletter",
+      position: 0,
+    },
+    {
+      title: "About",
+      position: 1,
+    },
+    {
+      title: "Work experience",
+      position: 2,
+    },
+    {
+      title: "Articles",
+      position: 3,
+    },
+    {
+      title: "Projects",
+      position: 4,
+    },
+    {
+      title: "Bookmarks",
+      position: 5,
+    },
+    {
+      title: "Connect",
+      position: 6,
+    },
+  ],
 } as const;
 
 export const getLinks = (

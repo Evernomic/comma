@@ -3,6 +3,7 @@ import DeleteForm from "@/components/forms/delete-form";
 import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
+import AppShell from "@/components/layout/app-shell";
 import { siteConfig } from "@/config/site";
 import { userCategories, userLocations } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
@@ -23,7 +24,7 @@ export default async function Settings() {
 
   const plan = await getUserSubscription(user.id);
   return (
-    <div className="flex flex-col gap-2">
+    <AppShell>
       <Form
         endpoint={endpoint}
         title="Your name"
@@ -156,6 +157,6 @@ export default async function Settings() {
         description="Enter your username"
         endpoint={`/${endpoint}`}
       />
-    </div>
+    </AppShell>
   );
 }

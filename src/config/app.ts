@@ -41,6 +41,10 @@ export const appConfig: AppConfig = {
       href: "/settings/subscribers",
     },
     {
+      title: "Customize",
+      href: "/settings/customize",
+    },
+    {
       title: "Billing",
       href: "/settings/billing",
     },

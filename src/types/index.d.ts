@@ -1,6 +1,7 @@
 import type { Icons } from "@/components/shared/icons";
 import type { Subscription } from "@lemonsqueezy/lemonsqueezy.js";
-import type { User, Bookmark, Collection } from "@prisma/client";
+import type { Bookmark, Collection, User } from "@prisma/client";
+import { JSX } from "react";
 
 export type Icon = keyof typeof Icons;
 
@@ -53,8 +54,15 @@ export type SiteConfig = {
   };
 };
 
+export type UserPageSection = {
+  title: string;
+  position: number;
+  component?: JSX.Element | any;
+};
+
 export type UserPageConfig = {
   pages: MainNavItem[];
+  sections: UserPageSection[];
 };
 
 export type Feature = {

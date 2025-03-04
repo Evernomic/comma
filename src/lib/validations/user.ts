@@ -37,5 +37,6 @@ export const updateUserSchema = z
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),
+    sectionsOrder: z.array(z.number()).min(7),
   })
   .partial();

@@ -1,5 +1,6 @@
 import Form from "@/components/forms/form";
 import UploadImage from "@/components/forms/upload-image";
+import AppShell from "@/components/layout/app-shell";
 import { getUser } from "@/lib/fetchers/users";
 import type { Metadata } from "next";
 
@@ -10,7 +11,7 @@ export default async function SEO() {
   const user = await getUser();
   const endpoint = "user";
   return (
-    <div className="flex flex-col gap-2">
+    <AppShell>
       <Form
         method="PATCH"
         endpoint={endpoint}
@@ -47,6 +48,6 @@ export default async function SEO() {
         name="ogImage"
         folder="og-images"
       />
-    </div>
+    </AppShell>
   );
 }

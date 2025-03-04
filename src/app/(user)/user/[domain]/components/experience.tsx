@@ -12,7 +12,7 @@ export default function WorkExperiences({
   return (
     <dl className="section-container">
       <dt className="section-title">
-        <h3>Work Experience</h3>
+        <h3>Work experience</h3>
       </dt>
 
       <dd className="section-content">

@@ -1,7 +1,8 @@
 import MDX from "@/components/markdown/mdx";
+import type { User } from "@/types";
 
-export default function About({ content }: { content?: string }) {
-  if (!content?.trim()?.length) {
+export default function About({ user }: { user: User }) {
+  if (!user.about?.trim()?.length) {
     return null;
   }
   return (
@@ -10,7 +11,7 @@ export default function About({ content }: { content?: string }) {
         <h3>About</h3>
       </dt>
       <dd className="section-content">
-        <MDX source={content} className="!text-gray-4 !leading-6 text-sm" />
+        <MDX source={user.about} className="!text-gray-4 !leading-6 text-sm" />
       </dd>
     </dl>
   );
