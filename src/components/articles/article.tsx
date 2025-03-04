@@ -23,13 +23,13 @@ interface Props {
 export default async function Article({ article, admin }: Props) {
   const isPublished = article.published;
   return (
-    <div className="-mx-2 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-3 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-4 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/articles/${admin ? article.id : article.slug}`}
         aria-label={`${article.title}`}
         className="absolute left-0 top-0 w-full h-full"
       />
-      <div className="flex-1 flex gap-3 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
+      <div className="flex-1 flex gap-4 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
         {article.image && (
           <Image
             width={20}

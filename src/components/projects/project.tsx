@@ -26,13 +26,13 @@ interface Props {
 export default function Project({ project, admin }: Props) {
   const isPublished = project.published;
   return (
-    <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 px-3 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-4 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/projects/${admin ? project.id : project.slug}`}
         className="absolute left-0 top-0 w-full py-2 h-full"
         aria-label={`${project.title}`}
       />
-      <div className="flex-1 flex gap-3   items-center max-md:flex-col">
+      <div className="flex-1 flex gap-4   items-center max-md:flex-col">
         {project.image && (
           <Image
             width={20}
