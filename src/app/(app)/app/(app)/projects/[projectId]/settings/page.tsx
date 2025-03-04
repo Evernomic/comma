@@ -92,6 +92,17 @@ export default async function ProjectSettings({
           }}
           required={false}
         />
+                <UploadImage
+                  title="Project icon"
+                  description="This icon will be displayed next to the title"
+                  helpText="Up to 4MB"
+                  endpoint={endpoint}
+                  defaultValue={project.image}
+                  name="image"
+                  previewImageSize={64}
+
+                  folder="editor-uploads"
+                />
         <Form
           title="SEO title"
           description="This title will be used for SEO. It's best to keep it between 50-60 characters."

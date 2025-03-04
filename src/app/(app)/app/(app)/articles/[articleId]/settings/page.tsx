@@ -61,6 +61,16 @@ export default async function ArticleSettings({
             defaultValue: article.publishedAt.toISOString().slice(0, 10),
           }}
         />
+        <UploadImage
+          title="Article icon"
+          description="This icon will be displayed next to the title."
+          helpText="Up to 4MB"
+          endpoint={endpoint}
+          defaultValue={article.image}
+          name="image"
+          previewImageSize={64}
+          folder="editor-uploads"
+        />
         <Form
           title="SEO title"
           description="This title will be used for SEO. It's best to keep it between 50-60 characters."
