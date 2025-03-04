@@ -24,7 +24,7 @@ export default function ReorderSections({
   async function onDragEnd() {
     startTransition?.(async () => {
       const res = await ky.patch("/api/user", {
-        json: { sectionsOrder: sections.map((s) => s.position) },
+        json: { sectionsOrder: sections.map((s) => String(s.position)) },
       });
       if (!res.ok) {
         const error = await res.text();
