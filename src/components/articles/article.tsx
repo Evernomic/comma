@@ -1,10 +1,10 @@
-import { cn, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import type { Article as ArticleType } from "@prisma/client";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Badge } from "../ui/badge";
-import Image from "next/image";
 interface Props {
   admin?: boolean;
   article: Pick<
@@ -30,12 +30,19 @@ export default async function Article({ article, admin }: Props) {
         className="absolute left-0 top-0 w-full h-full"
       />
       <div className="flex-1 flex gap-3 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
-          {article.image && (
-            <Image width={20} height={20} src={article.image} alt="Article icon" />
-          )}
+        {article.image && (
+          <Image
+            width={20}
+            height={20}
+            src={article.image}
+            alt="Article icon"
+          />
+        )}
         <div className="flex flex-col">
           <Balancer>{article.title}</Balancer>
-          <p className="text-gray-4 text-xs">{formatDate(article.publishedAt)}</p> 
+          <p className="text-gray-4 text-xs">
+            {formatDate(article.publishedAt)}
+          </p>
         </div>
       </div>
       {admin && (

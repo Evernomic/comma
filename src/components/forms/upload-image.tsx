@@ -2,13 +2,13 @@
 
 import type { StorageFolders } from "@/lib/constants";
 import { uploadFile } from "@/lib/upload";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import { toast } from "../ui/use-toast";
-import { cn } from "@/lib/utils";
 
 interface Props {
   title: string;
@@ -19,7 +19,7 @@ interface Props {
   defaultValue?: string | null;
   name?: string;
   folder?: (typeof StorageFolders)[number];
-  previewImageSize?: number
+  previewImageSize?: number;
 }
 
 export default function UploadImage({
@@ -158,7 +158,10 @@ export default function UploadImage({
             width={previewImageSize ?? 0}
             height={previewImageSize ?? 0}
             sizes="100vw"
-            className={cn("rounded-md border border-gray-2 p-2", !previewImageSize && "w-full p-0")}
+            className={cn(
+              "rounded-md border border-gray-2 p-2",
+              !previewImageSize && "w-full p-0",
+            )}
             alt={title as string}
             priority
           />

@@ -1,17 +1,23 @@
 import type { Project as ProjectType } from "@prisma/client";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 interface Props {
   admin?: boolean;
   project: Pick<
     ProjectType,
-    "id" | "title" | "year" | "description" | "slug" | "views" | "published" | "image"
+    | "id"
+    | "title"
+    | "year"
+    | "description"
+    | "slug"
+    | "views"
+    | "published"
+    | "image"
   > & {
     isProtected: boolean;
   };
@@ -27,10 +33,14 @@ export default function Project({ project, admin }: Props) {
         aria-label={`${project.title}`}
       />
       <div className="flex-1 flex gap-3   items-center max-md:flex-col">
-
-                    {project.image && (
-                      <Image width={20} height={20} src={project.image} alt="Project icon" />
-                    )}
+        {project.image && (
+          <Image
+            width={20}
+            height={20}
+            src={project.image}
+            alt="Project icon"
+          />
+        )}
         <div className="w-full  flex flex-1  flex-col">
           <div className="flex gap-2 items-center">
             <Balancer>{project.title}</Balancer>
