@@ -29,7 +29,7 @@ export default async function Article({ article, admin }: Props) {
         aria-label={`${article.title}`}
         className="absolute left-0 top-0 w-full h-full"
       />
-      <div className="flex-1 flex gap-4 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
+      <div className="flex-1 flex gap-4 items-center max-md:multi-[flex-col;items-start;gap-2]">
         {article.image && (
           <Image
             width={20}
