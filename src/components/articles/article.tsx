@@ -1,5 +1,6 @@
 import { formatDate } from "@/lib/utils";
 import type { Article as ArticleType } from "@prisma/client";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
@@ -15,25 +16,33 @@ interface Props {
     | "views"
     | "published"
     | "publishedAt"
+    | "image"
   >;
 }
 
 export default async function Article({ article, admin }: Props) {
   const isPublished = article.published;
   return (
-    <div className="-mx-2 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-2 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-3 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/articles/${admin ? article.id : article.slug}`}
         aria-label={`${article.title}`}
         className="absolute left-0 top-0 w-full h-full"
       />
-
-      <div className="flex-1 flex gap-2 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
-        <span className="block text-gray-4 w-28 group-hover:text-secondary transition-colors">
-          {formatDate(article.publishedAt)}
-        </span>
-        <div>
+      <div className="flex-1 flex gap-3 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
+        {article.image && (
+          <Image
+            width={20}
+            height={20}
+            src={article.image}
+            alt="Article icon"
+          />
+        )}
+        <div className="flex flex-col">
           <Balancer>{article.title}</Balancer>
+          <p className="text-gray-4 text-xs">
+            {formatDate(article.publishedAt)}
+          </p>
         </div>
       </div>
       {admin && (

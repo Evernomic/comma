@@ -37,8 +37,14 @@ export const updateUserSchema = z
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),
-    sectionsOrder: z.array(z.enum(["0", "1", "2", "3", "4", "5", "6"]).transform(val => Number(val))).refine((arr) => new Set(arr).size === arr.length, {
-      message: "Duplicate numbers are not allowed.",
-    }),
+    sectionsOrder: z
+      .array(
+        z
+          .enum(["0", "1", "2", "3", "4", "5", "6"])
+          .transform((val) => Number(val)),
+      )
+      .refine((arr) => new Set(arr).size === arr.length, {
+        message: "Duplicate numbers are not allowed.",
+      }),
   })
   .partial();

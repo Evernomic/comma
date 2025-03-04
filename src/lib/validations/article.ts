@@ -13,6 +13,7 @@ export const articlePatchSchema = z
     seoTitle: z.string().max(60).nullable(),
     seoDescription: z.string().max(160).nullable(),
     ogImage: z.string().url().nullable(),
+    image: z.string().url().nullable(),
     published: z.boolean(),
     publishedAt: z.string().date(),
     canonicalURL: z.string().url().nullable(),

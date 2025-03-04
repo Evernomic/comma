@@ -1,4 +1,5 @@
 import type { Project as ProjectType } from "@prisma/client";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
@@ -9,7 +10,14 @@ interface Props {
   admin?: boolean;
   project: Pick<
     ProjectType,
-    "id" | "title" | "year" | "description" | "slug" | "views" | "published"
+    | "id"
+    | "title"
+    | "year"
+    | "description"
+    | "slug"
+    | "views"
+    | "published"
+    | "image"
   > & {
     isProtected: boolean;
   };
@@ -18,19 +26,25 @@ interface Props {
 export default function Project({ project, admin }: Props) {
   const isPublished = project.published;
   return (
-    <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 px-3 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/projects/${admin ? project.id : project.slug}`}
         className="absolute left-0 top-0 w-full py-2 h-full"
         aria-label={`${project.title}`}
       />
-      <div className="flex-1 flex gap-2   items-start max-md:flex-col">
-        <span className="w-28 text-gray-4 truncate group-hover:text-secondary transition-colors text-left">
-          {project.year}
-        </span>
+      <div className="flex-1 flex gap-3   items-center max-md:flex-col">
+        {project.image && (
+          <Image
+            width={20}
+            height={20}
+            src={project.image}
+            alt="Project icon"
+          />
+        )}
         <div className="w-full  flex flex-1  flex-col">
-          <div>
+          <div className="flex gap-2 items-center">
             <Balancer>{project.title}</Balancer>
+            <p className="text-gray-4 text-xs">{project.year}</p>
           </div>
           <p className="text-gray-4 text-xs">{project?.description}</p>
         </div>
