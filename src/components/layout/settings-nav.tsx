@@ -10,9 +10,7 @@ export default function SettingsNav() {
   const path = usePathname();
   const current = appConfig.settingsNav.find((item) => item.href === path);
   return (
-    <AppHeader
-      title={current?.title || "Settings"}
-    >
+    <AppHeader title={current?.title || "Settings"}>
       <nav className="flex gap-2 max-md:hidden">
         {appConfig.settingsNav.map((link) => (
           <NavButton
@@ -28,7 +26,7 @@ export default function SettingsNav() {
           </NavButton>
         ))}
       </nav>
-      <MobileSettingsNav links={appConfig.settingsNav}  currentPath={path}/>
+      <MobileSettingsNav links={appConfig.settingsNav} currentPath={path} />
     </AppHeader>
   );
 }

@@ -11,18 +11,15 @@ export default function Projects({ projects }: { projects: ProjectType[] }) {
   }
   return (
     <dl className="section-container">
-      <dt className="section-title link group">
-        <Link
-          href="/projects"
-          className="absolute w-full h-full "
-          aria-label="View All Projects"
-        />
-        <h3>Projects</h3>
-        <Icons.arrowRight
-          size={16}
-          className="text-gray-4 group-hover:text-secondary"
-        />
-      </dt>
+      <Link href="/projects" aria-label="View All Projects">
+        <dt className="section-title link group">
+          <h3>Projects</h3>
+          <Icons.arrowRight
+            size={16}
+            className="text-gray-4 group-hover:text-secondary"
+          />
+        </dt>
+      </Link>
       <dd className="section-content">
         {projects.map((project) => (
           <Project project={project} key={project.id} />
