@@ -1,6 +1,6 @@
 "use client";
 import { userPageConfig } from "@/config/user-page";
-import { sortUserPageSections } from "@/lib/utils";
+import { cn, sortUserPageSections } from "@/lib/utils";
 import { UserPageSection } from "@/types";
 import { Reorder, useDragControls } from "framer-motion";
 import ky from "ky";
@@ -67,18 +67,25 @@ function Section({
   onDragEnd: () => void;
 }) {
   const controls = useDragControls();
+  const [isDragging, setIsDragging] = useState<boolean>(false)
 
   return (
     <Reorder.Item
       value={section}
       dragListener={false}
-      onDragEnd={onDragEnd}
+      onDragEnd={() => {
+          onDragEnd()
+          setIsDragging(false)
+      }}
       dragControls={controls}
     >
       <div className="rounded-md flex gap-2  items-center text-sm text-gray-4 px-2 h-4.5 w-[200px] bg-gray-3">
         <span
-          className="reorder-handle cursor-pointer size-4 flex items-center  justify-center transition-colors rounded-md hover:bg-gray-2"
-          onPointerDown={(e) => controls.start(e)}
+          className={cn("reorder-handle cursor-grab  size-4 flex items-center  justify-center transition-colors rounded-md hover:bg-gray-2", isDragging && "cursor-grabbing")}
+          onPointerDown={(e) => {
+            controls.start(e)
+            setIsDragging(true)
+          }}
         >
           <Icons.gripVertical size={15} />
         </span>
