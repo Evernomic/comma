@@ -16,7 +16,7 @@ export default async function WorkExperience({ experience, admin }: Props) {
     </p>
   );
   return (
-    <div className="-mx-2 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-3 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-4 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <div className="flex-1 flex gap-2 items-center max-md:flex-col max-md:items-baseline max-md:gap-1">
         <span className="block text-gray-4 w-28 self-start group-hover:text-secondary transition-colors">
           {experience.from} —{" "}

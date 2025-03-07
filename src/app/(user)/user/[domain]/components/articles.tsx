@@ -12,18 +12,15 @@ export default async function Articles({ user }: { user: User }) {
   }
   return (
     <dl className="section-container">
-      <dt className="section-title link group">
-        <Link
-          href="/articles"
-          className="absolute w-full h-full"
-          aria-label="View All Articles"
-        />
-        <h3>Articles</h3>
-        <Icons.arrowRight
-          size={16}
-          className="text-gray-4 group-hover:text-secondary"
-        />
-      </dt>
+      <Link href="/articles" aria-label="View All Articles">
+        <dt className="section-title link group">
+          <h3>Articles</h3>
+          <Icons.arrowRight
+            size={16}
+            className="text-gray-4 group-hover:text-secondary"
+          />
+        </dt>
+      </Link>
 
       <dd className="section-content">
         {articles.map((article) => (
