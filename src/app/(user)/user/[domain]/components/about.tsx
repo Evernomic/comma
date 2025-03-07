@@ -11,7 +11,7 @@ export default function About({ title, user }: { title: string; user: User }) {
         <h3>{title}</h3>
       </dt>
       <dd className="section-content">
-        <MDX source={user.about} className="!text-gray-4 !leading-6 text-sm" />
+        <MDX source={user.about} className="text-gray-4! leading-6! text-sm" />
       </dd>
     </dl>
   );

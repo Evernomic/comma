@@ -1,6 +1,115 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin 'tailwindcss-multi';
+@plugin '@tailwindcss/typography';
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --breakpoint-xl: 1320px;
+  --breakpoint-lg: 900px;
+  --breakpoint-md: 750px;
+  --breakpoint-sm: 350px;
+
+  --color-primary: var(--background-color);
+  --color-secondary: var(--foreground);
+  --color-blue: var(--blue);
+  --color-grass: var(--grass);
+  --color-danger: var(--danger);
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+  --color-gray-3: var(--gray-3);
+  --color-gray-4: var(--gray-4);
+  --color-overlay: var(--overlay);
+
+  --spacing-1: 5px;
+  --spacing-2: 10px;
+  --spacing-3: 15px;
+  --spacing-4: 20px;
+  --spacing-5: 40px;
+  --spacing-6: 50px;
+  --spacing-7: 60px;
+  --spacing-4_4: 25px;
+  --spacing-4_5: 30px;
+  --spacing-4_7: 35px;
+
+  --animate-slide-down-and-fade: slideDownAndFade 300ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up-and-fade: slideUpAndFade 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility section-container {
+  @apply flex w-full flex-col gap-2 text-sm;
+}
+
+@utility section-title {
+  @apply relative flex items-center justify-between text-base;
+  &.link {
+    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+  }
+}
+
+@utility link {
+  &.section-title {
+    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+  }
+}
+
+@utility section-content {
+  @apply flex flex-col pb-4 break-words;
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility no-user-select {
+  -user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+@utility field-sizing-content {
+  field-sizing: content;
+}
 
 @layer base {
   :root {
@@ -38,43 +147,6 @@
   }
 
   hr {
-    @apply w-full border-gray-2;
-  }
-}
-
-@layer components {
-  .section-container {
-    @apply flex w-full flex-col gap-2 text-sm;
-  }
-
-  .section-title {
-    @apply relative flex items-center justify-between text-base;
-  }
-  .section-title.link {
-    @apply -mx-4 rounded-md px-4 py-1 transition-colors hover:bg-gray-3;
-  }
-  .section-content {
-    @apply flex flex-col break-words pb-4;
-  }
-}
-
-@layer utilities {
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-user-select {
-    -user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-  .field-sizing-content {
-    field-sizing: content;
+    @apply border-gray-2 w-full;
   }
 }

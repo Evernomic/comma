@@ -1,3 +1,5 @@
+@import "./globals.css";
+
 .ProseMirror:focus {
   @apply outline-none;
 }
@@ -11,7 +13,7 @@
 }
 
 .ProseMirror .image-placeholder {
-  @apply relative max-w-[700px] rounded-md bg-gray-3 max-md:w-full;
+  @apply bg-gray-3 relative max-w-[640px] rounded-md max-md:w-full;
 
   & img {
     @apply h-auto opacity-50;
@@ -19,7 +21,7 @@
 }
 
 .tiptap .is-empty::before {
-  @apply pointer-events-none absolute float-left text-gray-1 content-[attr(data-placeholder)];
+  @apply text-gray-1 pointer-events-none absolute float-left content-[attr(data-placeholder)];
 }
 
 ul[data-type="taskList"] li > label {
@@ -27,7 +29,7 @@ ul[data-type="taskList"] li > label {
 }
 
 ul[data-type="taskList"] li > label input[type="checkbox"] {
-  @apply relative top-1 m-0 mr-1.5 flex h-4 w-4 cursor-pointer appearance-none items-center justify-center rounded-md border border-transparent bg-gray-2 transition-colors marker:list-none;
+  @apply bg-gray-2 relative top-1 m-0 mr-1.5 flex h-4 w-4 cursor-pointer appearance-none items-center justify-center rounded-md border border-transparent transition-colors marker:list-none;
 
   &:checked {
     background-color: var(--blue);

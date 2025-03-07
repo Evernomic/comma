@@ -68,7 +68,7 @@ export default function Editor({
   return (
     <div className="flex flex-col gap-2">
       <TextareaAutosize
-        className="resize-none border-0 bg-transparent line-clamp-none text-xl font-medium outline-none placeholder:text-gray-1"
+        className="resize-none border-0 bg-transparent line-clamp-none text-xl font-medium outline-hidden placeholder:text-gray-1"
         placeholder="Title"
         defaultValue={title}
         maxLength={70}
