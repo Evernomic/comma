@@ -3,7 +3,9 @@ import type { WorkExperience as _WorkExperience } from "@prisma/client";
 
 export default function WorkExperiences({
   experiences,
+  title,
 }: {
+  title: string;
   experiences: _WorkExperience[];
 }) {
   if (!experiences.length) {
@@ -12,7 +14,7 @@ export default function WorkExperiences({
   return (
     <dl className="section-container">
       <dt className="section-title">
-        <h3>Work experience</h3>
+        <h3>{title}</h3>
       </dt>
 
       <dd className="section-content">

@@ -125,8 +125,9 @@ export default function Form({
     });
   }
 
+  const Comp = asChild ? "div" : "form";
   return (
-    <form
+    <Comp
       className="overflow-hidden relative rounded-md border border-gray-2"
       onSubmit={(e) => (!asChild ? onSubmit(e) : e.preventDefault())}
     >
@@ -261,6 +262,6 @@ export default function Form({
           Save
         </Button>
       </footer>
-    </form>
+    </Comp>
   );
 }
