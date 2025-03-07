@@ -20,7 +20,7 @@ export default function ExplorePageFilters() {
 
   return (
     <div className="space-y-2">
-      <div className="flex gap-2 justify-between">
+      <div className="flex gap-2 justify-between max-md:flex-col">
         <Input
           placeholder="Search people..."
           className="h-4.5  w-[250px] max-md:w-full bg-gray-3"

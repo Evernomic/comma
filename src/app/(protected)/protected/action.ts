@@ -28,25 +28,25 @@ export async function unlockSite(_: any, formData: FormData) {
   }
 
   const user = await db.user.findFirst({
-      where: {
-        OR: [
-          {
-            domain,
-          },
-          {
-            username: domain,
-          },
-        ]
-      },
-      select: {
-        password: true
-      }
-  })
+    where: {
+      OR: [
+        {
+          domain,
+        },
+        {
+          username: domain,
+        },
+      ],
+    },
+    select: {
+      password: true,
+    },
+  });
 
-  if(!user || !user?.password) {
+  if (!user || !user?.password) {
     return {
-      error: "Something went wrong"
-    }
+      error: "Something went wrong",
+    };
   }
 
   if (user.password === password) {
