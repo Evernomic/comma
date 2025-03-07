@@ -8,6 +8,7 @@ import {
   getWorkExperiencesByUser,
 } from "@/lib/fetchers/users";
 import { sortUserPageSections } from "@/lib/utils";
+import { UserPageSection } from "@/types";
 import { notFound } from "next/navigation";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
@@ -62,15 +63,19 @@ export default async function Home({ params }: PageProps) {
           <NothingPlaceholder name={user.name || user.username} />
         )}
       <div className="flex flex-col gap-6">
-        {sortUserPageSections(sections, user.sectionsOrder).map((section) => (
-          <section.component
-            user={user}
-            projects={projects}
-            bookmarks={bookmarks}
-            experiences={experiences}
-            key={`${section.title.toLowerCase()}--${section.position}`}
-          />
-        ))}
+        {sortUserPageSections(sections, user.sections as UserPageSection[]).map(
+          (section) => (
+            <section.component
+              title={section.title}
+              user={user}
+              articles={articles}
+              projects={projects}
+              bookmarks={bookmarks}
+              experiences={experiences}
+              key={`${section.title.toLowerCase()}--${section.position}`}
+            />
+          ),
+        )}
       </div>
     </AppShell>
   );

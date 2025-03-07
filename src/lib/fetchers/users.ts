@@ -33,6 +33,7 @@ export async function getUserByDomain(domain: string) {
       lsId: true,
       createdAt: true,
       updatedAt: true,
+      password: true,
     },
   });
 }

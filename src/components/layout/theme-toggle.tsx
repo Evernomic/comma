@@ -42,7 +42,7 @@ export default function ThemeToggle({
       )}
       size={compact ? "icon" : "sm"}
       variant="ghost"
-      aria-label={text}
+      // aria-label={text}
     >
       <Icons.sun size={iconSize} className="sun-icon" />
       <Icons.moon size={iconSize} className="moon-icon" />
