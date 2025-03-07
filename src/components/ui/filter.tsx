@@ -124,7 +124,7 @@ export function Filter({
               {options?.map((option) => (
                 <CommandItem
                   key={`option--${option.value}`}
-                  className="py-1.5 px-2 text-sm outline-none focus:bg-gray-2 !text-gray-1 flex-row-reverse justify-between"
+                  className="py-1.5 px-2 text-sm outline-hidden focus:bg-gray-2 text-gray-1! flex-row-reverse justify-between"
                   value={option.title}
                   onSelect={() => onSelect(option.value)}
                 >

@@ -197,7 +197,7 @@ export default function AppCommand({ user }: { user: User }) {
               <Icons.logout size={18} /> Log out
             </>
           ),
-          className: "!text-danger",
+          className: "text-danger!",
         },
       ],
     },

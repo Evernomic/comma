@@ -94,14 +94,7 @@ export const TiptapExtensions = [
     transformPastedText: true,
   }),
   Placeholder.configure({
-    includeChildren: true,
-    placeholder: ({ node }) => {
-      if (node.type.name === "heading") {
-        return `Heading ${node.attrs.level}`;
-      }
-
-      return "Write or type '/ ' for commands";
-    },
+    placeholder: "Write or type '/ ' for commands",
   }),
   Highlight,
   TaskList.configure({

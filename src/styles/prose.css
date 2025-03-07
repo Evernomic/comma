@@ -1,29 +1,31 @@
+@import "./globals.css";
+
 .prose {
-  @apply min-w-full text-secondary prose-headings:mb-4 prose-headings:mt-8 prose-headings:font-normal prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-code:before:hidden prose-code:after:hidden prose-hr:my-4;
+  @apply text-secondary prose-headings:mb-4 prose-headings:mt-8 prose-headings:font-normal prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-code:before:hidden prose-code:after:hidden prose-hr:my-4 min-w-full;
 }
 
 .prose a {
-  @apply cursor-pointer font-normal text-secondary underline-offset-2;
+  @apply text-secondary cursor-pointer font-normal underline-offset-2;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-gray-2 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
+  @apply border-gray-2 border-l-4 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
 }
 
 .prose pre {
-  @apply rounded-lg border border-gray-2 bg-gray-3 text-secondary;
+  @apply border-gray-2 bg-gray-3 text-secondary rounded-lg border;
 }
 
 .prose pre code {
-  @apply border-0 bg-inherit p-0 text-secondary;
+  @apply text-secondary border-0 bg-inherit p-0;
 }
 
 .prose code {
-  @apply rounded-lg border border-gray-2 bg-gray-3 px-1 py-0.5 font-normal text-secondary;
+  @apply border-gray-2 bg-gray-3 text-secondary rounded-lg border px-1 py-0.5 font-normal;
 }
 
 .prose ul {
-  @apply list-outside list-disc text-secondary marker:text-gray-1;
+  @apply text-secondary marker:text-gray-1 list-outside list-disc;
 }
 
 .prose ul > li {
@@ -31,11 +33,11 @@
 }
 
 .prose ol {
-  @apply list-outside list-decimal text-secondary marker:text-gray-1;
+  @apply text-secondary marker:text-gray-1 list-outside list-decimal;
 }
 
 .prose ol > li {
-  @apply list-outside list-decimal leading-6 text-secondary marker:text-gray-1;
+  @apply text-secondary marker:text-gray-1 list-outside list-decimal leading-4.5;
 }
 
 .prose ul[class="contains-task-list"] li[class="task-list-item"] {
@@ -45,18 +47,18 @@
   ul[class="contains-task-list"]
   > li[class="task-list-item"]
   > ul[class="contains-task-list"] {
-  @apply my-2 pl-4.4;
+  @apply pl-4.4 my-2;
 }
 .prose ul[class="contains-task-list"] {
   @apply my-4 pl-0;
 }
 
 .prose ul[class="contains-task-list"] > li > p {
-  @apply flex;
+  @apply flex items-center;
 }
 
 .prose ul[class="contains-task-list"] > li > p > input[type="checkbox"] {
-  @apply relative top-[2.5px] m-0 mr-1.5 flex h-4 w-4 appearance-none items-center justify-center rounded-md border border-transparent bg-gray-2 transition-colors marker:list-none;
+  @apply bg-gray-2 relative m-0 mr-1.5 flex size-4 appearance-none items-center justify-center rounded-md border border-transparent transition-colors marker:list-none;
 }
 
 .prose
@@ -73,7 +75,7 @@
 }
 
 .prose img {
-  @apply rounded-md border border-gray-3 first:mt-0;
+  @apply border-gray-3 rounded-md border first:mt-0;
 }
 
 .prose ul[class="contains-task-list"] > li > p {

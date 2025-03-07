@@ -51,7 +51,7 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-full justify-between data-[state=open]:bg-gray-3 text-secondary text-sm hover:!bg-inherit disabled:bg-gray-3 disabled:opacity-100",
+            "w-full justify-between data-[state=open]:bg-gray-3 text-secondary text-sm hover:bg-inherit! disabled:bg-gray-3 disabled:opacity-100",
             className,
           )}
           disabled={disabled}
@@ -71,7 +71,7 @@ export function Combobox({
               {options.map((option) => (
                 <CommandItem
                   key={`option--${option.value}`}
-                  className="py-1.5 px-2 text-sm outline-none focus:bg-gray-2 !text-gray-1 flex-row-reverse justify-between"
+                  className="py-1.5 px-2 text-sm outline-hidden focus:bg-gray-2 text-gray-1! flex-row-reverse justify-between"
                   value={option.title}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : option.value);

@@ -33,7 +33,7 @@ export default function ExplorePageFilters() {
             onValueChange={(val) => setFilters({ sort: val })}
             key={filters.sort}
           >
-            <SelectTrigger className="h-4.5 w-max bg-gray-3 !text-xs">
+            <SelectTrigger className="h-4.5 w-max bg-gray-3 text-xs!">
               <SelectValue />
             </SelectTrigger>
             <SelectContent align="end">

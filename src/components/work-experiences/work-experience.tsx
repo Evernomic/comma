@@ -41,7 +41,7 @@ export default async function WorkExperience({ experience, admin }: Props) {
             {experience.description && (
               <MDX
                 source={experience.description}
-                className="!text-gray-4 !leading-6 text-xs"
+                className="text-gray-4! leading-6! text-xs"
               />
             )}
           </div>

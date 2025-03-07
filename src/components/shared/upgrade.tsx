@@ -11,7 +11,7 @@ export default function Upgrade({
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 w-full h-full backdrop-blur-sm flex rounded-md border border-gray-3 flex-col justify-center gap-2 z-10 items-center",
+        "absolute left-0 top-0 w-full h-full backdrop-blur-xs flex rounded-md border border-gray-3 flex-col justify-center gap-2 z-10 items-center",
         className,
       )}
     >
