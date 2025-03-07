@@ -17,7 +17,7 @@ export default async function ExplorePage() {
       <AppHeader
         title="Explore"
         description="You can search for Comma writers here."
-        className="[&_.title]:multi-[text-3xl;font-semibold] [&_.description]:text-base"
+        className="[&_.title]:multi-[text-3xl;font-semibold] [&_.description]:text-base max-md:multi-[flex-col;items-start;gap-5]"
       >
         <div className="flex gap-2">
           <NavButton

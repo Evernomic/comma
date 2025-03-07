@@ -12,7 +12,7 @@ export default async function MarketingPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto w-[700px] pt-4 max-md:px-4 max-md:w-full">
+    <div className="mx-auto w-[700px] pt-4 max-md:px-8 max-md:w-full">
       <main className="pb-10">
         <NuqsAdapter>{children}</NuqsAdapter>
       </main>

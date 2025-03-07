@@ -15,20 +15,25 @@ export default function Hero() {
         </p>
         <div className="grid grid-cols-2 *:w-full mt-5 mb-2 gap-3 max-md:grid-cols-1 ">
           <NavButton
-            href={siteConfig.links.login}
-            buttonVariant="secondary"
-            size="wide"
-            aria-label="Log in"
-          >
-            Log in
-          </NavButton>
-          <NavButton
             href={siteConfig.links.signup}
             size="wide"
             buttonVariant="primary"
+            buttonClassname="gap-2"
             aria-label="Create your website"
           >
-            Create your website
+            Log in <span>/</span> Sign up
+          </NavButton>
+          <NavButton
+            href="/explore"
+            size="wide"
+            buttonClassname="gap-2"
+            buttonVariant="secondary"
+            icon="search"
+            direction="ltr"
+            target="_blank"
+            aria-label="Go Explore page"
+          >
+            Explore
           </NavButton>
         </div>
         <NavButton
