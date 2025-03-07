@@ -5,8 +5,10 @@ import { Collection } from "@prisma/client";
 import Link from "next/link";
 
 export default function Bookmarks({
+  title,
   bookmarks,
 }: {
+  title: string;
   bookmarks: BookmarkWithCollection[];
 }) {
   if (!bookmarks.length) {
@@ -20,7 +22,7 @@ export default function Bookmarks({
           className="absolute w-full h-full "
           aria-label="View All Bookmarks"
         />
-        <h3>Bookmarks</h3>
+        <h3>{title}</h3>
         <Icons.arrowRight
           size={16}
           className="text-gray-4 group-hover:text-secondary"

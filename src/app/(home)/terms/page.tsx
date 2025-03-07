@@ -1,3 +1,5 @@
+import AppShell from "@/components/layout/app-shell";
+import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
 import { readMarkdownFile } from "@/lib/md";
@@ -12,19 +14,16 @@ export const metadata = generateSEO({
 export default function TOS() {
   const source = readMarkdownFile("docs/legal/terms.md");
   return (
-    <div className="pt-4 flex flex-col gap-3">
-      <div className="flex items-center gap-2">
+    <AppShell>
+      <AppHeader title={title} className="flex-row-reverse justify-end gap-2">
         <NavButton
           href="/home"
           icon="arrowLeft"
           size="icon"
           aria-label="Back to home"
         />
-        <h1 className="text-xl font-medium">{title}</h1>
-      </div>
-      <div className="flex flex-col gap-2">
-        <MDX source={source} />
-      </div>
-    </div>
+      </AppHeader>
+      <MDX source={source} />
+    </AppShell>
   );
 }

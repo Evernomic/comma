@@ -360,14 +360,23 @@ export function getUserFavicon(user: Pick<User, "username">) {
 
 export function sortUserPageSections(
   sections: UserPageSection[],
-  defaultOrder?: number[],
+  defaultOrder?: UserPageSection[] | null,
 ) {
   if (defaultOrder) {
-    sections.sort(
-      (a, b) =>
-        defaultOrder.findIndex((o) => o === a.position) -
-        defaultOrder.findIndex((o) => o === b.position),
-    );
+    return sections
+      .sort(
+        (a, b) =>
+          defaultOrder.findIndex((o) => o.position === a.position) -
+          defaultOrder.findIndex((o) => o.position === b.position),
+      )
+      .map((s) => {
+        return {
+          ...s,
+          title:
+            defaultOrder.find((o) => o.position === s.position)?.title ??
+            s.title,
+        };
+      });
   }
 
   return sections;

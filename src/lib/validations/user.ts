@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { userCategories, validUsernameRegex } from "../constants";
 import { countries } from "../constants/countries";
-export const notAllowedUsernames = ["app", "go", "www"];
+export const notAllowedUsernames = ["app", "go", "www", "demo"];
 export const categoryValues = userCategories.map((c) => c.value) as [
   string,
   ...string[],
@@ -15,7 +15,7 @@ export const updateUserSchema = z
       .toLowerCase()
       .regex(validUsernameRegex, "You can only use letters and numbers")
       .min(1)
-      .max(36)
+      .max(20)
       .refine(
         (value) => !notAllowedUsernames.includes(value),
         "Username is not available",
@@ -37,8 +37,23 @@ export const updateUserSchema = z
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),
-    sectionsOrder: z.array(z.enum(["0", "1", "2", "3", "4", "5", "6"]).transform(val => Number(val))).refine((arr) => new Set(arr).size === arr.length, {
-      message: "Duplicate numbers are not allowed.",
-    }),
+    sections: z
+      .array(
+        z.object({
+          title: z.string().min(1).max(56),
+          position: z.number().min(0).max(6),
+        }),
+      )
+      .superRefine((sections, ctx) => {
+        const positions = sections.map((s) => s.position);
+        const uniquePositions = new Set(positions);
+
+        if (positions.length !== uniquePositions.size) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Position values must be unique.",
+          });
+        }
+      }),
   })
   .partial();

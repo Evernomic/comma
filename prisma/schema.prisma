@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  previewFeatures = ["driverAdapters", "fullTextSearchPostgres"]
 }
 
 datasource db {
@@ -87,7 +87,7 @@ model User {
   workExperiences    WorkExperience[]
   password           String?
   showBranding       Boolean          @default(true)
-  sectionsOrder      Int[]            @default([])
+  sections           Json?
 
   @@map("users")
 }
@@ -135,6 +135,7 @@ model Article {
   seoTitle             String?
   seoDescription       String?
   ogImage              String?
+  image                String?
   createdAt            DateTime  @default(now()) @map("created_at")
   updatedAt            DateTime  @default(now()) @map("updated_at")
   publishedAt          DateTime  @default(now())
@@ -161,6 +162,7 @@ model Project {
   seoTitle       String?
   seoDescription String?
   ogImage        String?
+  image          String?
   password       String?
   authorId       String
   author         User     @relation(fields: [authorId], references: [id])

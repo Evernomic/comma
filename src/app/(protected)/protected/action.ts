@@ -1,6 +1,6 @@
 "use server";
 
-import { getUserByDomain } from "@/lib/fetchers/users";
+import { db } from "@/lib/db";
 import { rateLimit } from "@/lib/ratelimit";
 import { cookies, headers } from "next/headers";
 
@@ -27,8 +27,29 @@ export async function unlockSite(_: any, formData: FormData) {
     }
   }
 
-  const user = await getUserByDomain(domain);
-  if (user?.password === password) {
+  const user = await db.user.findFirst({
+      where: {
+        OR: [
+          {
+            domain,
+          },
+          {
+            username: domain,
+          },
+        ]
+      },
+      select: {
+        password: true
+      }
+  })
+
+  if(!user || !user?.password) {
+    return {
+      error: "Something went wrong"
+    }
+  }
+
+  if (user.password === password) {
     cookie.set(`${domain}`, password, {
       secure: true,
       httpOnly: true,

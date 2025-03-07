@@ -2,6 +2,7 @@
 
 import type { StorageFolders } from "@/lib/constants";
 import { uploadFile } from "@/lib/upload";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -18,6 +19,7 @@ interface Props {
   defaultValue?: string | null;
   name?: string;
   folder?: (typeof StorageFolders)[number];
+  previewImageSize?: number;
 }
 
 export default function UploadImage({
@@ -29,6 +31,7 @@ export default function UploadImage({
   defaultValue = null,
   folder,
   name,
+  previewImageSize,
 }: Props) {
   const [saving, setSaving] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
@@ -143,7 +146,7 @@ export default function UploadImage({
               ) : (
                 <>
                   <Icons.trash size={15} />
-                  Remove Image
+                  Remove image
                 </>
               )}
             </Button>
@@ -152,10 +155,13 @@ export default function UploadImage({
         {defaultValue && (
           <Image
             src={defaultValue}
-            width={0}
-            height={0}
+            width={previewImageSize ?? 0}
+            height={previewImageSize ?? 0}
             sizes="100vw"
-            className="w-full rounded-md border border-gray-2"
+            className={cn(
+              "rounded-md border border-gray-2 p-2",
+              !previewImageSize && "w-full p-0",
+            )}
             alt={title as string}
             priority
           />

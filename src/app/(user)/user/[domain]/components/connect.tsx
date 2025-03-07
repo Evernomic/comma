@@ -3,7 +3,13 @@ import { getLinks } from "@/config/user-page";
 import type { User } from "@/types";
 import Link from "next/link";
 
-export default function Connect({ user }: { user: User }) {
+export default function Connect({
+  title,
+  user,
+}: {
+  title: string;
+  user: User;
+}) {
   const links = getLinks(user);
 
   if (links.every((link) => !link?.username?.length)) {
@@ -12,14 +18,14 @@ export default function Connect({ user }: { user: User }) {
   return (
     <dl className="section-container">
       <dt className="section-title">
-        <h3>Connect</h3>
+        <h3>{title}</h3>
       </dt>
       <dd className="section-content flex flex-col">
         {links.map((link) => {
           return (
             <Link
               href={`${link.url}${link.username === null ? "" : link.username}`}
-              className="flex text-gray-4 items-center group -mx-2  relative justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 "
+              className="flex text-gray-4 items-center group -mx-4  relative justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 "
               key={
                 link.url + link.username === null
                   ? ""

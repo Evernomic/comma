@@ -51,7 +51,7 @@
     @apply relative flex items-center justify-between text-base;
   }
   .section-title.link {
-    @apply -mx-2 rounded-md px-2 py-1 transition-colors hover:bg-gray-3;
+    @apply -mx-4 rounded-md px-4 py-1 transition-colors hover:bg-gray-3;
   }
   .section-content {
     @apply flex flex-col break-words pb-4;

@@ -24,6 +24,7 @@ export const projectPatchSchema = z
     seoDescription: z.string().max(160).nullable(),
     url: z.string().url().nullable(),
     ogImage: z.string().url().nullable(),
+    image: z.string().url().nullable(),
     published: z.boolean(),
     password: z.string().nullable(),
   })

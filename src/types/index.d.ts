@@ -150,6 +150,7 @@ export type User = Omit<
   | "lsId"
   | "createdAt"
   | "updatedAt"
+  | "password"
 >;
 
 export type SelectOption = {
