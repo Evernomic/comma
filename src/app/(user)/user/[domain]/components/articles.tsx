@@ -8,9 +8,8 @@ export default async function Articles({
   articles,
 }: {
   title: string;
-  articles: _Article[],
+  articles: _Article[];
 }) {
-
   if (!articles.length) {
     return null;
   }
