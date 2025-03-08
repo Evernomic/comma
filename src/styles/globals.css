@@ -127,7 +127,7 @@
     --gray-1: #555555;
     --gray-2: #262626;
     --gray-3: #101010;
-    --gray-4:  #e0e0e0;
+    --gray-4:  #a0a0a0;
     --overlay: rgba(var(--background-color), 0.2);
     --danger: #FF4C4C;
   }
