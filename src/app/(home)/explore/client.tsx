@@ -13,10 +13,10 @@ import User from "./user";
 
 export default function Client() {
   const [filters] = useQueryStates(filterSearchParams, { history: "push" });
-  const debounceFilters = useDebounce(filters, 250);
+  const debouncedFilters = useDebounce(filters, 250);
   const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["users", debounceFilters],
+      queryKey: ["users", debouncedFilters],
       queryFn: async ({
         pageParam,
       }): Promise<{

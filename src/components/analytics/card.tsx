@@ -26,7 +26,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "h-[200px] flex flex-col  rounded-md border border-gray-2 dark:border-gray-3",
+        "h-[200px] flex flex-col  rounded-md border overflow-hidden border-gray-2 dark:border-gray-3",
         className,
       )}
     >
