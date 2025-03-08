@@ -73,7 +73,7 @@ function Tooltip({ payload, active }: any) {
     return (
       <div className="flex min-w-20 flex-col  gap-1 rounded-md border border-gray-2  bg-gray-3 px-3 py-2">
         <b className="text-gray-4">{payload[0].payload.start}</b>
-        <p className="text-gray-1">
+        <p className="text-secondary">
           <b>{payload?.[0]?.value}</b> {payload?.[0]?.name}
         </p>
       </div>

@@ -71,7 +71,7 @@ export function Combobox({
               {options.map((option) => (
                 <CommandItem
                   key={`option--${option.value}`}
-                  className="py-1.5 px-2 text-sm outline-hidden focus:bg-gray-2 text-gray-1! flex-row-reverse justify-between"
+                  className={cn("py-1.5 px-2 text-sm text-gray-1 outline-hidden hover:multi-[bg-gray-2;text-secondary] flex-row-reverse justify-between", value === option.value && "bg-gray-2 text-secondary")}
                   value={option.title}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : option.value);

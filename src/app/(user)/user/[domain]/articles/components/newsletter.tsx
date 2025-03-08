@@ -17,7 +17,7 @@ export default function Newsletter({
         {user.newsletterCta && (
           <MDX
             source={user.newsletterCta}
-            className="text-gray-4! leading-6! text-sm"
+            className="text-gray-4! leading-4! text-sm"
           />
         )}
       </dt>

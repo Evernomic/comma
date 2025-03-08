@@ -107,10 +107,6 @@
   -ms-user-select: none;
 }
 
-@utility field-sizing-content {
-  field-sizing: content;
-}
-
 @layer base {
   :root {
     --background-color: #f9f9f9;
@@ -126,14 +122,14 @@
   }
 
   .dark {
-    --background-color: #1c1c1c;
+    --background-color:#000;
     --foreground: #fff;
-    --gray-1: #7b7b7b;
-    --gray-2: #313131;
-    --gray-3: #222222;
-    --gray-4: #8e8e8e;
+    --gray-1: #555555;
+    --gray-2: #262626;
+    --gray-3: #101010;
+    --gray-4:  #e0e0e0;
     --overlay: rgba(var(--background-color), 0.2);
-    --danger: #ff4c4c;
+    --danger: #FF4C4C;
   }
 }
 
