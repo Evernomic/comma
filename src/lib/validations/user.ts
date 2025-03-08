@@ -34,6 +34,7 @@ export const updateUserSchema = z
     contactEmail: z.string().trim().nullable(),
     password: z.string().nullable(),
     showBranding: z.boolean(),
+    showOnExplore: z.boolean(),
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),

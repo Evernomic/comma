@@ -130,6 +130,18 @@ export default async function Settings() {
           defaultValue: user.password || "",
         }}
       />
+        <Form
+        title="Explore page"
+        description="Show my profile on explore page"
+        endpoint={endpoint}
+        required={false}
+        inputData={{
+          type: "checkbox",
+          name: "showOnExplore",
+          defaultChecked: user.showOnExplore,
+        }}
+        toggle
+      />
       <Form
         title="Branding"
         description="Show or hide branding"
