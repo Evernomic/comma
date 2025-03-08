@@ -7,6 +7,7 @@ import {
   cloneElement,
   type FormEvent,
   isValidElement,
+  useId,
   useMemo,
   useState,
   useTransition,
@@ -126,10 +127,12 @@ export default function Form({
   }
 
   const Comp = asChild ? "div" : "form";
+  const formId = useId()
   return (
     <Comp
       className="overflow-hidden relative rounded-md border border-gray-2"
       onSubmit={(e) => (!asChild ? onSubmit(e) : e.preventDefault())}
+      id={formId}
     >
       {proFeature && <Upgrade />}
       <div className="flex flex-col gap-1 p-4">
@@ -145,6 +148,7 @@ export default function Form({
                       type="submit"
                       onCheckedChange={(checked) => setValue(checked)}
                       defaultChecked={inputData?.defaultChecked}
+                      form={formId}
                       disabled={saving}
                     />{" "}
                     <label>
@@ -258,6 +262,7 @@ export default function Form({
           className={cn((toggle || asChild) && "invisible")}
           disabled={disabledButton}
           isPending={saving}
+          form={formId}
         >
           Save
         </Button>

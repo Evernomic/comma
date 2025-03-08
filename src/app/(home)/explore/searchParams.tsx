@@ -7,7 +7,7 @@ import {
 
 export const filterSearchParams = {
   search: parseAsString.withDefault(""),
-  sort: parseAsString.withDefault("recent"),
+  sort: parseAsString.withDefault("popular"),
   category: parseAsArrayOf(parseAsString, ",").withDefault([]),
   location: parseAsArrayOf(parseAsString, ",").withDefault([]),
   page: parseAsInteger.withDefault(0),

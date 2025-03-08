@@ -28,6 +28,7 @@ export async function GET(req: Request) {
 
     const allUsers = await db.user.findMany({
       where: {
+        showOnExplore: true,
         ...(search?.length && {
           OR: [
             {

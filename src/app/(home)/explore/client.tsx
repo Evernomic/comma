@@ -10,6 +10,7 @@ import { useDebounce } from "use-debounce";
 import ExplorePageFilters from "./filters";
 import { filterSearchParams } from "./searchParams";
 import User from "./user";
+import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 
 export default function Client() {
   const [filters] = useQueryStates(filterSearchParams, { history: "push" });
@@ -63,12 +64,18 @@ export default function Client() {
             ))}
           </React.Fragment>
         ))}
+        {!data?.pages.every(p => p.data.length) && status !== "pending" && (
+          <EmptyPlaceholder>
+            <EmptyPlaceholder.Title>No results</EmptyPlaceholder.Title>
+          </EmptyPlaceholder>
+        )}
       </div>
       {hasNextPage && (
         <Button
           variant="secondary"
           disabled={!hasNextPage || isFetchingNextPage}
           className="w-full"
+          isPending={isFetchingNextPage}
           onClick={() => fetchNextPage()}
         >
           Load more

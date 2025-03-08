@@ -18,6 +18,8 @@ export default function Hero() {
             href={siteConfig.links.signup}
             size="wide"
             buttonVariant="primary"
+            icon="login"
+            direction="ltr"
             buttonClassname="gap-2"
             aria-label="Create your website"
           >
@@ -38,6 +40,8 @@ export default function Hero() {
         <NavButton
           href={siteConfig.links.demo}
           size="wide"
+          icon="arrowUpRight"
+          
           buttonVariant="ghost"
           target="_blank"
           aria-label="See a sample website"
