@@ -93,6 +93,11 @@ export default function UserNav({ user, segment }: Props) {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
+          <Link href={`${siteConfig.url}/explore`}>
+            <Icons.search size={15} /> Explore page
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <Link href={siteConfig.links.home}>
             <Icons.logo size={15} /> Home page
           </Link>

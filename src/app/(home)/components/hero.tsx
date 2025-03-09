@@ -31,7 +31,6 @@ export default function Hero() {
             buttonClassname="gap-2"
             icon="search"
             direction="ltr"
-            target="_blank"
             aria-label="Go Explore page"
           >
             Explore
