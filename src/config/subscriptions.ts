@@ -14,19 +14,15 @@ export const freePlan: Plan = {
       icon: "check",
     },
     {
-      name: "SEO",
-      icon: "check",
-    },
-    {
-      name: "Password protection",
-      icon: "check",
-    },
-    {
-      name: "Custom domain",
+      name: "Get featured on our Explore page",
       icon: "x",
     },
     {
-      name: "Advanced analytics",
+      name: "Collect emails",
+      icon: "x",
+    },
+    {
+      name: "Custom domain",
       icon: "x",
     },
     {
@@ -34,7 +30,16 @@ export const freePlan: Plan = {
       icon: "x",
     },
     {
-      name: "Collect emails",
+      name: "SEO",
+      icon: "check",
+    },
+    {
+      name: "Password protection",
+      icon: "check",
+    },
+
+    {
+      name: "Advanced analytics",
       icon: "x",
     },
   ],
@@ -58,6 +63,22 @@ export const proPlan: Plan = {
       icon: "check",
     },
     {
+      name: "Get featured on our Explore page",
+      icon: "check",
+    },
+    {
+      name: "Collect emails",
+      icon: "check",
+    },
+    {
+      name: "Custom domain",
+      icon: "check",
+    },
+    {
+      name: "Remove watermark",
+      icon: "check",
+    },
+    {
       name: "SEO",
       icon: "check",
     },
@@ -66,19 +87,7 @@ export const proPlan: Plan = {
       icon: "check",
     },
     {
-      name: "Custom domain",
-      icon: "check",
-    },
-    {
       name: "Advanced analytics",
-      icon: "check",
-    },
-    {
-      name: "Remove watermark",
-      icon: "check",
-    },
-    {
-      name: "Collect emails",
       icon: "check",
     },
   ],
