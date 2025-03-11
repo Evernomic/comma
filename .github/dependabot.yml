@@ -11,7 +11,7 @@ updates:
     registries:
       - tiptap-pro
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
