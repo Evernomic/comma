@@ -19,7 +19,7 @@
     "@neondatabase/serverless": "^0.10.4",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@next/third-parties": "^15.2.2",
-    "@prisma/adapter-neon": "^6.4.1",
+    "@prisma/adapter-neon": "^6.5.0",
     "@prisma/client": "^6.5.0",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-avatar": "^1.1.2",
