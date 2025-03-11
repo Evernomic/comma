@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { generateSEO } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Toaster />
         </ThemeProvider>
       </body>
+      <GoogleAnalytics gaId="G-TLL6FWBZ83" />
     </html>
   );
 }
