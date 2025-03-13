@@ -30,6 +30,11 @@ const CustomImage = TiptapImage.extend({
 
 export const TiptapExtensions = [
   StarterKit.configure({
+    paragraph: {
+      HTMLAttributes: {
+        class: "text-gray-4"
+      }
+    },
     bulletList: {
       HTMLAttributes: {
         class:
