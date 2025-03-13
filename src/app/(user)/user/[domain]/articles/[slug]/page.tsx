@@ -8,12 +8,14 @@ import {
   formatDate,
   generateSEO,
   getArticleOgImage,
+  getSectionTitle,
   getUserFavicon,
   getUserPageURL,
 } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Newsletter from "../components/newsletter";
+import { UserPageSection } from "@/types";
 export const revalidate = 60;
 
 interface ArticlePageProps {
@@ -96,7 +98,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </AppHeader>
       <MDX source={article.content} />
       <div className="mt-5">
-        <Newsletter user={user} />
+        <Newsletter title={getSectionTitle(0, user.sections as UserPageSection[])} user={user} />
       </div>
       <div className="mt-5 flex justify-between items-center">
         {article?.previousArticle && (

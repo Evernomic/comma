@@ -9,6 +9,7 @@ import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import type { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
+import { userPageConfig } from "@/config/user-page";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -380,4 +381,8 @@ export function sortUserPageSections(
   }
 
   return sections;
+}
+
+export function getSectionTitle(position: number, sections: UserPageSection[]) {
+  return sections.find(s => s.position === position)?.title ?? userPageConfig.sections.find(s => s.position === s.position)?.title ?? ""
 }
