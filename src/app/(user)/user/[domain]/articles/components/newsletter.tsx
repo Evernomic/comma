@@ -4,7 +4,9 @@ import NewsletterForm from "./newsletter-form";
 
 export default function Newsletter({
   user,
+  title,
 }: {
+  title: string;
   user: Pick<User, "username" | "newsletter" | "newsletterCta">;
 }) {
   if (!user.newsletter) {
@@ -13,7 +15,7 @@ export default function Newsletter({
   return (
     <dl className="section-container gap-3 rounded-md">
       <dt className="section-title flex-col items-start gap-1">
-        <h3>Newsletter</h3>
+        <h3>{title}</h3>
         {user.newsletterCta && (
           <MDX
             source={user.newsletterCta}
