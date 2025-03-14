@@ -384,5 +384,8 @@ export function sortUserPageSections(
 }
 
 export function getSectionTitle(position: number, sections: UserPageSection[]) {
-  return sections.find(s => s.position === position)?.title ?? userPageConfig.sections.find(s => s.position === s.position)?.title ?? ""
+  if(sections) {
+    return sections?.find(s => s.position === position)?.title
+  }
+  return userPageConfig.sections.find(s => s.position === s.position)?.title ?? ""
 }
