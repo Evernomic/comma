@@ -127,7 +127,7 @@ export default function Form({
   }
 
   const Comp = asChild ? "div" : "form";
-  const formId = useId()
+  const formId = useId();
   return (
     <Comp
       className="overflow-hidden relative rounded-md border border-gray-2"

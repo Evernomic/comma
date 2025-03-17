@@ -14,14 +14,13 @@ export default function AppHeader({
 }: Props) {
   return (
     <div className={cn("flex items-center justify-between", className)}>
-      {(title ||  description) && (
-
-      <div className="flex flex-col gap-1">
-        {title && <h3 className="title text-lg font-medium ">{title}</h3>}
-        {description && (
-          <p className="description text-sm text-gray-4">{description}</p>
-        )}
-      </div>
+      {(title || description) && (
+        <div className="flex flex-col gap-1">
+          {title && <h3 className="title text-lg font-medium ">{title}</h3>}
+          {description && (
+            <p className="description text-sm text-gray-4">{description}</p>
+          )}
+        </div>
       )}
       {children}
     </div>

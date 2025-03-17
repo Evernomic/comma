@@ -1,11 +1,11 @@
-import { Ubuntu } from "next/font/google";
-import "@/styles/globals.css";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { generateSEO } from "@/lib/utils";
+import "@/styles/globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { Ubuntu } from "next/font/google";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -18,14 +18,14 @@ export const viewport: Viewport = {
   themeColor: [
     {
       media: "(prefers-color-scheme: light)",
-      color: "#F9F9F9"
+      color: "#F9F9F9",
     },
     {
       media: "(prefers-color-scheme: dark)",
-      color: "#000000"
-    }
-  ]
-} 
+      color: "#000000",
+    },
+  ],
+};
 
 export default function RootLayout({
   children,
