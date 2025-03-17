@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import { userPageConfig } from "@/config/user-page";
 import type { BookmarkWithCollection, UserPageSection } from "@/types";
 import type { Article, Project, User, WorkExperience } from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
@@ -9,7 +10,6 @@ import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import type { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
-import { userPageConfig } from "@/config/user-page";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -384,8 +384,10 @@ export function sortUserPageSections(
 }
 
 export function getSectionTitle(position: number, sections: UserPageSection[]) {
-  if(sections) {
-    return sections?.find(s => s.position === position)?.title ?? ""
+  if (sections) {
+    return sections?.find((s) => s.position === position)?.title ?? "";
   }
-  return userPageConfig.sections.find(s => s.position === s.position)?.title ?? ""
+  return (
+    userPageConfig.sections.find((s) => s.position === s.position)?.title ?? ""
+  );
 }

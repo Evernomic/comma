@@ -130,7 +130,7 @@ export default async function Settings() {
           defaultValue: user.password || "",
         }}
       />
-        <Form
+      <Form
         title="Explore page"
         description="Show my profile on explore page"
         endpoint={endpoint}

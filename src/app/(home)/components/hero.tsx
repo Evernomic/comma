@@ -40,7 +40,6 @@ export default function Hero() {
           href={siteConfig.links.demo}
           size="wide"
           icon="arrowUpRight"
-          
           buttonVariant="ghost"
           target="_blank"
           aria-label="See a sample website"

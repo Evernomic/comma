@@ -1,7 +1,7 @@
 @import "tailwindcss";
+@import "./animate.css";
 @plugin 'tailwindcss-multi';
 @plugin '@tailwindcss/typography';
-@plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -146,3 +146,6 @@
     @apply border-gray-2 w-full;
   }
 }
+
+
+

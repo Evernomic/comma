@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/ui/button";
+import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { User as _User } from "@prisma/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -10,7 +11,6 @@ import { useDebounce } from "use-debounce";
 import ExplorePageFilters from "./filters";
 import { filterSearchParams } from "./searchParams";
 import User from "./user";
-import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 
 export default function Client() {
   const [filters] = useQueryStates(filterSearchParams, { history: "push" });
@@ -64,7 +64,7 @@ export default function Client() {
             ))}
           </React.Fragment>
         ))}
-        {!data?.pages.every(p => p.data.length) && status !== "pending" && (
+        {!data?.pages.every((p) => p.data.length) && status !== "pending" && (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Title>No results</EmptyPlaceholder.Title>
           </EmptyPlaceholder>
