@@ -30,6 +30,10 @@ export const freePlan: Plan = {
       icon: "x",
     },
     {
+      name: "Advanced analytics",
+      icon: "x",
+    },
+    {
       name: "SEO",
       icon: "check",
     },
@@ -38,10 +42,6 @@ export const freePlan: Plan = {
       icon: "check",
     },
 
-    {
-      name: "Advanced analytics",
-      icon: "x",
-    },
   ],
   action: {
     text: "Get started",
@@ -79,15 +79,15 @@ export const proPlan: Plan = {
       icon: "check",
     },
     {
+      name: "Advanced analytics",
+      icon: "check",
+    },
+    {
       name: "SEO",
       icon: "check",
     },
     {
       name: "Password protection",
-      icon: "check",
-    },
-    {
-      name: "Advanced analytics",
       icon: "check",
     },
   ],
