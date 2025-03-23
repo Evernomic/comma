@@ -122,12 +122,12 @@
   }
 
   .dark {
-    --background-color:#111111;
+    --background-color:#090909;
     --foreground: #fff;
     --gray-1: #555555;
-    --gray-2: #262626;
-    --gray-3: #101010;
-    --gray-4:  #525252;
+    --gray-2: #282828;
+    --gray-3: #121212;
+    --gray-4:  #808080;
     --overlay: rgba(var(--background-color), 0.2);
     --danger: #FF4C4C;
   }
