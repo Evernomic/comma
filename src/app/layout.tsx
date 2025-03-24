@@ -1,16 +1,12 @@
+import { GeistSans } from "geist/font/sans";
+import "@/styles/globals.css";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { generateSEO } from "@/lib/utils";
-import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
-import { Ubuntu } from "next/font/google";
 
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
 
 export const metadata = generateSEO();
 
@@ -34,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={ubuntu.className}>
+      <body className={GeistSans.className}>
         <ThemeProvider attribute="class">
           {children}
           <Analytics />
