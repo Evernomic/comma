@@ -1,8 +1,7 @@
-import { Badge } from "@/components/ui/badge";
+import NavButton from "@/components/layout/nav-button";
 import { siteConfig } from "@/config/site";
 import { getUserViaEdge } from "@/lib/edge";
 import type { User } from "@prisma/client";
-import Link from "next/link";
 
 export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
   const res = await getUserViaEdge(undefined, undefined, user.id);
@@ -10,14 +9,15 @@ export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
     return null;
   }
   return (
-    <Link
+    <NavButton
       href={siteConfig.links.home}
       target="_blank"
       aria-label="Powered by Comma"
-    >
-      <Badge className="text-xs fixed right-4 bottom-4 text-gray-4 font-normal border border-gray-2 ">
-        Powered by Comma
-      </Badge>
-    </Link>
+      buttonVariant="ghost"
+      className=" z-[90] bg-gray-3 border border-gray-2 p-1 rounded-full "
+      buttonClassname="size-5! rounded-full"
+      iconSize={20}
+      icon="logo"
+    />
   );
 }

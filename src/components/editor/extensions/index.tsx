@@ -74,6 +74,11 @@ export const TiptapExtensions = [
         class: "border-gray-2",
       },
     },
+    bold: {
+      HTMLAttributes: {
+        class: "font-medium text-secondary",
+      },
+    },
   }),
   CustomImage,
   TiptapUnderline,

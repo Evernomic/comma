@@ -62,7 +62,7 @@ export default async function Home({ params }: PageProps) {
         !experiences.length && (
           <NothingPlaceholder name={user.name || user.username} />
         )}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-16">
         {sortUserPageSections(sections, user.sections as UserPageSection[]).map(
           (section) => (
             <section.component

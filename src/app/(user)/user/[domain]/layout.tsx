@@ -10,7 +10,7 @@ import {
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type React from "react";
-import Watermark from "./components/watermark";
+import BottomNav from "./components/bottom-nav";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -55,11 +55,11 @@ export default async function UserLayout({ children, params }: LayoutProps) {
     return notFound();
   }
   return (
-    <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full py-20 pb-28 max-md:pt-10 max-md:px-8 ">
+    <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full py-20 pb-48 max-md:pt-10 max-md:px-8 ">
       <main className="w-full flex-1">{children}</main>
       <Command user={user} />
       <Track />
-      <Watermark user={user} />
+      <BottomNav user={user} />
     </div>
   );
 }

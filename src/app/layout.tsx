@@ -7,7 +7,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
 
-
 export const metadata = generateSEO();
 
 export const viewport: Viewport = {

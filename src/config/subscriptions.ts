@@ -41,7 +41,6 @@ export const freePlan: Plan = {
       name: "Password protection",
       icon: "check",
     },
-
   ],
   action: {
     text: "Get started",

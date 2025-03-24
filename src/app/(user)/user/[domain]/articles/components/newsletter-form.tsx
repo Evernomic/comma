@@ -2,6 +2,7 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 import { subscribeSchema } from "@/lib/validations/subscribe";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
@@ -10,12 +11,27 @@ import type * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
 
+const feeds = [
+  {
+    type: "rss",
+    title: "RSS",
+    href: "/feed",
+  },
+  {
+    type: "atom",
+    title: "Atom",
+    href: "/feed?type=atom",
+  },
+] as const;
+
 export default function NewsletterForm({
   username,
   prefix = "newsletter",
+  className,
 }: {
   username: string;
   prefix?: string;
+  className?: string;
 }) {
   const [pending, startTransition] = useTransition();
 
@@ -55,7 +71,7 @@ export default function NewsletterForm({
   return (
     <form
       id={`${prefix}-subscribe-newsletter`}
-      className="flex gap-2 items-center"
+      className={cn("flex gap-2 items-center", className)}
       onSubmit={handleSubmit(onSubmit)}
     >
       <Input
