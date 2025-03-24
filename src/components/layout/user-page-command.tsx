@@ -1,6 +1,5 @@
 "use client";
 
-import Feed from "@/app/(user)/user/[domain]/articles/components/feed";
 import { getLinks, userPageConfig } from "@/config/user-page";
 import useNavigation from "@/hooks/use-navigation";
 import { User } from "@/types";
@@ -117,8 +116,8 @@ export default function UserPageCommand({ user }: { user: User }) {
         </CommandList>
       </CommandDialog>
       {pathname !== "/" && (
-        <nav className="fixed w-full pointer-events-none flex flex-col max-md:justify-end left-0 top-0 max-md:bottom-4.5">
-          <div className="z-50 w-[640px] max-md:px-4 py-4 max-md:w-full mx-auto pointer-events-auto flex items-center justify-between">
+        <nav className="fixed w-full pointer-events-none flex flex-col max-md:hidden left-0 top-0">
+          <div className="z-50 w-[640px] py-4 mx-auto pointer-events-auto flex items-center justify-between">
             <Button
               onClick={() => router.push("/")}
               size="icon"
@@ -128,7 +127,6 @@ export default function UserPageCommand({ user }: { user: User }) {
               <Icons.arrowLeft size={15} />
             </Button>
             <div className="flex items-center gap-2">
-              <Feed username={user.username} />
               <Button
                 onClick={() => setOpen(true)}
                 size="icon"

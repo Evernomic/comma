@@ -1,19 +1,22 @@
 import MDX from "@/components/markdown/mdx";
+import { cn } from "@/lib/utils";
 import { User } from "@prisma/client";
 import NewsletterForm from "./newsletter-form";
 
 export default function Newsletter({
   user,
   title,
+  className,
 }: {
   title: string;
+  className?: string;
   user: Pick<User, "username" | "newsletter" | "newsletterCta">;
 }) {
   if (!user.newsletter) {
     return null;
   }
   return (
-    <dl className="section-container gap-3 rounded-md">
+    <dl className={cn("section-container gap-3 rounded-md", className)}>
       <dt className="section-title flex-col items-start gap-1">
         <h3>{title}</h3>
         {user.newsletterCta && (

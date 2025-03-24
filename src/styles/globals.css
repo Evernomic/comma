@@ -107,6 +107,15 @@
   -ms-user-select: none;
 }
 
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+      display: 'none'
+  }
+}
 @layer base {
   :root {
     --background-color: #f9f9f9;
@@ -133,7 +142,11 @@
   }
 }
 
+
 @layer base {
+  html {
+    @apply scrollbar-hide;
+  }
   body {
     @apply bg-primary text-secondary;
   }
@@ -146,6 +159,5 @@
     @apply border-gray-2 w-full;
   }
 }
-
 
 
