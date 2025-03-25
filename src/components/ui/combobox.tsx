@@ -51,7 +51,7 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-full justify-between data-[state=open]:bg-gray-3 text-secondary text-sm hover:bg-inherit! disabled:bg-gray-3 disabled:opacity-100",
+            "w-full justify-between px-2 data-[state=open]:bg-gray-3 text-secondary text-sm hover:bg-inherit! disabled:bg-gray-3 disabled:opacity-100",
             className,
           )}
           disabled={disabled}
@@ -59,7 +59,7 @@ export function Combobox({
           {value
             ? options.find((option) => option.value === value)?.title
             : placeholder}
-          <Icons.chevronsUpDown size={20} className="text-gray-4" />
+          <Icons.chevronsUpDown size={18} className="text-gray-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="ml-0 size-auto p-0 border-0">
