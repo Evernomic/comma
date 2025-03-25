@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 
@@ -16,11 +17,22 @@ export default function ThemeToggle({
   className?: string;
   iconSize?: number;
 }) {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
   const { theme, setTheme } = useTheme();
 
   const isDark = theme === "dark";
   const toggle = () => setTheme(isDark ? "light" : "dark");
   const text = isDark ? "Switch to light" : "Switch to dark";
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   if (onlyText) {
     return (
       <p

@@ -21,7 +21,27 @@ const feeds = [
   },
 ] as const;
 
-export default function FeedMenu() {
+export default function FeedMenu({ noPopover }: { noPopover?: boolean }) {
+  if (noPopover) {
+    return (
+      <div className="flex gap-1 w-full mt-3 pb-3">
+        {feeds.map((feed) => (
+          <NavButton
+            href={feed.href}
+            buttonVariant="secondary"
+            buttonClassname="gap-2 h-12"
+            className="w-full"
+            size="wide"
+            target="_blank"
+            key={feed.type}
+          >
+            <Icons.rss size={18} /> {feed.title}
+          </NavButton>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <Popover>
       <PopoverTrigger asChild>

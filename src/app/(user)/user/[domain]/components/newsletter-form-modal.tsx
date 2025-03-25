@@ -37,23 +37,33 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         )}
         aria-label={title}
       >
-        <Icons.plus size={20} /> Subscribe
+        {user.newsletter ? (
+          <>
+            <Icons.plus size={20} /> Subscribe
+          </>
+        ) : (
+          <>
+            <Icons.rss size={18} /> Feed
+          </>
+        )}
       </DialogTrigger>
       <DialogContent className="p-4.5 pb-3 gap-0">
         <DialogHeader className="flex-col items-start gap-2">
-          <DialogTitle>{title}</DialogTitle>
-          {user.newsletterCta && (
+          <DialogTitle>{user.newsletter ? title : "Feed"}</DialogTitle>
+          {user.newsletterCta && user.newsletter && (
             <MDX
               source={user.newsletterCta}
               className="text-gray-4! leading-4! text-sm"
             />
           )}
         </DialogHeader>
-        <NewsletterForm
-          username={user.username}
-          className="flex-col *:w-full my-3"
-        />
-        <FeedMenu />
+        {user.newsletter && (
+          <NewsletterForm
+            username={user.username}
+            className="flex-col *:w-full my-3"
+          />
+        )}
+        <FeedMenu noPopover={!user.newsletter} />
       </DialogContent>
     </Dialog>
   );
