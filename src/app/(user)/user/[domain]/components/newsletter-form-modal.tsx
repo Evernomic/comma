@@ -33,7 +33,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
       <DialogTrigger
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "rounded-full text-sm gap-2",
+          "rounded-full text-sm gap-2 px-2 flex-1",
         )}
         aria-label={title}
       >
