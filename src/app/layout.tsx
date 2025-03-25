@@ -1,10 +1,10 @@
-import { GeistSans } from "geist/font/sans";
-import "@/styles/globals.css";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { generateSEO } from "@/lib/utils";
+import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
+import { GeistSans } from "geist/font/sans";
 import { Viewport } from "next";
 
 export const metadata = generateSEO();

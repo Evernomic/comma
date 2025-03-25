@@ -1,4 +1,5 @@
 import MDX from "@/components/markdown/mdx";
+import { Icons } from "@/components/shared/icons";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,7 +12,6 @@ import { cn, getSectionTitle } from "@/lib/utils";
 import type { User, UserPageSection } from "@/types";
 import NewsletterForm from "../articles/components/newsletter-form";
 import FeedMenu from "./feed-menu";
-import { Icons } from "@/components/shared/icons";
 
 const feeds = [
   {
@@ -37,7 +37,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         )}
         aria-label={title}
       >
-       <Icons.plus size={20} /> Subscribe
+        <Icons.plus size={20} /> Subscribe
       </DialogTrigger>
       <DialogContent className="p-4.5 pb-3 gap-0">
         <DialogHeader className="flex-col items-start gap-2">
