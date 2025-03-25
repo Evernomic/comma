@@ -10,13 +10,13 @@ import { useShallow } from "zustand/react/shallow";
 export default function BottomNavActions() {
   const pathname = usePathname();
   const setOpen = useNavigation(useShallow((state) => state.setOpen));
-  const [isMounted, setIsMounted] = useState<boolean>(false)
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
-  if(isMounted && pathname !== "/") {
+  if (isMounted && pathname !== "/") {
     return (
       <div className="hidden max-md:flex">
         <Button
@@ -32,5 +32,5 @@ export default function BottomNavActions() {
     );
   }
 
-  return null
+  return null;
 }

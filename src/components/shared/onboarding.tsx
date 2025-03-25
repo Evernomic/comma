@@ -78,7 +78,7 @@ function CompleteProfile({
     resolver: zodResolver(schema),
     defaultValues: {
       name: user?.name!,
-      username: user.username,
+      username: user.username.length <= 20 ? user.username : undefined,
       category: user.category!,
     },
   });
