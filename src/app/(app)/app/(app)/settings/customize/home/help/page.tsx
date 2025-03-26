@@ -3,16 +3,14 @@ import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
 import { readMarkdownFile } from "@/lib/md";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
-
-
-export const metadata:Metadata = {
+export const metadata: Metadata = {
   title: "Help"
 }
 
 export default function TOS() {
-  const source = readMarkdownFile("docs/help/customize-home-page.md");
+  const source = readMarkdownFile("docs/help/customize.md");
   return (
     <AppShell>
       <AppHeader className="flex-row-reverse justify-end gap-2">
@@ -23,7 +21,7 @@ export default function TOS() {
           direction="ltr"
           aria-label="Back to customize"
         >
-            Back to editor
+          Back to editor
         </NavButton>
       </AppHeader>
       <MDX source={source} />

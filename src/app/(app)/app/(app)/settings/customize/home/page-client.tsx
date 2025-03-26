@@ -13,7 +13,7 @@ export default function EditHomePageClient({
 
   return (
     <div className="min-h-screen pb-20">
-      <header className="sticky top-0  p-1  gap-3 bg-gray-3 backdrop-blur-3xl flex mb-2 z-50  items-center rounded-md">
+      <header className="sticky top-3  p-1   gap-3 bg-gray-3 border border-gray-2 flex mb-2 z-50  items-center rounded-md">
         <NavButton
           href="/settings"
           icon="arrowLeft"
