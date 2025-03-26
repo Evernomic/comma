@@ -3,7 +3,7 @@ import EditHomePageClient from "./page-client";
 import type { Metadata } from "next";
 
 export const metadata:Metadata = {
-  title: "Customize home page"
+  title: "Customize home"
 }
 
 export default async function EditHomePage() {

@@ -8,7 +8,7 @@ import { Metadata } from "next";
 
 
 export const metadata:Metadata = {
-    title: "Help"
+  title: "Help"
 }
 
 export default function TOS() {
