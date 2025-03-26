@@ -15,17 +15,32 @@ interface Props {
   endpoint: string;
   method: "PUT" | "PATCH";
   content?: any;
-  title: string;
   setSaving: Dispatch<SetStateAction<boolean>>;
+  name?: string;
 }
+interface WithTitle extends Props {
+  onlyContent?: false;
+  title: string;
+}
+
+interface WithoutTitle extends Props {
+  onlyContent: true;
+  title?: undefined;
+}
+
+export type TitleProps = WithTitle | WithoutTitle;
+
+export type EditorProps = Props & TitleProps;
 
 export default function Editor({
   endpoint,
   method,
   content,
   title,
+  name = "content",
+  onlyContent = false,
   setSaving,
-}: Props) {
+}: EditorProps) {
   const editor = useEditor({
     extensions: TiptapExtensions,
     content,
@@ -45,8 +60,8 @@ export default function Editor({
       const res = await fetch(`/api/${endpoint}`, {
         method,
         body: JSON.stringify({
-          title,
-          content,
+          ...(!onlyContent && { title }),
+          [name as string]: content,
         }),
       });
 
@@ -67,18 +82,20 @@ export default function Editor({
 
   return (
     <div className="flex flex-col gap-2">
-      <TextareaAutosize
-        className="resize-none border-0 bg-transparent line-clamp-none text-xl font-medium outline-hidden placeholder:text-gray-1"
-        placeholder="Title"
-        defaultValue={title}
-        maxLength={70}
-        onChange={(e) => {
-          debouncedUpdates({
-            editor,
-            title: e.target.value,
-          });
-        }}
-      />
+      {!onlyContent && (
+        <TextareaAutosize
+          className="resize-none border-0 bg-transparent line-clamp-none text-xl font-medium outline-hidden placeholder:text-gray-1"
+          placeholder="Title"
+          defaultValue={title}
+          maxLength={70}
+          onChange={(e) => {
+            debouncedUpdates({
+              editor,
+              title: e.target.value,
+            });
+          }}
+        />
+      )}
       <div className="prose-base relative  w-full flex-1  prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-headings:font-normal prose-hr:my-4  prose-headings:mb-4 prose-headings:mt-8 ">
         {editor && <BubbleMenu editor={editor} />}
         <EditorContent editor={editor} />

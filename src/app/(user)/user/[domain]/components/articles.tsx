@@ -14,7 +14,7 @@ export default async function Articles({
     return null;
   }
   return (
-    <dl className="section-container">
+    <dl className="section-container not-prose">
       <dt className="section-title link group">
         <Link
           href="/articles"

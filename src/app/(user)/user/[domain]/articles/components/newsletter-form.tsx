@@ -85,7 +85,7 @@ export default function NewsletterForm({
       )}
       <Button
         isPending={pending}
-        className="px-12"
+        className="flex-1/3"
         form={`${prefix}-subscribe-newsletter`}
       >
         Subscribe

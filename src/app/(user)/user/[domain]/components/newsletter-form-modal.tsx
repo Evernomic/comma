@@ -60,7 +60,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         {user.newsletter && (
           <NewsletterForm
             username={user.username}
-            className="flex-col *:w-full my-3"
+            className="flex-col *:w-full [&_button]:flex-auto my-3"
           />
         )}
         <FeedMenu noPopover={!user.newsletter} />

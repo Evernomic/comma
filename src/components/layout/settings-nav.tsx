@@ -8,7 +8,10 @@ import MobileSettingsNav from "./settings-mobile-nav";
 
 export default function SettingsNav() {
   const path = usePathname();
-  const current = appConfig.settingsNav.find((item) => item.href === path);
+  const current = [
+    ...appConfig.settingsNav,
+    { title: "Customize home", href: "/settings/customize/home" },
+  ].find((item) => item.href === path);
   return (
     <AppHeader title={current?.title || "Settings"}>
       <nav className="flex gap-2 max-md:hidden">

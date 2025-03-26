@@ -16,7 +16,7 @@ export default function Newsletter({
     return null;
   }
   return (
-    <dl className={cn("section-container gap-3 rounded-md", className)}>
+    <dl className={cn("section-container gap-3 rounded-md not-prose", className)}>
       <dt className="section-title flex-col items-start gap-1">
         <h3>{title}</h3>
         {user.newsletterCta && (

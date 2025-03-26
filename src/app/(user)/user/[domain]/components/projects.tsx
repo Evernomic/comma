@@ -16,7 +16,7 @@ export default function Projects({
     return null;
   }
   return (
-    <dl className="section-container">
+    <dl className="section-container not-prose">
       <dt className="section-title link group">
         <Link
           href="/projects"

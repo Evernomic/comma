@@ -76,7 +76,7 @@ export const TiptapExtensions = [
     },
     bold: {
       HTMLAttributes: {
-        class: "font-medium text-secondary",
+        class: "font-semibold text-secondary",
       },
     },
   }),
@@ -104,7 +104,17 @@ export const TiptapExtensions = [
     transformPastedText: true,
   }),
   Placeholder.configure({
-    placeholder: "Write or type '/ ' for commands",
+    placeholder: ({ node }) => {
+      switch (node.type.name) {
+        case "heading":
+          return `Heading ${node.attrs.level}`;
+        case "codeBlock":
+          return "";
+        default:
+          return "Write or type '/ ' for commands";
+      }
+    },
+    includeChildren: false,
   }),
   Highlight,
   TaskList.configure({

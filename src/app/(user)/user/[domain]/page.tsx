@@ -1,4 +1,5 @@
 import AppShell from "@/components/layout/app-shell";
+import MDX from "@/components/markdown/mdx";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
@@ -52,31 +53,48 @@ export default async function Home({ params }: PageProps) {
     getBookmarksByAuthor(user.id, 5),
     getWorkExperiencesByUser(user.id),
   ]);
+
+  const allData = { user, articles, projects, bookmarks, experiences };
   return (
     <AppShell>
-      <Intro user={user} />
-      {!user?.about?.trim().length &&
-        !articles.length &&
-        !projects.length &&
-        !bookmarks.length &&
-        !experiences.length && (
+      {user.showCustomHomePage ? (
+        user.customHomePageContent?.length ? (
+          <MDX
+            source={user.customHomePageContent}
+            allData={allData}
+            withSections
+          />
+        ) : (
           <NothingPlaceholder name={user.name || user.username} />
-        )}
-      <div className="flex flex-col gap-16">
-        {sortUserPageSections(sections, user.sections as UserPageSection[]).map(
-          (section) => (
-            <section.component
-              title={section.title}
-              user={user}
-              articles={articles}
-              projects={projects}
-              bookmarks={bookmarks}
-              experiences={experiences}
-              key={`${section.title.toLowerCase()}--${section.position}`}
-            />
-          ),
-        )}
-      </div>
+        )
+      ) : (
+        <>
+          <Intro user={user} />
+          {!user?.about?.trim().length &&
+            !articles.length &&
+            !projects.length &&
+            !bookmarks.length &&
+            !experiences.length && (
+              <NothingPlaceholder name={user.name || user.username} />
+            )}
+          <div className="flex flex-col gap-16">
+            {sortUserPageSections(
+              sections,
+              user.sections as UserPageSection[],
+            ).map((section) => (
+              <section.component
+                title={section.title}
+                user={user}
+                articles={articles}
+                projects={projects}
+                bookmarks={bookmarks}
+                experiences={experiences}
+                key={`${section.title.toLowerCase()}--${section.position}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </AppShell>
   );
 }
