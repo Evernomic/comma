@@ -76,6 +76,7 @@
     "katex": "^0.16.21",
     "ky": "^1.7.5",
     "lucide-react": "^0.471.0",
+    "mdast-util-find-and-replace": "^3.0.2",
     "nanoid": "^5.0.7",
     "next": "^15.2.3",
     "next-auth": "^4.24.11",
@@ -102,6 +103,7 @@
     "tailwindcss-multi": "^0.4.6",
     "tippy.js": "^6.3.7",
     "tiptap-markdown": "^0.8.10",
+    "unist-util-visit": "^5.0.0",
     "use-debounce": "^10.0.1",
     "zod": "^3.23.8",
     "zustand": "^5.0.2"

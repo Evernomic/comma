@@ -38,8 +38,8 @@ interface FormProps {
   endpoint: string;
   method?: "PATCH";
   required?: boolean;
-  prefix?: string;
-  suffix?: string;
+  prefix?: string | React.ReactNode;
+  suffix?: string | React.ReactNode;
   asChild?: boolean;
   toggle?: boolean;
   selectOptions?: SelectOption[];
@@ -154,6 +154,7 @@ export default function Form({
                     <label>
                       {inputData?.defaultChecked ? "Enabled" : "Disabled"}
                     </label>
+                    {suffix}
                   </div>
                 ) : selectOptions && selectOptions?.length > 0 ? (
                   <div>

@@ -35,6 +35,8 @@ export const updateUserSchema = z
     password: z.string().nullable(),
     showBranding: z.boolean(),
     showOnExplore: z.boolean(),
+    showCustomHomePage: z.boolean(),
+    customHomePageContent: z.string(),
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),

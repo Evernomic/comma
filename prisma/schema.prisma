@@ -51,44 +51,46 @@ enum UserCategory {
 }
 
 model User {
-  id                 String           @id @default(cuid())
-  name               String?
-  username           String           @unique @default(cuid())
-  title              String?
-  email              String           @unique
-  domain             String?          @unique
-  emailVerified      DateTime?
-  image              String?
-  category           UserCategory?
-  location           String?
-  createdAt          DateTime         @default(now()) @map("created_at")
-  updatedAt          DateTime         @default(now()) @map("updated_at")
-  about              String?          @db.Text
-  newsletter         Boolean          @default(false)
-  newsletterCta      String?
-  seoTitle           String?
-  seoDescription     String?
-  ogImage            String?
-  twitter            String?
-  github             String?
-  linkedin           String?
-  dribbble           String?
-  contactEmail       String?
-  lsId               String?          @unique
-  lsVariantId        String?
-  lsCurrentPeriodEnd DateTime?
-  accounts           Account[]
-  sessions           Session[]
-  articles           Article[]
-  projects           Project[]
-  bookmarks          Bookmark[]
-  subscribers        Subscriber[]
-  collections        Collection[]
-  workExperiences    WorkExperience[]
-  password           String?
-  showBranding       Boolean          @default(true)
-  sections           Json?
-  showOnExplore      Boolean          @default(true)
+  id                    String           @id @default(cuid())
+  name                  String?
+  username              String           @unique @default(cuid())
+  title                 String?
+  email                 String           @unique
+  domain                String?          @unique
+  emailVerified         DateTime?
+  image                 String?
+  category              UserCategory?
+  location              String?
+  createdAt             DateTime         @default(now()) @map("created_at")
+  updatedAt             DateTime         @default(now()) @map("updated_at")
+  about                 String?          @db.Text
+  newsletter            Boolean          @default(false)
+  newsletterCta         String?
+  seoTitle              String?
+  seoDescription        String?
+  ogImage               String?
+  twitter               String?
+  github                String?
+  linkedin              String?
+  dribbble              String?
+  contactEmail          String?
+  lsId                  String?          @unique
+  lsVariantId           String?
+  lsCurrentPeriodEnd    DateTime?
+  accounts              Account[]
+  sessions              Session[]
+  articles              Article[]
+  projects              Project[]
+  bookmarks             Bookmark[]
+  subscribers           Subscriber[]
+  collections           Collection[]
+  workExperiences       WorkExperience[]
+  password              String?
+  showBranding          Boolean          @default(true)
+  sections              Json?
+  showOnExplore         Boolean          @default(true)
+  showCustomHomePage    Boolean          @default(false)
+  customHomePageContent String?
 
   @@map("users")
 }

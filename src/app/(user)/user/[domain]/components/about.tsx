@@ -6,7 +6,7 @@ export default function About({ title, user }: { title: string; user: User }) {
     return null;
   }
   return (
-    <dl className="section-container">
+    <dl className="section-container not-prose">
       <dt className="section-title">
         <h3>{title}</h3>
       </dt>
