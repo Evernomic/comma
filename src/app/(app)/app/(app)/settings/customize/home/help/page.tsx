@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   title: "Help"
 }
 
-export default function TOS() {
+export default function HelpPage() {
   const source = readMarkdownFile("docs/help/customize.md");
+
   return (
     <AppShell>
       <AppHeader className="flex-row-reverse justify-end gap-2">

@@ -1,18 +1,18 @@
 You can easily show, delete and move the sections you want in the editor. You can start adding by following the syntax below.
 
-## Available Sections
+## Available sections
 
-### 1. Personal Introduction
+### 1. Personal introduction
 
 - ::Intro:: - Your main headline and brief introduction
 - ::About:: - Detailed personal or professional background
 
-### 2. Professional Journey
+### 2. Professional journey
 
 - ::WorkExperiences:: - Your career timeline and roles
 - ::Projects:: - Showcasing your notable work and achievements
 
-### 3. Knowledge Sharing
+### 3. Knowledge sharing
 
 - ::Articles:: - Writing and publications
 - ::Bookmarks:: - Interesting resources or recommended readings
@@ -22,7 +22,7 @@ You can easily show, delete and move the sections you want in the editor. You ca
 - ::Newsletter:: - Newsletter form
 - ::Connect:: - Contact information and social links
 
-## How to Add Sections
+## How to add sections
 
 Simply type the section name between two colons:
 
@@ -30,7 +30,7 @@ Simply type the section name between two colons:
 - Example: ::WorkExperiences::
 - Example: ::Articles::
 
-## Pro Tips
+## Pro tips
 
 - Use exact section names
 - Start with a capital letter
