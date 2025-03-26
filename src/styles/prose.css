@@ -1,7 +1,7 @@
 @import "./globals.css";
 
 .prose {
-  @apply text-secondary prose-headings:mb-4 prose-headings:mt-8 prose-headings:font-normal prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-code:before:hidden prose-strong:font-semibold prose-code:after:hidden prose-p:text-gray-4 prose-hr:my-4 min-w-full;
+  @apply text-secondary leading-(--text-sm-line-height) prose-headings:mb-4 prose-headings:mt-8 prose-headings:font-normal prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-code:before:hidden prose-strong:font-semibold prose-code:after:hidden prose-p:text-gray-4 prose-hr:my-4 min-w-full;
 }
 
 .prose a {

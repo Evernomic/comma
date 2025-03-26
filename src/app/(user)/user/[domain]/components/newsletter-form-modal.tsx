@@ -11,20 +11,8 @@ import {
 import { cn, getSectionTitle } from "@/lib/utils";
 import type { User, UserPageSection } from "@/types";
 import NewsletterForm from "../articles/components/newsletter-form";
-import FeedMenu from "./feed-menu";
+import Feed from "./feed";
 
-const feeds = [
-  {
-    type: "rss",
-    title: "RSS",
-    href: "/feed",
-  },
-  {
-    type: "atom",
-    title: "Atom",
-    href: "/feed?type=atom",
-  },
-] as const;
 
 export default function NewsletterFormModal({ user }: { user: User }) {
   const title = getSectionTitle(0, user.sections as UserPageSection[]);
@@ -53,7 +41,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
           {user.newsletterCta && user.newsletter && (
             <MDX
               source={user.newsletterCta}
-              className="text-gray-4! leading-4! text-sm"
+              className="text-gray-4! text-sm"
             />
           )}
         </DialogHeader>
@@ -63,7 +51,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
             className="flex-col *:w-full [&_button]:flex-auto my-3"
           />
         )}
-        <FeedMenu noPopover={!user.newsletter} />
+        <Feed />
       </DialogContent>
     </Dialog>
   );

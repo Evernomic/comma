@@ -17,12 +17,12 @@ export default function Newsletter({
   }
   return (
     <dl className={cn("section-container gap-3 rounded-md not-prose", className)}>
-      <dt className="section-title flex-col items-start gap-1">
+      <dt className="section-title flex-col items-start ">
         <h3>{title}</h3>
         {user.newsletterCta && (
           <MDX
             source={user.newsletterCta}
-            className="text-gray-4! leading-4! text-sm"
+            className="text-gray-4! text-sm"
           />
         )}
       </dt>
