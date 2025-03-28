@@ -1,6 +1,4 @@
 import NavButton from "@/components/layout/nav-button";
-import { Icons } from "@/components/shared/icons";
-
 
 const feeds = [
   {
@@ -16,21 +14,20 @@ const feeds = [
 ] as const;
 
 export default function Feed() {
-    return (
-      <div className="flex gap-2 w-full mt-2 pb-2 justify-center">
-        {feeds.map((feed) => (
-          <NavButton
-            href={feed.href}
-            buttonVariant="secondary"
-            buttonClassname="gap-2"
-            size="sm"
-            target="_blank"
-            key={feed.type}
-          >
-             {feed.title}
-          </NavButton>
-        ))}
-      </div>
-    );
-
+  return (
+    <div className="flex gap-2 w-full mt-2 pb-2 justify-center">
+      {feeds.map((feed) => (
+        <NavButton
+          href={feed.href}
+          buttonVariant="secondary"
+          buttonClassname="gap-2"
+          size="sm"
+          target="_blank"
+          key={feed.type}
+        >
+          {feed.title}
+        </NavButton>
+      ))}
+    </div>
+  );
 }

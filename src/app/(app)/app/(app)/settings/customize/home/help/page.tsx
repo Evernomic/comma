@@ -6,8 +6,8 @@ import { readMarkdownFile } from "@/lib/md";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Help"
-}
+  title: "Help",
+};
 
 export default function HelpPage() {
   const source = readMarkdownFile("docs/help/customize.md");

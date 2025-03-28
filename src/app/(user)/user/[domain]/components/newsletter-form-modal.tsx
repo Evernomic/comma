@@ -13,7 +13,6 @@ import type { User, UserPageSection } from "@/types";
 import NewsletterForm from "../articles/components/newsletter-form";
 import Feed from "./feed";
 
-
 export default function NewsletterFormModal({ user }: { user: User }) {
   const title = getSectionTitle(0, user.sections as UserPageSection[]);
   return (
@@ -39,10 +38,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         <DialogHeader className="flex-col items-start gap-2">
           <DialogTitle>{user.newsletter ? title : "Feed"}</DialogTitle>
           {user.newsletterCta && user.newsletter && (
-            <MDX
-              source={user.newsletterCta}
-              className="text-gray-4! text-sm"
-            />
+            <MDX source={user.newsletterCta} className="text-gray-4! text-sm" />
           )}
         </DialogHeader>
         {user.newsletter && (

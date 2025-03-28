@@ -4,7 +4,7 @@ import { isSiteProtected } from "./lib/edge";
 import { notAllowedUsernames } from "./lib/validations/user";
 
 export const config = {
-  matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"]
+  matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"],
 };
 
 export default async function middleware(req: NextRequest) {

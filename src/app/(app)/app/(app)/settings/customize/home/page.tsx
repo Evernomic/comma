@@ -1,10 +1,10 @@
 import { getUser } from "@/lib/fetchers/users";
-import EditHomePageClient from "./page-client";
 import type { Metadata } from "next";
+import EditHomePageClient from "./page-client";
 
-export const metadata:Metadata = {
-  title: "Customize home"
-}
+export const metadata: Metadata = {
+  title: "Customize home",
+};
 
 export default async function EditHomePage() {
   const user = await getUser();

@@ -103,7 +103,7 @@ export default async function Settings() {
         }}
         required={false}
       />
-       <Form
+      <Form
         title="Custom home page"
         description="Edit your homepage with the editor."
         endpoint="user"

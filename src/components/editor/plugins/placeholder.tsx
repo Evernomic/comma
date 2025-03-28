@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { type EditorState, Plugin } from "@tiptap/pm/state";
 import { Decoration, DecorationSet } from "@tiptap/pm/view";
 
@@ -12,9 +13,9 @@ const Placeholder = new Plugin({
 
       const action = tr.getMeta(this);
       if (action?.add) {
-        const { id, pos, src } = action.add;
+        const { id, pos, src, isInline } = action.add;
         const widget = document.createElement("div");
-        widget.className = "image-placeholder";
+        widget.className = cn("image-placeholder", isInline && "inline");
         widget.dataset.type = "img-placeholder";
         const img = document.createElement("img");
         img.src = src;
