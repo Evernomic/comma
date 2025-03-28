@@ -1,3 +1,10 @@
+import { cn, getSectionTitle } from "@/lib/utils";
+import "@/styles/prose.css";
+import type {
+  BookmarkWithCollection as _Bookmark,
+  User,
+  UserPageSection,
+} from "@/types";
 import Newsletter from "@/user/articles/components/newsletter";
 import About from "@/user/components/about";
 import Articles from "@/user/components/articles";
@@ -6,22 +13,13 @@ import Connect from "@/user/components/connect";
 import WorkExperiences from "@/user/components/experience";
 import Intro from "@/user/components/intro";
 import Projects from "@/user/components/projects";
-import { cn, getSectionTitle } from "@/lib/utils";
-import "@/styles/prose.css";
-import type {
-  BookmarkWithCollection as _Bookmark,
-  User,
-  UserPageSection,
-} from "@/types";
 import type {
   Article as _Article,
   WorkExperience as _WorkExperience,
   Project,
 } from "@prisma/client";
 import "katex/dist/katex.min.css";
-import type {
-  MDXComponents,
-} from "next-mdx-remote-client/rsc";
+import type { MDXComponents } from "next-mdx-remote-client/rsc";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import Image from "next/image";
 import rehypeKatex from "rehype-katex";
@@ -31,9 +29,9 @@ import sectionParser from "./section-parser";
 
 type _Project = Omit<Project, "password"> & { isProtected: boolean };
 
-
 const mdxComponents: MDXComponents = {
   img: async (props) => {
+    const isInlineImage = props.src.endsWith("?inline=true");
     return (
       <Image
         src={props.src!}
@@ -41,10 +39,13 @@ const mdxComponents: MDXComponents = {
         width={0}
         height={0}
         sizes="100vw"
-        className="w-full h-auto"
+        className={cn(
+          isInlineImage ? "size-4! m-0! inline-block" : "w-full h-auto",
+        )}
         quality={80}
         priority
         unoptimized
+        {...props}
       />
     );
   },
@@ -144,11 +145,15 @@ export default async function MDX({
         }}
         options={{
           mdxOptions: {
-            remarkPlugins: [remarkGfm, remarkMath, ...(withSections ? [sectionParser] : [])],
+            remarkPlugins: [
+              remarkGfm,
+              remarkMath,
+              ...(withSections ? [sectionParser] : []),
+            ],
             rehypePlugins: [rehypeKatex],
           },
-        }}      
-          onError={ErrorComponent}
+        }}
+        onError={ErrorComponent}
       />
     </div>
   );

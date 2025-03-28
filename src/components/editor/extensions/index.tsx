@@ -1,4 +1,5 @@
 import { allowedMimeTypes } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import Mathematics from "@aarkue/tiptap-math-extension";
 import FileHandler from "@tiptap-pro/extension-file-handler";
 import { Color } from "@tiptap/extension-color";
@@ -11,6 +12,7 @@ import TaskList from "@tiptap/extension-task-list";
 import TextStyle from "@tiptap/extension-text-style";
 import Typography from "@tiptap/extension-typography";
 import TiptapUnderline from "@tiptap/extension-underline";
+import { mergeAttributes } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import { Placeholder as ImagePlaceholder } from "../plugins/placeholder";
@@ -21,7 +23,19 @@ const CustomImage = TiptapImage.extend({
   addProseMirrorPlugins() {
     return [ImagePlaceholder];
   },
+
+  renderHTML({ HTMLAttributes }) {
+    const isBlockImage = HTMLAttributes.src?.endsWith("?inline=false");
+
+    return [
+      "img",
+      mergeAttributes(HTMLAttributes, {
+        class: cn(isBlockImage ? "block-image" : "inline-image"),
+      }),
+    ];
+  },
 }).configure({
+  inline: true,
   allowBase64: true,
   HTMLAttributes: {
     class: "rounded-md border border-gray-3 mt-0",
@@ -80,13 +94,6 @@ export const TiptapExtensions = [
       },
     },
   }),
-  CustomImage,
-  TiptapUnderline,
-  TextStyle,
-  Color,
-  SlashCommand,
-  Typography,
-  Mathematics,
   Link.extend({ inclusive: false }).configure({
     HTMLAttributes: {
       class:
@@ -103,6 +110,17 @@ export const TiptapExtensions = [
     transformCopiedText: true,
     transformPastedText: true,
   }),
+  TaskList.configure({
+    HTMLAttributes: {
+      class: "pl-0",
+    },
+  }),
+  TaskItem.configure({
+    HTMLAttributes: {
+      class: "flex items-start [&_p]:my-0",
+    },
+    nested: true,
+  }),
   Placeholder.configure({
     placeholder: ({ node }) => {
       switch (node.type.name) {
@@ -116,16 +134,12 @@ export const TiptapExtensions = [
     },
     includeChildren: false,
   }),
+  CustomImage,
+  TiptapUnderline,
+  TextStyle,
+  Color,
+  SlashCommand,
+  Typography,
+  Mathematics,
   Highlight,
-  TaskList.configure({
-    HTMLAttributes: {
-      class: "pl-0",
-    },
-  }),
-  TaskItem.configure({
-    HTMLAttributes: {
-      class: "flex items-start [&_p]:my-0",
-    },
-    nested: true,
-  }),
 ];

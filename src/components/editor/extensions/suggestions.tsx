@@ -32,6 +32,22 @@ export default function getSuggestions({ query }: { query: string }) {
       },
     },
     {
+      name: "Inline image",
+      icon: "image",
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).focus().run();
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.onchange = async () => {
+          if (input.files?.length) {
+            uploadImg(input.files[0], editor.view, true);
+          }
+        };
+        input.click();
+      },
+    },
+    {
       name: "Heading 1",
       icon: "heading1",
       command: ({ editor, range }: CommandProps) => {

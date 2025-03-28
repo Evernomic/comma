@@ -12,11 +12,39 @@
   @apply mt-0;
 }
 
+.ProseMirror [draggable][contenteditable="false"] {
+  @apply select-text!
+}
+
+.ProseMirror img.ProseMirror-separator {
+  @apply size-0!
+}
+
+.ProseMirror-selectednode {
+  @apply border border-gray-2;
+}
+
+.ProseMirror p > img.inline-image  {
+  @apply inline-block size-4! m-0!
+}
+
+.ProseMirror img.block-image {
+  @apply rounded-md border border-gray-3 mt-0 w-full h-auto block
+}
+
 .ProseMirror .image-placeholder {
   @apply bg-gray-3 relative max-w-[640px] rounded-md max-md:w-full;
 
   & img {
     @apply h-auto opacity-50;
+  }
+
+  &.inline {
+   @apply size-4! m-0! inline! bg-transparent;
+
+   & img {
+    @apply size-4! m-0! inline!
+   }
   }
 }
 

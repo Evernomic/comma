@@ -1,9 +1,13 @@
 import { toast } from "@/components/ui/use-toast";
 import { uploadFile } from "@/lib/upload";
-import type { EditorView } from "@tiptap/pm/view";
+import { EditorView } from "@tiptap/pm/view";
 import { Placeholder, findPlaceholder } from "../plugins/placeholder";
 
-export async function uploadImg(file: File, view: EditorView) {
+export async function uploadImg(
+  file: File,
+  view: EditorView,
+  isInline: boolean = false,
+) {
   const id = {};
   const tr = view.state.tr;
   if (!tr.selection.empty) tr.deleteSelection();
@@ -15,6 +19,7 @@ export async function uploadImg(file: File, view: EditorView) {
         id,
         pos: view.state.selection.from,
         src: reader.result,
+        ...(isInline && { isInline }),
       },
     });
     view.dispatch(tr);
@@ -54,7 +59,7 @@ export async function uploadImg(file: File, view: EditorView) {
         pos,
         pos,
         view.state.schema.nodes.image.create({
-          src: url,
+          src: url + `?inline=${isInline}`,
         }),
       )
       .setMeta(Placeholder, { remove: { id } }),

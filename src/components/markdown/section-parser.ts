@@ -1,8 +1,6 @@
-
-
-import {findAndReplace} from 'mdast-util-find-and-replace'
-import type {Paragraph, Root} from 'mdast'
-import {visit} from 'unist-util-visit'
+import type { Paragraph, Root } from "mdast";
+import { findAndReplace } from "mdast-util-find-and-replace";
+import { visit } from "unist-util-visit";
 
 export default function sectionParser() {
   return function (tree: Root) {
@@ -13,20 +11,19 @@ export default function sectionParser() {
           type: "mdxJsxTextElement",
           name: component,
           attributes: [],
-          children:[], 
-        }
-      }
-    ])
-    visit(tree, 'paragraph', (node: Paragraph, index, parent) => {
+          children: [],
+        };
+      },
+    ]);
+    visit(tree, "paragraph", (node: Paragraph, index, parent) => {
       if (
-        index !== undefined && 
-        parent && 
-        node.children.length === 1 && 
-        node.children[0].type === 'mdxJsxTextElement'
+        index !== undefined &&
+        parent &&
+        node.children.length === 1 &&
+        node.children[0].type === "mdxJsxTextElement"
       ) {
-        parent.children.splice(index, 1, node.children[0])
+        parent.children.splice(index, 1, node.children[0]);
       }
-    })
-  }
-  
+    });
+  };
 }
