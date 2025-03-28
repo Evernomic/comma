@@ -1,11 +1,18 @@
 import ThemeProvider from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { generateSEO } from "@/lib/utils";
+import { cn, generateSEO } from "@/lib/utils";
 import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GeistSans } from "geist/font/sans";
+import { Ubuntu } from "next/font/google";
 import { Viewport } from "next";
+
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-ubuntu"
+});
 
 export const metadata = generateSEO();
 
@@ -29,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={GeistSans.className}>
+      <body className={cn(GeistSans.className, ubuntu.variable)}>
         <ThemeProvider attribute="class">
           {children}
           <Analytics />
