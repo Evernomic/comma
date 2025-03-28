@@ -5,13 +5,13 @@ import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GeistSans } from "geist/font/sans";
-import { Ubuntu } from "next/font/google";
 import { Viewport } from "next";
+import { Ubuntu } from "next/font/google";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
-  variable: "--font-ubuntu"
+  variable: "--font-ubuntu",
 });
 
 export const metadata = generateSEO();

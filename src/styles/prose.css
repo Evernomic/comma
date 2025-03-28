@@ -5,7 +5,7 @@
 }
 
 .prose a {
-  @apply text-secondary cursor-pointer font-normal underline-offset-2;
+  @apply text-secondary underline underline-offset-4 decoration-gray-4 decoration-[1px]  cursor-pointer font-normal;
 }
 
 .prose blockquote {
