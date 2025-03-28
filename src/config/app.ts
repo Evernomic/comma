@@ -29,6 +29,10 @@ export const appConfig: AppConfig = {
       href: "/settings",
     },
     {
+      title: "Customize",
+      href: "/settings/customize",
+    },
+    {
       title: "Links",
       href: "/settings/links",
     },
@@ -39,10 +43,6 @@ export const appConfig: AppConfig = {
     {
       title: "Subscribers",
       href: "/settings/subscribers",
-    },
-    {
-      title: "Customize",
-      href: "/settings/customize",
     },
     {
       title: "Billing",

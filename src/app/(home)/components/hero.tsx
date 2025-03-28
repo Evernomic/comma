@@ -23,7 +23,7 @@ export default function Hero() {
             buttonClassname="gap-2"
             aria-label="Create your website"
           >
-            Log in
+            Sign up
           </NavButton>
           <NavButton
             href="/explore"

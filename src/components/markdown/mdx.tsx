@@ -40,7 +40,9 @@ const mdxComponents: MDXComponents = {
         height={0}
         sizes="100vw"
         className={cn(
-          isInlineImage ? "size-4! m-0! inline-block border-0!" : "w-full h-auto",
+          isInlineImage
+            ? "size-4! m-0! inline-block border-0! mb-px!"
+            : "w-full h-auto",
         )}
         quality={80}
         priority
