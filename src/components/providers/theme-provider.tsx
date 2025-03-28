@@ -8,7 +8,7 @@ export default function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   return (
-    <NextThemesProvider {...props} disableTransitionOnChange>
+    <NextThemesProvider {...props} disableTransitionOnChange defaultTheme="dark">
       {children}
     </NextThemesProvider>
   );
