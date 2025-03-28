@@ -25,12 +25,12 @@ const CustomImage = TiptapImage.extend({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const isBlockImage = HTMLAttributes.src?.endsWith("?inline=false");
+    const isInlineImage = HTMLAttributes.src?.endsWith("?inline=true");
 
     return [
       "img",
       mergeAttributes(HTMLAttributes, {
-        class: cn(isBlockImage ? "block-image" : "inline-image"),
+        class: cn(isInlineImage ? "inline-image" : "block-image"),
       }),
     ];
   },

@@ -59,7 +59,7 @@ export async function uploadImg(
         pos,
         pos,
         view.state.schema.nodes.image.create({
-          src: url + `?inline=${isInline}`,
+          src: url + `?inline=${isInline.toString()}`,
         }),
       )
       .setMeta(Placeholder, { remove: { id } }),
