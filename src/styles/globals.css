@@ -82,13 +82,13 @@
 @utility section-title {
   @apply relative flex items-center justify-between text-base;
   &.link {
-    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+    @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
   }
 }
 
 @utility link {
   &.section-title {
-    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+    @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
   }
 }
 

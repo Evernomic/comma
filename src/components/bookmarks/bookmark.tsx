@@ -21,7 +21,7 @@ export default function Bookmark({
   collection,
 }: Props) {
   return (
-    <div className="-mx-4 flex min-h-5  max-md:h-auto relative items-center  gap-3 rounded-md p-2 px-4 text-sm transition-colors hover:bg-gray-3  max-md:flex-col max-md:items-start max-md:gap-1">
+    <div className="-mx-2 flex min-h-5  max-md:h-auto relative items-center  gap-3 rounded-md p-2  text-sm transition-colors hover:bg-gray-3  max-md:flex-col max-md:items-start max-md:gap-1">
       <Link
         aria-label={`Visit ${bookmark?.title}`}
         href={`https://go.comma.to/${bookmark.id}`}

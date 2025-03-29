@@ -23,7 +23,7 @@ interface Props {
 export default async function Article({ article, admin }: Props) {
   const isPublished = article.published;
   return (
-    <div className="-mx-4 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-2 flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2  text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/articles/${admin ? article.id : article.slug}`}
         aria-label={`${article.title}`}

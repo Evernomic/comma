@@ -26,7 +26,7 @@ interface Props {
 export default function Project({ project, admin }: Props) {
   const isPublished = project.published;
   return (
-    <div className="-mx-4 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/projects/${admin ? project.id : project.slug}`}
         className="absolute left-0 top-0 size-full py-2 "
