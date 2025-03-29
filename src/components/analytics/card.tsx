@@ -43,7 +43,7 @@ export default function Card({
                 title={tab}
                 variant="ghost"
                 className={cn(
-                  "h-4.4 text-xs",
+                  "h-4.4 text-xs w-max! px-2",
                   tab.toLowerCase() === activeTab
                     ? "bg-gray-3 text-secondary"
                     : "",
