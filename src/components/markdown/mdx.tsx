@@ -41,7 +41,7 @@ const mdxComponents: MDXComponents = {
         sizes="100vw"
         className={cn(
           isInlineImage
-            ? "size-[22px]! m-0! inline-block border-0! mb-px!"
+            ? "size-[22px]! m-1! mb-1.5! inline-block border-0!"
             : "w-full h-auto",
         )}
         quality={80}
