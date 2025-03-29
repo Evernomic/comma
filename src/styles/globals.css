@@ -86,6 +86,7 @@
   }
 }
 
+
 @utility link {
   &.section-title {
     @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
@@ -103,6 +104,10 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+@utility custom-underline {
+  @apply underline underline-offset-4 decoration-gray-2 decoration-[2px];
 }
 
 @utility no-user-select {

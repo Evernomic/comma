@@ -27,7 +27,7 @@ export default async function WorkExperience({ experience, admin }: Props) {
             {experience.url ? (
               <Link
                 href={experience.url}
-                className="flex gap-1 hover:underline underline-offset-4"
+                className="flex gap-1 hover:custom-underline"
                 target="_blank"
               >
                 {title} <Icons.arrowUpRight size={14} />
