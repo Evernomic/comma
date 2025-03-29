@@ -14,6 +14,7 @@ import { notFound } from "next/navigation";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import sections from "./components/sections";
 
+export const revalidate = 5;
 interface PageProps {
   params: Promise<{
     domain: string;
