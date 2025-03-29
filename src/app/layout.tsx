@@ -4,9 +4,16 @@ import { cn, generateSEO } from "@/lib/utils";
 import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
-import { GeistSans } from "geist/font/sans";
 import { Viewport } from "next";
 import { Ubuntu } from "next/font/google";
+import localFont from "next/font/local";
+
+
+const inter = localFont({
+  src: "../../public/fonts/InterVariable.woff2",
+  weight: "300 400 500 600 700",
+  display: "swap",
+});
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -36,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(GeistSans.className, ubuntu.variable)}>
+      <body className={cn(inter.className, ubuntu.variable)}>
         <ThemeProvider attribute="class">
           {children}
           <Analytics />
