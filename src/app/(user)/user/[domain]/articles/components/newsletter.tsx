@@ -19,7 +19,7 @@ export default function Newsletter({
     <dl
       className={cn("section-container gap-3 rounded-md not-prose", className)}
     >
-      <dt className="section-title flex-col items-start ">
+      <dt className="section-title flex-col items-start  gap-1">
         <h3>{title}</h3>
         {user.newsletterCta && (
           <MDX source={user.newsletterCta} className="text-gray-4! text-sm" />

@@ -44,10 +44,19 @@ export default function Project({ project, admin }: Props) {
         )}
         <div className="w-full  flex flex-1  flex-col">
           <div className="flex gap-2 w-full items-center">
-              {project.url ? (
-                <Link href={project.url} target="_blank" className="flex gap-1 z-20 hover:custom-underline"><Balancer>{project.title}</Balancer> {project.url && <Icons.arrowUpRight size={14} />}</Link>
-              ): <Balancer>{project.title}</Balancer> }
-              
+            {project.url ? (
+              <Link
+                href={project.url}
+                target="_blank"
+                className="flex gap-1 z-20 hover:custom-underline"
+              >
+                <Balancer>{project.title}</Balancer>{" "}
+                {project.url && <Icons.arrowUpRight size={14} />}
+              </Link>
+            ) : (
+              <Balancer>{project.title}</Balancer>
+            )}
+
             <p className="text-gray-4">{project.year}</p>
           </div>
           <p className="text-gray-4">{project?.description}</p>

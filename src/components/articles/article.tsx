@@ -23,8 +23,10 @@ interface Props {
 export default async function Article({ article, admin }: Props) {
   const isPublished = article.published;
   return (
-    <div className="-mx-2
-     flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2  text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div
+      className="-mx-2
+     flex min-h-5 max-md:h-auto relative group items-center justify-between rounded-md  p-2  text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start"
+    >
       <Link
         href={`/articles/${admin ? article.id : article.slug}`}
         aria-label={`${article.title}`}
@@ -41,9 +43,7 @@ export default async function Article({ article, admin }: Props) {
         )}
         <div className="flex flex-col w-full">
           <Balancer>{article.title}</Balancer>
-          <p className="text-gray-4">
-            {formatDate(article.publishedAt)}
-          </p>
+          <p className="text-gray-4">{formatDate(article.publishedAt)}</p>
         </div>
       </div>
       {admin && (

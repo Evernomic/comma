@@ -16,22 +16,24 @@ export default function Bookmarks({
     return null;
   }
 
-  const hasMore = bookmarks.length > 5
+  const hasMore = bookmarks.length > 5;
   return (
     <dl className="section-container not-prose">
       <dt className={cn("section-title group", hasMore && "link")}>
         {hasMore ? (
-
           <Link
             href="/bookmarks"
             className="absolute w-full h-full "
             aria-label="View All Bookmarks"
           />
-        ): null}
+        ) : null}
         <h3>{title}</h3>
         <Icons.arrowRight
           size={16}
-          className={cn("text-gray-4 group-hover:text-secondary hidden", hasMore && "block")}
+          className={cn(
+            "text-gray-4 group-hover:text-secondary hidden",
+            hasMore && "block",
+          )}
         />
       </dt>
       <dd className="section-content">

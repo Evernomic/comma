@@ -2,7 +2,6 @@ import Bookmark from "@/components/bookmarks/bookmark";
 import CollectionBar from "@/components/bookmarks/collections/collections-bar";
 import NoBookmarksPlaceholder from "@/components/bookmarks/no-bookmarks-placeholder";
 import AppShell from "@/components/layout/app-shell";
-import AppHeader from "@/components/layout/header";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getCollectionsByAuthor } from "@/lib/fetchers/collections";
 import { getUserByDomain } from "@/lib/fetchers/users";
@@ -44,7 +43,6 @@ export default async function Bookmarks({
   const sortedBookmarks = sortBookmarks(bookmarks, collection);
   return (
     <AppShell>
-      <AppHeader title="Bookmarks" />
       <CollectionBar collections={collections} currentCollection={collection} />
       <div className="w-full flex flex-col">
         {sortedBookmarks.map((bookmark) => (

@@ -88,6 +88,7 @@ model User {
   password              String?
   showBranding          Boolean          @default(true)
   sections              Json?
+  externalLinks         Json?
   showOnExplore         Boolean          @default(true)
   showCustomHomePage    Boolean          @default(false)
   customHomePageContent String?

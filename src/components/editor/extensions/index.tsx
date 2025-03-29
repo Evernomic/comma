@@ -96,8 +96,7 @@ export const TiptapExtensions = [
   }),
   Link.extend({ inclusive: false }).configure({
     HTMLAttributes: {
-      class:
-        "text-secondary custom-underline cursor-pointer font-normal",
+      class: "text-secondary custom-underline cursor-pointer font-normal",
     },
     autolink: true,
   }),

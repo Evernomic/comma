@@ -9,6 +9,12 @@ export type NavItem = {
   title: string;
   href: string;
 };
+
+export type CustomNavItem = {
+  title: string;
+  href: string;
+  isVisible?: boolean;
+};
 export type MainNavItem = {
   icon: Icon;
 } & NavItem;

@@ -1,6 +1,5 @@
 import ThemeToggle from "@/components/layout/theme-toggle";
 import type { User } from "@/types";
-import BottomNavActions from "./bottom-nav-actions";
 import NewsletterFormModal from "./newsletter-form-modal";
 import Watermark from "./watermark";
 
@@ -11,7 +10,6 @@ export default function BottomNav({ user }: { user: User }) {
       <div className="relative bg-gray-3 flex gap-1 border border-gray-2 p-1 w-auto max-w-max  rounded-full z-[90] pointer-events-auto">
         <NewsletterFormModal user={user} />
         <ThemeToggle iconSize={20} compact className="size-5! rounded-full" />
-        <BottomNavActions />
       </div>
       <Watermark user={user} />
     </footer>
