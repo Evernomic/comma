@@ -15,7 +15,6 @@ import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import sections from "./components/sections";
 
-export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{
