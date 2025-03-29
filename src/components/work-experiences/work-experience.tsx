@@ -36,12 +36,12 @@ export default async function WorkExperience({ experience, admin }: Props) {
               title
             )}
             {experience.location && (
-              <p className="text-gray-4 text-xs mb-1">{experience.location}</p>
+              <p className="text-gray-4 text-sm mb-1">{experience.location}</p>
             )}
             {experience.description && (
               <MDX
                 source={experience.description}
-                className="text-gray-4!  text-xs"
+                className="text-gray-4!  text-sm"
               />
             )}
           </div>
