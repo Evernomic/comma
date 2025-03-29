@@ -16,6 +16,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
 
+export const revalidate = 5;
+
 interface ProjectPageProps {
   params: Promise<{ slug: string; domain: string }>;
 }
