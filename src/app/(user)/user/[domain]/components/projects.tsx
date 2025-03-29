@@ -38,7 +38,7 @@ export default function Projects({
         />
       </dt>
       <dd className="section-content">
-        {projects.map((project) => (
+        {projects.slice(0, 5).map((project) => (
           <Project project={project} key={project.id} />
         ))}
       </dd>
