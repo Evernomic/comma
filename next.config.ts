@@ -73,7 +73,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  transpilePackages: ["geist"],
 };
 
 export default nextConfig;
