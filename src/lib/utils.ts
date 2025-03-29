@@ -1,6 +1,10 @@
 import { siteConfig } from "@/config/site";
 import { userPageConfig } from "@/config/user-page";
-import type { BookmarkWithCollection, UserPageSection } from "@/types";
+import type {
+  BookmarkWithCollection,
+  CustomNavItem,
+  UserPageSection,
+} from "@/types";
 import type { Article, Project, User, WorkExperience } from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
 import { formatDate as format } from "date-fns";
@@ -360,27 +364,49 @@ export function getUserFavicon(user: Pick<User, "username">) {
 }
 
 export function sortUserPageSections(
-  sections: UserPageSection[],
-  defaultOrder?: UserPageSection[] | null,
+  defaultOrder: UserPageSection[],
+  sections?: UserPageSection[] | null,
 ) {
-  if (defaultOrder) {
-    return sections
+  if (sections) {
+    return defaultOrder
       .sort(
         (a, b) =>
-          defaultOrder.findIndex((o) => o.position === a.position) -
-          defaultOrder.findIndex((o) => o.position === b.position),
+          sections.findIndex((o) => o.position === a.position) -
+          sections.findIndex((o) => o.position === b.position),
       )
       .map((s) => {
         return {
           ...s,
           title:
-            defaultOrder.find((o) => o.position === s.position)?.title ??
-            s.title,
+            sections.find((o) => o.position === s.position)?.title ?? s.title,
         };
       });
   }
 
-  return sections;
+  return defaultOrder;
+}
+
+export function sortUserNavItems(
+  defaultOrder: CustomNavItem[],
+  links?: CustomNavItem[] | null,
+) {
+  if (links) {
+    return defaultOrder
+      .sort(
+        (a, b) =>
+          links.findIndex((o) => o.href === a.href) -
+          links.findIndex((o) => o.href === b.href),
+      )
+      .map((l) => {
+        return {
+          ...l,
+          isVisible: links.find((o) => o.href === l.href)?.isVisible ?? true,
+          title: links.find((o) => o.href === l.href)?.title ?? l.title,
+        };
+      });
+  }
+
+  return defaultOrder;
 }
 
 export function getSectionTitle(position: number, sections: UserPageSection[]) {

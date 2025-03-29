@@ -25,7 +25,7 @@
 }
 
 .ProseMirror p > img.inline-image  {
-  @apply inline-block size-[22px]! m-0! mb-px!;
+  @apply inline-block size-[22px]! m-1! mb-1.5!;
 }
 
 .ProseMirror img.block-image {

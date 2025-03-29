@@ -9,13 +9,13 @@ export async function unlockProject(prev: any, data: FormData) {
   const pw = data.get("password") as string;
   const project = await db.project.findUnique({
     where: {
-      id: projectId
+      id: projectId,
     },
     select: {
       id: true,
       password: true,
-    }
-  })
+    },
+  });
 
   if (!project) {
     return {

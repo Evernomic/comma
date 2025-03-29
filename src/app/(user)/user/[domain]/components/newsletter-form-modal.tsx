@@ -35,7 +35,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         )}
       </DialogTrigger>
       <DialogContent className="p-4.5 pb-3 gap-0">
-        <DialogHeader className="flex-col items-start gap-2">
+        <DialogHeader className="flex-col items-start gap-1">
           <DialogTitle>{user.newsletter ? title : "Feed"}</DialogTitle>
           {user.newsletterCta && user.newsletter && (
             <MDX source={user.newsletterCta} className="text-gray-4! text-sm" />

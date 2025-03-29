@@ -41,11 +41,6 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
   const postURL = getPostPageURL(type, post.slug, user);
   const actions: PostAction[] = [
     {
-      title: "Settings",
-      href: `${postPath}/settings`,
-      icon: "settings",
-    },
-    {
       title: "Analytics",
       href: `${postPath}/analytics`,
       icon: "areaChart",
@@ -75,6 +70,12 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
             icon="arrowLeft"
             size="icon"
             aria-label={`Back to ${type}`}
+          />
+          <NavButton
+            href={`${postPath}/settings`}
+            icon="settings"
+            size="icon"
+            aria-label={`Go to ${type} settings`}
           />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

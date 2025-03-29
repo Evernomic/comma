@@ -7,7 +7,7 @@
 
 @theme {
   --text-xs-line-height: 17px;
-  --text-sm: 14.5px;
+  --text-sm: 14px;
   --text-sm-line-height: 30px;
   --text-base-line-height: 34px;
   
@@ -82,13 +82,14 @@
 @utility section-title {
   @apply relative flex items-center justify-between text-base;
   &.link {
-    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+    @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
   }
 }
 
+
 @utility link {
   &.section-title {
-    @apply hover:bg-gray-3 -mx-4 rounded-md px-4 py-1 transition-colors;
+    @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
   }
 }
 
@@ -103,6 +104,10 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+@utility custom-underline {
+  @apply underline underline-offset-4 decoration-gray-2 decoration-[2px];
 }
 
 @utility no-user-select {

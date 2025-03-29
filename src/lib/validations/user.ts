@@ -58,5 +58,12 @@ export const updateUserSchema = z
           });
         }
       }),
+    externalLinks: z.array(
+      z.object({
+        title: z.string().min(1).max(25),
+        href: z.string().min(1),
+        isVisible: z.boolean().optional(),
+      }),
+    ),
   })
   .partial();

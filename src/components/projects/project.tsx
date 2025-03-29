@@ -18,6 +18,7 @@ interface Props {
     | "views"
     | "published"
     | "image"
+    | "url"
   > & {
     isProtected: boolean;
   };
@@ -26,7 +27,7 @@ interface Props {
 export default function Project({ project, admin }: Props) {
   const isPublished = project.published;
   return (
-    <div className="-mx-4 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 px-4 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
+    <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
       <Link
         href={`/projects/${admin ? project.id : project.slug}`}
         className="absolute left-0 top-0 size-full py-2 "
@@ -43,10 +44,22 @@ export default function Project({ project, admin }: Props) {
         )}
         <div className="w-full  flex flex-1  flex-col">
           <div className="flex gap-2 w-full items-center">
-            <Balancer>{project.title}</Balancer>
-            <p className="text-gray-4 text-xs">{project.year}</p>
+            {project.url ? (
+              <Link
+                href={project.url}
+                target="_blank"
+                className="flex gap-1 z-20 hover:custom-underline"
+              >
+                <Balancer>{project.title}</Balancer>{" "}
+                {project.url && <Icons.arrowUpRight size={14} />}
+              </Link>
+            ) : (
+              <Balancer>{project.title}</Balancer>
+            )}
+
+            <p className="text-gray-4">{project.year}</p>
           </div>
-          <p className="text-gray-4 text-xs">{project?.description}</p>
+          <p className="text-gray-4">{project?.description}</p>
         </div>
       </div>
 
