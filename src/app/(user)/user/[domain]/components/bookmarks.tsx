@@ -37,7 +37,7 @@ export default function Bookmarks({
         />
       </dt>
       <dd className="section-content">
-        {bookmarks.map((bookmark) => (
+        {bookmarks.slice(0, 5).map((bookmark) => (
           <Bookmark
             bookmark={bookmark}
             collection={bookmark?.collection as Collection}

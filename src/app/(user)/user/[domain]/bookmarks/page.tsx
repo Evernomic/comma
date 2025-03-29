@@ -10,9 +10,6 @@ import type { Collection } from "@prisma/client";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-static";
-export const revalidate = 5;
-
 export const metadata: Metadata = {
   title: "Bookmarks",
 };

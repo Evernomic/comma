@@ -36,7 +36,7 @@ export default async function Articles({
         />
       </dt>
       <dd className="section-content">
-        {articles.map((article) => (
+        {articles.slice(0, 5).map((article) => (
           <Article article={article} key={article.id} />
         ))}
       </dd>

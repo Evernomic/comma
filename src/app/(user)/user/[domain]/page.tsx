@@ -46,9 +46,9 @@ export default async function Home({ params }: PageProps) {
     return notFound();
   }
   const [articles, projects, bookmarks, experiences] = await Promise.all([
-    getArticlesByAuthor(user.id, 5),
-    getProjectsByAuthor(user.id, 5),
-    getBookmarksByAuthor(user.id, 5),
+    getArticlesByAuthor(user.id),
+    getProjectsByAuthor(user.id),
+    getBookmarksByAuthor(user.id),
     getWorkExperiencesByUser(user.id),
   ]);
 
