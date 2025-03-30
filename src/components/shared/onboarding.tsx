@@ -269,12 +269,12 @@ function Plans() {
             <div>{title}</div>
             <p className="text-gray-4 text-xs">{description}</p>
           </div>
-          <b className="text-lg  text-secondary tracking-wider  flex items-baseline gap-1">
+          <p className="text-lg  text-secondary tracking-wider  flex items-baseline gap-1">
             ${proPlan.price[period]}
             <span className="text-xs text-gray-4">
               / {period === "monthly" ? "month" : "year"}
             </span>
-          </b>
+          </p>
         </header>
 
         <div className="flex flex-col gap-2 ">
