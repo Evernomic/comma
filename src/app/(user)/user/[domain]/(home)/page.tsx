@@ -74,13 +74,6 @@ export default async function Home({ params }: PageProps) {
         )
       ) : (
         <>
-          {!user?.about?.trim().length &&
-            !articles.length &&
-            !projects.length &&
-            !bookmarks.length &&
-            !experiences.length && (
-              <NothingPlaceholder name={user.name || user.username} />
-            )}
           <div className="sections-container">
             {sortUserPageSections(
               sections,
@@ -97,6 +90,13 @@ export default async function Home({ params }: PageProps) {
                 key={`${section.title.toLowerCase()}--${section.position}`}
               />
             ))}
+          {!user?.about?.trim().length &&
+            !articles.length &&
+            !projects.length &&
+            !bookmarks.length &&
+            !experiences.length && (
+              <NothingPlaceholder name={user.name || user.username} />
+            )}
           </div>
         </>
       )}
