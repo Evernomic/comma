@@ -17,7 +17,10 @@ export default function Newsletter({
   }
   return (
     <dl
-      className={cn("section-container gap-3 rounded-md not-prose bg-gray-3 border border-gray-2 p-[35px]", className)}
+      className={cn(
+        "section-container gap-3 rounded-md not-prose bg-gray-3 border border-gray-2 p-[35px]",
+        className,
+      )}
     >
       <dt className="section-title flex-col items-start  gap-1">
         <h3>{title}</h3>

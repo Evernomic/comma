@@ -15,7 +15,7 @@ import Footer from "./components/footer";
 const NewSubscriber = ({ email = "john@doe.com" }: { email: string }) => (
   <Html>
     <Head>
-    <Font
+      <Font
         fontFamily="Inter"
         fallbackFontFamily="sans-serif"
         webFont={{

@@ -11,7 +11,6 @@ import type * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
 
-
 export default function NewsletterForm({
   username,
   prefix = "newsletter",
