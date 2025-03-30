@@ -83,12 +83,19 @@ export default function UserNav({ user, segment }: Props) {
 
         <DropdownMenuItem asChild>
           <Link
-            href={"/settings"}
+            href="/settings"
             className={
               pathname === "/settings" ? "bg-gray-2 text-secondary" : ""
             }
           >
             <Icons.settings size={15} /> Settings
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link
+            href="/settings/billing"
+          >
+            <Icons.circleArrowUp size={15} /> Upgrade to Pro
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
