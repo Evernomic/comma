@@ -1,9 +1,9 @@
 import NavButton from "@/components/layout/nav-button";
 import { db } from "@/lib/db";
+import { getUserPageURL } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { unsubscribe } from "./action";
-import { getUserPageURL } from "@/lib/utils";
 
 interface Props {
   searchParams: Promise<{

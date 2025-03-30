@@ -15,7 +15,7 @@ import Footer from "./components/footer";
 const MagicLinkEmail = ({ url = siteConfig.url }: { url: string }) => (
   <Html>
     <Head>
-    <Font
+      <Font
         fontFamily="Inter"
         fallbackFontFamily="sans-serif"
         webFont={{

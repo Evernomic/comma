@@ -1,5 +1,6 @@
 "use client";
 import NavButton from "@/components/layout/nav-button";
+import ClientOnly from "@/components/shared/client-only";
 import { userPageConfig } from "@/config/user-page";
 import { User } from "@/types";
 import { usePathname } from "next/navigation";
@@ -19,21 +20,25 @@ export default function UserHeader({ user }: { user: User }) {
       .some((p) => p.href === pathname)
   ) {
     return (
-      <NavButton
-        variant="text"
-        href="/"
-        className="text-sm mb-3"
-        icon="arrowLeft"
-        direction="ltr"
-      >
-        Back to home
-      </NavButton>
+      <ClientOnly>
+        <NavButton
+          variant="text"
+          href="/"
+          className="text-sm mb-3"
+          icon="arrowLeft"
+          direction="ltr"
+        >
+          Back to home
+        </NavButton>
+      </ClientOnly>
     );
   }
   return (
-    <div className="flex flex-col gap-16">
-      <Intro user={user} />
-      <NavTabs user={user} pages={userPageConfig.pages} />
-    </div>
+    <ClientOnly>
+      <div className="flex flex-col gap-16">
+        <Intro user={user} />
+        <NavTabs user={user} pages={userPageConfig.pages} />
+      </div>
+    </ClientOnly>
   );
 }

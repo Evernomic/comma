@@ -22,16 +22,16 @@ export default function Newsletter({
   return (
     <Html>
       <Head>
-      <Font
-        fontFamily="Inter"
-        fallbackFontFamily="sans-serif"
-        webFont={{
-          url: "https://comma.to/_static/fonts/InterVariable.woff2",
-          format: "woff2",
-        }}
-        fontWeight={400}
-        fontStyle="normal"
-      />
+        <Font
+          fontFamily="Inter"
+          fallbackFontFamily="sans-serif"
+          webFont={{
+            url: "https://comma.to/_static/fonts/InterVariable.woff2",
+            format: "woff2",
+          }}
+          fontWeight={400}
+          fontStyle="normal"
+        />
       </Head>
       <Preview>{author} published an article</Preview>
       <Body style={main}>

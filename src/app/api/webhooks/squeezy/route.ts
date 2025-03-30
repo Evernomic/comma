@@ -55,16 +55,15 @@ export async function POST(req: Request) {
             email: true,
             name: true,
             username: true,
-          }
+          },
         });
 
         await resend.emails.send({
-            from: `Comma <system@mail.comma.to>`,
-            to: user.email,
-            subject: "Welcome to Comma Pro",
-            react: WelcomeEmailPaid({name: user.name ?? user.username}),
+          from: `Comma <system@mail.comma.to>`,
+          to: user.email,
+          subject: "Welcome to Comma Pro",
+          react: WelcomeEmailPaid({ name: user.name ?? user.username }),
         });
-
       }
       if (eventName === "subscription_updated") {
         const { data: subscription } = await getSubscription(body.id as string);

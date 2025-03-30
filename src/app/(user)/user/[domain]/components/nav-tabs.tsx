@@ -18,12 +18,11 @@ export default function NavTabs({
     (l) => (l.isVisible !== undefined ? l.isVisible : true),
   );
 
-  if (!links.length) {
-    return null;
-  }
   return (
     <ClientOnly>
-      <nav className="user-nav-tabs flex gap-4 mb-6 flex-wrap ">
+      <nav
+        className={cn("user-nav-tabs flex gap-4 mb-6 flex-wrap min-h-[20px]")}
+      >
         {links.map((page) => (
           <Link
             href={page.href}
@@ -35,7 +34,9 @@ export default function NavTabs({
             )}
           >
             {page.title}
-            {page.isExternal && page.href.startsWith("http") && <Icons.arrowUpRight size={14} />}
+            {page.isExternal && page.href.startsWith("http") && (
+              <Icons.arrowUpRight size={14} />
+            )}
           </Link>
         ))}
       </nav>

@@ -1,4 +1,3 @@
-import { siteConfig } from "@/config/site";
 import {
   Body,
   Container,
@@ -6,7 +5,6 @@ import {
   Head,
   Heading,
   Html,
-  Link,
   Preview,
   Text,
 } from "@react-email/components";
@@ -30,14 +28,19 @@ const WelcomeEmailPaid = ({ name = "John" }: { name: string }) => (
     <Body style={{ ...main, fontFamily: "Inter" }}>
       <Container style={container}>
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
-        Welcome to Comma Pro
+          Welcome to Comma Pro
         </Heading>
         <Text>Hi, {name}</Text>
         <Text></Text>
         <Text>
-        Thanks for upgrading to Comma Pro! You now have all our features unlocked. <br /><br />
-        We built Comma based on what users like you actually want. We'd love to hear what you think! <br /><br />
-        Got ideas for new features? Found something not working right? Let us know! <br />
+          Thanks for upgrading to Comma Pro! You now have all our features
+          unlocked. <br />
+          <br />
+          We built Comma based on what users like you actually want. We'd love
+          to hear what you think! <br />
+          <br />
+          Got ideas for new features? Found something not working right? Let us
+          know! <br />
         </Text>
         <Footer />
       </Container>
