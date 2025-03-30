@@ -7,7 +7,7 @@ export default function Intro({ user }: { user: User }) {
     return null;
   }
   return (
-    <dl className="section-container flex-row justify-between items-center mb-5 not-prose">
+    <dl className="section-container flex-row justify-between items-center not-prose">
       <dt className="section-title gap-4">
         <Avatar className="rounded-full size-20">
           {user.image && (

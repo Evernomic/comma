@@ -12,10 +12,10 @@ import {
 } from "@react-email/components";
 import Footer from "./components/footer";
 
-const NewSubscriber = ({ email = "john@doe.com" }: { email: string }) => (
+const WelcomeEmailPaid = ({ name = "John" }: { name: string }) => (
   <Html>
     <Head>
-    <Font
+      <Font
         fontFamily="Inter"
         fallbackFontFamily="sans-serif"
         webFont={{
@@ -26,28 +26,26 @@ const NewSubscriber = ({ email = "john@doe.com" }: { email: string }) => (
         fontStyle="normal"
       />
     </Head>
-    <Preview>New subscriber</Preview>
+    <Preview>Welcome to Comma Pro</Preview>
     <Body style={{ ...main, fontFamily: "Inter" }}>
       <Container style={container}>
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
-          New subscriber
+        Welcome to Comma Pro
         </Heading>
-        <Text style={{ fontWeight: "bold" }}>{email}</Text>
-        <Text style={{ fontSize: 14 }}>subscribed to your newsletter</Text>
-        <Link
-          href={`${siteConfig.links.app}/settings/subscribers`}
-          target="_blank"
-          style={link}
-        >
-          Click here to see all your subscribers
-        </Link>
+        <Text>Hi, {name}</Text>
+        <Text></Text>
+        <Text>
+        Thanks for upgrading to Comma Pro! You now have all our features unlocked. <br /><br />
+        We built Comma based on what users like you actually want. We'd love to hear what you think! <br /><br />
+        Got ideas for new features? Found something not working right? Let us know! <br />
+        </Text>
         <Footer />
       </Container>
     </Body>
   </Html>
 );
 
-export default NewSubscriber;
+export default WelcomeEmailPaid;
 
 const main = {
   backgroundColor: "#ffffff",

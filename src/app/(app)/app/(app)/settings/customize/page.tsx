@@ -21,9 +21,7 @@ export default async function CustomizePage() {
   return (
     <AppShell>
       <Form endpoint="/" title="Navigation" asChild>
-        <CustomizeNavigation
-          defaultLinks={user.externalLinks as CustomNavItem[]}
-        />
+        <CustomizeNavigation defaultLinks={user.navLinks as CustomNavItem[]} />
       </Form>
       <Form endpoint="/" title="Reorder sections" asChild>
         <ReorderSections defaultOrder={user.sections as UserPageSection[]} />

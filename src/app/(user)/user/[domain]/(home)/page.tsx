@@ -1,5 +1,6 @@
 import AppShell from "@/components/layout/app-shell";
 import MDX from "@/components/markdown/mdx";
+import { userPageConfig } from "@/config/user-page";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
@@ -10,16 +11,22 @@ import {
 } from "@/lib/fetchers/users";
 import { sortUserPageSections } from "@/lib/utils";
 import { UserPageSection } from "@/types";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { NothingPlaceholder } from "./components/nothing-placeholder";
-import sections from "./components/sections";
+import { NothingPlaceholder } from "../components/nothing-placeholder";
+import sections from "../components/sections";
 
 export const revalidate = 5;
+
 interface PageProps {
   params: Promise<{
     domain: string;
   }>;
 }
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export async function generateStaticParams() {
   const allDomains = await getAllUserDomains();
@@ -74,7 +81,7 @@ export default async function Home({ params }: PageProps) {
             !experiences.length && (
               <NothingPlaceholder name={user.name || user.username} />
             )}
-          <div className="flex flex-col gap-16">
+          <div className="sections-container">
             {sortUserPageSections(
               sections,
               user.sections as UserPageSection[],
@@ -82,6 +89,7 @@ export default async function Home({ params }: PageProps) {
               <section.component
                 title={section.title}
                 user={user}
+                pages={userPageConfig.pages}
                 articles={articles}
                 projects={projects}
                 bookmarks={bookmarks}

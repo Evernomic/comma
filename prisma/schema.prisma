@@ -89,6 +89,7 @@ model User {
   showBranding          Boolean          @default(true)
   sections              Json?
   externalLinks         Json?
+  navLinks              Json?
   showOnExplore         Boolean          @default(true)
   showCustomHomePage    Boolean          @default(false)
   customHomePageContent String?

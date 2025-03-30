@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { unsubscribe } from "./action";
+import { getUserPageURL } from "@/lib/utils";
 
 interface Props {
   searchParams: Promise<{
@@ -62,7 +63,7 @@ export default async function Unsubscribe({ searchParams }: Props) {
         <NavButton
           icon="arrowUpRight"
           buttonClassname="w-max px-2"
-          href={`https://${subscriber.user.domain || `${subscriber.user.username}.` + process.env.NEXT_PUBLIC_USER_DOMAIN}`}
+          href={getUserPageURL(subscriber.user)}
         >
           Resubscribe
         </NavButton>

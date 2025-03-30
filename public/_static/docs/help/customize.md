@@ -22,6 +22,10 @@ You can easily show, delete and move the sections you want in the editor. You ca
 - ::Newsletter:: - Newsletter form
 - ::Connect:: - Contact information and social links
 
+### 5. Navigation
+
+- ::Navigation:: - Navigation tabs
+
 ## How to add sections
 
 Simply type the section name between two colons:

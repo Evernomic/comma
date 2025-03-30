@@ -75,6 +75,12 @@
   }
 }
 
+
+@utility sections-container {
+  @apply flex flex-col gap-30 [&_.user-nav-tabs:nth-child(2)]:-my-14;
+}
+
+
 @utility section-container {
   @apply flex w-full flex-col gap-2 text-sm;
 }
@@ -94,7 +100,7 @@
 }
 
 @utility section-content {
-  @apply flex flex-col pb-4 break-words;
+  @apply flex flex-col  break-words;
 }
 
 @utility no-scrollbar {

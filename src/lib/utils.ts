@@ -391,7 +391,10 @@ export function sortUserNavItems(
   links?: CustomNavItem[] | null,
 ) {
   if (links) {
-    return defaultOrder
+    return [
+      ...defaultOrder,
+      ...links.filter((l) => !defaultOrder.find((dl) => dl.href === l.href)),
+    ]
       .sort(
         (a, b) =>
           links.findIndex((o) => o.href === a.href) -

@@ -4,9 +4,21 @@ import Articles from "./articles";
 import Bookmarks from "./bookmarks";
 import Connect from "./connect";
 import WorkExperiences from "./experience";
+import Intro from "./intro";
+import NavTabs from "./nav-tabs";
 import Projects from "./projects";
 
 export default [
+  {
+    title: "Intro",
+    component: Intro,
+    position: 7,
+  },
+  {
+    title: "Navigation",
+    component: NavTabs,
+    position: 8,
+  },
   {
     title: "Newsletter",
     component: Newsletter,

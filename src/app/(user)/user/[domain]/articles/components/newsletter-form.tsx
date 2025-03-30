@@ -11,18 +11,6 @@ import type * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
 
-const feeds = [
-  {
-    type: "rss",
-    title: "RSS",
-    href: "/feed",
-  },
-  {
-    type: "atom",
-    title: "Atom",
-    href: "/feed?type=atom",
-  },
-] as const;
 
 export default function NewsletterForm({
   username,
@@ -77,6 +65,7 @@ export default function NewsletterForm({
       <Input
         type="email"
         placeholder="Enter your email"
+        className="bg-primary"
         disabled={pending}
         {...register("email")}
       />
@@ -85,7 +74,7 @@ export default function NewsletterForm({
       )}
       <Button
         isPending={pending}
-        className="flex-1/3"
+        className="flex-1/3 bg-primary"
         form={`${prefix}-subscribe-newsletter`}
       >
         Subscribe
