@@ -30,6 +30,8 @@ export default function CustomizeNavigation({
       defaultLinks,
     ),
   );
+  const [showAddExternalLinkForm, setShowAddExternalLinkForm] =
+    useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const router = useRouter();
@@ -37,22 +39,24 @@ export default function CustomizeNavigation({
   async function onDragEnd() {
     if (!isDragging) {
       startTransition?.(async () => {
-        const res = await ky.patch("/api/user", {
-          json: { externalLinks: links },
-        });
-        if (!res.ok) {
-          const error = await res.text();
-          toast({
-            title: "Something went wrong.",
-            description: error,
-            variant: "destructive",
+        try {
+          const res = await ky.patch("/api/user", {
+            json: { navLinks: links },
           });
-        } else {
-          router.refresh();
-          toast({
-            title: "Saved",
-          });
-        }
+          if (!res.ok) {
+            const error = await res.text();
+            toast({
+              title: "Something went wrong.",
+              description: error,
+              variant: "destructive",
+            });
+          } else {
+            router.refresh();
+            toast({
+              title: "Saved",
+            });
+          }
+        } catch (err) {}
       });
     }
   }
@@ -81,9 +85,72 @@ export default function CustomizeNavigation({
               onDragEnd={onDragEnd}
             />
           ))}
+          {showAddExternalLinkForm ? (
+            <AddExternalLink
+              setLinks={setLinks}
+              hide={() => setShowAddExternalLinkForm(false)}
+            />
+          ) : (
+            <Button size="sm" onClick={() => setShowAddExternalLinkForm(true)}>
+              Add external link
+            </Button>
+          )}
         </div>
       </Reorder.Group>
     </div>
+  );
+}
+
+function AddExternalLink({
+  hide,
+  setLinks,
+}: {
+  hide: () => void;
+  setLinks: Dispatch<SetStateAction<CustomNavItem[]>>;
+}) {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { linkTitle: title, linkHref: href } = Object.fromEntries(
+      new FormData(e.currentTarget).entries(),
+    ) as { linkTitle: string; linkHref: string };
+
+    setLinks((prev) => [...prev, { title, href, isExternal: true }]);
+    hide();
+  };
+  return (
+    <form className="w-full flex gap-2" onSubmit={onSubmit}>
+      <div className="flex  gap-1">
+        <Input
+          placeholder="Enter title"
+          name="linkTitle"
+          className="h-4.5"
+          minLength={1}
+          autoFocus
+          required
+        />
+        <Input
+          placeholder="Enter URL"
+          name="linkHref"
+          className="h-4.5"
+          minLength={1}
+          required
+        />
+      </div>
+      <div className="flex gap-1">
+        <Button
+          type="button"
+          className="size-4.5"
+          variant="ghost"
+          size="icon"
+          onClick={hide}
+        >
+          <Icons.x size={15} />
+        </Button>
+        <Button type="submit" className="size-4.5" variant="ghost" size="icon">
+          <Icons.check size={15} />
+        </Button>
+      </div>
+    </form>
   );
 }
 
@@ -105,20 +172,30 @@ function Link({
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsEditing(false);
-    const { linkTitle } = Object.fromEntries(
+    const { linkTitle, linkHref } = Object.fromEntries(
       new FormData(e.currentTarget).entries(),
-    ) as { linkTitle: string };
+    ) as { linkTitle: string; linkHref: string };
 
-    if (linkTitle !== link.title) {
+    if (
+      linkTitle !== link.title && link.isExternal
+        ? link.href !== link.href
+        : true
+    ) {
       setLinks((prev) =>
         prev.map((l) =>
-          l.href === link.href ? { ...l, title: linkTitle } : l,
+          l.href === link.href
+            ? { ...l, title: linkTitle, ...(linkHref && { href: linkHref }) }
+            : l,
         ),
       );
     }
   };
-  console.log(link.title, link.isVisible);
-  const EyeIcon = Icons[link.isVisible ? "eye" : "eyeOff"];
+  const EyeIcon =
+    Icons[
+      link.isVisible === undefined || link.isVisible !== false
+        ? "eye"
+        : "eyeOff"
+    ];
   return (
     <Reorder.Item
       value={link}
@@ -130,38 +207,97 @@ function Link({
       }}
       dragControls={controls}
     >
-      <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 h-4.7  min-w-[220px] max-w-[300px] max-[300px]:w-full bg-gray-3">
+      <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 h-4.7 w-max min-w-[300px]  max-w-[400px] max-[400px]:w-full bg-gray-3">
         {isEditing ? (
-          <form className="w-full flex justify-center" onSubmit={onSubmit}>
-            <Input
-              placeholder="Enter title"
-              name="linkTitle"
-              className="border-0 h-4.4"
-              defaultValue={link.title}
-              minLength={1}
-              autoFocus
-              required
-            />
-            <div className="flex gap-1">
-              <Button
-                type="button"
-                className="size-4.4"
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsEditing(false)}
-              >
-                <Icons.x size={15} />
-              </Button>
-              <Button
-                type="submit"
-                className="size-4.4"
-                variant="ghost"
-                size="icon"
-              >
-                <Icons.check size={15} />
-              </Button>
-            </div>
-          </form>
+          <>
+            {link.isExternal ? (
+              <form className="w-full flex gap-2" onSubmit={onSubmit}>
+                <div className="flex gap-1">
+                  <Input
+                    placeholder="Enter title"
+                    name="linkTitle"
+                    defaultValue={link.title}
+                    className="h-4.4  border-0"
+                    minLength={1}
+                    autoFocus
+                    required
+                  />
+                  <Input
+                    placeholder="Enter URL"
+                    name="linkHref"
+                    defaultValue={link.href}
+                    className="h-4.4 border-0"
+                    minLength={1}
+                    required
+                  />
+                </div>
+                <div className="flex gap-1">
+                  <Button
+                    type="button"
+                    className="size-4.4 text-danger! enabled:hover:text-danger!"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() =>
+                      setLinks((prev) =>
+                        prev.filter((l) => l.href !== link.href),
+                      )
+                    }
+                  >
+                    <Icons.trash size={15} />
+                  </Button>
+                  <Button
+                    type="button"
+                    className="size-4.4"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    <Icons.x size={15} />
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="size-4.4"
+                    variant="ghost"
+                    size="icon"
+                  >
+                    <Icons.check size={15} />
+                  </Button>
+                </div>
+              </form>
+            ) : (
+              <form className="w-full flex justify-center" onSubmit={onSubmit}>
+                <Input
+                  placeholder="Enter title"
+                  name="linkTitle"
+                  className="border-0 h-4.4"
+                  defaultValue={link.title}
+                  minLength={1}
+                  autoFocus
+                  required
+                />
+
+                <div className="flex gap-1">
+                  <Button
+                    type="button"
+                    className="size-4.4"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    <Icons.x size={15} />
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="size-4.4"
+                    variant="ghost"
+                    size="icon"
+                  >
+                    <Icons.check size={15} />
+                  </Button>
+                </div>
+              </form>
+            )}
+          </>
         ) : (
           <>
             <Button
@@ -189,7 +325,13 @@ function Link({
                   setLinks((prev) =>
                     prev.map((l) =>
                       l.href === link.href
-                        ? { ...l, isVisible: !link.isVisible }
+                        ? {
+                            ...l,
+                            isVisible:
+                              link.isVisible === undefined
+                                ? false
+                                : !link.isVisible,
+                          }
                         : l,
                     ),
                   );

@@ -1,3 +1,5 @@
+import NavTabs from "@/app/(user)/user/[domain]/components/nav-tabs";
+import { userPageConfig } from "@/config/user-page";
 import { cn, getSectionTitle } from "@/lib/utils";
 import "@/styles/prose.css";
 import type {
@@ -104,6 +106,9 @@ export default async function MDX({
           ...mdxComponents,
           ...(withSections && {
             Intro: () => <Intro user={allData.user} />,
+            Navigation: () => (
+              <NavTabs user={allData.user} pages={userPageConfig.pages} />
+            ),
             About: () => (
               <About title={getSectionTitle(1, sections)} user={allData.user} />
             ),

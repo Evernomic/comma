@@ -44,7 +44,7 @@ export const updateUserSchema = z
       .array(
         z.object({
           title: z.string().min(1).max(56),
-          position: z.number().min(0).max(6),
+          position: z.number().min(0).max(8),
         }),
       )
       .superRefine((sections, ctx) => {
@@ -58,12 +58,28 @@ export const updateUserSchema = z
           });
         }
       }),
-    externalLinks: z.array(
-      z.object({
-        title: z.string().min(1).max(25),
-        href: z.string().min(1),
-        isVisible: z.boolean().optional(),
+    navLinks: z
+      .array(
+        z.object({
+          title: z.string().min(1).max(25),
+          href: z
+            .string()
+            .or(z.string().min(1).startsWith("/"))
+            .or(z.string().url()),
+          isVisible: z.boolean().optional(),
+          isExternal: z.boolean().optional(),
+        }),
+      )
+      .superRefine((links, ctx) => {
+        const positions = links.map((s) => s.href);
+        const uniquePositions = new Set(positions);
+
+        if (positions.length !== uniquePositions.size) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Hrefs must be unique.",
+          });
+        }
       }),
-    ),
   })
   .partial();

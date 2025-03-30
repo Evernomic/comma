@@ -1,5 +1,4 @@
 import Track from "@/components/analytics/track";
-import { userPageConfig } from "@/config/user-page";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import {
   generateSEO,
@@ -11,8 +10,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type React from "react";
 import BottomNav from "./components/bottom-nav";
-import Intro from "./components/intro";
-import NavTabs from "./components/nav-tabs";
+import UserHeader from "./components/user-header";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -58,8 +56,7 @@ export default async function UserLayout({ children, params }: LayoutProps) {
   }
   return (
     <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full pt-28 pb-48 max-md:pt-20 max-md:px-4 ">
-      <Intro user={user} />
-      <NavTabs user={user} pages={userPageConfig.pages} />
+      <UserHeader user={user} />
       <main className="w-full flex-1">{children}</main>
       <Track />
       <BottomNav user={user} />

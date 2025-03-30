@@ -14,6 +14,7 @@ export type CustomNavItem = {
   title: string;
   href: string;
   isVisible?: boolean;
+  isExternal?: boolean;
 };
 export type MainNavItem = {
   icon: Icon;
@@ -64,6 +65,7 @@ export type UserPageSection = {
   title: string;
   position: number;
   component?: JSX.Element | any;
+  isTitleEditable?: boolean;
 };
 
 export type UserPageConfig = {

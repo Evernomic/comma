@@ -15,11 +15,11 @@ import Footer from "./components/footer";
 const MagicLinkEmail = ({ url = siteConfig.url }: { url: string }) => (
   <Html>
     <Head>
-      <Font
-        fontFamily="Ubuntu"
+    <Font
+        fontFamily="Inter"
         fallbackFontFamily="sans-serif"
         webFont={{
-          url: "https://fonts.gstatic.com/s/ubuntu/v20/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2",
+          url: "https://comma.to/_static/fonts/InterVariable.woff2",
           format: "woff2",
         }}
         fontWeight={400}
@@ -27,7 +27,7 @@ const MagicLinkEmail = ({ url = siteConfig.url }: { url: string }) => (
       />
     </Head>
     <Preview>Log in with this magic link</Preview>
-    <Body style={{ ...main, fontFamily: "Ubuntu" }}>
+    <Body style={{ ...main, fontFamily: "Inter" }}>
       <Container style={container}>
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
           Login

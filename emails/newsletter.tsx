@@ -22,16 +22,16 @@ export default function Newsletter({
   return (
     <Html>
       <Head>
-        <Font
-          fontFamily="Ubuntu"
-          fallbackFontFamily="sans-serif"
-          webFont={{
-            url: "https://fonts.gstatic.com/s/ubuntu/v20/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2",
-            format: "woff2",
-          }}
-          fontWeight={400}
-          fontStyle="normal"
-        />
+      <Font
+        fontFamily="Inter"
+        fallbackFontFamily="sans-serif"
+        webFont={{
+          url: "https://comma.to/_static/fonts/InterVariable.woff2",
+          format: "woff2",
+        }}
+        fontWeight={400}
+        fontStyle="normal"
+      />
       </Head>
       <Preview>{author} published an article</Preview>
       <Body style={main}>
@@ -82,7 +82,7 @@ export default function Newsletter({
 }
 const main = {
   backgroundColor: "#ffffff",
-  fontFamily: "Ubuntu",
+  fontFamily: "Inter",
 };
 
 const container = {

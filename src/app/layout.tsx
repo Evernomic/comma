@@ -8,7 +8,6 @@ import { Viewport } from "next";
 import { Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 
-
 const inter = localFont({
   src: "../../public/fonts/InterVariable.woff2",
   weight: "300 400 500 600 700",

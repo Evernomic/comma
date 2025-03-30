@@ -30,7 +30,7 @@ export default function Footer() {
 
 const footer = {
   color: "#606060",
-  fontSize: "12px",
+  fontSize: "14px",
   lineHeight: "22px",
   marginTop: "48px",
   marginBottom: "24px",

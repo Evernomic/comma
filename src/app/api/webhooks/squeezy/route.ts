@@ -1,6 +1,8 @@
+import WelcomeEmailPaid from "@/emails/welcome-email-paid";
 import { db } from "@/lib/db";
 import { removeDomain } from "@/lib/domains";
 import log from "@/lib/log";
+import { resend } from "@/lib/resend";
 import { squeezy } from "@/lib/squeezy";
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import crypto from "node:crypto";
@@ -40,7 +42,7 @@ export async function POST(req: Request) {
         if (!subscription) {
           throw new Error("Subscription not found");
         }
-        await db.user.update({
+        const user = await db.user.update({
           where: {
             id: userId,
           },
@@ -49,7 +51,20 @@ export async function POST(req: Request) {
             lsVariantId: subscription.data.attributes.variant_id.toString(),
             lsCurrentPeriodEnd: subscription.data.attributes.renews_at,
           },
+          select: {
+            email: true,
+            name: true,
+            username: true,
+          }
         });
+
+        await resend.emails.send({
+            from: `Comma <system@mail.comma.to>`,
+            to: user.email,
+            subject: "Welcome to Comma Pro",
+            react: WelcomeEmailPaid({name: user.name ?? user.username}),
+        });
+
       }
       if (eventName === "subscription_updated") {
         const { data: subscription } = await getSubscription(body.id as string);

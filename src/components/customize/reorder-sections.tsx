@@ -128,7 +128,7 @@ function Section({
       dragControls={controls}
     >
       <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 h-4.7  min-w-[220px] max-w-[300px] max-[300px]:w-full bg-gray-3">
-        {isEditing ? (
+        {isEditing && !!section.isTitleEditable ? (
           <form className="w-full flex justify-center" onSubmit={onSubmit}>
             <Input
               placeholder="Enter title"
@@ -176,14 +176,16 @@ function Section({
               <Icons.gripVertical size={15} />
             </Button>
             <p className="select-none grow truncate">{section.title}</p>
-            <Button
-              variant="ghost"
-              className="size-4.4"
-              size="icon"
-              onClick={() => setIsEditing(true)}
-            >
-              <Icons.edit size={15} />
-            </Button>
+            {section.isTitleEditable !== false && (
+              <Button
+                variant="ghost"
+                className="size-4.4"
+                size="icon"
+                onClick={() => setIsEditing(true)}
+              >
+                <Icons.edit size={15} />
+              </Button>
+            )}
           </>
         )}
       </div>

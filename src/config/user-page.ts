@@ -26,6 +26,16 @@ export const userPageConfig: UserPageConfig = {
   ],
   sections: [
     {
+      title: "Intro",
+      position: 7,
+      isTitleEditable: false,
+    },
+    {
+      title: "Navigation",
+      position: 8,
+      isTitleEditable: false,
+    },
+    {
       title: "Newsletter",
       position: 0,
     },
