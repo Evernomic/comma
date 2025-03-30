@@ -48,7 +48,7 @@ export default function AppNav({ links, user }: Props) {
             links={links}
             currentPath={segment === null ? "/" : `/${segment}`}
           />
-          <UserNav user={user} segment={segment ?? undefined} />
+          <UserNav user={user} />
         </div>
       </div>
     </div>

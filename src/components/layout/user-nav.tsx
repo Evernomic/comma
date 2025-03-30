@@ -24,10 +24,9 @@ interface Props {
     User,
     "name" | "email" | "image" | "username" | "domain" | "lsId"
   > | null;
-  segment?: string;
 }
 
-export default function UserNav({ user, segment }: Props) {
+export default function UserNav({ user }: Props) {
   const setOpen = useAppCommand(useShallow((state) => state.setOpen));
   const pathname = usePathname();
 
@@ -49,6 +48,16 @@ export default function UserNav({ user, segment }: Props) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[180px]">
+        {!user?.lsId && (
+          <>
+            <DropdownMenuItem asChild>
+              <Link href="/settings/billing">
+                <Icons.circleArrowUp size={15} /> Upgrade to Pro
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
+        )}
         <DropdownMenuItem asChild>
           <Link href={getUserPageURL(user)} target="_blank">
             <Icons.arrowUpRight size={15} /> Your page
@@ -91,13 +100,7 @@ export default function UserNav({ user, segment }: Props) {
             <Icons.settings size={15} /> Settings
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link
-            href="/settings/billing"
-          >
-            <Icons.circleArrowUp size={15} /> Upgrade to Pro
-          </Link>
-        </DropdownMenuItem>
+
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href={`${siteConfig.url}/explore`}>

@@ -118,9 +118,9 @@ export default function BillingForm({ subscriptionPlan }: Props) {
             {subscriptionPlan.status === "active" && "Your plan renews on "}
             {subscriptionPlan.status !== "expired" &&
               subscriptionPlan.lsCurrentPeriodEnd && (
-                <b>
+                <span className="text-secondary">
                   {formatDate(new Date(subscriptionPlan.lsCurrentPeriodEnd))}.
-                </b>
+                </span>
               )}
           </p>
         ) : (
