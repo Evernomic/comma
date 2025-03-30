@@ -80,12 +80,12 @@ export default function BillingForm({ subscriptionPlan }: Props) {
                 )}
               </div>
               <div className="flex items-center mt-2">
-                <b className="text-xl  text-secondary tracking-wider  flex items-baseline gap-1">
+                <p className="text-xl  text-secondary tracking-wider  flex items-baseline gap-1">
                   ${plan.price[period]}
                   <span className="text-xs text-gray-1">
                     / {period === "monthly" ? "month" : "year"}
                   </span>
-                </b>
+                </p>
               </div>
             </div>
             <div className="grid grid-rows-6 divide-y divide-gray-3">
