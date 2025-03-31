@@ -92,7 +92,6 @@
 
 .prose .section-container {
   @apply mb-30;
-
   &:nth-child(2) {
     @apply -mt-14
   }
@@ -102,10 +101,20 @@
   }
 }
 
+.prose :where(.section-container:not(:has(+ .section-container), :has(+ .user-nav-tabs))) {
+  @apply mb-14!;
+}
+
+
+.section-container:not(:first-child):not(:has(+ .user-nav-tabs)):not(.user-nav-tabs + .section-container) {
+  @apply mt-14;
+}
+
 .prose .user-nav-tabs {
   @apply  mb-30!;
   &:not(:first-child) {
     @apply -mt-14!
   }
 }
+
 
