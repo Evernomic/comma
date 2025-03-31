@@ -40,6 +40,8 @@ export const updateUserSchema = z
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),
+    beehiivKey: z.string().nullable(),
+    beehiivPublicationId: z.string().nullable(),
     sections: z
       .array(
         z.object({

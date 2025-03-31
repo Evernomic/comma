@@ -33,6 +33,11 @@ export const appConfig: AppConfig = {
       href: "/settings/customize",
     },
     {
+      title: "Customize home",
+      href: "/settings/customize/home",
+      isVisible: false,
+    },
+    {
       title: "Links",
       href: "/settings/links",
     },
@@ -43,6 +48,11 @@ export const appConfig: AppConfig = {
     {
       title: "Subscribers",
       href: "/settings/subscribers",
+    },
+    {
+      title: "Beehiiv",
+      href: "/settings/subscribers/beehiiv",
+      isVisible: false,
     },
     {
       title: "Billing",

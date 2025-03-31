@@ -34,6 +34,8 @@ export async function getUserByDomain(domain: string) {
       createdAt: true,
       updatedAt: true,
       password: true,
+      beehiivKey: true,
+      beehiivPublicationId: true,
     },
   });
 }
