@@ -12,7 +12,6 @@ import { cn, getSectionTitle } from "@/lib/utils";
 import type { User, UserPageSection } from "@/types";
 import NewsletterForm from "../articles/components/newsletter-form";
 import Feed from "./feed";
-import { useId } from "react";
 
 export default function NewsletterFormModal({ user }: { user: User }) {
   const title = getSectionTitle(0, user.sections as UserPageSection[]);
@@ -45,7 +44,7 @@ export default function NewsletterFormModal({ user }: { user: User }) {
         {user.newsletter && (
           <NewsletterForm
             username={user.username}
-            prefix={useId()}
+            prefix="newsletter-form"
             className="flex-col *:w-full [&_button]:flex-auto my-3"
           />
         )}
