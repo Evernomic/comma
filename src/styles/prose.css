@@ -111,10 +111,14 @@
 }
 
 .prose .user-nav-tabs {
-  @apply  mb-30!;
+  @apply mb-30;
   &:not(:first-child) {
     @apply -mt-14!
   }
+}
+
+.prose :where(.user-nav-tabs:not(:has(+ .section-container))) {
+  @apply mb-14!;
 }
 
 
