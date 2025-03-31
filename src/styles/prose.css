@@ -91,9 +91,13 @@
 }
 
 .prose .section-container {
-  @apply my-[60px]
+  @apply mb-30;
 }
 
 .prose .user-nav-tabs {
-  @apply my-[60px] m-0!
+  @apply mb-30;
+  &:not(:first-child) {
+    @apply -mt-14!
+  }
 }
+
