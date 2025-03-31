@@ -89,3 +89,11 @@
 .prose p > span[data-latex][data-display="yes"] {
   @apply block text-center;
 }
+
+.prose .section-container {
+  @apply my-[60px]
+}
+
+.prose .user-nav-tabs {
+  @apply my-[60px] m-0!
+}

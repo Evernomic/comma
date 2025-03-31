@@ -20,7 +20,7 @@ export default function Track() {
     fetch("/api/analytics/track", {
       method: "POST",
       body: JSON.stringify({
-        type: segment === "bookmarks" ? undefined : (segment ?? undefined),
+        type: segment === "bookmarks" ? undefined : segment === "(home)" ? undefined : (segment ?? undefined),
         page: pathname,
         slug: params?.slug ?? undefined,
         domain: validDomainRegex.test(domain) ? domain : undefined,
