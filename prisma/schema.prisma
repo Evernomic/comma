@@ -92,6 +92,8 @@ model User {
   showOnExplore         Boolean          @default(true)
   showCustomHomePage    Boolean          @default(false)
   customHomePageContent String?
+  beehiivKey            String?
+  beehiivPublicationId  String?
 
   @@map("users")
 }

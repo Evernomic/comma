@@ -89,3 +89,15 @@
 .prose p > span[data-latex][data-display="yes"] {
   @apply block text-center;
 }
+
+.prose .section-container {
+  @apply mb-30;
+}
+
+.prose .user-nav-tabs {
+  @apply mb-30;
+  &:not(:first-child) {
+    @apply -mt-14!
+  }
+}
+
