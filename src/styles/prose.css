@@ -92,10 +92,18 @@
 
 .prose .section-container {
   @apply mb-30;
+
+  &:nth-child(2) {
+    @apply -mt-14
+  }
+
+  &:nth-child(3) {
+    @apply -mt-14;
+  }
 }
 
 .prose .user-nav-tabs {
-  @apply mb-30;
+  @apply  mb-30!;
   &:not(:first-child) {
     @apply -mt-14!
   }
