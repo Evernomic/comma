@@ -84,20 +84,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     return notFound();
   }
+
   const Content = (
     <AppShell>
       <AppHeader
         title={project.title}
         className="flex-row items-center justify-normal gap-1  [&_.title]:text-xl"
+        titleAsChild={!!project.url}
       >
         {project.url && (
-          <Link
-            href={project.url}
-            className="text-gray-4 hover:text-secondary transition-colors"
-            target="_blank"
-            aria-label={`Go to ${project.title}`}
-          >
-            <Icons.arrowUpRight size={18} />
+          <Link href={project.url} target="_blank" aria-label={ `Go to ${project.title}`} className="group flex gap-1 title text-lg font-medium ">
+            {project.title} <Icons.arrowUpRight className="group-hover:multi-[-translate-y-0.5;translate-x-0.5] transition" size={18} />
           </Link>
         )}
       </AppHeader>
