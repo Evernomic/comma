@@ -1,10 +1,13 @@
 import { siteConfig } from "@/config/site";
 import NewSubscriber from "@/emails/new-subscriber";
 import { createSubscriber, isSubscriberExist } from "@/lib/actions/subscribers";
+import { decrypt } from "@/lib/encryption";
 import { getUserById } from "@/lib/fetchers/users";
 import { rateLimit } from "@/lib/ratelimit";
 import { resend } from "@/lib/resend";
 import { getUserSubscription } from "@/lib/subscription";
+import { getUserPageURL } from "@/lib/utils";
+import { BeehiivClient } from "@beehiiv/sdk";
 import { nanoid } from "nanoid";
 import type { NextRequest } from "next/server";
 import * as z from "zod";
@@ -58,6 +61,27 @@ export async function POST(req: NextRequest) {
       return new Response("This email already subscribed", {
         status: 401,
       });
+    }
+
+    if (user.beehiivKey && user.beehiivPublicationId) {
+      const [token, publicationId] = [
+        decrypt(user.beehiivKey),
+        decrypt(user.beehiivPublicationId),
+      ];
+
+      const client = new BeehiivClient({ token });
+
+      try {
+        await client.subscriptions.create(publicationId, {
+          email,
+          sendWelcomeEmail: true,
+          utmSource: "Comma",
+          utmMedium: "organic",
+          referringSite: getUserPageURL(user),
+        });
+      } catch (err) {
+        console.log("Beehiiv subscription failed:", err);
+      }
     }
 
     await Promise.all([

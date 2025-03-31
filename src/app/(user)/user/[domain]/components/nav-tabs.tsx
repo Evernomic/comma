@@ -29,8 +29,8 @@ export default function NavTabs({
             key={page.href}
             target={page.isExternal ? "_blank" : undefined}
             className={cn(
-              "text-sm relative flex gap-1 transition-colors text-gray-4 no-underline!  before:multi-['content-[''];h-[1.5px];w-full;bg-transparent;absolute;-bottom-[4.5px];transition-colors;'] hover:text-secondary",
-              pathname === page.href && "text-secondary before:bg-secondary",
+              "text-sm relative flex gap-1 transition-colors text-gray-4!  no-underline!  before:multi-['content-[''];h-[1.5px];w-full;bg-transparent;absolute;-bottom-[4.5px];transition-colors'] hover:text-secondary!",
+              pathname === page.href && "text-secondary! before:bg-secondary",
             )}
           >
             {page.title}

@@ -5,6 +5,7 @@ import type { User, UserCategory } from "@prisma/client";
 import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
+import { encrypt } from "../encryption";
 import type { updateUserSchema } from "../validations/user";
 import {
   workExperienceFormSchema,
@@ -18,7 +19,16 @@ export async function updateUser(
   data: UpdateUserSchema,
   plan: UserSubscriptionPlan,
 ) {
-  const { showBranding, category, ...rest } = data;
+  const { showBranding, category, beehiivKey, beehiivPublicationId, ...rest } =
+    data;
+
+  const encryptedBeehiivKey =
+    beehiivKey && beehiivKey !== null ? encrypt(beehiivKey) : beehiivKey;
+  const encryptedPublicationId =
+    beehiivPublicationId && beehiivPublicationId !== null
+      ? encrypt(beehiivPublicationId)
+      : beehiivPublicationId;
+
   await db.user.update({
     where: {
       id: userId,
@@ -29,6 +39,8 @@ export async function updateUser(
         showBranding: plan.isPro ? showBranding : true,
       }),
       ...(category && { category: category as UserCategory }),
+      beehiivKey: encryptedBeehiivKey,
+      beehiivPublicationId: encryptedPublicationId,
     },
   });
 }

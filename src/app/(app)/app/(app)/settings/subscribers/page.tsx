@@ -1,6 +1,7 @@
 import ExportButton from "@/components/forms/export-button";
+import AppShell from "@/components/layout/app-shell";
+import NavButton from "@/components/layout/nav-button";
 import Upgrade from "@/components/shared/upgrade";
-import { Badge } from "@/components/ui/badge";
 import { getSubscribersByUserId } from "@/lib/fetchers/subscribers";
 import { getUser } from "@/lib/fetchers/users";
 import { getUserSubscription } from "@/lib/subscription";
@@ -29,23 +30,38 @@ export default async function Subscribers() {
   if (!plan.isPro) {
     return <Upgrade className="relative py-10" />;
   }
+
+  const isBeehiivCredentialsAdded =
+    user.beehiivKey && user.beehiivPublicationId;
   return (
-    <div className="flex flex-col gap-2 ">
+    <AppShell>
       {user.newsletter ? (
         <>
           <div className="w-full flex max-md:multi-[flex-col;gap-4;items-start] justify-between items-center mb-3">
             <div className="flex gap-2 max-md:flex-col">
-              <Badge>{subscribers.length} Subscribers</Badge>
               <EditNewsletterCTA defaultNewsletterCta={user.newsletterCta} />
               <ExportButton
                 text="Export subscribers"
                 icon="download"
                 endpoint="subscribers/export"
               />
+              <NavButton
+                href="/settings/subscribers/beehiiv"
+                icon={isBeehiivCredentialsAdded ? "settings" : "plug"}
+                buttonVariant="secondary"
+                direction="ltr"
+              >
+                {isBeehiivCredentialsAdded
+                  ? "Manage Beehiiv"
+                  : "Connect to Beehiiv"}
+              </NavButton>
             </div>
-            <Newsletter checked={user.newsletter} />
           </div>
-          <DataTable columns={columns} data={subscribers} />
+          <DataTable
+            columns={columns}
+            data={subscribers}
+            isConnectedToBeehiiv={!!isBeehiivCredentialsAdded}
+          />
         </>
       ) : (
         <div className=" flex flex-col gap-2 items-center justify-center border p-3 border-gray-2 text-center text-gray-1 rounded-md text-sm">
@@ -54,6 +70,6 @@ export default async function Subscribers() {
           <Newsletter checked={user.newsletter} />
         </div>
       )}
-    </div>
+    </AppShell>
   );
 }

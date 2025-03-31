@@ -8,6 +8,7 @@ export type Icon = keyof typeof Icons;
 export type NavItem = {
   title: string;
   href: string;
+  isVisible?: boolean;
 };
 
 export type CustomNavItem = {
@@ -159,6 +160,8 @@ export type User = Omit<
   | "createdAt"
   | "updatedAt"
   | "password"
+  | "beehiivKey"
+  | "beehiivPublicationId"
 >;
 
 export type SelectOption = {

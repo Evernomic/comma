@@ -97,7 +97,10 @@ export default async function MDX({
   withSections,
   allData,
 }: MDXProps) {
-  const sections = sortUserPageSections(userPageConfig.sections, allData?.user?.sections as UserPageSection[]);
+  const sections = sortUserPageSections(
+    userPageConfig.sections,
+    allData?.user?.sections as UserPageSection[],
+  );
   return (
     <div className={cn("prose dark:prose-invert", className)}>
       <MDXRemote

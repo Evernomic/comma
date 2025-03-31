@@ -25,21 +25,25 @@ export default function MobileSettingsNav({ links, currentPath }: Props) {
         <Icons.menu size={15} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {links.map((link) => (
-          <NavButton
-            href={link.href}
-            key={link.title}
-            size="sm"
-            className="w-full"
-            buttonClassname={cn(
-              "w-full justify-start",
-              currentPath.endsWith(link.href) ? "bg-gray-2 text-secondary" : "",
-            )}
-            buttonVariant="ghost"
-          >
-            {link.title}
-          </NavButton>
-        ))}
+        {links
+          .filter((p) => p.isVisible !== false)
+          .map((link) => (
+            <NavButton
+              href={link.href}
+              key={link.title}
+              size="sm"
+              className="w-full"
+              buttonClassname={cn(
+                "w-full justify-start",
+                currentPath.endsWith(link.href)
+                  ? "bg-gray-2 text-secondary"
+                  : "",
+              )}
+              buttonVariant="ghost"
+            >
+              {link.title}
+            </NavButton>
+          ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

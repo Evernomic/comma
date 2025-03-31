@@ -13,6 +13,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import { Badge } from "@/components/ui/badge";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import {
@@ -28,11 +29,13 @@ import { useState } from "react";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isConnectedToBeehiiv?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isConnectedToBeehiiv,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -59,7 +62,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md overflow-hidden flex flex-col gap-3">
-      <div>
+      <div className="flex gap-2 items-center max-md:multi-[flex-col;items-start]">
+        <Badge className="h-4.5 ">{data.length} Subscribers</Badge>
+
         <Input
           placeholder="Search emails"
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -69,6 +74,11 @@ export function DataTable<TData, TValue>({
           className="max-w-xs h-4.5"
         />
       </div>
+      {isConnectedToBeehiiv && (
+        <p className="text-xs text-gray-4">
+          Your subscribers are automatically synced with Beehiiv
+        </p>
+      )}
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
