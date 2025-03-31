@@ -128,7 +128,7 @@ function Section({
       dragControls={controls}
     >
       <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 h-4.7  min-w-[220px] max-w-[300px] max-[300px]:w-full bg-gray-3">
-        {isEditing && !!section.isTitleEditable ? (
+        {isEditing ? (
           <form className="w-full flex justify-center" onSubmit={onSubmit}>
             <Input
               placeholder="Enter title"
