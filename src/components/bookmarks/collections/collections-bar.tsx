@@ -17,7 +17,7 @@ export default function CollectionBar({
       <Button
         onClick={() => setCollection(null)}
         className={cn(
-          "rounded-md cursor-pointer h-4.4  border w-max border-gray-2 px-1.5 text-xs text-gray-4",
+          "rounded-md cursor-pointer h-4  border w-max border-gray-2  px-1 text-xs text-gray-4",
           !collection ? "bg-gray-2 text-secondary" : "",
         )}
         size="sm"
@@ -28,7 +28,7 @@ export default function CollectionBar({
         <Button
           onClick={() => setCollection(item.name)}
           className={cn(
-            "rounded-md cursor-pointer h-4.4  border w-max border-gray-2 px-1.5 text-xs text-gray-4",
+            "rounded-md cursor-pointer h-4  border w-max border-gray-2  px-1 text-xs text-gray-4",
             collection === item.name ? "bg-gray-2 text-secondary" : "",
           )}
           key={item.id}
