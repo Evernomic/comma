@@ -1,6 +1,6 @@
 import NavTabs from "@/app/(user)/user/[domain]/components/nav-tabs";
 import { userPageConfig } from "@/config/user-page";
-import { cn, getSectionTitle, sortUserPageSections } from "@/lib/utils";
+import { cn, getSectionTitle } from "@/lib/utils";
 import "@/styles/prose.css";
 import type {
   BookmarkWithCollection as _Bookmark,
@@ -97,7 +97,7 @@ export default async function MDX({
   withSections,
   allData,
 }: MDXProps) {
-  const sections = allData?.user?.sections as UserPageSection[]
+  const sections = allData?.user?.sections as UserPageSection[];
   return (
     <div className={cn("prose dark:prose-invert", className)}>
       <MDXRemote

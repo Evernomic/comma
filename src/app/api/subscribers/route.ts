@@ -42,17 +42,22 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const subRedirects =  process.env.SUB_REDIRECTS!
-    const redirects = subRedirects ? Array.isArray(eval(subRedirects)) ? eval(subRedirects) as Array<{from: string; to: string}> : null : null
-    const realUsername = redirects ? redirects.find(r => r.from === username)?.to ?? username : username
-
+    const subRedirects = JSON.parse(process.env.SUB_REDIRECTS!);
+    const redirects = subRedirects
+      ? Array.isArray(subRedirects)
+        ? (subRedirects as Array<{ from: string; to: string }>)
+        : null
+      : null;
+    const realUsername = redirects
+      ? (redirects.find((r) => r.from === username)?.to ?? username)
+      : username;
 
     const user = await getUserById({ username: realUsername });
 
     if (!user) {
       return new Response("User not found", { status: 404 });
     }
-    
+
     const { isPro } = await getUserSubscription(user.id);
 
     if (!isPro || !user.newsletter) {

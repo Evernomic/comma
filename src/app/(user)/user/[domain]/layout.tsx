@@ -8,6 +8,7 @@ import {
 } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next";
 import type React from "react";
 import BottomNav from "./components/bottom-nav";
 import UserHeader from "./components/user-header";
@@ -57,7 +58,9 @@ export default async function UserLayout({ children, params }: LayoutProps) {
   return (
     <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full pt-28 pb-48 max-md:pt-20 max-md:px-4 ">
       <UserHeader user={user} />
-      <main className="w-full flex-1">{children}</main>
+      <main className="w-full flex-1">
+        <NuqsAdapter>{children}</NuqsAdapter>
+      </main>
       <Track />
       <BottomNav user={user} />
     </div>

@@ -18,7 +18,9 @@ export default function AppHeader({
     <div className={cn("flex items-center justify-between", className)}>
       {(title || description) && (
         <div className="flex flex-col gap-1">
-          {titleAsChild ?  children : title && <h3 className="title text-lg font-medium ">{title}</h3>}
+          {titleAsChild
+            ? children
+            : title && <h3 className="title text-lg font-medium ">{title}</h3>}
           {description && (
             <p className="description text-sm text-gray-4">{description}</p>
           )}

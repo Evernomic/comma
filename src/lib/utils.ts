@@ -414,7 +414,11 @@ export function sortUserNavItems(
 
 export function getSectionTitle(position: number, sections: UserPageSection[]) {
   if (sections) {
-    return sortUserPageSections(userPageConfig.sections, sections)?.find((s) => s.position === position)?.title ?? "";
+    return (
+      sortUserPageSections(userPageConfig.sections, sections)?.find(
+        (s) => s.position === position,
+      )?.title ?? ""
+    );
   }
   return (
     userPageConfig.sections.find((s) => s.position === position)?.title ?? ""
