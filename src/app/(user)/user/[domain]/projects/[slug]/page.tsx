@@ -93,8 +93,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         titleAsChild={!!project.url}
       >
         {project.url && (
-          <Link href={project.url} target="_blank" aria-label={ `Go to ${project.title}`} className="group flex gap-1 title text-lg font-medium ">
-            {project.title} <Icons.arrowUpRight className="group-hover:multi-[-translate-y-0.5;translate-x-0.5] transition" size={18} />
+          <Link
+            href={project.url}
+            target="_blank"
+            aria-label={`Go to ${project.title}`}
+            className="group flex gap-1 title text-lg font-medium "
+          >
+            {project.title}{" "}
+            <Icons.arrowUpRight
+              className="group-hover:multi-[-translate-y-0.5;translate-x-0.5] transition"
+              size={18}
+            />
           </Link>
         )}
       </AppHeader>

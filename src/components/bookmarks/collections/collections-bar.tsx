@@ -1,36 +1,41 @@
+"use client";
+import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Collection } from "@prisma/client";
-import Link from "next/link";
+import { useQueryState } from "nuqs";
 
 export default function CollectionBar({
   collections,
-  currentCollection,
 }: {
   collections: Collection[];
-  currentCollection?: string;
 }) {
+  const [collection, setCollection] = useQueryState("collection", {
+    history: "push",
+  });
   return (
     <div className="flex flex-row flex-wrap gap-2">
-      <Link
-        href="/bookmarks"
+      <Button
+        onClick={() => setCollection(null)}
         className={cn(
-          "rounded-md cursor-pointer  border w-max border-gray-2 py-0.5 px-1 text-xs text-gray-4",
-          !currentCollection ? "bg-gray-2 text-secondary" : "",
+          "rounded-md cursor-pointer h-4.4  border w-max border-gray-2 px-1.5 text-xs text-gray-4",
+          !collection ? "bg-gray-2 text-secondary" : "",
         )}
+        size="sm"
       >
         All
-      </Link>
+      </Button>
       {collections.map((item) => (
-        <Link
-          href={`?collection=${item.name}`}
+        <Button
+          onClick={() => setCollection(item.name)}
           className={cn(
-            "rounded-md cursor-pointer  border w-max border-gray-2 py-0.5 px-1 text-xs text-gray-4",
-            currentCollection === item.name ? "bg-gray-2 text-secondary" : "",
+            "rounded-md cursor-pointer h-4.4  border w-max border-gray-2 px-1.5 text-xs text-gray-4",
+            collection === item.name ? "bg-gray-2 text-secondary" : "",
           )}
           key={item.id}
+          size="sm"
         >
           {item.name}
-        </Link>
+        </Button>
       ))}
     </div>
   );
