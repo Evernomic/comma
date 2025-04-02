@@ -28,7 +28,6 @@ export async function GET(req: Request) {
 
     const allUsers = await db.user.findMany({
       where: {
-        showOnExplore: true,
         ...(search?.length && {
           OR: [
             {
@@ -75,6 +74,7 @@ export async function GET(req: Request) {
         },
       }),
       select: {
+        showOnExplore: true,
         name: true,
         title: true,
         username: true,
@@ -101,9 +101,8 @@ export async function GET(req: Request) {
     });
 
     const take = page === 1 ? 0 : page * 40;
-    const users = allUsers.slice(take, take + 40);
-    const usersWithPopularity = allUsers
-      .map((user) => {
+    const users = allUsers.filter(u => u.showOnExplore).slice(take, take + 40);
+    let usersWithPopularity = allUsers.map((user) => {
         const articleViews = user.articles.reduce(
           (sum, article) => sum + article.views,
           0,
@@ -117,19 +116,35 @@ export async function GET(req: Request) {
           0,
         );
 
-        const popularityScore =
-          (articleViews + projectViews + bookmarkClicks) / 3;
+        const popularityScore = Math.floor((articleViews + projectViews + bookmarkClicks) / 3);
         const { articles, projects, bookmarks, ...rest } = user;
         return {
           ...rest,
           popularityScore,
         };
       })
-      .sort((a, b) => b.popularityScore - a.popularityScore)
-      .slice(take, take + 40);
+
+     const mergedPopularityUsers = process.env.MERGED_POPULARITY_USERS!;
+     
+     if(mergedPopularityUsers && Array.isArray(JSON.parse(mergedPopularityUsers))) {
+
+      const pairs = JSON.parse(mergedPopularityUsers) as Array<{from: string; to: string}>
+
+      pairs.forEach(pair => {
+        const from = usersWithPopularity.find(u => u.username === pair.from);
+        const to = usersWithPopularity.find(u => u.username === pair.to)
+        
+        if(from && to) {
+          const mergedScore = from.popularityScore + to.popularityScore;
+          usersWithPopularity = usersWithPopularity.map(u => u.username === to.username ? {...u, popularityScore: mergedScore} : u)
+        }
+      })
+     }
+
+     const sortUsersByPopularity =  usersWithPopularity.filter(u => u.showOnExplore).sort((a, b) => b.popularityScore - a.popularityScore).slice(take, take + 40) 
 
     return NextResponse.json({
-      data: sort === "popular" ? usersWithPopularity : users,
+      data: sort === "popular" ? sortUsersByPopularity : users,
       previousId: page - 1,
       nextId: users.length < 40 ? null : page + 1,
     });
