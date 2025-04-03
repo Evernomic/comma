@@ -62,8 +62,28 @@ export function formatDate(date: Date) {
     month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });
 }
+
+export function getDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return [year, month, day].join("-");
+}
+
+export function formatCustomDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return [year, month, day].join("-");
+}
+
+
 
 export function formatVerboseDate(date: Date) {
   return format(date, "PPPPpppp");

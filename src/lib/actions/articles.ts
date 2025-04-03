@@ -46,7 +46,7 @@ export async function updateArticle(
       ...rest,
       slug: slug || slugify(data.title),
       publishedAt: publishedAt
-        ? new Date(publishedAt).toISOString()
+        ? new Date(publishedAt)
         : undefined,
     },
   });
