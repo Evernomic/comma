@@ -6,6 +6,7 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import { getArticleById } from "@/lib/fetchers/articles";
+import { formatCustomDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -58,7 +59,7 @@ export default async function ArticleSettings({
             name: "publishedAt",
             type: "date",
             "aria-label": "Article published time",
-            defaultValue: article.publishedAt.toISOString().slice(0, 10),
+            defaultValue: formatCustomDate(article.publishedAt),
           }}
         />
         <UploadImage

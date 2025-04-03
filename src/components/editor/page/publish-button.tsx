@@ -1,6 +1,6 @@
 import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
-import { formatDate } from "@/lib/utils";
+import { formatDate, getDate } from "@/lib/utils";
 import type { Article } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { type SetStateAction, useState } from "react";
@@ -44,6 +44,9 @@ export default function PublishButton({
             method: "PATCH",
             body: JSON.stringify({
               published: !post.published,
+              ...((!post.published && type === "articles") && {
+                publishedAt: getDate()              
+              })
             }),
           });
           setSaving(false);
