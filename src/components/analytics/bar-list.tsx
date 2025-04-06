@@ -70,11 +70,11 @@ export const BarListItem = ({
       href={item.href}
       target="_blank"
       className={cn(
-        "relative flex min-h-[30px] h-4.5 w-full  items-center justify-between overflow-hidden rounded-md  px-2 py-1 transition-colors hover:bg-gray-3",
+        "relative flex min-h-[30px] h-4.5 w-full gap-2   items-center justify-between overflow-hidden rounded-md  px-2 py-1 transition-colors hover:bg-gray-3",
         className,
       )}
     >
-      <div className="flex flex-1 items-center gap-2">
+      <div className="flex flex-1 items-center gap-2 truncate">
         <span
           style={{
             width: `${(item.value / total) * 100}%`,
