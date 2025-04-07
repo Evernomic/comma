@@ -20,7 +20,7 @@ interface LinkSelectorProps {
 }
 
 export const linkSchema = z.object({
-  link: z.string().url(),
+  link: z.string().min(2),
 });
 
 type FormData = z.infer<typeof linkSchema>;
