@@ -6,8 +6,8 @@ import AppHeader from "@/components/layout/header";
 import { getBookmarks } from "@/lib/fetchers/bookmarks";
 import { getCollections } from "@/lib/fetchers/collections";
 import type { Metadata } from "next";
-import BookmarksList from "./bookmarks-list";
 import { NuqsAdapter } from "nuqs/adapters/next";
+import BookmarksList from "./bookmarks-list";
 
 export const metadata: Metadata = {
   title: "Bookmarks",

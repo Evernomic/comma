@@ -20,7 +20,7 @@ interface LinkSelectorProps {
 }
 
 export const linkSchema = z.object({
-  link: z.string().url(),
+  link: z.string().min(2),
 });
 
 type FormData = z.infer<typeof linkSchema>;
@@ -62,7 +62,7 @@ export default function LinkSelector({
       <PopoverContent align="start" className="mt-1">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-1 flex">
           <Input
-            type="url"
+            type="text"
             placeholder="url"
             defaultValue={editor.getAttributes("link").href}
             className={cn("h-4.5", errors?.link ? "border-danger" : "")}

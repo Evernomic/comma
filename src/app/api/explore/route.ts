@@ -101,47 +101,63 @@ export async function GET(req: Request) {
     });
 
     const take = page === 1 ? 0 : page * 40;
-    const users = allUsers.filter(u => u.showOnExplore).slice(take, take + 40);
+    const users = allUsers
+      .filter((u) => u.showOnExplore)
+      .slice(take, take + 40);
     let usersWithPopularity = allUsers.map((user) => {
-        const articleViews = user.articles.reduce(
-          (sum, article) => sum + article.views,
-          0,
-        );
-        const projectViews = user.projects.reduce(
-          (sum, project) => sum + project.views,
-          0,
-        );
-        const bookmarkClicks = user.bookmarks.reduce(
-          (sum, bookmark) => sum + bookmark.clicks,
-          0,
-        );
+      const articleViews = user.articles.reduce(
+        (sum, article) => sum + article.views,
+        0,
+      );
+      const projectViews = user.projects.reduce(
+        (sum, project) => sum + project.views,
+        0,
+      );
+      const bookmarkClicks = user.bookmarks.reduce(
+        (sum, bookmark) => sum + bookmark.clicks,
+        0,
+      );
 
-        const popularityScore = Math.floor((articleViews + projectViews + bookmarkClicks) / 3);
-        const { articles, projects, bookmarks, ...rest } = user;
-        return {
-          ...rest,
-          popularityScore,
-        };
-      })
+      const popularityScore = Math.floor(
+        (articleViews + projectViews + bookmarkClicks) / 3,
+      );
+      const { articles, projects, bookmarks, ...rest } = user;
+      return {
+        ...rest,
+        popularityScore,
+      };
+    });
 
-     const mergedPopularityUsers = process.env.MERGED_POPULARITY_USERS!;
-     
-     if(mergedPopularityUsers && Array.isArray(JSON.parse(mergedPopularityUsers))) {
+    const mergedPopularityUsers = process.env.MERGED_POPULARITY_USERS!;
 
-      const pairs = JSON.parse(mergedPopularityUsers) as Array<{from: string; to: string}>
+    if (
+      mergedPopularityUsers &&
+      Array.isArray(JSON.parse(mergedPopularityUsers))
+    ) {
+      const pairs = JSON.parse(mergedPopularityUsers) as Array<{
+        from: string;
+        to: string;
+      }>;
 
-      pairs.forEach(pair => {
-        const from = usersWithPopularity.find(u => u.username === pair.from);
-        const to = usersWithPopularity.find(u => u.username === pair.to)
-        
-        if(from && to) {
+      pairs.forEach((pair) => {
+        const from = usersWithPopularity.find((u) => u.username === pair.from);
+        const to = usersWithPopularity.find((u) => u.username === pair.to);
+
+        if (from && to) {
           const mergedScore = from.popularityScore + to.popularityScore;
-          usersWithPopularity = usersWithPopularity.map(u => u.username === to.username ? {...u, popularityScore: mergedScore} : u)
+          usersWithPopularity = usersWithPopularity.map((u) =>
+            u.username === to.username
+              ? { ...u, popularityScore: mergedScore }
+              : u,
+          );
         }
-      })
-     }
+      });
+    }
 
-     const sortUsersByPopularity =  usersWithPopularity.filter(u => u.showOnExplore).sort((a, b) => b.popularityScore - a.popularityScore).slice(take, take + 40) 
+    const sortUsersByPopularity = usersWithPopularity
+      .filter((u) => u.showOnExplore)
+      .sort((a, b) => b.popularityScore - a.popularityScore)
+      .slice(take, take + 40);
 
     return NextResponse.json({
       data: sort === "popular" ? sortUsersByPopularity : users,

@@ -55,7 +55,7 @@ const mdxComponents: MDXComponents = {
   },
   a: (props) => {
     return (
-      <a target="_blank" {...props}>
+      <a target={props.href.startsWith("http") ? "_blank" : "_self"} {...props}>
         {props.children}
       </a>
     );

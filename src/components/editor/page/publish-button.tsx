@@ -44,9 +44,10 @@ export default function PublishButton({
             method: "PATCH",
             body: JSON.stringify({
               published: !post.published,
-              ...((!post.published && type === "articles") && {
-                publishedAt: getDate()              
-              })
+              ...(!post.published &&
+                type === "articles" && {
+                  publishedAt: getDate(),
+                }),
             }),
           });
           setSaving(false);
