@@ -1,4 +1,5 @@
-import MDX from "@/components/markdown/mdx";
+"use client";
+
 import { Icons } from "@/components/shared/icons";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -8,15 +9,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { cn, getSectionTitle } from "@/lib/utils";
-import type { User, UserPageSection } from "@/types";
+import { cn } from "@/lib/utils";
+import type { User } from "@/types";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import NewsletterForm from "../articles/components/newsletter-form";
 import Feed from "./feed";
 
-export default function NewsletterFormModal({ user }: { user: User }) {
-  const title = getSectionTitle(0, user.sections as UserPageSection[]);
+export default function NewsletterFormModal({
+  user,
+  title,
+  children,
+}: {
+  user: User;
+  title: string;
+  children?: React.ReactNode;
+}) {
+  const defaultOpen = useSearchParams().get("open") === "newsletter";
+  const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger
         className={cn(
           buttonVariants({ variant: "ghost" }),
@@ -37,10 +49,9 @@ export default function NewsletterFormModal({ user }: { user: User }) {
       <DialogContent className="p-4.5 pb-3 gap-0">
         <DialogHeader className="flex-col items-start gap-1">
           <DialogTitle>{user.newsletter ? title : "Feed"}</DialogTitle>
-          {user.newsletterCta && user.newsletter && (
-            <MDX source={user.newsletterCta} className="text-gray-4! text-sm" />
-          )}
+          {children}
         </DialogHeader>
+
         {user.newsletter && (
           <NewsletterForm
             username={user.username}
