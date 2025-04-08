@@ -22,7 +22,13 @@ export default function Connect({
       </dt>
       <dd className="section-content flex flex-col">
         {links.map((link) => {
-          const href = link.platform === "Linkedin" ? (!link.username?.startsWith("company") && !link.username?.startsWith("in")) ? `${link.url}in/${link.username}` : `${link.url}${link.username}` : `${link.url}${link.username === null ? "" : link.username}`
+          const href =
+            link.platform === "Linkedin"
+              ? !link.username?.startsWith("company") &&
+                !link.username?.startsWith("in")
+                ? `${link.url}in/${link.username}`
+                : `${link.url}${link.username}`
+              : `${link.url}${link.username === null ? "" : link.username}`;
           return (
             <Link
               href={href}

@@ -37,6 +37,7 @@ export const updateUserSchema = z
     showOnExplore: z.boolean(),
     showCustomHomePage: z.boolean(),
     customHomePageContent: z.string(),
+    userDefaultTheme: z.enum(["dark", "light"]),
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),

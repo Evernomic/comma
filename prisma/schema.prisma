@@ -87,6 +87,7 @@ model User {
   workExperiences       WorkExperience[]
   password              String?
   showBranding          Boolean          @default(true)
+  userDefaultTheme      String?
   sections              Json?
   navLinks              Json?
   showOnExplore         Boolean          @default(true)
