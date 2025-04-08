@@ -2,7 +2,7 @@ import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Editor } from "@tiptap/core";
-import { BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
+import { BubbleMenu as TipTapBubbleMenu, useCurrentEditor } from "@tiptap/react";
 import { useState } from "react";
 import LinkSelector from "./link-selector";
 import NodeSelector from "./node-selector";
@@ -14,7 +14,11 @@ export interface BubbleMenuItem {
   icon: typeof Icons.heading1;
 }
 
-export default function BubbleMenu({ editor }: { editor: Editor }) {
+export default function BubbleMenu() {
+  const {editor } =useCurrentEditor()
+  if(!editor) {
+    return null
+  }
   const items: BubbleMenuItem[] = [
     {
       name: "bold",

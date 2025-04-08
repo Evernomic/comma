@@ -88,6 +88,7 @@
     "react-dom": "19.0.0",
     "react-email": "^4.0.2",
     "react-hook-form": "^7.54.2",
+    "react-moveable": "^0.56.0",
     "react-textarea-autosize": "^8.5.6",
     "react-wrap-balancer": "^1.1.1",
     "recharts": "^2.15.0",
