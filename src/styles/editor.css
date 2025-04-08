@@ -24,6 +24,10 @@
   @apply border border-gray-2;
 }
 
+.ProseMirror img {
+  @apply rounded-md
+}
+
 .ProseMirror p > img.inline-image  {
   @apply inline-block size-[22px]! m-1! mb-1.5!;
 }

@@ -49,8 +49,10 @@ export default function LinkSelector({
     setIsOpen(false);
   };
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger
+    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger 
+          
+      
         className={cn(
           "rounded-md p-1 size-4.5 flex justify-center items-center text-sm data-[state=open]:bg-gray-2",
           editor.getAttributes("link").href ? "bg-gray-2" : "",
