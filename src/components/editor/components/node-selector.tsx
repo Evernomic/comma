@@ -83,7 +83,7 @@ export default function NodeSelector({
 
   const active = items.filter((item) => item.isActive)[0];
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger
         className="rounded-md px-2 py-1 text-xs data-[state=open]:bg-gray-2"
         onClick={() => setIsOpen(true)}
@@ -91,7 +91,6 @@ export default function NodeSelector({
         {active?.name}
       </PopoverTrigger>
       <PopoverContent
-        hideWhenDetached={true}
         align="start"
         className="mt-1 flex flex-col gap-1 rounded-lg"
       >
