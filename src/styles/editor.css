@@ -29,7 +29,7 @@
 }
 
 .ProseMirror img.block-image {
-  @apply rounded-md border border-gray-3 mt-0 w-full h-auto block
+  @apply rounded-md mt-0;
 }
 
 .ProseMirror .image-placeholder {

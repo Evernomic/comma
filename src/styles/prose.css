@@ -75,7 +75,7 @@
 }
 
 .prose img {
-  @apply border-gray-3 rounded-md border first:mt-0;
+  @apply rounded-md first:mt-0;
 }
 
 .prose ul[class="contains-task-list"] > li > p {

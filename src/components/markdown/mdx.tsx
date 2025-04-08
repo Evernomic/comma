@@ -33,18 +33,23 @@ type _Project = Omit<Project, "password"> & { isProtected: boolean };
 
 const mdxComponents: MDXComponents = {
   img: async (props) => {
-    const isInlineImage = props.src.endsWith("?inline=true");
+    const src = new URL(props.src)
+
+    const isInline = src.searchParams.get("inline") === "true"
+    const [width, height] = [src.searchParams.get("width"), src.searchParams.get("height")]
+
     return (
       <Image
         src={props.src!}
         alt={props.alt!}
-        width={0}
-        height={0}
+        width={width ?? 0}
+        height={height ?? 0}
         sizes="100vw"
         className={cn(
-          isInlineImage
-            ? "size-[22px]! m-1! mb-1.5! inline-block border-0!"
-            : "w-full h-auto",
+          isInline
+            && "size-[22px]! m-1! mb-1.5! inline-block border-0!"
+            ,
+            (!width && !height) && "size-auto"
         )}
         quality={80}
         priority
