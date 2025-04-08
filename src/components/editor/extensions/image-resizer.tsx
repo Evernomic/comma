@@ -1,5 +1,4 @@
 import { useCurrentEditor } from "@tiptap/react";
-import type { FC } from "react";
 import Moveable from "react-moveable";
 
 export function ImageResizer() {
@@ -7,10 +6,11 @@ export function ImageResizer() {
 
   if (!editor?.isActive("image")) return null;
 
-  const imageInfo = document.querySelector(".ProseMirror-selectednode") as HTMLImageElement;
+  const imageInfo = document.querySelector(
+    ".ProseMirror-selectednode",
+  ) as HTMLImageElement;
 
-
-  if(imageInfo.classList.contains("inline-image")) return null
+  if (imageInfo.classList.contains("inline-image")) return null;
 
   const updateMediaSize = () => {
     if (imageInfo) {
@@ -22,13 +22,16 @@ export function ImageResizer() {
       }) => boolean;
 
       const src = new URL(imageInfo.src);
-      const [width, height] = [Math.floor(Number(imageInfo.style.width.replace("px", ""))), Math.floor(Number(imageInfo.style.height.replace("px", "")))]
-      src.searchParams.set("width", width.toString())
-      src.searchParams.set("height", height.toString())
+      const [width, height] = [
+        Math.floor(Number(imageInfo.style.width.replace("px", ""))),
+        Math.floor(Number(imageInfo.style.height.replace("px", ""))),
+      ];
+      src.searchParams.set("width", width.toString());
+      src.searchParams.set("height", height.toString());
       setImage({
         src: src.toString(),
         width,
-        height
+        height,
       });
       editor.commands.setNodeSelection(selection.from);
     }
@@ -36,7 +39,9 @@ export function ImageResizer() {
 
   return (
     <Moveable
-      target={document.querySelector(".ProseMirror-selectednode") as HTMLDivElement}
+      target={
+        document.querySelector(".ProseMirror-selectednode") as HTMLDivElement
+      }
       container={null}
       origin={false}
       edge={false}
@@ -44,12 +49,7 @@ export function ImageResizer() {
       keepRatio={true}
       resizable={true}
       throttleResize={0}
-      onResize={({
-        target,
-        width,
-        height,
-        delta,
-      }) => {
+      onResize={({ target, width, height, delta }) => {
         if (delta[0]) target.style.width = `${width}px`;
         if (delta[1]) target.style.height = `${height}px`;
       }}
@@ -59,12 +59,9 @@ export function ImageResizer() {
       scalable={true}
       throttleScale={0}
       renderDirections={["w", "e"]}
-      onScale={({
-        target,
-        transform,
-      }) => {
+      onScale={({ target, transform }) => {
         target.style.transform = transform;
       }}
     />
   );
-};
+}

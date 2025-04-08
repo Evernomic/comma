@@ -1,7 +1,7 @@
 "use client";
 
 import "@/styles/editor.css";
-import { EditorContent, EditorProvider, useCurrentEditor, useEditor } from "@tiptap/react";
+import { EditorContent, EditorProvider, useCurrentEditor } from "@tiptap/react";
 import "katex/dist/katex.min.css";
 import { useRouter } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
@@ -10,8 +10,8 @@ import { useDebouncedCallback } from "use-debounce";
 import { toast } from "../ui/use-toast";
 import BubbleMenu from "./components/bubble-menu";
 import { TiptapExtensions } from "./extensions";
-import { handleImagePaste } from "./extensions/upload-image";
 import { ImageResizer } from "./extensions/image-resizer";
+import { handleImagePaste } from "./extensions/upload-image";
 interface Props {
   endpoint: string;
   method: "PUT" | "PATCH";
@@ -42,7 +42,7 @@ export default function Editor({
   onlyContent = false,
   setSaving,
 }: EditorProps) {
-  const {editor} = useCurrentEditor()
+  const { editor } = useCurrentEditor();
   const router = useRouter();
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor, title }: { editor: any; title?: string }) => {
@@ -88,10 +88,18 @@ export default function Editor({
         />
       )}
       <div className="prose-base relative  w-full flex-1  prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-headings:font-normal prose-hr:my-4  prose-headings:mb-4 prose-headings:mt-8 ">
-        <EditorProvider content={content} editorProps={{handlePaste: (view, event) => handleImagePaste(view, event)}} onUpdate={e => debouncedUpdates({ editor: e.editor })} extensions={TiptapExtensions} immediatelyRender={false}  slotAfter={<ImageResizer />}>
-
-        <BubbleMenu />
-        <EditorContent editor={editor} />
+        <EditorProvider
+          content={content}
+          editorProps={{
+            handlePaste: (view, event) => handleImagePaste(view, event),
+          }}
+          onUpdate={(e) => debouncedUpdates({ editor: e.editor })}
+          extensions={TiptapExtensions}
+          immediatelyRender={false}
+          slotAfter={<ImageResizer />}
+        >
+          <BubbleMenu />
+          <EditorContent editor={editor} />
         </EditorProvider>
       </div>
     </div>
