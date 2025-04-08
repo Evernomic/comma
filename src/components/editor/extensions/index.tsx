@@ -22,14 +22,17 @@ const CustomImage = TiptapImage.extend({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const src = new URL(HTMLAttributes.src)
+    const src = new URL(HTMLAttributes.src);
 
-    const isInline = src.searchParams.get("inline") === "true"
-    const [width, height] = [src.searchParams.get("width"), src.searchParams.get("height")]
+    const isInline = src.searchParams.get("inline") === "true";
+    const [width, height] = [
+      src.searchParams.get("width"),
+      src.searchParams.get("height"),
+    ];
 
     if (width) HTMLAttributes.width = width;
     if (height) HTMLAttributes.height = height;
-    
+
     return [
       "img",
       mergeAttributes(HTMLAttributes, {

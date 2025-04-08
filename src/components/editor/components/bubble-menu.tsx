@@ -1,8 +1,10 @@
 import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { Editor } from "@tiptap/core";
-import { BubbleMenu as TipTapBubbleMenu, useCurrentEditor } from "@tiptap/react";
+import {
+  BubbleMenu as TipTapBubbleMenu,
+  useCurrentEditor,
+} from "@tiptap/react";
 import { useState } from "react";
 import LinkSelector from "./link-selector";
 import NodeSelector from "./node-selector";
@@ -15,10 +17,15 @@ export interface BubbleMenuItem {
 }
 
 export default function BubbleMenu() {
-  const {editor } =useCurrentEditor()
-  if(!editor) {
-    return null
+  const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
+  const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
+
+  const { editor } = useCurrentEditor();
+
+  if (!editor) {
+    return null;
   }
+
   const items: BubbleMenuItem[] = [
     {
       name: "bold",
@@ -45,9 +52,6 @@ export default function BubbleMenu() {
       icon: Icons.code,
     },
   ];
-
-  const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
-  const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
 
   return (
     <TipTapBubbleMenu
