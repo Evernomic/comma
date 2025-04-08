@@ -82,7 +82,7 @@ export const getLinks = (
     {
       platform: "Linkedin",
       username: user.linkedin,
-      url: "https://linkedin.com/in/",
+      url: "https://linkedin.com/",
       icon: "linkedin",
     },
     {

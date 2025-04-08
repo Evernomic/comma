@@ -51,10 +51,10 @@ export default async function Links() {
       <Form
         title="Linkedin"
         description="This link will appear on your page."
-        prefix="linkedin.com/in/"
+        prefix="linkedin.com/"
         inputData={{
           name: "linkedin",
-          placeholder: "your_username",
+          placeholder: "profile or company",
           defaultValue: user?.linkedin ?? "",
         }}
         endpoint={endpoint}
