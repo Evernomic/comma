@@ -1,8 +1,8 @@
 import ThemeToggle from "@/components/layout/theme-toggle";
 import type { User } from "@/types";
+import { Suspense } from "react";
 import NewsletterModalWrapper from "./newsletter-form-wrapper";
 import Watermark from "./watermark";
-import { Suspense } from "react";
 
 export default function BottomNav({ user }: { user: User }) {
   return (

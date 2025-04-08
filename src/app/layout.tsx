@@ -1,4 +1,3 @@
-import ThemeProvider from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn, generateSEO } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -43,11 +42,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.className, ubuntu.variable)}>
-        <ThemeProvider attribute="class">
-          {children}
-          <Analytics />
-          <Toaster />
-        </ThemeProvider>
+        {children}
+        <Analytics />
+        <Toaster />
       </body>
       <GoogleAnalytics gaId="G-TLL6FWBZ83" />
     </html>

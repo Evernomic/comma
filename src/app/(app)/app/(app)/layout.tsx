@@ -1,5 +1,6 @@
 import AppCommand from "@/components/layout/app-command";
 import AppNav from "@/components/layout/app-nav";
+import ThemeProvider from "@/components/providers/theme-provider";
 import Onboarding from "@/components/shared/onboarding";
 import { appConfig } from "@/config/app";
 import { getUser } from "@/lib/fetchers/users";
@@ -26,11 +27,13 @@ export default async function AppLayout({
   }
   return (
     <div className="mx-auto flex min-h-screen w-[700px] flex-col  max-md:px-4  pb-10 max-md:w-full">
-      <header className="w-full py-4">
-        <AppNav links={appConfig.mainNav} user={user} />
-      </header>
-      <main className="w-full">{children}</main>
-      <AppCommand user={user} />
+      <ThemeProvider>
+        <header className="w-full py-4">
+          <AppNav links={appConfig.mainNav} user={user} />
+        </header>
+        <main className="w-full">{children}</main>
+        <AppCommand user={user} />
+      </ThemeProvider>
     </div>
   );
 }

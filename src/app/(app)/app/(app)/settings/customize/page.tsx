@@ -27,6 +27,21 @@ export default async function CustomizePage() {
         <ReorderSections defaultOrder={user.sections as UserPageSection[]} />
       </Form>
       <Form
+        endpoint="user"
+        title="Default theme"
+        description="Your page will open in your chosen theme by default."
+        selectOptions={[
+          { title: "Dark", value: "dark" },
+          { title: "Light", value: "light" },
+        ]}
+        inputData={{
+          placeholder: "Select theme",
+          name: "userDefaultTheme",
+          defaultValue: user.userDefaultTheme ?? "dark",
+        }}
+        required
+      />
+      <Form
         title="Custom home page"
         description="Edit your homepage with the editor."
         endpoint="user"
