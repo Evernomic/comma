@@ -98,7 +98,8 @@ export default async function Page({ params }: ProjectPageProps) {
     <AppShell>
       <AppHeader
         title={page.title}
-        className="flex-row items-center justify-normal gap-1  [&_.title]:text-xl"
+        className="flex-row items-center justify-normal mb-3  [&_.title]:text-xl"
+        backButton={!page.content?.includes("::Navigation::")}
       />
       <MDX source={page.content} allData={allData} withSections />
     </AppShell>
