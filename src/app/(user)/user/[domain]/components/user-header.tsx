@@ -10,16 +10,13 @@ import NavTabs from "./nav-tabs";
 export default function UserHeader({ user }: { user: User }) {
   const pathname = usePathname();
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname.startsWith("/pages")) {
     return null;
   }
 
   const pages = userPageConfig.pages;
 
-  if (
-    pathname.startsWith("/pages") ||
-    !pages.filter((p) => p.href !== "/").find((p) => p.href === pathname)
-  ) {
+  if (!pages.filter((p) => p.href !== "/").find((p) => p.href === pathname)) {
     return (
       <ClientOnly>
         <NavButton

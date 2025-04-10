@@ -105,7 +105,6 @@
   @apply mb-14!;
 }
 
-
 .prose .section-container:not(:first-child):not(:has(+ .user-nav-tabs)):not(.user-nav-tabs + .section-container) {
   @apply mt-14;
 }

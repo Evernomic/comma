@@ -21,7 +21,7 @@ export default function NavTabs({
   return (
     <ClientOnly>
       <nav
-        className={cn("user-nav-tabs flex gap-4 mb-6 flex-wrap min-h-[20px]")}
+        className="user-nav-tabs flex gap-4 mb-6 overflow-x-scroll scrollbar-hide not-prose h-max overflow-y-hidden"
       >
         {links.map((page) => (
           <Link
@@ -29,8 +29,8 @@ export default function NavTabs({
             key={page.href}
             target={page.isExternal ? "_blank" : undefined}
             className={cn(
-              "text-sm relative flex gap-1 transition-colors text-gray-4!  no-underline!  before:multi-['content-[''];h-[1.5px];w-full;bg-transparent;absolute;-bottom-[4.5px];transition-colors'] hover:text-secondary!",
-              pathname === page.href && "text-secondary! before:bg-secondary",
+              "text-sm relative min-w-max flex gap-1 transition-colors text-gray-4!  no-underline!  before:multi-['content-[''];h-[1.5px];w-full;bg-transparent;absolute;-bottom-[4.5px];transition-colors'] hover:text-secondary!",
+              pathname === page.href && "text-secondary! before:bg-secondary!",
             )}
           >
             {page.title}
