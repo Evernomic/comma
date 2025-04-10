@@ -14,10 +14,11 @@ export default function UserHeader({ user }: { user: User }) {
     return null;
   }
 
+  const pages = userPageConfig.pages;
+
   if (
-    !userPageConfig.pages
-      .filter((p) => p.href !== "/")
-      .some((p) => p.href === pathname)
+    pathname.startsWith("/pages") ||
+    !pages.filter((p) => p.href !== "/").find((p) => p.href === pathname)
   ) {
     return (
       <ClientOnly>
@@ -37,7 +38,7 @@ export default function UserHeader({ user }: { user: User }) {
     <ClientOnly>
       <div className="flex flex-col gap-16">
         <Intro user={user} />
-        <NavTabs user={user} pages={userPageConfig.pages} />
+        <NavTabs user={user} pages={pages} />
       </div>
     </ClientOnly>
   );

@@ -3,6 +3,7 @@ import MDX from "@/components/markdown/mdx";
 import { userPageConfig } from "@/config/user-page";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
+import { getPagesByAuthor } from "@/lib/fetchers/pages";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import {
   getAllUserDomains,
@@ -52,12 +53,15 @@ export default async function Home({ params }: PageProps) {
   if (!user) {
     return notFound();
   }
-  const [articles, projects, bookmarks, experiences] = await Promise.all([
-    getArticlesByAuthor(user.id),
-    getProjectsByAuthor(user.id),
-    getBookmarksByAuthor(user.id),
-    getWorkExperiencesByUser(user.id),
-  ]);
+  const [articles, projects, bookmarks, pages, experiences] = await Promise.all(
+    [
+      getArticlesByAuthor(user.id),
+      getProjectsByAuthor(user.id),
+      getBookmarksByAuthor(user.id),
+      getPagesByAuthor(user.id),
+      getWorkExperiencesByUser(user.id),
+    ],
+  );
 
   const allData = { user, articles, projects, bookmarks, experiences };
   return (

@@ -16,6 +16,7 @@ export type CustomNavItem = {
   href: string;
   isVisible?: boolean;
   isExternal?: boolean;
+  pageId?: string;
 };
 export type MainNavItem = {
   icon: Icon;

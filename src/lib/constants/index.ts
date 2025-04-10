@@ -65,3 +65,13 @@ export const userLocations: SelectOption[] = Object.entries(countries).map(
     };
   },
 );
+
+export const defaultThemeOptions: SelectOption[] = [
+  { title: "Dark", value: "dark" },
+  { title: "Light", value: "light" },
+] as const;
+
+export const pageVisibilityOptions: SelectOption[] = [
+  { title: "Visible", value: "visible" },
+  { title: "Unlisted", value: "unlisted" },
+] as const;

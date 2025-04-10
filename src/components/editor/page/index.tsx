@@ -11,7 +11,7 @@ import { toast } from "@/components/ui/use-toast";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { getPostPageURL } from "@/lib/utils";
 import type { Icon } from "@/types";
-import type { Article, Project, User } from "@prisma/client";
+import type { Article, Page, Project, User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import Editor from "..";
@@ -19,11 +19,11 @@ import NavButton from "../../layout/nav-button";
 import { Icons } from "../../shared/icons";
 import PublishButton from "./publish-button";
 
-export type Post = Article | Project;
+export type Post = Article | Project | Page;
 
 export interface EditorPageProps {
   post: Post;
-  type: "articles" | "projects";
+  type: "articles" | "projects" | "pages";
   user: Pick<User, "username" | "newsletter" | "domain">;
 }
 
@@ -42,7 +42,7 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
   const actions: PostAction[] = [
     {
       title: "Analytics",
-      href: `${postPath}/analytics`,
+      href: type === "pages" ? "/analytics" : `${postPath}/analytics`,
       icon: "areaChart",
     },
     {
@@ -77,6 +77,14 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
             size="icon"
             aria-label={`Go to ${type} settings`}
           />
+          {type === "pages" && (
+            <NavButton
+              href="/settings/customize/home/help"
+              icon="circleHelp"
+              size="icon"
+              aria-label={`Go to help page`}
+            />
+          )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button

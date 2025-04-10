@@ -3,6 +3,11 @@ import type { AppConfig } from "@/types";
 export const appConfig: AppConfig = {
   mainNav: [
     {
+      title: "Pages",
+      href: "/pages",
+      icon: "layers",
+    },
+    {
       title: "Articles",
       href: "/articles",
       icon: "edit",

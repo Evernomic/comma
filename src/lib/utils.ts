@@ -5,7 +5,13 @@ import type {
   CustomNavItem,
   UserPageSection,
 } from "@/types";
-import type { Article, Project, User, WorkExperience } from "@prisma/client";
+import type {
+  Article,
+  Page,
+  Project,
+  User,
+  WorkExperience,
+} from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
 import { formatDate as format } from "date-fns";
 import type { Metadata } from "next";
@@ -137,6 +143,12 @@ export function sortBookmarks(
   return bookmarks.filter((b) =>
     collection ? collection === b.collection?.name : b,
   );
+}
+
+export function sortPages(pages: Page[], published?: string) {
+  return pages
+    .filter((a) => (published ? a.published.toString() === published : a))
+    .sort((a, b) => Number(b.published) - Number(a.published));
 }
 
 export function sortWorkExperiences(experiences: WorkExperience[]) {
@@ -350,7 +362,7 @@ export function getUserPageURL(user: Pick<User, "username" | "domain">) {
 }
 
 export function getPostPageURL(
-  type: "articles" | "projects",
+  type: "articles" | "projects" | "pages",
   slug: string,
   user: Pick<User, "username" | "domain">,
 ) {
@@ -419,10 +431,13 @@ export function sortUserNavItems(
           links.findIndex((o) => o.href === b.href),
       )
       .map((l) => {
+        const link = links.find((o) => o.href === l.href);
         return {
           ...l,
-          isVisible: links.find((o) => o.href === l.href)?.isVisible ?? true,
-          title: links.find((o) => o.href === l.href)?.title ?? l.title,
+          isVisible: link?.isVisible ?? true,
+          title: link?.title ?? l.title,
+          isExternal: link?.isExternal ?? false,
+          pageId: link?.pageId ?? undefined,
         };
       });
   }
@@ -441,4 +456,18 @@ export function getSectionTitle(position: number, sections: UserPageSection[]) {
   return (
     userPageConfig.sections.find((s) => s.position === position)?.title ?? ""
   );
+}
+
+export function getPageHref(page: Page) {
+  return `/pages/${page.slug}`;
+}
+
+export function updateNavLinks(navLinks: CustomNavItem[], link: CustomNavItem) {
+  const isExist = navLinks.find((l) => l.pageId === link.pageId);
+
+  if (isExist) {
+    return navLinks.map((l) => (l.pageId === link.pageId ? { ...link } : l));
+  }
+
+  return [...navLinks, link];
 }
