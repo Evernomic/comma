@@ -3,6 +3,7 @@ import ReorderSections from "@/components/customize/reorder-sections";
 import Form from "@/components/forms/form";
 import AppShell from "@/components/layout/app-shell";
 import NavButton from "@/components/layout/nav-button";
+import { defaultThemeOptions } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
 import { CustomNavItem, UserPageSection } from "@/types";
 import type { Metadata } from "next";
@@ -30,10 +31,7 @@ export default async function CustomizePage() {
         endpoint="user"
         title="Default theme"
         description="Your page will open in your chosen theme by default."
-        selectOptions={[
-          { title: "Dark", value: "dark" },
-          { title: "Light", value: "light" },
-        ]}
+        selectOptions={defaultThemeOptions}
         inputData={{
           placeholder: "Select theme",
           name: "userDefaultTheme",

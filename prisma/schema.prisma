@@ -82,6 +82,7 @@ model User {
   articles              Article[]
   projects              Project[]
   bookmarks             Bookmark[]
+  pages                 Page[]
   subscribers           Subscriber[]
   collections           Collection[]
   workExperiences       WorkExperience[]
@@ -201,4 +202,29 @@ model Bookmark {
   collection   Collection? @relation(fields: [collectionId], references: [id])
 
   @@map("bookmarks")
+}
+
+enum PageVisibility {
+  visible
+  unlisted
+}
+
+model Page {
+  id             String         @id @default(cuid())
+  title          String
+  content        String?        @db.Text
+  published      Boolean        @default(false)
+  visibility     PageVisibility @default(visible)
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @default(now()) @map("updated_at")
+  slug           String         @default(cuid())
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  password       String?
+  authorId       String
+  author         User           @relation(fields: [authorId], references: [id])
+
+  @@unique([authorId, slug])
+  @@map("pages")
 }

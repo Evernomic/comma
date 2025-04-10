@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { createArticle } from "../articles/article-create-button";
+import { createPage } from "../pages/page-create-button";
 import { createProject } from "../projects/project-create-button";
 import { Icons } from "../shared/icons";
 import {
@@ -39,10 +40,20 @@ export default function AppCommand({ user }: { user: User }) {
     useShallow((state) => state),
   );
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState<"article" | "project" | null>(
-    null,
-  );
+  const [isLoading, setIsLoading] = useState<
+    "article" | "project" | "page" | null
+  >(null);
   const { setTheme, theme } = useTheme();
+
+  const newPage = async () => {
+    setIsLoading("page");
+    const page = await createPage();
+    setIsLoading(null);
+    if (page) {
+      router.push(`/pages/${page.id}`);
+      router.refresh();
+    }
+  };
 
   const newArticle = async () => {
     setIsLoading("article");
@@ -91,7 +102,7 @@ export default function AppCommand({ user }: { user: User }) {
   );
 
   const ThemeIcon = Icons[theme === "dark" ? "sun" : "moon"];
-  const PlusIcon = ({ type }: { type?: "article" | "project" }) =>
+  const PlusIcon = ({ type }: { type?: "article" | "project" | "page" }) =>
     isLoading === type ? (
       <Icons.spinner size={18} className="animate-spin text-gray-4" />
     ) : (
@@ -102,6 +113,14 @@ export default function AppCommand({ user }: { user: User }) {
     {
       heading: "Quick actions",
       items: [
+        {
+          command: newPage,
+          children: (
+            <>
+              <PlusIcon type="page" /> New page
+            </>
+          ),
+        },
         {
           command: newArticle,
           children: (

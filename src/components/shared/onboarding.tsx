@@ -113,7 +113,7 @@ function CompleteProfile({
         if (!user.lsId || !user.lsVariantId || !user.lsCurrentPeriodEnd) {
           setIsProfileCompleted(true);
         } else {
-          router.push("/articles");
+          router.push("/pages");
           router.refresh();
         }
       }
@@ -310,7 +310,7 @@ function Plans() {
           variant="ghost"
           className="w-full"
           onClick={() => {
-            router.push("/articles");
+            router.push("/pages");
             router.refresh();
           }}
         >

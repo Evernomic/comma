@@ -71,6 +71,7 @@ export default function CustomizeNavigation({
     }
   }, [links, isDragging]);
 
+  console.log(defaultLinks);
   return (
     <div>
       <Reorder.Group axis="y" onReorder={setLinks} values={links}>

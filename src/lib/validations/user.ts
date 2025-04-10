@@ -71,6 +71,7 @@ export const updateUserSchema = z
             .or(z.string().url()),
           isVisible: z.boolean().optional(),
           isExternal: z.boolean().optional(),
+          pageId: z.string().min(1).optional(),
         }),
       )
       .superRefine((links, ctx) => {

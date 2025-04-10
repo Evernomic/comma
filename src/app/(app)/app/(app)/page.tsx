@@ -8,5 +8,5 @@ export default async function Page() {
     return notFound();
   }
 
-  return redirect("/articles");
+  return redirect("/pages");
 }
