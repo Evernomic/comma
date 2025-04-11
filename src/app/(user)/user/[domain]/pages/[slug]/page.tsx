@@ -97,7 +97,6 @@ export default async function Page({ params }: ProjectPageProps) {
   const Content = (
     <AppShell>
       <AppHeader
-        title={page.title}
         className="flex-row items-center justify-normal mb-3  [&_.title]:text-xl"
         backButton={!page.content?.includes("::Navigation::")}
       />
