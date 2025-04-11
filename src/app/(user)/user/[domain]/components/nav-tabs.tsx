@@ -17,11 +17,10 @@ export default function NavTabs({
   const links = sortUserNavItems(pages, user.navLinks as NavItem[])?.filter(
     (l) => (l.isVisible !== undefined ? l.isVisible : true),
   );
-
   return (
     <ClientOnly>
       <nav
-        className="user-nav-tabs flex gap-4 mb-6 overflow-x-scroll scrollbar-hide not-prose h-max overflow-y-hidden"
+        className="user-nav-tabs flex gap-4 mb-6 not-prose max-w-full h-[30px] overflow-x-auto scrollbar-hide"
       >
         {links.map((page) => (
           <Link
@@ -29,8 +28,8 @@ export default function NavTabs({
             key={page.href}
             target={page.isExternal ? "_blank" : undefined}
             className={cn(
-              "text-sm relative min-w-max flex gap-1 transition-colors text-gray-4!  no-underline!  before:multi-['content-[''];h-[1.5px];w-full;bg-transparent;absolute;-bottom-[4.5px];transition-colors'] hover:text-secondary!",
-              pathname === page.href && "text-secondary! before:bg-secondary!",
+              "text-sm min-w-max flex gap-1 transition-colors text-gray-4! custom-underline decoration-transparent! underline-offset-8!  hover:text-secondary!",
+              pathname === page.href && "text-secondary! decoration-secondary!",
             )}
           >
             {page.title}

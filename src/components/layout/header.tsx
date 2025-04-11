@@ -19,9 +19,14 @@ export default function AppHeader({
   className,
   backButton = false,
 }: Props) {
+
+  if(!title && !backButton) {
+    return null
+  }
+  
   return (
     <div className={cn("flex items-center justify-between", className)}>
-      {backButton && <NavButton size="icon" buttonVariant="ghost" href="/" className="mr-2" icon="arrowLeft" />}
+      {backButton && <NavButton variant="text" size="sm" direction="ltr" buttonVariant="ghost" href="/" className="mr-2" icon="arrowLeft">Back to home</NavButton>}
       {(title || description) && (
         <div className="flex flex-col gap-1">
           {titleAsChild
