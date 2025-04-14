@@ -24,6 +24,7 @@ import "katex/dist/katex.min.css";
 import type { MDXComponents } from "next-mdx-remote-client/rsc";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import Image from "next/image";
+import Link from "next/link";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -59,10 +60,24 @@ const mdxComponents: MDXComponents = {
       />
     );
   },
-  a: (props) => {
+  a: ({ href, children, ...props }) => {
+    if (href?.startsWith("/")) {
+      return (
+        <Link href={href} {...props}>
+          {children}
+        </Link>
+      );
+    }
+    if (href?.startsWith("#")) {
+      return (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      );
+    }
     return (
-      <a target={props.href.startsWith("http") ? "_blank" : "_self"} {...props}>
-        {props.children}
+      <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
       </a>
     );
   },

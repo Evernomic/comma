@@ -40,4 +40,4 @@ Simply type the section name between two colons:
 - Start with a capital letter
 - No spaces between colons and section name
 - Match the section name precisely
-- To open the newsletter modal via a link, simply add `?open=newsletter` to the URL.
+- To open the newsletter modal via a link, simply add `#newsletter` to the URL.
