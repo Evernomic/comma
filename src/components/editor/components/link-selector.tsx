@@ -49,7 +49,7 @@ export default function LinkSelector({
     setIsOpen(false);
   };
   return (
-    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           size="icon"
@@ -62,7 +62,6 @@ export default function LinkSelector({
       <PopoverContent
         align="start"
         className="mt-1"
-        onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-1 flex">
           <Input

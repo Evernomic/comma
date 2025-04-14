@@ -67,6 +67,7 @@ export default function BubbleMenu() {
           setIsNodeSelectorOpen(false);
           setIsLinkSelectorOpen(false);
         },
+        hideOnClick: "toggle",
       }}
       shouldShow={({ editor, state }) => {
         const { selection } = state;
