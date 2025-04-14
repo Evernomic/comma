@@ -49,15 +49,15 @@ export default function LinkSelector({
     setIsOpen(false);
   };
   return (
-    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger
-        className={cn(
-          "rounded-md p-1 size-4.5 flex justify-center items-center text-sm data-[state=open]:bg-gray-2",
-          editor.getAttributes("link").href ? "bg-gray-2" : "",
-        )}
-        onClick={() => setIsOpen(true)}
-      >
-        <Icons.link size={15} />
+    <Popover modal={true} open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild onClick={() => setIsOpen((prev) => !prev)}>
+        <Button
+          size="icon"
+          variant="ghost"
+          className={cn(editor.getAttributes("link").href ? "bg-gray-2" : "")}
+        >
+          <Icons.link size={15} />
+        </Button>
       </PopoverTrigger>
       <PopoverContent align="start" className="mt-1">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-1 flex">

@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
 import type React from "react";
-import Button from "../ui/button";
-import { Icons } from "../shared/icons";
 import NavButton from "./nav-button";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,14 +17,25 @@ export default function AppHeader({
   className,
   backButton = false,
 }: Props) {
-
-  if(!title && !backButton) {
-    return null
+  if (!title && !backButton) {
+    return null;
   }
-  
+
   return (
     <div className={cn("flex items-center justify-between", className)}>
-      {backButton && <NavButton variant="text" size="sm" direction="ltr" buttonVariant="ghost" href="/" className="mr-2" icon="arrowLeft">Back to home</NavButton>}
+      {backButton && (
+        <NavButton
+          variant="text"
+          size="sm"
+          direction="ltr"
+          buttonVariant="ghost"
+          href="/"
+          className="mr-2"
+          icon="arrowLeft"
+        >
+          Back to home
+        </NavButton>
+      )}
       {(title || description) && (
         <div className="flex flex-col gap-1">
           {titleAsChild
