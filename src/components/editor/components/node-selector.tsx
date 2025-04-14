@@ -84,7 +84,7 @@ export default function NodeSelector({
 
   const active = items.filter((item) => item.isActive)[0];
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           size="sm"
