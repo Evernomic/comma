@@ -69,9 +69,7 @@ export default function BubbleMenu() {
           return false;
         }
         return (
-          editor.view.state.selection.content().size > 0 ||
-          isNodeSelectorOpen ||
-          isLinkSelectorOpen
+          editor.view.hasFocus() || isNodeSelectorOpen || isLinkSelectorOpen
         );
       }}
     >

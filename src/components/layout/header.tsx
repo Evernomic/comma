@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type React from "react";
+import React from "react";
 import NavButton from "./nav-button";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -7,17 +7,19 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   titleAsChild?: boolean;
   backButton?: boolean;
+  asChild?: boolean;
 }
 
 export default function AppHeader({
   title,
   description,
   children,
-  titleAsChild,
+  titleAsChild = false,
+  asChild = false,
   className,
   backButton = false,
 }: Props) {
-  if (!title && !backButton) {
+  if (!title && !backButton && !asChild && !titleAsChild) {
     return null;
   }
 
@@ -36,7 +38,7 @@ export default function AppHeader({
           Back to home
         </NavButton>
       )}
-      {(title || description) && (
+      {(title || description) && !asChild && (
         <div className="flex flex-col gap-1">
           {titleAsChild
             ? children
@@ -46,7 +48,7 @@ export default function AppHeader({
           )}
         </div>
       )}
-      {!titleAsChild && children}
+      {(!titleAsChild || asChild) && children}
     </div>
   );
 }

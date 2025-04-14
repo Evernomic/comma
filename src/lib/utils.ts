@@ -463,9 +463,7 @@ export function getPageHref(page: Page) {
 }
 
 export function updateNavLinks(navLinks: CustomNavItem[], link: CustomNavItem) {
-  const isExist = navLinks.find((l) => l.pageId === link.pageId);
-
-  if (isExist) {
+  if (navLinks.length > 0 && !!navLinks.find((l) => l.pageId === link.pageId)) {
     return navLinks.map((l) => (l.pageId === link.pageId ? { ...link } : l));
   }
 
