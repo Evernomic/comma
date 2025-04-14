@@ -84,7 +84,7 @@ export default function NodeSelector({
 
   const active = items.filter((item) => item.isActive)[0];
   return (
-    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           size="sm"
@@ -95,7 +95,6 @@ export default function NodeSelector({
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        onOpenAutoFocus={(e) => e.preventDefault()}
         align="start"
         className="mt-1 flex flex-col gap-1 rounded-lg"
       >
