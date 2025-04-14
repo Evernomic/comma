@@ -46,7 +46,7 @@ export default function LinkSelector({
       .extendMarkRange("link")
       .setLink({ href: data.link })
       .run();
-      setIsOpen(false);
+    setIsOpen(false);
   };
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -59,7 +59,11 @@ export default function LinkSelector({
           <Icons.link size={15} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="mt-1" onOpenAutoFocus={e => e.preventDefault()}>
+      <PopoverContent
+        align="start"
+        className="mt-1"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-1 flex">
           <Input
             type="text"

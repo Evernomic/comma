@@ -11,8 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import type { User } from "@/types";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewsletterForm from "../articles/components/newsletter-form";
 import Feed from "./feed";
 
@@ -25,10 +24,40 @@ export default function NewsletterFormModal({
   title: string;
   children?: React.ReactNode;
 }) {
-  const defaultOpen = useSearchParams().get("open") === "newsletter";
-  const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    function handleHashChange() {
+      if (window.location.hash === "#newsletter") {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    }
+
+    handleHashChange();
+
+    const abortController = new AbortController();
+
+    window.addEventListener("hashchange", handleHashChange, {
+      signal: abortController.signal,
+    });
+
+    return () => abortController.abort();
+  }, []);
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(val) => {
+        setIsOpen(val);
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search,
+        );
+      }}
+    >
       <DialogTrigger
         className={cn(
           buttonVariants({ variant: "ghost" }),

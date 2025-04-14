@@ -69,11 +69,7 @@ export default function BubbleMenu() {
         const { selection } = state;
         const { empty } = selection;
 
-        if (
-          editor.isActive("image") ||
-          empty ||
-          isNodeSelection(selection)
-        ) {
+        if (editor.isActive("image") || empty || isNodeSelection(selection)) {
           return false;
         }
 
