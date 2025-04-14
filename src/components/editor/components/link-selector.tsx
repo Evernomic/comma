@@ -49,7 +49,7 @@ export default function LinkSelector({
     setIsOpen(false);
   };
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           size="icon"
