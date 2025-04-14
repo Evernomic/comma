@@ -28,7 +28,7 @@ export default async function PageSettings({ params }: PageSettingsProps) {
   const endpoint = `pages/${page.id}`;
   return (
     <AppShell>
-      <AppHeader className="justify-start text-lg font-medium">
+      <AppHeader asChild className="justify-start text-lg font-medium">
         <NavButton
           href={`/${endpoint}`}
           icon="arrowLeft"
