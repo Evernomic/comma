@@ -42,7 +42,10 @@ export default function Connect({
             >
               <p>{link.platform}</p>
               <span className="flex gap-1 group-hover:text-secondary transition-colors">
-                {(link.username?.includes('/') ? link.username.split("/")[1] : link.username) || link.url} <Icons.arrowUpRight size={14} />
+                {(link.username?.includes("/")
+                  ? link.username.split("/")[1]
+                  : link.username) || link.url}{" "}
+                <Icons.arrowUpRight size={14} />
               </span>
             </Link>
           );

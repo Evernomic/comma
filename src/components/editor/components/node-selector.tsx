@@ -1,4 +1,5 @@
 import { Icons } from "@/components/shared/icons";
+import Button from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
@@ -83,12 +84,15 @@ export default function NodeSelector({
 
   const active = items.filter((item) => item.isActive)[0];
   return (
-    <Popover modal open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger
-        className="rounded-md px-2 py-1 text-xs data-[state=open]:bg-gray-2"
-        onClick={() => setIsOpen(true)}
-      >
-        {active?.name}
+    <Popover modal={true} open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild onClick={() => setIsOpen((prev) => !prev)}>
+        <Button
+          size="sm"
+          variant="ghost"
+          className={cn(editor.getAttributes("link").href ? "bg-gray-2" : "")}
+        >
+          {active?.name}
+        </Button>
       </PopoverTrigger>
       <PopoverContent
         align="start"

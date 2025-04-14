@@ -19,9 +19,7 @@ export default function NavTabs({
   );
   return (
     <ClientOnly>
-      <nav
-        className="user-nav-tabs flex gap-4 mb-6 not-prose max-w-full h-[30px] overflow-x-auto scrollbar-hide"
-      >
+      <nav className="user-nav-tabs flex gap-4 mb-6 not-prose max-w-full h-[30px] overflow-x-auto scrollbar-hide">
         {links.map((page) => (
           <Link
             href={page.href}
