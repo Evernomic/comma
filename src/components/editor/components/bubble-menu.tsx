@@ -68,7 +68,11 @@ export default function BubbleMenu() {
         if (editor.isActive("image")) {
           return false;
         }
-        return editor.view.state.selection.content().size > 0;
+        return (
+          editor.view.state.selection.content().size > 0 ||
+          isNodeSelectorOpen ||
+          isLinkSelectorOpen
+        );
       }}
     >
       <NodeSelector
