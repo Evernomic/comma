@@ -18,7 +18,6 @@ export interface BubbleMenuItem {
 }
 
 export default function BubbleMenu() {
-  const [isBubbleMenuOpen, setIsBubbleMenuOpen] = useState<boolean>(false);
   const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
   const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
 
@@ -61,12 +60,6 @@ export default function BubbleMenu() {
       editor={editor}
       tippyOptions={{
         duration: 100,
-        onShow: () => {
-          setIsBubbleMenuOpen(true);
-        },
-        onClickOutside: () => {
-          setIsBubbleMenuOpen(false);
-        },
         onHidden: () => {
           setIsNodeSelectorOpen(false);
           setIsLinkSelectorOpen(false);
@@ -79,8 +72,7 @@ export default function BubbleMenu() {
         if (
           editor.isActive("image") ||
           empty ||
-          isNodeSelection(selection) ||
-          !isBubbleMenuOpen
+          isNodeSelection(selection)
         ) {
           return false;
         }
