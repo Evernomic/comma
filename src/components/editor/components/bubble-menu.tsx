@@ -2,6 +2,7 @@ import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
+  isNodeSelection,
   BubbleMenu as TipTapBubbleMenu,
   useCurrentEditor,
 } from "@tiptap/react";
@@ -17,6 +18,7 @@ export interface BubbleMenuItem {
 }
 
 export default function BubbleMenu() {
+  const [isBubbleMenuOpen, setIsBubbleMenuOpen] = useState<boolean>(false);
   const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
   const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
 
@@ -59,18 +61,31 @@ export default function BubbleMenu() {
       editor={editor}
       tippyOptions={{
         duration: 100,
+        onShow: () => {
+          setIsBubbleMenuOpen(true);
+        },
+        onClickOutside: () => {
+          setIsBubbleMenuOpen(false);
+        },
         onHidden: () => {
           setIsNodeSelectorOpen(false);
           setIsLinkSelectorOpen(false);
         },
       }}
-      shouldShow={({ editor }) => {
-        if (editor.isActive("image")) {
+      shouldShow={({ editor, state }) => {
+        const { selection } = state;
+        const { empty } = selection;
+
+        if (
+          editor.isActive("image") ||
+          empty ||
+          isNodeSelection(selection) ||
+          !isBubbleMenuOpen
+        ) {
           return false;
         }
-        return (
-          editor.view.hasFocus() || isNodeSelectorOpen || isLinkSelectorOpen
-        );
+
+        return true;
       }}
     >
       <NodeSelector
