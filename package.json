@@ -35,7 +35,7 @@
     "@radix-ui/react-switch": "^1.1.2",
     "@radix-ui/react-toast": "^1.2.4",
     "@radix-ui/react-tooltip": "^1.1.6",
-    "@react-email/components": "^0.0.31",
+    "@react-email/components": "^0.0.36",
     "@react-email/font": "^0.0.9",
     "@tanstack/react-query": "^5.67.1",
     "@tanstack/react-table": "^8.20.6",
