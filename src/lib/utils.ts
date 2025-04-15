@@ -462,10 +462,17 @@ export function getPageHref(page: Page) {
   return `/pages/${page.slug}`;
 }
 
-export function updateNavLinks(navLinks: CustomNavItem[], link: CustomNavItem) {
-  if (navLinks.length > 0 && !!navLinks.find((l) => l.pageId === link.pageId)) {
+export function updateNavLinks(
+  navLinks: CustomNavItem[] | null,
+  link: CustomNavItem,
+) {
+  if (
+    navLinks &&
+    navLinks.length > 0 &&
+    !!navLinks.find((l) => l.pageId === link.pageId)
+  ) {
     return navLinks.map((l) => (l.pageId === link.pageId ? { ...link } : l));
   }
 
-  return [...navLinks, link];
+  return [link];
 }
