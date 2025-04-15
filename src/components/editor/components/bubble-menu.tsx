@@ -20,6 +20,7 @@ export interface BubbleMenuItem {
 export default function BubbleMenu() {
   const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
   const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { editor } = useCurrentEditor();
 
@@ -53,8 +54,6 @@ export default function BubbleMenu() {
       icon: Icons.code,
     },
   ];
-
-  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <TipTapBubbleMenu
