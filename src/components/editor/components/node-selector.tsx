@@ -6,20 +6,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { PopoverPortal } from "@radix-ui/react-popover";
 import type { Editor } from "@tiptap/core";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, RefObject, SetStateAction } from "react";
 import type { BubbleMenuItem } from "./bubble-menu";
 
 interface LinkSelectorProps {
   editor: Editor;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }
 
 export default function NodeSelector({
   editor,
   isOpen,
   setIsOpen,
+  containerRef,
 }: LinkSelectorProps) {
   const items: BubbleMenuItem[] = [
     {
@@ -94,30 +97,33 @@ export default function NodeSelector({
           {active?.name}
         </Button>
       </PopoverTrigger>
-      <PopoverContent
-        align="start"
-        className="mt-1 flex flex-col gap-1 rounded-lg"
-      >
-        {items.map((item, i) => {
-          const Icon = item.icon;
-          return (
-            <button
-              className={cn(
-                "flex w-full flex-row items-center gap-2 rounded-md px-2 py-1 text-xs transition-colors hover:bg-gray-2",
-                item.isActive ? "bg-gray-2" : "",
-              )}
-              key={i}
-              onClick={() => {
-                item.command();
-                setIsOpen(false);
-              }}
-            >
-              <Icon size={15} />
-              {item.name}
-            </button>
-          );
-        })}
-      </PopoverContent>
+      <PopoverPortal container={containerRef.current}>
+        <PopoverContent
+          excludePortal
+          align="start"
+          className="mt-1 flex flex-col gap-1 rounded-lg"
+        >
+          {items.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <button
+                className={cn(
+                  "flex w-full flex-row items-center gap-2 rounded-md px-2 py-1 text-xs transition-colors hover:bg-gray-2",
+                  item.isActive ? "bg-gray-2" : "",
+                )}
+                key={i}
+                onClick={() => {
+                  item.command();
+                  setIsOpen(false);
+                }}
+              >
+                <Icon size={15} />
+                {item.name}
+              </button>
+            );
+          })}
+        </PopoverContent>
+      </PopoverPortal>
     </Popover>
   );
 }

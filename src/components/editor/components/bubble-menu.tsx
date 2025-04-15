@@ -6,7 +6,7 @@ import {
   BubbleMenu as TipTapBubbleMenu,
   useCurrentEditor,
 } from "@tiptap/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LinkSelector from "./link-selector";
 import NodeSelector from "./node-selector";
 
@@ -18,7 +18,6 @@ export interface BubbleMenuItem {
 }
 
 export default function BubbleMenu() {
-  const [isBubbleMenuOpen, setIsBubbleMenuOpen] = useState<boolean>(false);
   const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState<boolean>(false);
   const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState<boolean>(false);
 
@@ -55,59 +54,64 @@ export default function BubbleMenu() {
     },
   ];
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <TipTapBubbleMenu
-      className=" z-50 flex flex-row gap-2 rounded-lg border border-gray-2 bg-gray-3 p-1"
       editor={editor}
       tippyOptions={{
         duration: 100,
-        onShow: () => setIsBubbleMenuOpen(true),
-        onClickOutside: () => setIsBubbleMenuOpen(false),
         onHidden: () => {
           setIsNodeSelectorOpen(false);
           setIsLinkSelectorOpen(false);
         },
-        hideOnClick: "toggle",
       }}
       shouldShow={({ editor, state }) => {
         const { selection } = state;
         const { empty } = selection;
 
-        if ((editor.isActive("image") || empty || isNodeSelection(selection)) && !isBubbleMenuOpen) {
+        if (editor.isActive("image") || empty || isNodeSelection(selection)) {
           return false;
         }
 
         return true;
       }}
     >
-      <NodeSelector
-        editor={editor}
-        isOpen={isNodeSelectorOpen}
-        setIsOpen={() => {
-          setIsNodeSelectorOpen(!isNodeSelectorOpen);
-        }}
-      />
-      <LinkSelector
-        editor={editor}
-        isOpen={isLinkSelectorOpen}
-        setIsOpen={() => {
-          setIsLinkSelectorOpen(!isLinkSelectorOpen);
-        }}
-      />
-      {items.map((item, i) => {
-        const Icon = item.icon;
-        return (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={item.command}
-            className={cn(item.isActive ? "bg-gray-2 text-secondary" : "")}
-            key={i}
-          >
-            <Icon size={15} />
-          </Button>
-        );
-      })}
+      <div
+        className="relative z-50 flex flex-row gap-2 rounded-lg border border-gray-2 bg-gray-3 p-1"
+        ref={containerRef}
+      >
+        <NodeSelector
+          containerRef={containerRef}
+          editor={editor}
+          isOpen={isNodeSelectorOpen}
+          setIsOpen={() => {
+            setIsNodeSelectorOpen(!isNodeSelectorOpen);
+          }}
+        />
+        <LinkSelector
+          containerRef={containerRef}
+          editor={editor}
+          isOpen={isLinkSelectorOpen}
+          setIsOpen={() => {
+            setIsLinkSelectorOpen(!isLinkSelectorOpen);
+          }}
+        />
+        {items.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={item.command}
+              className={cn(item.isActive ? "bg-gray-2 text-secondary" : "")}
+              key={i}
+            >
+              <Icon size={15} />
+            </Button>
+          );
+        })}
+      </div>
     </TipTapBubbleMenu>
   );
 }
