@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import Button from "../ui/button";
+import { Gauge } from "../ui/gauge";
 import {
   Popover,
   PopoverClose,
@@ -109,9 +110,9 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
     <div className="fixed left-0 bottom-0 w-full pb-10 mx-auto flex justify-center max-sm:hidden">
       <BlurEffect />
       <Popover>
-        <PopoverTrigger className="bg-gray-3 z-50 cursor-pointer border border-gray-2 text-center px-4 py-2  rounded-full transition-colors hover:bg-gray-2 data-[state=open]:bg-gray-2">
+        <PopoverTrigger className="bg-gray-3 z-50 cursor-pointer border border-gray-2 text-center px-3 py-2 flex items-center gap-2  rounded-full transition-colors hover:bg-gray-2 data-[state=open]:bg-gray-2">
+          <Gauge value={completedTasksRate} />
           <div className="text-sm">Getting started</div>
-          <p className="text-xs text-gray-4">{completedTasksRate}% complete</p>
         </PopoverTrigger>
         <PopoverContent
           sideOffset={10}
@@ -132,7 +133,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
             </PopoverClose>
           </div>
           <div className="p-3 py-4 bg-gray-2/30 border-b border-b-gray-2">
-            <div className="text-base font-semibold">Getting started</div>
+            <div className="text-base">Getting started</div>
             <p className="text-sm text-gray-4 mt-1">
               Get familiar with {siteConfig.name} by completing the following
               tasks.
