@@ -2,6 +2,7 @@ import AppCommand from "@/components/layout/app-command";
 import AppNav from "@/components/layout/app-nav";
 import ThemeProvider from "@/components/providers/theme-provider";
 import Onboarding from "@/components/shared/onboarding";
+import OnboardingChecklist from "@/components/shared/onboarding-checklist";
 import { appConfig } from "@/config/app";
 import { getUser } from "@/lib/fetchers/users";
 import { generateSEO } from "@/lib/utils";
@@ -26,13 +27,14 @@ export default async function AppLayout({
     return <Onboarding user={user} />;
   }
   return (
-    <div className="mx-auto flex min-h-screen w-[700px] flex-col  max-md:px-4  pb-10 max-md:w-full">
+    <div className="mx-auto relative flex min-h-screen w-[700px] flex-col  max-md:px-4  pb-20 max-md:w-full">
       <ThemeProvider>
         <header className="w-full py-4">
           <AppNav links={appConfig.mainNav} user={user} />
         </header>
         <main className="w-full">{children}</main>
         <AppCommand user={user} />
+        <OnboardingChecklist user={user} />
       </ThemeProvider>
     </div>
   );
