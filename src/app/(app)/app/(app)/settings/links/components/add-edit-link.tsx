@@ -16,7 +16,14 @@ import type { Social } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -25,10 +32,12 @@ type FormData = z.infer<typeof socialLinkSchema>;
 export default function AddEditLinkModal({
   initialLinks,
   link,
+  setLinks,
   edit,
 }: {
   initialLinks: Social[];
   link?: Social;
+  setLinks: Dispatch<SetStateAction<Social[]>>;
   edit?: boolean;
 }) {
   const [showAddEditLinkModal, setShowAddEditLinkModal] =
@@ -68,35 +77,21 @@ export default function AddEditLinkModal({
 
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
-      const res = await fetch("/api/user", {
-        method: "PATCH",
-        body: JSON.stringify({
-          links: [
-            ...(initialLinks
-              ? link && edit
-                ? initialLinks.map((l) =>
-                    l.id === link.id ? { id: l.id, ...data } : l,
-                  )
-                : [...initialLinks, { id: nanoid(), ...data }]
-              : [{ id: nanoid(), ...data }]),
-          ],
-        }),
-      });
+      const updated = [
+        ...(initialLinks
+          ? link && edit
+            ? initialLinks.map((l) =>
+                l.id === link.id ? { id: l.id, ...data } : l,
+              )
+            : [...initialLinks, { id: nanoid(), ...data }]
+          : [{ id: nanoid(), ...data }]),
+      ];
 
-      const body = await res.text();
-      if (!res?.ok) {
-        toast({
-          title: "Something went wrong.",
-          description: body,
-        });
-      } else {
-        router.refresh();
-        setShowAddEditLinkModal(false);
-        reset();
-        toast({
-          title: successMessage,
-        });
-      }
+      setLinks(updated);
+      setShowAddEditLinkModal(false);
+      toast({
+        title: successMessage,
+      });
     });
   };
 

@@ -70,7 +70,7 @@ export default function SocialLinks({
               key={link.id}
             />
           ))}
-          <AddEditLinkModal initialLinks={links} />
+          <AddEditLinkModal initialLinks={links} setLinks={setLinks} />
         </div>
       </Reorder.Group>
     </div>
@@ -132,7 +132,12 @@ function Link({
           >
             <Icons.trash size={15} />
           </Button>
-          <AddEditLinkModal initialLinks={links} link={link} edit />
+          <AddEditLinkModal
+            initialLinks={links}
+            link={link}
+            setLinks={setLinks}
+            edit
+          />
         </div>
       </div>
     </Reorder.Item>
