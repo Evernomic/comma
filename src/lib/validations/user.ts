@@ -7,6 +7,13 @@ export const categoryValues = userCategories.map((c) => c.value) as [
   ...string[],
 ];
 export const locationValues = Object.keys(countries) as [string, ...string[]];
+
+export const socialLinkSchema = z.object({
+  title: z.string().min(1).max(25),
+  url: z.string().url(),
+  username: z.string().min(1),
+});
+
 export const updateUserSchema = z
   .object({
     name: z.string().min(1).max(48),
@@ -82,6 +89,23 @@ export const updateUserSchema = z
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: "Hrefs must be unique.",
+          });
+        }
+      }),
+    links: z
+      .array(
+        socialLinkSchema.extend({
+          id: z.string().min(1),
+        }),
+      )
+      .superRefine((links, ctx) => {
+        const positions = links.map((s) => s.id);
+        const uniquePositions = new Set(positions);
+
+        if (positions.length !== uniquePositions.size) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "IDs must be unique.",
           });
         }
       }),

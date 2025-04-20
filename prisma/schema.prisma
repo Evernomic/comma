@@ -69,11 +69,6 @@ model User {
   seoTitle              String?
   seoDescription        String?
   ogImage               String?
-  twitter               String?
-  github                String?
-  linkedin              String?
-  dribbble              String?
-  contactEmail          String?
   lsId                  String?          @unique
   lsVariantId           String?
   lsCurrentPeriodEnd    DateTime?
@@ -91,6 +86,7 @@ model User {
   userDefaultTheme      String?
   sections              Json?
   navLinks              Json?
+  links                 Json?
   showOnExplore         Boolean          @default(true)
   showCustomHomePage    Boolean          @default(false)
   customHomePageContent String?

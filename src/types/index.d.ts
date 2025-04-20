@@ -126,11 +126,11 @@ export type UserSubscriptionPlan = Plan &
     status?: Subscription["data"]["attributes"]["status"];
   };
 
-export type social = {
-  platform: "Github" | "Linkedin" | "Twitter" | "Dribbble" | "Email";
-  username: string | null;
+export type Social = {
+  id: string;
+  title: string;
+  username: string;
   url: string;
-  icon: Icon;
 };
 
 export type Period = keyof Plan["price"];
