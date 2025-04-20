@@ -12,7 +12,7 @@ export default function Connect({
 }) {
   const links = getLinks(user);
 
-  if (links.every((link) => !link?.username?.length)) {
+  if (links === null) {
     return null;
   }
   return (
@@ -22,29 +22,16 @@ export default function Connect({
       </dt>
       <dd className="section-content flex flex-col">
         {links.map((link) => {
-          const href =
-            link.platform === "Linkedin"
-              ? !link.username?.startsWith("company") &&
-                !link.username?.startsWith("in")
-                ? `${link.url}in/${link.username}`
-                : `${link.url}${link.username}`
-              : `${link.url}${link.username === null ? "" : link.username}`;
           return (
             <Link
-              href={href}
+              href={link.url}
               className="flex text-gray-4 items-center group -mx-2  relative justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 "
-              key={
-                link.url + link.username === null
-                  ? ""
-                  : link.username + `-${link.platform}`
-              }
+              key={link.id}
               target="_blank"
             >
-              <p>{link.platform}</p>
+              <p>{link.title}</p>
               <span className="flex gap-1 group-hover:text-secondary transition-colors">
-                {(link.username?.includes("/")
-                  ? link.username.split("/")[1]
-                  : link.username) || link.url}{" "}
+                {link.username}
                 <Icons.arrowUpRight size={14} />
               </span>
             </Link>

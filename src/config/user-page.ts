@@ -1,4 +1,4 @@
-import type { UserPageConfig } from "@/types";
+import type { Social, UserPageConfig } from "@/types";
 import type { User } from "@prisma/client";
 
 export const userPageConfig: UserPageConfig = {
@@ -66,42 +66,10 @@ export const userPageConfig: UserPageConfig = {
   ],
 } as const;
 
-export const getLinks = (
-  user: Pick<
-    User,
-    "github" | "twitter" | "dribbble" | "linkedin" | "contactEmail"
-  >,
-) => {
-  return [
-    {
-      platform: "Twitter",
-      username: user.twitter,
-      url: "https://x.com/",
-      icon: "twitter",
-    },
-    {
-      platform: "Linkedin",
-      username: user.linkedin,
-      url: "https://linkedin.com/",
-      icon: "linkedin",
-    },
-    {
-      platform: "Dribbble",
-      username: user.dribbble,
-      url: "https://dribbble.com/",
-      icon: "dribbble",
-    },
-    {
-      platform: "Github",
-      username: user.github,
-      url: "https://github.com/",
-      icon: "github",
-    },
-    {
-      platform: "Email",
-      username: user.contactEmail,
-      url: "mailto:",
-      icon: "mail",
-    },
-  ].filter((l) => l.username);
+export const getLinks = (user: Pick<User, "links">) => {
+  const links = user.links as Social[];
+  if (links.length > 0) {
+    return links;
+  }
+  return null;
 };
