@@ -42,12 +42,6 @@ export async function GET(req: Request) {
                 mode: "insensitive",
               },
             },
-            {
-              contactEmail: {
-                contains: search,
-                mode: "insensitive",
-              },
-            },
           ],
         }),
         ...(category &&
