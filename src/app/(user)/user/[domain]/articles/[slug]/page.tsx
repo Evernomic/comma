@@ -104,6 +104,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <Link
             href={`/articles/tags/${tag}`}
             className="transition-colors hover:text-secondary"
+            key={tag}
           >
             {`#${tag}`}
           </Link>
