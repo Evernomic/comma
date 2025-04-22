@@ -10,12 +10,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Input from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 import { socialLinkSchema } from "@/lib/validations/user";
 import type { Social } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "nanoid";
-import { useRouter } from "next/navigation";
 import {
   Dispatch,
   SetStateAction,
@@ -43,7 +41,6 @@ export default function AddEditLinkModal({
   const [showAddEditLinkModal, setShowAddEditLinkModal] =
     useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
-  const router = useRouter();
 
   const { title, successMessage } = useMemo(() => {
     if (edit && link) {
@@ -89,9 +86,6 @@ export default function AddEditLinkModal({
 
       setLinks(updated);
       setShowAddEditLinkModal(false);
-      toast({
-        title: successMessage,
-      });
     });
   };
 
@@ -128,14 +122,14 @@ export default function AddEditLinkModal({
           />
           <Input
             type="url"
-            placeholder="https://example.com"
+            placeholder="Profile link"
             error={!!errors.url}
             disabled={isPending}
             {...register("url")}
           />
 
           <Input
-            placeholder="Username"
+            placeholder="Display name (optional)"
             error={!!errors.username}
             disabled={isPending}
             {...register("username")}

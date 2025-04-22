@@ -11,7 +11,7 @@ export const locationValues = Object.keys(countries) as [string, ...string[]];
 export const socialLinkSchema = z.object({
   title: z.string().min(1).max(25),
   url: z.string().url(),
-  username: z.string().min(1),
+  username: z.string().optional().nullable(),
 });
 
 export const updateUserSchema = z
