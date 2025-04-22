@@ -108,11 +108,17 @@ export async function getArticlesByAuthor(
   authorId: string,
   limit?: number,
   published = true,
+  tag?: string,
 ) {
   return await db.article.findMany({
     where: {
       authorId,
       published,
+      ...(tag && {
+        tags: {
+          has: tag,
+        },
+      }),
     },
     take: limit,
     orderBy: {

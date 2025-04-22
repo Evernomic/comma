@@ -14,6 +14,7 @@ import {
 } from "@/lib/utils";
 import { UserPageSection } from "@/types";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Newsletter from "../components/newsletter";
 
@@ -98,6 +99,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </AppHeader>
       <MDX source={article.content} />
+      <div className="text-gray-4 flex items-center gap-2 mt-5">
+        {article.tags.map((tag) => (
+          <Link
+            href={`/articles/tags/${tag}`}
+            className="transition-colors hover:text-secondary"
+          >
+            {`#${tag}`}
+          </Link>
+        ))}
+      </div>
       <div className="mt-5">
         <Newsletter
           title={getSectionTitle(0, user.sections as UserPageSection[])}

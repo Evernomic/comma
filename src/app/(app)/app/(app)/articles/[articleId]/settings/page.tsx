@@ -73,6 +73,17 @@ export default async function ArticleSettings({
           folder="editor-uploads"
         />
         <Form
+          endpoint={endpoint}
+          title="Article tags"
+          type="tag-input"
+          description="It will be used to group related content and improve searchability."
+          inputData={{
+            name: "tags",
+            defaultValue: article.tags ?? [],
+          }}
+          required
+        />
+        <Form
           title="SEO title"
           description="This title will be used for SEO. It's best to keep it between 50-60 characters."
           helpText="Please use 60 characters at maximum."

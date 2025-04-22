@@ -146,6 +146,7 @@ model Article {
   authorId             String
   canonicalURL         String?
   author               User      @relation(fields: [authorId], references: [id])
+  tags                 String[]
 
   @@unique([authorId, slug])
   @@map("articles")
