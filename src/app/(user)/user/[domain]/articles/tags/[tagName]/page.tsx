@@ -9,13 +9,12 @@ import { notFound } from "next/navigation";
 interface TagPageProps {
   params: Promise<{
     domain: string;
-    tag: string;
+    tagName: string;
   }>;
 }
 
 export default async function TagPage({ params }: TagPageProps) {
   const param = await params;
-
   const domain = decodeURIComponent(param.domain);
   const user = await getUserByDomain(domain);
   if (!user) {
@@ -26,12 +25,12 @@ export default async function TagPage({ params }: TagPageProps) {
     user.id,
     undefined,
     true,
-    param.tag,
+    param.tagName,
   );
 
   return (
     <AppShell>
-      <AppHeader title={`#${param.tag}`} />
+      <AppHeader title={`#${param.tagName}`} />
       <div>
         {articles.map((article) => (
           <Article article={article} key={article.id} />

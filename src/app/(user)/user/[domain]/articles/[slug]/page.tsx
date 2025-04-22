@@ -99,17 +99,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </AppHeader>
       <MDX source={article.content} />
-      <div className="text-gray-4 flex items-center gap-2 mt-5">
-        {article.tags.map((tag) => (
-          <Link
-            href={`/articles/tags/${tag}`}
-            className="transition-colors hover:text-secondary"
-            key={tag}
-          >
-            {`#${tag}`}
-          </Link>
-        ))}
-      </div>
+      {article.tags.length > 0 ? (
+        <div className="text-gray-4 flex items-center gap-2 mt-5">
+          {article.tags.map((tag) => (
+            <Link
+              href={`/articles/tags/${tag}`}
+              className="transition-colors hover:text-secondary"
+              key={tag}
+            >
+              {`#${tag}`}
+            </Link>
+          ))}
+        </div>
+      ) : null}
       <div className="mt-5">
         <Newsletter
           title={getSectionTitle(0, user.sections as UserPageSection[])}
