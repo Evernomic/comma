@@ -25,13 +25,14 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Switch } from "../ui/switch";
+import { TagInput } from "../ui/tag-input";
 import { Textarea } from "../ui/textarea";
 import { toast } from "../ui/use-toast";
 
 interface FormProps {
   title: string;
   description?: string;
-  type?: "input" | "textarea";
+  type?: "input" | "textarea" | "tag-input";
   helpText?: string;
   inputData?: React.InputHTMLAttributes<HTMLInputElement>;
   textareaData?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
@@ -233,6 +234,8 @@ export default function Form({
                   </div>
                 )}
               </>
+            ) : type === "tag-input" ? (
+              <TagInput value={value} onValueChange={setValue} />
             ) : (
               <Textarea
                 className="w-[350px] max-md:w-full"

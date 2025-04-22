@@ -17,5 +17,23 @@ export const articlePatchSchema = z
     published: z.boolean(),
     publishedAt: z.string().date(),
     canonicalURL: z.string().url().nullable(),
+    tags: z
+      .array(z.string().min(1))
+      .superRefine((tags, ctx) => {
+        const uniqueTags = new Set(tags);
+
+        if (tags.length !== uniqueTags.size) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Tags must be unique.",
+          });
+        }
+      })
+      .or(
+        z
+          .string()
+          .nullable()
+          .transform(() => []),
+      ),
   })
   .partial();
