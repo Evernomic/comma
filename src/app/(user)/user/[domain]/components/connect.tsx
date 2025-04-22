@@ -30,10 +30,12 @@ export default function Connect({
               target="_blank"
             >
               <p>{link.title}</p>
-              <span className="flex gap-1 group-hover:text-secondary transition-colors">
-                {link.username}
-                <Icons.arrowUpRight size={14} />
-              </span>
+              {link.username && (
+                <span className="flex gap-1 group-hover:text-secondary transition-colors">
+                  {link.username}
+                  <Icons.arrowUpRight size={14} />
+                </span>
+              )}
             </Link>
           );
         })}

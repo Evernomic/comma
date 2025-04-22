@@ -129,7 +129,7 @@ export type UserSubscriptionPlan = Plan &
 export type Social = {
   id: string;
   title: string;
-  username: string;
+  username?: string | null;
   url: string;
 };
 
