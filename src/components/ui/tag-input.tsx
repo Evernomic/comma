@@ -56,8 +56,6 @@ const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
   },
 );
 
+TagInput.displayName = "TagInput";
 
-TagInput.displayName = "TagInput"
-
-
-export {TagInput}
+export { TagInput };

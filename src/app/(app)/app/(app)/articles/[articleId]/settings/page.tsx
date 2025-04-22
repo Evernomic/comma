@@ -79,7 +79,7 @@ export default async function ArticleSettings({
           description="It will be used to group related content and improve searchability."
           inputData={{
             name: "tags",
-            defaultValue: article.tags ?? [],
+            defaultValue: article?.tags ?? [],
           }}
           required
         />

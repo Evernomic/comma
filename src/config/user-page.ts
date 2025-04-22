@@ -67,9 +67,8 @@ export const userPageConfig: UserPageConfig = {
 } as const;
 
 export const getLinks = (user: Pick<User, "links">) => {
-  const links = user.links as Social[];
-  if (links.length > 0) {
-    return links;
+  if ((user.links as Social[])?.length > 0) {
+    return user.links as Social[];
   }
   return null;
 };
