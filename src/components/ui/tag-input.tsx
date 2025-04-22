@@ -8,7 +8,7 @@ type TagInputProps = InputProps & {
   onValueChange: Dispatch<SetStateAction<string[]>>;
 };
 
-export const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
+const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
   ({ value, onValueChange, ...props }, ref) => {
     const [pendingDataPoint, setPendingDataPoint] = useState("");
 
@@ -55,3 +55,9 @@ export const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
     );
   },
 );
+
+
+TagInput.displayName = "TagInput"
+
+
+export {TagInput}
