@@ -38,7 +38,7 @@ export default function Projects({
         />
       </dt>
       <dd className="section-content">
-        {projects.slice(0, 5).map((project) => (
+        {projects.slice(0, 5).sort((a, b) => Number(b.isPinned) - Number(a.isPinned)).map((project) => (
           <Project project={project} key={project.id} />
         ))}
       </dd>

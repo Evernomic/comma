@@ -56,7 +56,7 @@ export default async function Subscribers() {
                   : "Connect to Beehiiv"}
               </NavButton>
             </div>
-            <Newsletter  checked={user.newsletter} />
+            <Newsletter checked={user.newsletter} />
           </div>
           <DataTable
             columns={columns}

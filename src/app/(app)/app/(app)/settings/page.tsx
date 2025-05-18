@@ -7,7 +7,6 @@ import AppShell from "@/components/layout/app-shell";
 import { siteConfig } from "@/config/site";
 import { userCategories, userLocations } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
-import { getUserSubscription } from "@/lib/subscription";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -21,8 +20,6 @@ export default async function Settings() {
   if (!user) {
     return notFound();
   }
-
-  const plan = await getUserSubscription(user.id);
   return (
     <AppShell>
       <Form
@@ -141,19 +138,6 @@ export default async function Settings() {
           defaultChecked: user.showOnExplore,
         }}
         toggle
-      />
-      <Form
-        title="Branding"
-        description="Show or hide branding"
-        endpoint={endpoint}
-        required={false}
-        inputData={{
-          type: "checkbox",
-          name: "showBranding",
-          defaultChecked: user.showBranding,
-        }}
-        toggle
-        proFeature={!plan.isPro}
       />
       <Form title="Export" endpoint={`${endpoint}/export`} asChild>
         <ExportButton

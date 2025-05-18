@@ -64,7 +64,7 @@ export default async function UserLayout({ children, params }: LayoutProps) {
           <NuqsAdapter>{children}</NuqsAdapter>
         </main>
         <Track />
-        <BottomNav user={user} />
+        {user.showBottomNav ? <BottomNav user={user} /> : null}
       </ThemeProvider>
     </div>
   );

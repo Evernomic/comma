@@ -15,6 +15,7 @@ export const articlePatchSchema = z
     ogImage: z.string().url().nullable(),
     image: z.string().url().nullable(),
     published: z.boolean(),
+    isPinned: z.boolean(),
     publishedAt: z.string().date(),
     canonicalURL: z.string().url().nullable(),
     tags: z

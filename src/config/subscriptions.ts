@@ -52,8 +52,8 @@ export const proPlan: Plan = {
   title: "Pro",
   description: "Unlimited Plan",
   price: {
-    monthly: 4,
-    yearly: 40,
+    monthly: 6,
+    yearly: 60,
   },
   maxPostLimit: "∞",
   features: [

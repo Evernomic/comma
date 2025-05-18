@@ -127,14 +127,17 @@ export function getSubdomain(name: string, apex: string) {
 export function sortArticles(articles: Article[], published?: string) {
   return articles
     .filter((a) => (published ? a.published.toString() === published : a))
-    .sort((a, b) => Number(b.published) - Number(a.published));
+    .sort((a, b) => {
+      return  Number(b.isPinned) - Number(a.isPinned) || Number(b.published) - Number(a.published)
+    });
 }
 
 export function sortProjects(projects: Project[], published?: string) {
   return projects
     .filter((p) => (published ? p.published.toString() === published : p))
-    .sort((a, b) => Number(b.published) - Number(a.published));
-}
+    .sort((a, b) => {
+      return  Number(b.isPinned) - Number(a.isPinned) || Number(b.published) - Number(a.published)
+    });}
 
 export function sortBookmarks(
   bookmarks: BookmarkWithCollection[],
@@ -142,7 +145,7 @@ export function sortBookmarks(
 ) {
   return bookmarks.filter((b) =>
     collection ? collection === b.collection?.name : b,
-  );
+  ).sort((a, b) => Number(b.isPinned) - Number(a.isPinned))
 }
 
 export function sortPages(pages: Page[], published?: string) {

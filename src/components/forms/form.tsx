@@ -47,6 +47,7 @@ interface FormProps {
   selectType?: "default" | "combobox";
   children?: React.ReactNode;
   proFeature?: boolean;
+  toggleStates?: [string, string];
 }
 
 export default function Form({
@@ -64,6 +65,7 @@ export default function Form({
   required = true,
   asChild = false,
   toggle = false,
+  toggleStates = ["Enabled", "Disabled"],
   selectOptions = undefined,
   selectType = "default",
   proFeature = false,
@@ -153,7 +155,9 @@ export default function Form({
                       disabled={saving}
                     />{" "}
                     <label>
-                      {inputData?.defaultChecked ? "Enabled" : "Disabled"}
+                      {inputData?.defaultChecked
+                        ? toggleStates[0]
+                        : toggleStates[1]}
                     </label>
                     {suffix}
                   </div>

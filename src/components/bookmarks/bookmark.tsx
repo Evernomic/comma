@@ -6,10 +6,12 @@ import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Badge } from "../ui/badge";
 import Favicon from "./bookmark-favicon";
 import BookmarkOperations from "./bookmark-operations";
+import { Icons } from "../shared/icons";
+import { Pin } from "lucide-react";
 
 interface Props {
   admin?: boolean;
-  bookmark: Pick<BookmarkType, "id" | "title" | "url" | "clicks">;
+  bookmark: Pick<BookmarkType, "id" | "title" | "url" | "clicks" | "isPinned">;
   collection?: Pick<Collection, "id" | "name">;
   collections?: Collection[];
 }
@@ -32,8 +34,9 @@ export default function Bookmark({
       <Favicon url={bookmark.url} alt={`${bookmark.title} Favicon`} size={20} />
       <div className="flex w-full gap-2  max-md:items-start max-md:gap-1 max-md:mt-1">
         <div className="flex-1  flex flex-col    max-md:flex-col max-md:items-start max-md:gap-0">
-          <div>
+          <div className="flex gap-1 items-center">
             <Balancer>{bookmark.title}</Balancer>
+            {bookmark.isPinned && <Pin size={15} className="text-gray-4" />}
           </div>
           <p className="text-gray-4 text-sm">
             {getDomainFromURL(bookmark.url)}

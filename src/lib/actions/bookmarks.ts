@@ -30,6 +30,7 @@ export async function updateBookmark(
       title: data.title,
       url: data.url,
       collectionId: data.collection,
+      isPinned: data.isPinned
     },
   });
 }

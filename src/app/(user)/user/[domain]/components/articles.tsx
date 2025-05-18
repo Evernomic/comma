@@ -1,6 +1,6 @@
 import Article from "@/components/articles/article";
 import { Icons } from "@/components/shared/icons";
-import { cn } from "@/lib/utils";
+import { cn, sortArticles } from "@/lib/utils";
 import type { Article as _Article } from "@prisma/client";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ export default async function Articles({
         />
       </dt>
       <dd className="section-content">
-        {articles.slice(0, 5).map((article) => (
+        {sortArticles(articles.slice(0, 5)).map((article) => (
           <Article article={article} key={article.id} />
         ))}
       </dd>

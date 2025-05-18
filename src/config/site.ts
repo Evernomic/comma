@@ -19,8 +19,8 @@ export const siteConfig: SiteConfig = {
     signup: "https://app.comma.to/signup",
     login: "https://app.comma.to/login",
     twitter: "https://x.com/arianadeliii",
-    github: "https://github.com/ArianAdeli/comma",
-    help: "mailto:hello@comma.to",
+    github: "https://github.com/Evernomic/comma",
+    help: "mailto:hi@comma.to",
     demo: "https://arian.comma.to",
   },
 } as const;

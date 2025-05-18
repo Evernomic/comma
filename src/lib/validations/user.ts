@@ -42,6 +42,7 @@ export const updateUserSchema = z
     password: z.string().nullable(),
     showBranding: z.boolean(),
     showOnExplore: z.boolean(),
+    showBottomNav: z.boolean(),
     showCustomHomePage: z.boolean(),
     customHomePageContent: z.string(),
     userDefaultTheme: z.enum(["dark", "light"]),

@@ -89,6 +89,7 @@ model User {
   links                 Json?
   showOnExplore         Boolean          @default(true)
   showCustomHomePage    Boolean          @default(false)
+  showBottomNav         Boolean          @default(true)
   customHomePageContent String?
   beehiivKey            String?
   beehiivPublicationId  String?
@@ -147,6 +148,7 @@ model Article {
   canonicalURL         String?
   author               User      @relation(fields: [authorId], references: [id])
   tags                 String[]
+  isPinned             Boolean   @default(false)
 
   @@unique([authorId, slug])
   @@map("articles")
@@ -171,6 +173,7 @@ model Project {
   password       String?
   authorId       String
   author         User     @relation(fields: [authorId], references: [id])
+  isPinned       Boolean  @default(false)
 
   @@unique([authorId, slug])
   @@map("projects")
@@ -197,6 +200,7 @@ model Bookmark {
   collectionId String?
   author       User        @relation(fields: [authorId], references: [id])
   collection   Collection? @relation(fields: [collectionId], references: [id])
+  isPinned     Boolean     @default(false)
 
   @@map("bookmarks")
 }

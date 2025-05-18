@@ -19,7 +19,13 @@ export default function AppHeader({
   className,
   backButton = false,
 }: Props) {
-  if (!title && !backButton && !asChild && !titleAsChild && React.isValidElement(children)) {
+  if (
+    !title &&
+    !backButton &&
+    !asChild &&
+    !titleAsChild &&
+    React.isValidElement(children)
+  ) {
     return null;
   }
 

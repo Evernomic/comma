@@ -5,6 +5,7 @@ import AppShell from "@/components/layout/app-shell";
 import NavButton from "@/components/layout/nav-button";
 import { defaultThemeOptions } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
+import { getUserSubscription } from "@/lib/subscription";
 import { CustomNavItem, UserPageSection } from "@/types";
 import type { Metadata } from "next";
 
@@ -19,6 +20,10 @@ export default async function CustomizePage() {
     return null;
   }
 
+  const endpoint = "user";
+
+  const plan = await getUserSubscription(user.id);
+
   return (
     <AppShell>
       <Form endpoint="/" title="Navigation" asChild>
@@ -28,7 +33,7 @@ export default async function CustomizePage() {
         <ReorderSections defaultOrder={user.sections as UserPageSection[]} />
       </Form>
       <Form
-        endpoint="user"
+        endpoint={endpoint}
         title="Default theme"
         description="Your page will open in your chosen theme by default."
         selectOptions={defaultThemeOptions}
@@ -40,9 +45,34 @@ export default async function CustomizePage() {
         required
       />
       <Form
+        title="Bottom navigation"
+        description="Show or hide bottom navigation"
+        endpoint={endpoint}
+        required={false}
+        inputData={{
+          type: "checkbox",
+          name: "showBottomNav",
+          defaultChecked: user.showBottomNav,
+        }}
+        toggle
+      />
+      <Form
+        title="Branding"
+        description="Show or hide branding"
+        endpoint={endpoint}
+        required={false}
+        inputData={{
+          type: "checkbox",
+          name: "showBranding",
+          defaultChecked: user.showBranding,
+        }}
+        toggle
+        proFeature={!plan.isPro}
+      />
+      <Form
         title="Custom home page"
         description="Edit your homepage with the editor."
-        endpoint="user"
+        endpoint={endpoint}
         required={false}
         inputData={{
           type: "checkbox",
