@@ -92,6 +92,19 @@ export default async function ProjectSettings({
           }}
           required={false}
         />
+        <Form
+          title="Project pin"
+          description="Pin or unpin your project"
+          endpoint={endpoint}
+          required={false}
+          inputData={{
+            type: "checkbox",
+            name: "isPinned",
+            defaultChecked: project.isPinned,
+          }}
+          toggle
+          toggleStates={["Unpin", "Pin"]}
+        />
         <UploadImage
           title="Project icon"
           description="This icon will be displayed next to the title"

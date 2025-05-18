@@ -30,7 +30,7 @@ import { toast } from "../ui/use-toast";
 
 type FormData = z.infer<typeof bookmarkFormSchema>;
 
-export type Bookmark = Pick<BookmarkType, "id" | "title" | "url"> & {
+export type Bookmark = Pick<BookmarkType, "id" | "title" | "url" | "isPinned"> & {
   collection?: Collection;
 };
 

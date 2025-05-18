@@ -1,6 +1,6 @@
 import Bookmark from "@/components/bookmarks/bookmark";
 import { Icons } from "@/components/shared/icons";
-import { cn } from "@/lib/utils";
+import { cn, sortBookmarks } from "@/lib/utils";
 import type { BookmarkWithCollection } from "@/types";
 import { Collection } from "@prisma/client";
 import Link from "next/link";
@@ -37,7 +37,7 @@ export default function Bookmarks({
         />
       </dt>
       <dd className="section-content">
-        {bookmarks.slice(0, 5).map((bookmark) => (
+        {sortBookmarks(bookmarks.slice(0, 5)).map((bookmark) => (
           <Bookmark
             bookmark={bookmark}
             collection={bookmark?.collection as Collection}

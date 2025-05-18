@@ -26,6 +26,7 @@ export const projectPatchSchema = z
     ogImage: z.string().url().nullable(),
     image: z.string().url().nullable(),
     published: z.boolean(),
+    isPinned: z.boolean(),
     password: z.string().nullable(),
   })
   .partial();

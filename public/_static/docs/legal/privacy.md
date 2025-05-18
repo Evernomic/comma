@@ -14,4 +14,4 @@ We use your information to provide our Services, to improve our Platform, to und
 
 ## **Contact Us**
 
-For privacy-related questions, please contact us at [hello@comma.to](mailto:hello@comma.to).
+For privacy-related questions, please contact us at [hi@comma.to](mailto:hi@comma.to).

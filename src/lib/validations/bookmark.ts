@@ -9,6 +9,7 @@ export const bookmarkSchema = z.object({
   title: z.string().min(1),
   url: z.string().url(),
   collection: z.string().min(1).nullable().optional(),
+  isPinned: z.boolean().optional(),
 });
 
 export const bookmarkFormSchema = z.object({

@@ -84,6 +84,19 @@ export default async function ArticleSettings({
           required
         />
         <Form
+          title="Article pin"
+          description="Pin or unpin your article"
+          endpoint={endpoint}
+          required={false}
+          inputData={{
+            type: "checkbox",
+            name: "isPinned",
+            defaultChecked: article.isPinned,
+          }}
+          toggle
+          toggleStates={["Unpin", "Pin"]}
+        />
+        <Form
           title="SEO title"
           description="This title will be used for SEO. It's best to keep it between 50-60 characters."
           helpText="Please use 60 characters at maximum."

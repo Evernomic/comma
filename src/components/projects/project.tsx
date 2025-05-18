@@ -5,6 +5,8 @@ import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
+import { Pin } from "lucide-react";
+import ProjectOperations from "./project-operations";
 
 interface Props {
   admin?: boolean;
@@ -19,6 +21,7 @@ interface Props {
     | "published"
     | "image"
     | "url"
+    | "isPinned"
   > & {
     isProtected: boolean;
   };
@@ -58,6 +61,8 @@ export default function Project({ project, admin }: Props) {
             )}
 
             <p className="text-gray-4">{project.year}</p>
+
+            {project.isPinned && <Pin size={15} className="text-gray-4 -ml-1" />}
           </div>
           <p className="text-gray-4">{project?.description}</p>
         </div>
@@ -86,6 +91,7 @@ export default function Project({ project, admin }: Props) {
                 published={project.published}
                 index="views"
               />
+              <ProjectOperations project={project} />
             </>
           )}
         </div>
