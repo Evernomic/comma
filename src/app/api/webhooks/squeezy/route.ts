@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import WelcomeEmailPaid from "@/emails/welcome-email-paid";
 import { db } from "@/lib/db";
 import { removeDomain } from "@/lib/domains";
@@ -61,6 +62,7 @@ export async function POST(req: Request) {
         await resend.emails.send({
           from: `Comma <system@mail.comma.to>`,
           to: user.email,
+          reply_to: siteConfig.supportEmail,
           subject: "Welcome to Comma Pro",
           react: WelcomeEmailPaid({ name: user.name ?? user.username }),
         });

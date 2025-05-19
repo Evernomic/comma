@@ -99,6 +99,7 @@ export async function POST(req: NextRequest) {
       createSubscriber(user.id, body.data),
       resend.emails.send({
         from: `Comma Notify <notify@${siteConfig.mailDomain}>`,
+        reply_to: siteConfig.supportEmail,
         to: user.email,
         subject: "New Subscriber",
         react: NewSubscriber({
