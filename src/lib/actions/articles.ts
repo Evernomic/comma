@@ -136,6 +136,7 @@ export async function sendNewsletterEmail({
     to,
     subject,
     react: Newsletter(newsletter),
+    reply_to: siteConfig.supportEmail,
     headers: {
       "X-Entity-Ref-ID": nanoid(),
     },

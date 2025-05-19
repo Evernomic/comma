@@ -33,6 +33,7 @@ const authOptions: NextAuthOptions = {
           from: provider.from as string,
           to: identifier as string,
           subject: "Welcome to Comma",
+          reply_to: siteConfig.supportEmail,
           react: MagicLinkEmail({ url }),
         });
       },

@@ -50,6 +50,7 @@ export type SiteConfig = {
   domain: string;
   userDomain: string;
   mailDomain: string;
+  supportEmail: string;
   ogImage: string;
   links: {
     home: string;
