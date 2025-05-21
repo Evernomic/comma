@@ -11,7 +11,7 @@ import MagicLinkEmail from "../../emails/magic-link";
 import { db } from "./db";
 import { getUser } from "./fetchers/users";
 import log from "./log";
-import { resend } from "./resend";
+import { addContact, resend } from "./resend";
 import { getUserSubscription } from "./subscription";
 import { getSearchParams } from "./utils";
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
@@ -103,12 +103,16 @@ const authOptions: NextAuthOptions = {
   },
   events: {
     async signIn(message) {
+      const { user } = message;
       if (message.isNewUser) {
-        await log(
-          "New user logged in",
-          `${message.user.email} new user logged in`,
-          message.user.id,
-        );
+        await Promise.allSettled([
+          addContact(user.email!, user.name ?? undefined),
+          log(
+            "New user logged in",
+            `${user.email} new user logged in`,
+            user.id,
+          ),
+        ]);
       } else {
         await log(
           "User logged in",

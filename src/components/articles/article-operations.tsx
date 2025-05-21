@@ -10,14 +10,13 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-import { toast } from "../ui/use-toast";
 import { Pin, PinOff } from "lucide-react";
+import { toast } from "../ui/use-toast";
 
-
-type Article = Pick<_Article, "isPinned" | "id">
+type Article = Pick<_Article, "isPinned" | "id">;
 
 interface Props {
-  article: Article
+  article: Article;
 }
 
 async function togglePinArticle(article: Article) {
@@ -25,7 +24,7 @@ async function togglePinArticle(article: Article) {
     method: "PATCH",
     body: JSON.stringify({
       isPinned: !article.isPinned,
-    })
+    }),
   });
 
   if (!response?.ok) {
@@ -41,45 +40,58 @@ export default function ArticleOperations({ article }: Props) {
   const [showArticleOperations, setShowArticleOperations] =
     useState<boolean>(false);
 
-  const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   return (
-      <DropdownMenu
-        modal={false}
-        open={showArticleOperations}
-        onOpenChange={setShowArticleOperations}
-      >
-        <DropdownMenuTrigger aria-label="Article Operations" asChild>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="size-4.4 data-[state=open]:bg-gray-2 data-[state=open]:text-secondary"
-          >
-            <Icons.more size={15} />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-                  
-          <Button
-            size="sm"
-            variant="ghost"
-            disabled={isPending}
-            className="justify-start gap-2"
-            onClick={async () => {
-              startTransition(async() => {
-                const res = await togglePinArticle(article)
-                if(res) {
-                  router.refresh();
-                 toast({title: "Saved"})
-                }
-
-              })
-            }}
-            >
-           {(!isPending) ? ( article.isPinned ? <><PinOff size={15} /> Unpin</> : <><Pin size={15} /> Pin</>) : <><Icons.spinner className="animate-spin" size={15} /> {article.isPinned ? "Unpinning" : "Pinning"}</>} 
-          </Button>
-        </DropdownMenuContent>
-      </DropdownMenu>
+    <DropdownMenu
+      modal={false}
+      open={showArticleOperations}
+      onOpenChange={setShowArticleOperations}
+    >
+      <DropdownMenuTrigger aria-label="Article Operations" asChild>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="size-4.4 data-[state=open]:bg-gray-2 data-[state=open]:text-secondary"
+        >
+          <Icons.more size={15} />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <Button
+          size="sm"
+          variant="ghost"
+          disabled={isPending}
+          className="justify-start gap-2"
+          onClick={async () => {
+            startTransition(async () => {
+              const res = await togglePinArticle(article);
+              if (res) {
+                router.refresh();
+                toast({ title: "Saved" });
+              }
+            });
+          }}
+        >
+          {!isPending ? (
+            article.isPinned ? (
+              <>
+                <PinOff size={15} /> Unpin
+              </>
+            ) : (
+              <>
+                <Pin size={15} /> Pin
+              </>
+            )
+          ) : (
+            <>
+              <Icons.spinner className="animate-spin" size={15} />{" "}
+              {article.isPinned ? "Unpinning" : "Pinning"}
+            </>
+          )}
+        </Button>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
