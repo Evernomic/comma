@@ -8,7 +8,6 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useShallow } from "zustand/react/shallow";
-import ThemeToggle from "../layout/theme-toggle";
 import { Icons } from "../shared/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -103,16 +102,10 @@ export default function UserNav({ user }: Props) {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`${siteConfig.url}/explore`}>
-            <Icons.search size={15} /> Explore page
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
           <Link href={siteConfig.links.home}>
             <Icons.logo size={15} /> Home page
           </Link>
         </DropdownMenuItem>
-        <ThemeToggle />
         <DropdownMenuItem
           className="text-danger"
           onClick={() =>

@@ -65,7 +65,7 @@ export default async function Subscribers() {
           />
         </>
       ) : (
-        <div className=" flex flex-col gap-2 items-center justify-center border p-3 border-gray-2 text-center text-gray-1 rounded-md text-sm">
+        <div className=" flex flex-col gap-2 items-center justify-center border p-3 border-gray-2 text-center text-gray-4 font-me rounded-md text-sm">
           Your newsletter function is not active, you can activate it whenever
           you want.
           <Newsletter checked={user.newsletter} />
