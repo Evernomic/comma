@@ -116,7 +116,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
         </PopoverTrigger>
         <PopoverContent
           sideOffset={10}
-          className="ml-0 p-0 overflow-hidden w-96 max-sm:hidden"
+          className="ml-0 p-0 overflow-hidden w-96 max-sm:hidden bg-primary"
           align="center"
           side="top"
         >
@@ -132,7 +132,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
               </Button>
             </PopoverClose>
           </div>
-          <div className="p-3 py-4 bg-gray-2/30 border-b border-b-gray-2">
+          <div className="p-3 py-4 bg-gray-3 border-b border-b-gray-2">
             <div className="text-base">Getting started</div>
             <p className="text-sm text-gray-4 mt-1">
               Get familiar with {siteConfig.name} by completing the following

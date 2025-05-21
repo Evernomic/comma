@@ -1,7 +1,20 @@
 import type { AppConfig } from "@/types";
+import { siteConfig } from "./site";
 
 export const appConfig: AppConfig = {
   mainNav: [
+    {
+      title: "Explore",
+      href: `${siteConfig.url}/explore`,
+      icon: "search",
+    },
+    {
+      title: "Posts",
+      href: "/pages",
+      icon: "plus",
+    },
+  ],
+  subNav: [
     {
       title: "Pages",
       href: "/pages",

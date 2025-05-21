@@ -30,6 +30,7 @@ export type PostFilter = {
 
 export type AppConfig = {
   mainNav: MainNavItem[];
+  subNav: MainNavItem[];
   settingsNav: NavItem[];
   filters: {
     postsFilter: PostFilter[];

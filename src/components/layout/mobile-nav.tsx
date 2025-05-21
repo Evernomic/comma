@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types";
+import type { PopoverContentProps } from "@radix-ui/react-popover";
 import { Icons } from "../shared//icons";
 import {
   DropdownMenu,
@@ -9,13 +10,17 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import NavButton from "./nav-button";
-
 interface Props {
   links: NavItem[];
   currentPath: string;
+  align?: PopoverContentProps["align"];
 }
 
-export default function MobileNav({ links, currentPath }: Props) {
+export default function MobileNav({
+  links,
+  currentPath,
+  align = "end",
+}: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -24,7 +29,7 @@ export default function MobileNav({ links, currentPath }: Props) {
       >
         <Icons.menu size={15} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align={align}>
         {links.map((link) => (
           <NavButton
             href={link.href}
