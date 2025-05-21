@@ -18,9 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+import { Pin, PinOff } from "lucide-react";
 import { toast } from "../ui/use-toast";
 import AddEditBookmarkModal, { type Bookmark } from "./add-edit-bookmark-modal";
-import { Pin, PinOff } from "lucide-react";
 
 interface Props {
   bookmark: Bookmark;
@@ -42,16 +42,14 @@ async function deleteBookmark(bookmarkId: string) {
   return true;
 }
 
-
-
 async function togglePinBookmark(bookmark: Bookmark) {
-  const {id, ...rest} = bookmark
+  const { id, ...rest } = bookmark;
   const response = await fetch(`/api/bookmarks/${bookmark.id}`, {
     method: "PATCH",
     body: JSON.stringify({
       ...rest,
       isPinned: !bookmark.isPinned,
-    })
+    }),
   });
 
   if (!response?.ok) {
@@ -68,8 +66,8 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
     useState<boolean>(false);
 
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
-  const [isDeleting, startDeletingTransition] = useTransition()
-  const [isPending, startTransition] = useTransition()
+  const [isDeleting, startDeletingTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   return (
@@ -89,24 +87,37 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-                  
           <Button
             size="sm"
             variant="ghost"
             disabled={isPending}
             className="justify-start gap-2"
             onClick={async () => {
-              startTransition(async() => {
-                const res = await togglePinBookmark(bookmark)
-                if(res) {
+              startTransition(async () => {
+                const res = await togglePinBookmark(bookmark);
+                if (res) {
                   router.refresh();
-                 toast({title: "Saved"})
+                  toast({ title: "Saved" });
                 }
-
-              })
+              });
             }}
-            >
-           {(!isPending) ? ( bookmark.isPinned ? <><PinOff size={15} /> Unpin</> : <><Pin size={15} /> Pin</>) : <><Icons.spinner className="animate-spin" size={15} /> {bookmark.isPinned ? "Unpinning" : "Pinning"}</>} 
+          >
+            {!isPending ? (
+              bookmark.isPinned ? (
+                <>
+                  <PinOff size={15} /> Unpin
+                </>
+              ) : (
+                <>
+                  <Pin size={15} /> Pin
+                </>
+              )
+            ) : (
+              <>
+                <Icons.spinner className="animate-spin" size={15} />{" "}
+                {bookmark.isPinned ? "Unpinning" : "Pinning"}
+              </>
+            )}
           </Button>
           <AddEditBookmarkModal
             bookmark={bookmark}
@@ -149,13 +160,12 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
               onClick={async (e: FormEvent) => {
                 e.preventDefault();
                 startDeletingTransition(async () => {
-
                   const deleted = await deleteBookmark(bookmark.id);
                   if (deleted) {
                     setShowDeleteAlert(false);
                     router.refresh();
                   }
-                })
+                });
               }}
               isPending={isDeleting}
             >

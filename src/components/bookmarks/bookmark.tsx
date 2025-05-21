@@ -1,13 +1,12 @@
 import { getDomainFromURL } from "@/lib/utils";
 import type { Bookmark as BookmarkType, Collection } from "@prisma/client";
+import { Pin } from "lucide-react";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Badge } from "../ui/badge";
 import Favicon from "./bookmark-favicon";
 import BookmarkOperations from "./bookmark-operations";
-import { Icons } from "../shared/icons";
-import { Pin } from "lucide-react";
 
 interface Props {
   admin?: boolean;

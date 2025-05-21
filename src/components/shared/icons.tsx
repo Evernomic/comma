@@ -52,8 +52,6 @@ import {
   Moon,
   MoreVertical,
   MousePointerClick,
-  Pin,
-  PinOff,
   Plug,
   Plus,
   Quote,

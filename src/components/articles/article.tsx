@@ -1,12 +1,11 @@
 import { formatDate } from "@/lib/utils";
 import type { Article as ArticleType } from "@prisma/client";
+import { Pin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";
 import { Badge } from "../ui/badge";
-import { Icons } from "../shared/icons";
-import { Pin } from "lucide-react";
 import ArticleOperations from "./article-operations";
 interface Props {
   admin?: boolean;
@@ -47,10 +46,8 @@ export default async function Article({ article, admin }: Props) {
         )}
         <div className="flex flex-col w-full">
           <div className="flex items-center gap-1">
-
-          <Balancer>{article.title}</Balancer>
+            <Balancer>{article.title}</Balancer>
             {article.isPinned && <Pin size={15} className="text-gray-4" />}
-          
           </div>
           <p className="text-gray-4">{formatDate(article.publishedAt)}</p>
         </div>

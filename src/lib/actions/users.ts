@@ -6,6 +6,7 @@ import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
 import { encrypt } from "../encryption";
+import { addContact } from "../resend";
 import type { updateUserSchema } from "../validations/user";
 import {
   workExperienceFormSchema,
@@ -29,7 +30,7 @@ export async function updateUser(
       ? encrypt(beehiivPublicationId)
       : beehiivPublicationId;
 
-  await db.user.update({
+  const updated = await db.user.update({
     where: {
       id: userId,
     },
@@ -43,6 +44,10 @@ export async function updateUser(
       beehiivPublicationId: encryptedPublicationId,
     },
   });
+
+  if (data.email) {
+    await addContact(updated.email, updated.name ?? updated.username);
+  }
 }
 
 export async function updateDomain(
