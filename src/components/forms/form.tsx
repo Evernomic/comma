@@ -139,7 +139,7 @@ export default function Form({
     >
       {proFeature && <Upgrade />}
       <div className="flex flex-col gap-1 p-4">
-        <h1>{title}</h1>
+        <div className="font-medium">{title}</div>
         <p className="text-sm text-gray-4">{description}</p>
         {!asChild ? (
           <div className="mt-2">
@@ -208,7 +208,6 @@ export default function Form({
                           ? "text"
                           : (inputData?.type ?? "text")
                       }
-                      value={value}
                       autoComplete="off"
                       disabled={saving}
                       className={cn(

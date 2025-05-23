@@ -153,6 +153,57 @@ export const Icons = {
   image: Image,
   bar: BarChart,
   arrowLeft: ArrowLeft,
+  defaultThemeStyleSkeleton: ({ className }: IconProps) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="140"
+        height="174"
+        fill="none"
+        viewBox="0 0 140 174"
+        className={className}
+      >
+        <path
+          fill="currentColor"
+          d="M30 15c0 8.284-6.716 15-15 15S0 23.284 0 15 6.716 0 15 0s15 6.716 15 15M40 10.5A1.5 1.5 0 0 1 41.5 9h27a1.5 1.5 0 0 1 0 3h-27a1.5 1.5 0 0 1-1.5-1.5M0 51.5A1.5 1.5 0 0 1 1.5 50h27a1.5 1.5 0 0 1 0 3h-27A1.5 1.5 0 0 1 0 51.5M0 63a5 5 0 0 1 5-5h130a5 5 0 0 1 5 5v34a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5zM0 123.5a1.5 1.5 0 0 1 1.5-1.5h27a1.5 1.5 0 0 1 0 3h-27a1.5 1.5 0 0 1-1.5-1.5M40 18.5a1.5 1.5 0 0 1 1.5-1.5h57a1.5 1.5 0 0 1 0 3h-57a1.5 1.5 0 0 1-1.5-1.5M0 135a5 5 0 0 1 5-5h130a5 5 0 0 1 5 5v34a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5z"
+        ></path>
+      </svg>
+    );
+  },
+  linkInBioThemeStyleSkeleton: ({ className }: IconProps) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="130"
+        height="140"
+        fill="none"
+        viewBox="0 0 130 140"
+        className={className}
+      >
+        <path
+          fill="currentColor"
+          d="M0 5a5 5 0 0 1 5-5h20a5 5 0 0 1 5 5v20a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5zM0 97a5 5 0 0 1 5-5h30a5 5 0 0 1 5 5v38a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5zM45 97a5 5 0 0 1 5-5h30a5 5 0 0 1 5 5v38a5 5 0 0 1-5 5H50a5 5 0 0 1-5-5zM90 97a5 5 0 0 1 5-5h30a5 5 0 0 1 5 5v38a5 5 0 0 1-5 5H95a5 5 0 0 1-5-5zM0 47.5A1.5 1.5 0 0 1 1.5 46h27a1.5 1.5 0 0 1 0 3h-27A1.5 1.5 0 0 1 0 47.5M0 60.5A1.5 1.5 0 0 1 1.5 59h57a1.5 1.5 0 0 1 0 3h-57A1.5 1.5 0 0 1 0 60.5M0 68.5A1.5 1.5 0 0 1 1.5 67h76a1.5 1.5 0 0 1 0 3h-76A1.5 1.5 0 0 1 0 68.5"
+        ></path>
+      </svg>
+    );
+  },
+  freeStyleThemeStyleSkeleton: ({ className }: IconProps) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="140"
+        height="146"
+        fill="none"
+        viewBox="0 0 140 146"
+        className={className}
+      >
+        <path
+          fill="currentColor"
+          d="M0 1.5A1.5 1.5 0 0 1 1.5 0h27a1.5 1.5 0 0 1 0 3h-27A1.5 1.5 0 0 1 0 1.5M0 48.5A1.5 1.5 0 0 1 1.5 47h27a1.5 1.5 0 0 1 0 3h-27A1.5 1.5 0 0 1 0 48.5M0 9.5A1.5 1.5 0 0 1 1.5 8h56a1.5 1.5 0 0 1 0 3h-56A1.5 1.5 0 0 1 0 9.5M0 17.5A1.5 1.5 0 0 1 1.5 16h94a1.5 1.5 0 0 1 0 3h-94A1.5 1.5 0 0 1 0 17.5M0 25.5A1.5 1.5 0 0 1 1.5 24h122a1.5 1.5 0 0 1 0 3H1.5A1.5 1.5 0 0 1 0 25.5M0 120.5a1.5 1.5 0 0 1 1.5-1.5h27a1.5 1.5 0 0 1 0 3h-27a1.5 1.5 0 0 1-1.5-1.5M0 128.5a1.5 1.5 0 0 1 1.5-1.5h56a1.5 1.5 0 0 1 0 3h-56a1.5 1.5 0 0 1-1.5-1.5M0 136.5a1.5 1.5 0 0 1 1.5-1.5h94a1.5 1.5 0 0 1 0 3h-94a1.5 1.5 0 0 1-1.5-1.5M0 144.5a1.5 1.5 0 0 1 1.5-1.5h122a1.5 1.5 0 0 1 0 3H1.5a1.5 1.5 0 0 1-1.5-1.5M0 60a5 5 0 0 1 5-5h130a5 5 0 0 1 5 5v34a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5z"
+        ></path>
+      </svg>
+    );
+  },
   twitter: Twitter,
   linkedin: Linkedin,
   plug: Plug,

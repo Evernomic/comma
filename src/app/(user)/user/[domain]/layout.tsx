@@ -2,6 +2,7 @@ import Track from "@/components/analytics/track";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import {
+  cn,
   generateSEO,
   getUserFavicon,
   getUserOgImage,
@@ -57,7 +58,14 @@ export default async function UserLayout({ children, params }: LayoutProps) {
     return notFound();
   }
   return (
-    <div className="mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full pt-28 pb-48 max-md:pt-20 max-md:px-4 ">
+    <div
+      className={cn(
+        "mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full pt-28 pb-48 max-md:pt-20 max-md:px-4 ",
+        {
+          "w-full px-20 py-10": user.theme === "linkInBio",
+        },
+      )}
+    >
       <ThemeProvider defaultTheme={user.userDefaultTheme ?? "dark"}>
         <UserHeader user={user} />
         <main className="w-full flex-1">

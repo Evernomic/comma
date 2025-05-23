@@ -56,6 +56,11 @@ export const appConfig: AppConfig = {
       isVisible: false,
     },
     {
+      title: "Customize links",
+      href: "/settings/customize/themes/link-in-bio",
+      isVisible: false,
+    },
+    {
       title: "Links",
       href: "/settings/links",
     },

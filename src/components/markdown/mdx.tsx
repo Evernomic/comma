@@ -1,4 +1,12 @@
+import Newsletter from "@/app/(user)/user/[domain]/articles/components/newsletter";
+import About from "@/app/(user)/user/[domain]/components/about";
+import Articles from "@/app/(user)/user/[domain]/components/articles";
+import Bookmarks from "@/app/(user)/user/[domain]/components/bookmarks";
+import Connect from "@/app/(user)/user/[domain]/components/connect";
+import WorkExperiences from "@/app/(user)/user/[domain]/components/experience";
+import Intro from "@/app/(user)/user/[domain]/components/intro";
 import NavTabs from "@/app/(user)/user/[domain]/components/nav-tabs";
+import Projects from "@/app/(user)/user/[domain]/components/projects";
 import { userPageConfig } from "@/config/user-page";
 import { cn, getSectionTitle } from "@/lib/utils";
 import "@/styles/prose.css";
@@ -7,14 +15,6 @@ import type {
   User,
   UserPageSection,
 } from "@/types";
-import Newsletter from "@/user/articles/components/newsletter";
-import About from "@/user/components/about";
-import Articles from "@/user/components/articles";
-import Bookmarks from "@/user/components/bookmarks";
-import Connect from "@/user/components/connect";
-import WorkExperiences from "@/user/components/experience";
-import Intro from "@/user/components/intro";
-import Projects from "@/user/components/projects";
 import type {
   Article as _Article,
   WorkExperience as _WorkExperience,

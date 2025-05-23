@@ -1,17 +1,31 @@
 import * as z from "zod";
-import { userCategories, validUsernameRegex } from "../constants";
+import {
+  linkInBioLinkTypes,
+  themeStyles,
+  userCategories,
+  validUsernameRegex,
+} from "../constants";
 import { countries } from "../constants/countries";
 export const notAllowedUsernames = ["app", "go", "www", "demo"];
 export const categoryValues = userCategories.map((c) => c.value) as [
   string,
   ...string[],
 ];
+const themeValues = themeStyles.map((t) => t.value) as [string, ...string[]];
 export const locationValues = Object.keys(countries) as [string, ...string[]];
 
 export const socialLinkSchema = z.object({
   title: z.string().min(1).max(25),
   url: z.string().url(),
   username: z.string().optional().nullable(),
+});
+
+export const linkInBioLinkSchema = z.object({
+  title: z.string().min(1).max(25),
+  url: z.string().url(),
+  image: z.string().url().or(z.null()),
+  contentTitle: z.string().min(1).max(40),
+  description: z.string().min(1).max(120),
 });
 
 export const updateUserSchema = z
@@ -51,6 +65,7 @@ export const updateUserSchema = z
     newsletterCta: z.string().max(300),
     beehiivKey: z.string().nullable(),
     beehiivPublicationId: z.string().nullable(),
+    theme: z.enum(themeValues),
     sections: z
       .array(
         z.object({
@@ -110,5 +125,26 @@ export const updateUserSchema = z
           });
         }
       }),
+
+    linkInBioLinks: z
+      .array(
+        linkInBioLinkSchema.extend({
+          id: z.string().min(1),
+        }),
+      )
+      .superRefine((links, ctx) => {
+        const positions = links.map((s) => s.id);
+        const uniquePositions = new Set(positions);
+
+        if (positions.length !== uniquePositions.size) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "IDs must be unique.",
+          });
+        }
+      }),
+    linkInBioLinksViewType: z.enum(
+      linkInBioLinkTypes.map((l) => l.value) as [string, ...string[]],
+    ),
   })
   .partial();

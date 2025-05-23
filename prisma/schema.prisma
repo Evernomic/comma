@@ -9,6 +9,12 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum UserPageTheme {
+  default
+  linkInBio
+  freeStyle
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -51,48 +57,50 @@ enum UserCategory {
 }
 
 model User {
-  id                    String           @id @default(cuid())
-  name                  String?
-  username              String           @unique @default(cuid())
-  title                 String?
-  email                 String           @unique
-  domain                String?          @unique
-  emailVerified         DateTime?
-  image                 String?
-  category              UserCategory?
-  location              String?
-  createdAt             DateTime         @default(now()) @map("created_at")
-  updatedAt             DateTime         @default(now()) @map("updated_at")
-  about                 String?          @db.Text
-  newsletter            Boolean          @default(false)
-  newsletterCta         String?
-  seoTitle              String?
-  seoDescription        String?
-  ogImage               String?
-  lsId                  String?          @unique
-  lsVariantId           String?
-  lsCurrentPeriodEnd    DateTime?
-  accounts              Account[]
-  sessions              Session[]
-  articles              Article[]
-  projects              Project[]
-  bookmarks             Bookmark[]
-  pages                 Page[]
-  subscribers           Subscriber[]
-  collections           Collection[]
-  workExperiences       WorkExperience[]
-  password              String?
-  showBranding          Boolean          @default(true)
-  userDefaultTheme      String?
-  sections              Json?
-  navLinks              Json?
-  links                 Json?
-  showOnExplore         Boolean          @default(true)
-  showCustomHomePage    Boolean          @default(false)
-  showBottomNav         Boolean          @default(true)
-  customHomePageContent String?
-  beehiivKey            String?
-  beehiivPublicationId  String?
+  id                     String           @id @default(cuid())
+  name                   String?
+  username               String           @unique @default(cuid())
+  title                  String?
+  email                  String           @unique
+  domain                 String?          @unique
+  emailVerified          DateTime?
+  image                  String?
+  category               UserCategory?
+  location               String?
+  createdAt              DateTime         @default(now()) @map("created_at")
+  updatedAt              DateTime         @default(now()) @map("updated_at")
+  about                  String?          @db.Text
+  newsletter             Boolean          @default(false)
+  newsletterCta          String?
+  seoTitle               String?
+  seoDescription         String?
+  ogImage                String?
+  lsId                   String?          @unique
+  lsVariantId            String?
+  lsCurrentPeriodEnd     DateTime?
+  accounts               Account[]
+  sessions               Session[]
+  articles               Article[]
+  projects               Project[]
+  bookmarks              Bookmark[]
+  pages                  Page[]
+  subscribers            Subscriber[]
+  collections            Collection[]
+  workExperiences        WorkExperience[]
+  password               String?
+  showBranding           Boolean          @default(true)
+  userDefaultTheme       String?
+  sections               Json?
+  navLinks               Json?
+  links                  Json?
+  linkInBioLinks         Json?
+  linkInBioLinksViewType String?
+  showOnExplore          Boolean          @default(true)
+  showBottomNav          Boolean          @default(true)
+  customHomePageContent  String?
+  beehiivKey             String?
+  beehiivPublicationId   String?
+  theme                  UserPageTheme    @default(default)
 
   @@map("users")
 }

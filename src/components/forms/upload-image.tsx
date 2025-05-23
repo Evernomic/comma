@@ -11,31 +11,34 @@ import Button from "../ui/button";
 import { toast } from "../ui/use-toast";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   helpText: string;
-  endpoint: string;
+  endpoint?: string;
   method?: "PATCH";
   defaultValue?: string | null;
   name?: string;
   folder?: (typeof StorageFolders)[number];
   previewImageSize?: number;
+  inline?: boolean;
+  onUploadCompleted?: (url: string | null) => void;
 }
 
 export default function UploadImage({
+  inline,
   title,
   description,
   helpText,
   endpoint,
   method = "PATCH",
   defaultValue = null,
-  folder,
+  folder = "editor-uploads",
   name,
   previewImageSize,
+  onUploadCompleted,
 }: Props) {
   const [saving, setSaving] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
-
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -56,33 +59,73 @@ export default function UploadImage({
     }
     inputRef.current.value = "";
 
-    const res = await fetch(`/api/${endpoint}`, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        [name as string]: fileRes.url ?? null,
-      }),
-    });
-    setSaving(false);
+    if (inline) {
+      setSaving(false);
+      toast({
+        title: "Your image has been uploaded",
+      });
+      return onUploadCompleted?.(fileRes.url ?? null);
+    }
 
-    if (!res?.ok) {
+    if (!inline && endpoint) {
+      const res = await fetch(`/api/${endpoint}`, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          [name as string]: fileRes.url ?? null,
+        }),
+      });
+      setSaving(false);
+
+      if (!res?.ok) {
+        return toast({
+          title: "Something went wrong.",
+        });
+      }
+      router.refresh();
+
       return toast({
-        title: "Something went wrong.",
+        title: "Your image has been uploaded",
       });
     }
-    router.refresh();
-
-    return toast({
-      title: "Your image has been uploaded",
-    });
   }
+
+  if (inline) {
+    return (
+      <div
+        className="border border-gray-2 gap-2 h-5 rounded-md cursor-pointer hover:border-gray-1 text-gray-1 text-sm flex items-center px-2"
+        onClick={() => inputRef.current?.click()}
+      >
+        {saving ? (
+          <>
+            <Icons.spinner className="animate-spin" size={15} />
+            Uploading
+          </>
+        ) : (
+          <>
+            <Icons.upload size={15} />
+            {helpText}
+          </>
+        )}
+
+        <input
+          type="file"
+          ref={inputRef}
+          className="hidden"
+          accept="image/png, image/jpeg, image/jpg, image/webp"
+          onChange={onChange}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-hidden rounded-md border border-gray-2">
       <div className="flex flex-col justify-between  gap-3 p-4 ">
         <div className="flex flex-col gap-1">
-          <h1>{title}</h1>
+          <div className="font-medium">{title}</div>
           <p className="text-sm text-gray-4">{description}</p>
         </div>
 
