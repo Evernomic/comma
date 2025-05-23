@@ -150,15 +150,28 @@ export default function AddEditLinkInBioLinkModal({
             Please add large resolution image for best view
           </p>
           {imageURL && (
-            <Image
-              src={imageURL}
-              width={0}
-              height={0}
-              sizes="100vw"
-              className={cn("w-64 h-auto  rounded-md")}
-              alt="Cover image"
-              unoptimized
-            />
+            <div className="flex gap-2 ">
+              <Image
+                src={imageURL}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className={cn("w-64 h-auto  rounded-md")}
+                alt="Cover image"
+                unoptimized
+              />
+              <Button
+                size="sm"
+                variant="destructive"
+                disabled={isPending}
+                onClick={() => {
+                  setImageURL(null);
+                  setValue("image", null);
+                }}
+              >
+                Delete image
+              </Button>
+            </div>
           )}
           <Input
             placeholder="Content title"
