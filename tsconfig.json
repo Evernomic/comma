@@ -22,7 +22,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/emails/*": ["./emails/*"],
-      "@/user/*": ["src/app/(user)/user/[domain]/*"]
+      "@/user/*": ["./src/app/(user)/user/[domain]/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
