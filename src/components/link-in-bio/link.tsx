@@ -17,7 +17,7 @@ export default function LinkInBioLink({
       className={cn(
         "aspect-100/125  relative min-w-80 h-auto border border-gray-3  overflow-hidden p-4.4 rounded-md flex flex-col justify-between",
         {
-          "aspect-125/80 p-4 min-w-max justify-baseline gap-5": isCompact,
+          "aspect-125/80 p-4 min-w-[300px] justify-baseline gap-5": isCompact,
         },
       )}
     >
@@ -72,7 +72,7 @@ export default function LinkInBioLink({
         className={cn(
           " size-full absolute bg-secondary/20 dark:bg-primary/40 left-0 top-0 z-30 ",
           {
-            "bg-gray-3! z-0!": isCompact,
+            "bg-gray-3! z-0!": isCompact || !image,
           },
         )}
       />

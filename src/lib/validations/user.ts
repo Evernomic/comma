@@ -23,7 +23,7 @@ export const socialLinkSchema = z.object({
 export const linkInBioLinkSchema = z.object({
   title: z.string().min(1).max(25),
   url: z.string().url(),
-  image: z.string().url().or(z.null()),
+  image: z.string().url().or(z.null()).default(null),
   contentTitle: z.string().min(1).max(40),
   description: z.string().min(1).max(120),
 });
