@@ -62,6 +62,19 @@ export default async function Settings() {
       />
       <Form
         endpoint={endpoint}
+        title="Announcement"
+        description="This text will be displayed to visitors on the home page."
+        helpText="Markdown is supported"
+        type="textarea"
+        textareaData={{
+          name: "announcementText",
+          placeholder: "I started a new project ...",
+          defaultValue: user.announcementText ?? "",
+        }}
+        required={false}
+      />
+      <Form
+        endpoint={endpoint}
         title="Category"
         description="This category will be used for search functionality on the explore page."
         selectOptions={userCategories}

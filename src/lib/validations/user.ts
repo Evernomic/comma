@@ -63,6 +63,7 @@ export const updateUserSchema = z
     category: z.enum(categoryValues),
     location: z.enum(locationValues),
     newsletterCta: z.string().max(300),
+    announcementText: z.string().nullable(),
     beehiivKey: z.string().nullable(),
     beehiivPublicationId: z.string().nullable(),
     theme: z.enum(themeValues),

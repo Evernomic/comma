@@ -20,8 +20,14 @@ export async function updateUser(
   data: UpdateUserSchema,
   plan: UserSubscriptionPlan,
 ) {
-  const { showBranding, category, beehiivKey, theme, beehiivPublicationId, ...rest } =
-    data;
+  const {
+    showBranding,
+    category,
+    beehiivKey,
+    theme,
+    beehiivPublicationId,
+    ...rest
+  } = data;
 
   const encryptedBeehiivKey =
     beehiivKey && beehiivKey !== null ? encrypt(beehiivKey) : beehiivKey;
