@@ -61,7 +61,7 @@ export default function NewsletterFormModal({
       <DialogTrigger
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "rounded-full text-sm gap-2 px-2 flex-1",
+          "rounded-full w-max py-2 text-sm gap-2 px-3 flex-1",
         )}
         aria-label={title}
       >

@@ -1,4 +1,5 @@
-import type { SelectOption } from "@/types";
+import type { LinkInBioLinkType, SelectOption } from "@/types";
+import { UserPageTheme } from "@prisma/client";
 import type { SWRConfiguration } from "swr";
 import { countries } from "./countries";
 
@@ -74,4 +75,31 @@ export const defaultThemeOptions: SelectOption[] = [
 export const pageVisibilityOptions: SelectOption[] = [
   { title: "Visible", value: "visible" },
   { title: "Unlisted", value: "unlisted" },
+] as const;
+
+export const themeStyles: SelectOption<UserPageTheme>[] = [
+  {
+    title: "Resume (default)",
+    value: "default",
+  },
+  {
+    title: "Link in bio",
+    value: "linkInBio",
+  },
+
+  {
+    title: "Freestyle",
+    value: "freeStyle",
+  },
+] as const;
+
+export const linkInBioLinkTypes: SelectOption<LinkInBioLinkType>[] = [
+  {
+    title: "Wide",
+    value: "wide",
+  },
+  {
+    title: "Compact",
+    value: "compact",
+  },
 ] as const;

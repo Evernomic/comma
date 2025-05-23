@@ -51,7 +51,7 @@ export default function DeleteForm({
   return (
     <div className="overflow-hidden rounded-md border border-danger">
       <div className="flex flex-col gap-1 p-4">
-        <h1>{title}</h1>
+        <div className="font-medium">{title}</div>
         <p className="text-sm text-gray-4">
           This action is not reversible, so please continue with caution.
         </p>

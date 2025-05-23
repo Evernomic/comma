@@ -167,7 +167,18 @@ export type User = Omit<
   | "beehiivPublicationId"
 >;
 
-export type SelectOption = {
+export type SelectOption<T = string> = {
   title: string;
-  value: string;
+  value: T;
+};
+
+export type LinkInBioLinkType = "wide" | "compact";
+
+export type LinkInBioLink = {
+  id: string;
+  title: string;
+  url: string;
+  image: string | null;
+  contentTitle: string;
+  description: string;
 };

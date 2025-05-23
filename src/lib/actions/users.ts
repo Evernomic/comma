@@ -1,7 +1,7 @@
 "use server";
 import { UserSubscriptionPlan } from "@/types";
 import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import type { User, UserCategory } from "@prisma/client";
+import type { User, UserCategory, UserPageTheme } from "@prisma/client";
 import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
@@ -20,7 +20,7 @@ export async function updateUser(
   data: UpdateUserSchema,
   plan: UserSubscriptionPlan,
 ) {
-  const { showBranding, category, beehiivKey, beehiivPublicationId, ...rest } =
+  const { showBranding, category, beehiivKey, theme, beehiivPublicationId, ...rest } =
     data;
 
   const encryptedBeehiivKey =
@@ -39,6 +39,7 @@ export async function updateUser(
       ...(showBranding !== undefined && {
         showBranding: plan.isPro ? showBranding : true,
       }),
+      theme: theme as UserPageTheme,
       ...(category && { category: category as UserCategory }),
       beehiivKey: encryptedBeehiivKey,
       beehiivPublicationId: encryptedPublicationId,
