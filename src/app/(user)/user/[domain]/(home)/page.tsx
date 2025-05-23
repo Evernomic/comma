@@ -13,6 +13,7 @@ import { sortUserPageSections } from "@/lib/utils";
 import { UserPageSection } from "@/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Announcement from "../components/announcement";
 import LinkInBioIntro from "../components/link-in-bio/link-in-bio-intro";
 import { NothingPlaceholder } from "../components/nothing-placeholder";
 import sections from "../components/sections";
@@ -68,6 +69,7 @@ export default async function Home({ params }: PageProps) {
   const allData = { user, articles, projects, bookmarks, experiences };
   return (
     <AppShell>
+      <Announcement text={user.announcementText} />
       {user.theme === "freeStyle" ? (
         user.customHomePageContent?.length ? (
           <MDX

@@ -101,6 +101,7 @@ model User {
   beehiivKey             String?
   beehiivPublicationId   String?
   theme                  UserPageTheme    @default(default)
+  announcementText       String?
 
   @@map("users")
 }

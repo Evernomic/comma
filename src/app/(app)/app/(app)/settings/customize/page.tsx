@@ -27,9 +27,7 @@ export default async function CustomizePage() {
   return (
     <AppShell>
       <Form endpoint="/" title="Theme style" asChild>
-        <SelectThemeStyle
-          defaultTheme={user.theme}
-        />
+        <SelectThemeStyle defaultTheme={user.theme} />
       </Form>
       <Form endpoint="/" title="Navigation" asChild>
         <CustomizeNavigation defaultLinks={user.navLinks as CustomNavItem[]} />

@@ -9,6 +9,7 @@ import type {
 } from "@/types";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+import Announcement from "../announcement";
 import Carousel from "./carousel";
 export default function LinkInBioIntro({ user }: { user: User }) {
   const socialLinks = getLinks(user);
@@ -23,8 +24,11 @@ export default function LinkInBioIntro({ user }: { user: User }) {
           {getInitials(user.name ?? user.username)}
         </AvatarFallback>
       </Avatar>
-
       <div className="space-y-4">
+        <Announcement
+          text={user.announcementText}
+          className="max-w-[600px] max-md:w-full"
+        />
         <h1 className="text-3xl font-medium">{user.name}</h1>
         <p className="text-gray-4 text-base">
           <Balancer>{user.about ?? user.title ?? user.category}</Balancer>
