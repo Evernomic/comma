@@ -1,5 +1,9 @@
 import type { LinkInBioLinkType, SelectOption } from "@/types";
-import { UserPageTheme } from "@prisma/client";
+import type {
+  CalloutCategory,
+  PageVisibility,
+  UserPageTheme,
+} from "@prisma/client";
 import type { SWRConfiguration } from "swr";
 import { countries } from "./countries";
 
@@ -58,6 +62,15 @@ export const userCategories: SelectOption[] = [
   { title: "Other", value: "Other" },
 ] as const;
 
+export const calloutCategories: SelectOption<CalloutCategory>[] = [
+  { title: "Hiring", value: "hiring" },
+  { title: "Open to work", value: "openToWork" },
+  { title: "Partnerships", value: "partnerships" },
+  { title: "Investment", value: "investment" },
+  { title: "Feedback", value: "feedback" },
+  { title: "Other", value: "other" },
+] as const;
+
 export const userLocations: SelectOption[] = Object.entries(countries).map(
   (c) => {
     return {
@@ -72,7 +85,7 @@ export const defaultThemeOptions: SelectOption[] = [
   { title: "Light", value: "light" },
 ] as const;
 
-export const pageVisibilityOptions: SelectOption[] = [
+export const pageVisibilityOptions: SelectOption<PageVisibility>[] = [
   { title: "Visible", value: "visible" },
   { title: "Unlisted", value: "unlisted" },
 ] as const;

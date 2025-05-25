@@ -1,12 +1,19 @@
 "use server";
 import { UserSubscriptionPlan } from "@/types";
 import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import type { User, UserCategory, UserPageTheme } from "@prisma/client";
+import type {
+  CalloutCategory,
+  User,
+  UserCategory,
+  UserPageTheme,
+} from "@prisma/client";
 import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
 import { encrypt } from "../encryption";
 import { addContact } from "../resend";
+import { getPostPageURL } from "../utils";
+import { calloutPatchSchema, calloutSchema } from "../validations/callout";
 import type { updateUserSchema } from "../validations/user";
 import {
   workExperienceFormSchema,
@@ -144,6 +151,104 @@ export async function deleteWorkExperience(
   return await db.workExperience.delete({
     where: {
       id: workExperienceId,
+      userId,
+    },
+  });
+}
+
+type CreateCalloutSchema = z.infer<typeof calloutSchema>;
+type UpdateCalloutSchema = z.infer<typeof calloutPatchSchema>;
+
+export async function createCallout(
+  user: Pick<User, "id" | "username" | "domain">,
+  data: CreateCalloutSchema,
+) {
+  const { postId, postType, category, ...rest } = data;
+  let relatedPostURL = undefined;
+  if (postId && postType) {
+    if (postType === "article") {
+      const article = await db.article.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (article) {
+        relatedPostURL = getPostPageURL("articles", article.slug, user);
+      }
+    } else {
+      const project = await db.project.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (project) {
+        relatedPostURL = getPostPageURL("projects", project.slug, user);
+      }
+    }
+  }
+
+  return await db.callout.create({
+    data: {
+      ...rest,
+      userId: user.id,
+      category: category as CalloutCategory,
+      relatedPostURL,
+      postId,
+    },
+  });
+}
+
+export async function updateCallout(
+  calloutId: string,
+  user: Pick<User, "id" | "username" | "domain">,
+  data: UpdateCalloutSchema,
+) {
+  const { postId, postType, category, ...rest } = data;
+  let relatedPostURL = undefined;
+  if (postId && postType) {
+    if (postType === "article") {
+      const article = await db.article.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (article) {
+        relatedPostURL = getPostPageURL("articles", article.slug, user);
+      }
+    } else {
+      const project = await db.project.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (project) {
+        relatedPostURL = getPostPageURL("projects", project.slug, user);
+      }
+    }
+  }
+
+  return await db.callout.update({
+    where: {
+      id: calloutId,
+      userId: user.id,
+    },
+    data: {
+      ...rest,
+      postId,
+      category: category as CalloutCategory,
+      relatedPostURL,
+    },
+  });
+}
+
+export async function deleteCallout(calloutId: string, userId: string) {
+  return await db.callout.delete({
+    where: {
+      id: calloutId,
       userId,
     },
   });

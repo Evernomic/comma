@@ -40,6 +40,16 @@ export default async function ExplorePage() {
           >
             Comma
           </NavButton>
+          <NavButton
+            href="/explore/callouts"
+            icon="megaPhone"
+            direction="ltr"
+            buttonVariant="primary"
+            buttonClassname="gap-2"
+            aria-label="View callouts"
+          >
+            View callouts
+          </NavButton>
         </div>
       </AppHeader>
       <QueryProvider>

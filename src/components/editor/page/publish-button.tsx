@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import {
-  Tooltip,
+  T as Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,

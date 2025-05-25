@@ -40,6 +40,11 @@ export const appConfig: AppConfig = {
       href: "/work",
       icon: "bookmark",
     },
+    {
+      title: "Callouts",
+      href: "/callouts",
+      icon: "bookmark",
+    },
   ],
   settingsNav: [
     {
