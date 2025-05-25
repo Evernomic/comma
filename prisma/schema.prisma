@@ -102,6 +102,7 @@ model User {
   beehiivPublicationId   String?
   theme                  UserPageTheme    @default(default)
   announcementText       String?
+  callouts               Callout[]
 
   @@map("users")
 }
@@ -237,4 +238,29 @@ model Page {
 
   @@unique([authorId, slug])
   @@map("pages")
+}
+
+enum CalloutCategory {
+  hiring
+  openToWork
+  partnerships
+  investment
+  feedback
+  other
+}
+
+model Callout {
+  id             String          @id @default(cuid())
+  title          String
+  description    String?         @db.Text
+  category       CalloutCategory
+  url            String?
+  userId         String
+  user           User            @relation(fields: [userId], references: [id])
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @default(now()) @map("updated_at")
+  relatedPostURL String?
+  postId         String?
+
+  @@map("callouts")
 }

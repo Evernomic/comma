@@ -2,7 +2,7 @@
 import Button from "@/components/ui/button";
 import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { User as _User } from "@prisma/client";
+import type { User as _User, Callout } from "@prisma/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ky from "ky";
 import { createSerializer, useQueryStates } from "nuqs";
@@ -11,6 +11,13 @@ import { useDebounce } from "use-debounce";
 import ExplorePageFilters from "./filters";
 import { filterSearchParams } from "./searchParams";
 import User from "./user";
+
+export type ExplorePageUser = Pick<
+  _User,
+  "name" | "title" | "username" | "domain" | "image" | "category" | "location"
+> & {
+  callouts: Omit<Callout, "userId">[];
+};
 
 export default function Client() {
   const [filters] = useQueryStates(filterSearchParams, { history: "push" });
@@ -21,18 +28,7 @@ export default function Client() {
       queryFn: async ({
         pageParam,
       }): Promise<{
-        data: Array<
-          Pick<
-            _User,
-            | "name"
-            | "title"
-            | "username"
-            | "domain"
-            | "image"
-            | "category"
-            | "location"
-          >
-        >;
+        data: Array<ExplorePageUser>;
         previousId: number;
         nextId: number;
       }> => {

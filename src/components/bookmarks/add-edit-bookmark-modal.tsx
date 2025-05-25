@@ -184,7 +184,7 @@ export default function AddEditBookmarkModal({
                 defaultValue={bookmark?.collection?.id}
                 disabled={isLoading}
               >
-                <SelectTrigger className="w-full text-gray-1">
+                <SelectTrigger>
                   <SelectValue placeholder="Select collection" />
                 </SelectTrigger>
                 <SelectContent>

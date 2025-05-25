@@ -1,18 +1,11 @@
 import { Icons } from "@/components/shared/icons";
 import { countries } from "@/lib/constants/countries";
 import { getUserPageURL } from "@/lib/utils";
-import type { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import type { ExplorePageUser } from "./client";
 
-export default function User({
-  user,
-}: {
-  user: Pick<
-    User,
-    "name" | "title" | "username" | "domain" | "image" | "category" | "location"
-  >;
-}) {
+export default function User({ user }: { user: ExplorePageUser }) {
   return (
     <Link
       href={getUserPageURL(user)}
@@ -42,10 +35,12 @@ export default function User({
             {user.location ? `· ${countries[user.location!]}` : null}
           </p>
         </div>
-        <Icons.arrowUpRight
-          size={20}
-          className="text-gray-4 opacity-0 transition-opacity group-hover:opacity-100"
-        />
+        <div>
+          <Icons.arrowUpRight
+            size={20}
+            className="text-gray-4 opacity-0 transition-opacity group-hover:opacity-100"
+          />
+        </div>
       </div>
     </Link>
   );

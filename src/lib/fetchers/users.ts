@@ -86,3 +86,49 @@ export async function getWorkExperiencesByUser(userId: string) {
     },
   });
 }
+
+export async function getCallouts() {
+  const user = await getCurrentUser();
+  return await db.callout.findMany({
+    where: {
+      userId: user?.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
+
+export async function getCalloutsByUser(userId: string) {
+  return await db.callout.findMany({
+    where: {
+      userId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
+
+export async function getAllCallouts() {
+  return await db.callout.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      url: true,
+      createdAt: true,
+      updatedAt: true,
+      category: true,
+      user: {
+        select: {
+          username: true,
+          domain: true,
+        },
+      },
+    },
+  });
+}

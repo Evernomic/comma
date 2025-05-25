@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
-// import { Ubuntu } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 
 const inter = localFont({
@@ -13,11 +13,11 @@ const inter = localFont({
   display: "swap",
 });
 
-// const ubuntu = Ubuntu({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "700"],
-//   variable: "--font-ubuntu",
-// });
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-ubuntu",
+});
 
 export const metadata = generateSEO();
 
@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className)}>
+      <body className={cn(inter.className, ubuntu.variable)}>
         {children}
         <Analytics />
         <Toaster />
