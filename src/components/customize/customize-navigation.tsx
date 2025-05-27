@@ -178,7 +178,7 @@ function Link({
 
     if (
       linkTitle !== link.title && link.isExternal
-        ? link.href !== link.href
+        ? link.href !== linkTitle
         : true
     ) {
       setLinks((prev) =>
