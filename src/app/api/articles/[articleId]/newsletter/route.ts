@@ -1,6 +1,4 @@
-import { sendNewsletter } from "@/lib/actions/articles";
 import { guard } from "@/lib/auth";
-import { getArticleByAuthor } from "@/lib/fetchers/articles";
 import * as z from "zod";
 
 const contextSchema = z.object({
@@ -10,28 +8,30 @@ const contextSchema = z.object({
 });
 
 export const POST = guard(
-  async ({ user, ctx }) => {
+  async () => {
     try {
-      const article = await getArticleByAuthor(ctx.params.articleId, user.id);
 
-      if (!article) {
-        return new Response(null, { status: 404 });
-      }
+      return new Response("Newsletter function is not active", {status: 400})
+      // const article = await getArticleByAuthor(ctx.params.articleId, user.id);
 
-      if (!article.published) {
-        return new Response(
-          "You must publish this article to send newsletter",
-          { status: 400 },
-        );
-      }
+      // if (!article) {
+      //   return new Response(null, { status: 404 });
+      // }
 
-      if (!user.newsletter) {
-        return new Response("Newsletter function is not active", {
-          status: 400,
-        });
-      }
+      // if (!article.published) {
+      //   return new Response(
+      //     "You must publish this article to send newsletter",
+      //     { status: 400 },
+      //   );
+      // }
 
-      return await sendNewsletter(article, user);
+      // if (!user.newsletter) {
+      //   return new Response("Newsletter function is not active", {
+      //     status: 400,
+      //   });
+      // }
+
+      // return await sendNewsletter(article, user);
     } catch (err) {
       return new Response(JSON.stringify(err), { status: 500 });
     }

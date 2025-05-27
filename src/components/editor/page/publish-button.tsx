@@ -11,12 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
-import {
-  T as Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../../ui/tooltip";
+
 import { toast } from "../../ui/use-toast";
 
 export default function PublishButton({
@@ -27,7 +22,6 @@ export default function PublishButton({
 }: EditorPageProps & {
   setSaving: React.Dispatch<SetStateAction<boolean>>;
 }) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
   return (
@@ -78,7 +72,7 @@ export default function PublishButton({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <TooltipProvider>
+            {/* <TooltipProvider>
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
                   <Button
@@ -133,7 +127,7 @@ export default function PublishButton({
                   </TooltipContent>
                 )}
               </Tooltip>
-            </TooltipProvider>
+            </TooltipProvider> */}
             <NavButton
               href="/settings/subscribers"
               buttonVariant="ghost"
