@@ -23,5 +23,6 @@ export const siteConfig: SiteConfig = {
     github: "https://github.com/Evernomic/comma",
     help: "mailto:hi@comma.to",
     demo: "https://arian.comma.to",
+    affiliates: "https://billing.comma.to/affiliates",
   },
 } as const;

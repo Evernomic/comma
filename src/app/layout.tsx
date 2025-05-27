@@ -4,19 +4,12 @@ import "@/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
-import { Ubuntu } from "next/font/google";
 import localFont from "next/font/local";
 
 const inter = localFont({
   src: "../../public/fonts/InterVariable.woff2",
-  weight: "300 400 500 600 700",
+  weight: "450 500 600 700",
   display: "swap",
-});
-
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-ubuntu",
 });
 
 export const metadata = generateSEO();
@@ -41,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, ubuntu.variable)}>
+      <body className={cn("antialiased", inter.className)}>
         {children}
         <Analytics />
         <Toaster />

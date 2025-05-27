@@ -30,10 +30,12 @@ export default function ExplorePageFilters() {
         <div className="flex gap-2 flex-1 grow">
           <Input
             placeholder="Search people..."
-            className="h-4.5  w-full"
+            className="h-4.5  max-w-[300px]"
             defaultValue={filters.search}
             onChange={(e) => debouncedSearch({ search: e.target.value })}
           />
+        </div>
+        <div className="flex gap-2 max-md:*:max-w-full">
           <Select
             defaultValue={filters.sort}
             onValueChange={(val) => setFilters({ sort: val })}
@@ -48,8 +50,6 @@ export default function ExplorePageFilters() {
               <SelectItem value="oldest">Oldest</SelectItem>
             </SelectContent>
           </Select>
-        </div>
-        <div className="flex gap-2 max-md:*:max-w-full">
           <Filter
             name="Category"
             options={userCategories}

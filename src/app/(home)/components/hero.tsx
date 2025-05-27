@@ -1,19 +1,16 @@
 import NavButton from "@/components/layout/nav-button";
-import AnimatedLogo from "@/components/shared/animated-logo";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
 import Balancer from "react-wrap-balancer";
 
 export default function Hero() {
   return (
-    <section className="section-container pt-40 pb-20">
-      <div className="flex flex-col items-center gap-2">
-        <AnimatedLogo size={70} />
-        <h3 className="font-medium text-2xl section-title mt-3">Comma</h3>
-        <p className="text-gray-4 text-center">
+    <section className="section-container  min-h-1/2 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-2 ">
+        <div className="min-w-1/2 max-md:w-full  text-3xl font-semibold text-center whitespace-pre-line">
           <Balancer>{marketingConfig.headline}</Balancer>
-        </p>
-        <div className="grid grid-cols-2 *:w-full mt-5 mb-2 gap-3 max-md:grid-cols-1 ">
+        </div>
+        <div className="grid grid-cols-2 *:w-full mt-5 mb-2 gap-3 ">
           <NavButton
             href={siteConfig.links.signup}
             size="wide"
@@ -21,7 +18,7 @@ export default function Hero() {
             icon="login"
             direction="ltr"
             buttonClassname="gap-2"
-            aria-label="Create your website"
+            aria-label="Sign up to Comma"
           >
             Sign up
           </NavButton>

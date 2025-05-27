@@ -17,15 +17,14 @@ export default function Carousel({
 }) {
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     // @ts-expect-error
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, [carousel]);
-  
-  
-  if(!links?.length) {
-    return null
+
+  if (!links?.length) {
+    return null;
   }
   return (
     <div className="w-full overflow-hidden">

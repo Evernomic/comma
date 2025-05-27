@@ -62,6 +62,7 @@ export type SiteConfig = {
     github: string;
     help: string;
     demo: string;
+    affiliates: string;
   };
 };
 
@@ -81,6 +82,7 @@ export type Feature = {
   title: string;
   icon: Icon;
   description: string;
+  image: string;
 };
 
 export type PlanFeature = {
@@ -105,7 +107,11 @@ export type Plan = {
 export type Link = {
   name: string;
   href: string;
-  icon: Icon;
+};
+
+export type FooterSection = {
+  name: string;
+  links: Link[];
 };
 
 export type Preview = {
@@ -115,9 +121,10 @@ export type Preview = {
 };
 export type MarketingConfig = {
   headline: string;
+  cta: string;
   features: Feature[];
   plans: Plan[];
-  links: Link[];
+  footerSections: FooterSection[];
   previews: Preview[];
 };
 

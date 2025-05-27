@@ -49,7 +49,7 @@ export default function AddEditLinkInBioLinkModal({
     edit && link ? (link.image ?? null) : null,
   );
 
-  const { title, successMessage } = useMemo(() => {
+  const { title } = useMemo(() => {
     if (edit && link) {
       return {
         title: "Edit link",
@@ -77,6 +77,7 @@ export default function AddEditLinkInBioLinkModal({
   useEffect(() => {
     if (!showAddEditLinkModal) {
       reset();
+      setImageURL(null);
     }
   }, [showAddEditLinkModal]);
 
@@ -97,7 +98,6 @@ export default function AddEditLinkInBioLinkModal({
     });
   };
 
-  useEffect(() => console.log(errors), [errors]);
   return (
     <Dialog open={showAddEditLinkModal} onOpenChange={setShowAddEditLinkModal}>
       <DialogTrigger asChild>
@@ -161,9 +161,11 @@ export default function AddEditLinkInBioLinkModal({
                 unoptimized
               />
               <Button
+                type="button"
                 size="sm"
                 variant="destructive"
                 disabled={isPending}
+                autoFocus={false}
                 onClick={() => {
                   setImageURL(null);
                   setValue("image", null);
