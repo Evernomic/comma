@@ -21,16 +21,6 @@ export default async function ExplorePage() {
       >
         <div className="flex gap-2">
           <NavButton
-            href="/home"
-            icon="home"
-            direction="ltr"
-            buttonVariant="ghost"
-            buttonClassname="gap-2"
-            aria-label="Back to home"
-          >
-            Home page
-          </NavButton>
-          <NavButton
             href={siteConfig.links.app}
             icon="logo"
             direction="ltr"
@@ -38,7 +28,7 @@ export default async function ExplorePage() {
             buttonClassname="gap-2"
             aria-label="Go to App"
           >
-            Comma
+            Go to App
           </NavButton>
           <NavButton
             href="/explore/callouts"

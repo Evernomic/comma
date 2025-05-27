@@ -10,11 +10,19 @@ export const freePlan: Plan = {
   maxPostLimit: 1,
   features: [
     {
-      name: "Max 1 article, project, and bookmark",
+      name: "Max 1 article, project, bookmark and page",
       icon: "check",
     },
     {
-      name: "Get featured on our Explore page",
+      name: "Custom themes",
+      icon: "x",
+    },
+    {
+      name: "Explore page feature",
+      icon: "check",
+    },
+    {
+      name: "Put out open calls",
       icon: "x",
     },
     {
@@ -35,10 +43,6 @@ export const freePlan: Plan = {
     },
     {
       name: "SEO",
-      icon: "check",
-    },
-    {
-      name: "Password protection",
       icon: "check",
     },
   ],
@@ -58,11 +62,19 @@ export const proPlan: Plan = {
   maxPostLimit: "∞",
   features: [
     {
-      name: "Unlimited articles, projects, and bookmarks",
+      name: "Unlimited articles, projects, bookmarks and pages",
       icon: "check",
     },
     {
-      name: "Get featured on our Explore page",
+      name: "Custom themes",
+      icon: "check",
+    },
+    {
+      name: "Explore page feature",
+      icon: "check",
+    },
+    {
+      name: "Put out open calls",
       icon: "check",
     },
     {
@@ -83,10 +95,6 @@ export const proPlan: Plan = {
     },
     {
       name: "SEO",
-      icon: "check",
-    },
-    {
-      name: "Password protection",
       icon: "check",
     },
   ],

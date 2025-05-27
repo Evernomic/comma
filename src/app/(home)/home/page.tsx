@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
 import { generateSEO } from "@/lib/utils";
+import CTA from "../components/cta";
 import Features from "../components/features";
 import Hero from "../components/hero";
-import Preview from "../components/preview";
 import Pricing from "../components/pricing";
 
 export const metadata = generateSEO({
@@ -11,18 +11,11 @@ export const metadata = generateSEO({
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col gap-60 py-30">
       <Hero />
-      <div className="flex flex-col items-center gap-20">
-        <div className="w-[1300px] max-xl:w-full">
-          <Preview />
-        </div>
-        <hr />
-        <Features />
-        <hr />
-        <Pricing />
-        <hr />
-      </div>
-    </>
+      <Features />
+      <Pricing />
+      <CTA />
+    </div>
   );
 }

@@ -77,7 +77,7 @@ export default function AddEditLinkInBioLinkModal({
   useEffect(() => {
     if (!showAddEditLinkModal) {
       reset();
-      setImageURL(null)
+      setImageURL(null);
     }
   }, [showAddEditLinkModal]);
 
@@ -97,7 +97,6 @@ export default function AddEditLinkInBioLinkModal({
       setShowAddEditLinkModal(false);
     });
   };
-
 
   return (
     <Dialog open={showAddEditLinkModal} onOpenChange={setShowAddEditLinkModal}>

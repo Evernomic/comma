@@ -25,9 +25,7 @@ export default function LinkInBioIntro({ user }: { user: User }) {
         </AvatarFallback>
       </Avatar>
       <div className="space-y-4 max-w-[600px] max-md:w-full">
-        <Announcement
-          text={user.announcementText}
-        />
+        <Announcement text={user.announcementText} />
         <h1 className="text-3xl font-medium">{user.name}</h1>
         <p className="text-gray-4 text-base">
           <Balancer>{user.about ?? user.title ?? user.category}</Balancer>

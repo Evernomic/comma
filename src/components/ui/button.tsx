@@ -5,7 +5,7 @@ import * as React from "react";
 import { Icons } from "../shared/icons";
 
 const buttonVariants = cva(
-  "flex h-5 cursor-pointer relative overflow-hidden flex-row items-center justify-center gap-1  px-2 rounded-md text-gray-1 outline-hidden transition-colors disabled:cursor-not-allowed disabled:opacity-70",
+  "flex h-5 cursor-pointer font-medium relative overflow-hidden flex-row items-center justify-center gap-1  px-2 rounded-md text-gray-1 outline-hidden transition-colors disabled:cursor-not-allowed disabled:opacity-70",
   {
     variants: {
       variant: {

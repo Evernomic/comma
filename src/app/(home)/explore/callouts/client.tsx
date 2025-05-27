@@ -82,7 +82,6 @@ export default function Client() {
                   <Button
                     variant="primary"
                     size="sm"
-                    className="ml-2"
                     disabled={isPending === callout.id}
                     onClick={async () => {
                       setIsPending(callout.id);
@@ -113,7 +112,7 @@ export default function Client() {
         ))}
         {!data?.pages.every((p) => p.data.length) && status !== "pending" && (
           <EmptyPlaceholder>
-            <EmptyPlaceholder.Title>No results</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>No callouts yet</EmptyPlaceholder.Title>
           </EmptyPlaceholder>
         )}
       </div>

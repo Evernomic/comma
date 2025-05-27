@@ -2,40 +2,37 @@ import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import Balancer from "react-wrap-balancer";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center py-24 gap-5">
-      <div className="flex flex-col items-center">
-        <Icons.logo size={70} />
-        <p className="text-gray-4 text-center my-5 text-sm">
-          <Balancer>{marketingConfig.headline}</Balancer>
-        </p>
-        <NavButton
-          href={siteConfig.links.signup}
-          size="wide"
-          buttonVariant="primary"
-          aria-label="Create your website"
-        >
-          Create your website
-        </NavButton>
-      </div>
-      <div className={cn("flex max-sm:flex-col gap-3")}>
-        {marketingConfig.links.map((link) => (
-          <NavButton
-            href={link.href}
-            variant="text"
-            target={link.href.startsWith("https://") ? "_blank" : "_parent"}
-            aria-label={link.name}
-            className={cn(
-              link.href === "/terms" && "border-r border-gray-1 pr-3",
-            )}
-            key={link.name}
-          >
-            {link.name}
-          </NavButton>
+    <footer className="flex justify-between  max-md:flex-col max-md:gap-15 items-start border-t border-gray-2 py-20 pb-30">
+      <Link href={siteConfig.links.home}>
+        <Icons.logo size={30} />
+      </Link>
+      <div className="flex gap-20 ">
+        {marketingConfig.footerSections.map((section) => (
+          <div className="flex flex-col gap-3" key={section.name}>
+            <div className="text-secondary font-medium  text-sm">
+              {section.name}
+            </div>
+            <ul className="flex flex-col gap-1">
+              {section.links.map((link) => (
+                <NavButton
+                  href={link.href}
+                  variant="text"
+                  target={
+                    link.href.startsWith("https://") ? "_blank" : "_parent"
+                  }
+                  aria-label={link.name}
+                  className="text-sm"
+                  key={link.name}
+                >
+                  {link.name}
+                </NavButton>
+              ))}
+            </ul>
+          </div>
         ))}
       </div>
     </footer>
