@@ -6,9 +6,7 @@ import { updateUserSchema } from "@/lib/validations/user";
 export const PATCH = guard(
   async ({ user, body, plan }) => {
     try {
-      await updateUser(user.id, body, plan);
-
-      return new Response(null, { status: 200 });
+      return await updateUser(user.id, body, plan);
     } catch (err) {
       return new Response(JSON.stringify(err), { status: 500 });
     }
