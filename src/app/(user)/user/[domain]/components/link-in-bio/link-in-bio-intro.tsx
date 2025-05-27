@@ -24,10 +24,9 @@ export default function LinkInBioIntro({ user }: { user: User }) {
           {getInitials(user.name ?? user.username)}
         </AvatarFallback>
       </Avatar>
-      <div className="space-y-4">
+      <div className="space-y-4 max-w-[600px] max-md:w-full">
         <Announcement
           text={user.announcementText}
-          className="max-w-[600px] max-md:w-full"
         />
         <h1 className="text-3xl font-medium">{user.name}</h1>
         <p className="text-gray-4 text-base">
@@ -51,7 +50,6 @@ export default function LinkInBioIntro({ user }: { user: User }) {
           })}
         </div>
       </div>
-
       <Carousel
         links={links}
         type={(user.linkInBioLinksViewType as LinkInBioLinkType) ?? "wide"}
