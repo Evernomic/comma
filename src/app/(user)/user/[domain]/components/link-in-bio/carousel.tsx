@@ -12,17 +12,21 @@ export default function Carousel({
   links,
   type = "wide",
 }: {
-  links: _LinkInBioLink[];
+  links?: _LinkInBioLink[];
   type?: LinkInBioLinkType;
 }) {
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     // @ts-expect-error
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, [carousel]);
-
+  
+  
+  if(!links?.length) {
+    return null
+  }
   return (
     <div className="w-full overflow-hidden">
       <motion.div
