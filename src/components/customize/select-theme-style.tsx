@@ -3,7 +3,6 @@
 import { themeStyles } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { UserPageTheme } from "@prisma/client";
-import ky from "ky";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NavButton from "../layout/nav-button";
@@ -19,35 +18,36 @@ export default function SelectThemeStyle({
   defaultTheme: UserPageTheme;
 }) {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [selectedTheme, setSelectedTheme] =
     useState<UserPageTheme>(defaultTheme);
 
   useEffect(() => {
-    if (selectedTheme !== defaultTheme) {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
       startTransition?.(async () => {
-        try {
-          const res = await ky.patch("/api/user", {
-            json: {
-              theme: selectedTheme,
-              ...(selectedTheme === "freeStyle" && {
-                showCustomHomePage: true,
-              }),
-            },
+        const res = await fetch("/api/user", {
+          method: "PATCH",
+          body: JSON.stringify({
+            theme: selectedTheme,
+          }),
+        });
+        if (!res.ok) {
+          const error = await res.text();
+          toast({
+            title: "Something went wrong.",
+            description: error,
+            variant: "destructive",
           });
-          if (!res.ok) {
-            const error = await res.text();
-            toast({
-              title: "Something went wrong.",
-              description: error,
-              variant: "destructive",
-            });
-          } else {
-            router.refresh();
-            toast({
-              title: "Saved",
-            });
-          }
-        } catch (err) {}
+        } else {
+          router.refresh();
+          toast({
+            title: "Saved",
+          });
+        }
       });
     }
   }, [selectedTheme]);

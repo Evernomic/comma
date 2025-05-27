@@ -36,6 +36,12 @@ export async function updateUser(
     ...rest
   } = data;
 
+  if (theme && !plan.isPro && theme !== "default") {
+    return new Response("Upgrade plan to Pro to use themes feature", {
+      status: 403,
+    });
+  }
+
   const encryptedBeehiivKey =
     beehiivKey && beehiivKey !== null ? encrypt(beehiivKey) : beehiivKey;
   const encryptedPublicationId =
@@ -62,6 +68,8 @@ export async function updateUser(
   if (data.email) {
     await addContact(updated.email, updated.name ?? updated.username);
   }
+
+  return new Response(null, { status: 200 });
 }
 
 export async function updateDomain(
