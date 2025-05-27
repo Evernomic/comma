@@ -96,7 +96,7 @@ export default function CustomDomain({
     >
       <div className="flex flex-col gap-1 p-4">
         <div className="flex flex-col gap-1">
-          <h1>Custom domain</h1>
+          <div className="font-medium">Custom domain</div>
           <p className="text-sm text-gray-4">
             The custom domain for your page.
           </p>
