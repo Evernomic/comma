@@ -7,6 +7,7 @@ import type {
 } from "@/types";
 import type {
   Article,
+  Changelog,
   Page,
   Project,
   User,
@@ -165,6 +166,12 @@ export function sortWorkExperiences(experiences: WorkExperience[]) {
   return experiences.sort(
     (a, b) => b.from - (a.to === "present" ? 1 : Number(a.to)),
   );
+}
+
+export function sortChangelog(logs: Changelog[], published?: string) {
+  return logs
+    .filter((a) => (published ? a.published.toString() === published : a))
+    .sort((a, b) => Number(b.published) - Number(a.published));
 }
 
 export function getEndpoint(
@@ -372,10 +379,13 @@ export function getUserPageURL(user: Pick<User, "username" | "domain">) {
 }
 
 export function getPostPageURL(
-  type: "articles" | "projects" | "pages",
+  type: "articles" | "projects" | "pages" | "admin/changelog",
   slug: string,
   user: Pick<User, "username" | "domain">,
 ) {
+  if (type === "admin/changelog") {
+    return `${siteConfig.url}/changelog`;
+  }
   return `${getUserPageURL(user)}/${type}/${slug}`;
 }
 

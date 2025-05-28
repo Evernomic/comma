@@ -36,7 +36,7 @@ export const CustomImage = async ({
 };
 export default function Features() {
   return (
-    <section className="section-container">
+    <section id="features" className="section-container">
       <div className="grid grid-cols-2 gap-2 max-md:grid-cols-1 section-content">
         {marketingConfig.features.map((f) => {
           const Icon = Icons[f.icon];

@@ -1,9 +1,9 @@
 import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
-import { formatDate, getDate } from "@/lib/utils";
+import { getDate } from "@/lib/utils";
 import type { Article } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { type SetStateAction, useState } from "react";
+import { type SetStateAction } from "react";
 import type { EditorPageProps, Post } from ".";
 import Button from "../../ui/button";
 import {

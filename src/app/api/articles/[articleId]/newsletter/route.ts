@@ -10,8 +10,7 @@ const contextSchema = z.object({
 export const POST = guard(
   async () => {
     try {
-
-      return new Response("Newsletter function is not active", {status: 400})
+      return new Response("Newsletter function is not active", { status: 400 });
       // const article = await getArticleByAuthor(ctx.params.articleId, user.id);
 
       // if (!article) {

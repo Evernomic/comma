@@ -12,7 +12,7 @@ export const metadata = generateSEO({
 
 export default function CalloutsPage() {
   return (
-    <AppShell className="pt-20 gap-5 min-h-screen">
+    <AppShell className="pt-10 gap-5 min-h-screen">
       <AppHeader
         title="Callouts"
         description="You can follow the calls of Comma users here."

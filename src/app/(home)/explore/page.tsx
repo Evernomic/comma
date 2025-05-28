@@ -13,7 +13,7 @@ export const metadata = generateSEO({
 
 export default async function ExplorePage() {
   return (
-    <AppShell className="pt-20 gap-5 min-h-screen">
+    <AppShell className="pt-10 gap-5 min-h-screen">
       <AppHeader
         title="Explore"
         description="You can search for Comma writers here."
