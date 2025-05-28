@@ -162,7 +162,7 @@
 
 @layer base {
   html {
-    @apply scrollbar-hide;
+    @apply scrollbar-hide scroll-smooth;
   }
   body {
     @apply bg-primary text-secondary;

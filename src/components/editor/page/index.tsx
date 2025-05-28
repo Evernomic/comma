@@ -11,7 +11,7 @@ import { toast } from "@/components/ui/use-toast";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { getPostPageURL } from "@/lib/utils";
 import type { Icon } from "@/types";
-import type { Article, Page, Project, User } from "@prisma/client";
+import type { Article, Changelog, Page, Project, User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import Editor from "..";
@@ -19,11 +19,11 @@ import NavButton from "../../layout/nav-button";
 import { Icons } from "../../shared/icons";
 import PublishButton from "./publish-button";
 
-export type Post = Article | Project | Page;
+export type Post = Article | Project | Page | Changelog;
 
 export interface EditorPageProps {
   post: Post;
-  type: "articles" | "projects" | "pages";
+  type: "articles" | "projects" | "pages" | "admin/changelog";
   user: Pick<User, "username" | "newsletter" | "domain">;
 }
 
@@ -85,46 +85,48 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
               aria-label={`Go to help page`}
             />
           )}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                size="icon"
-                className="data-[state=open]:bg-gray-3 data-[state=open]:text-secondary"
-              >
-                <Icons.more size={16} />
-              </Button>
-            </DropdownMenuTrigger>
+          {type !== "admin/changelog" && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  size="icon"
+                  className="data-[state=open]:bg-gray-3 data-[state=open]:text-secondary"
+                >
+                  <Icons.more size={16} />
+                </Button>
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="start" className="text-gray-4">
-              {actions.map(({ title, href, icon, command }) => {
-                const Icon = Icons[icon];
-                return (
-                  <DropdownMenuItem
-                    className="hover:text-secondary"
-                    key={icon}
-                    asChild
-                  >
-                    {href && !command ? (
-                      <Link href={href}>
-                        <Icon size={16} />
-                        {title}
-                      </Link>
-                    ) : (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="justify-start"
-                        onClick={command}
-                      >
-                        <Icon size={16} />
-                        {title}
-                      </Button>
-                    )}
-                  </DropdownMenuItem>
-                );
-              })}
-            </DropdownMenuContent>
-          </DropdownMenu>
+              <DropdownMenuContent align="start" className="text-gray-4">
+                {actions.map(({ title, href, icon, command }) => {
+                  const Icon = Icons[icon];
+                  return (
+                    <DropdownMenuItem
+                      className="hover:text-secondary"
+                      key={icon}
+                      asChild
+                    >
+                      {href && !command ? (
+                        <Link href={href}>
+                          <Icon size={16} />
+                          {title}
+                        </Link>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="justify-start"
+                          onClick={command}
+                        >
+                          <Icon size={16} />
+                          {title}
+                        </Button>
+                      )}
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
         {post.published && (
           <NavButton

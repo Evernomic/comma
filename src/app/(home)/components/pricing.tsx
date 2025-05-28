@@ -13,7 +13,10 @@ export default function Pricing() {
   const [period, setPeriod] = useState<Period>("monthly");
   const id = "period-switch";
   return (
-    <section className="section-container flex flex-col gap-15 justify-center items-center">
+    <section
+      id="pricing"
+      className="section-container flex flex-col gap-15 justify-center items-center"
+    >
       <div className="text-gray-4 text-base font-medium flex items-center gap-3 transition-colors">
         <label
           className={cn(period === "monthly" && "text-secondary")}

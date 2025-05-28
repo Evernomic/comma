@@ -62,7 +62,7 @@ export const proPlan: Plan = {
   maxPostLimit: "∞",
   features: [
     {
-      name: "Unlimited articles, projects, bookmarks and pages",
+      name: "Unlimited articles, projects and more",
       icon: "check",
     },
     {

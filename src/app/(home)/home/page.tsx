@@ -11,7 +11,7 @@ export const metadata = generateSEO({
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-60 py-30">
+    <div className="flex flex-col gap-60 py-30 ">
       <Hero />
       <Features />
       <Pricing />

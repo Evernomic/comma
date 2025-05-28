@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types";
 import type { PopoverContentProps } from "@radix-ui/react-popover";
+import { usePathname } from "next/navigation";
 import { Icons } from "../shared//icons";
 import {
   DropdownMenu,
@@ -12,7 +13,7 @@ import {
 import NavButton from "./nav-button";
 interface Props {
   links: NavItem[];
-  currentPath: string;
+  currentPath?: string;
   align?: PopoverContentProps["align"];
 }
 
@@ -21,6 +22,7 @@ export default function MobileNav({
   currentPath,
   align = "end",
 }: Props) {
+  const path = usePathname() ?? currentPath;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -38,7 +40,7 @@ export default function MobileNav({
             className="w-full"
             buttonClassname={cn(
               "w-full justify-start",
-              currentPath.endsWith(link.href) ? "bg-gray-2 text-secondary" : "",
+              path.endsWith(link.href) ? "bg-gray-2 text-secondary" : "",
             )}
             buttonVariant="ghost"
           >

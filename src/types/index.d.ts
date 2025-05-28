@@ -36,6 +36,10 @@ export type AppConfig = {
     postsFilter: PostFilter[];
   };
 };
+
+export type AdminConfig = {
+  nav: MainNavItem[];
+};
 export type NewsletterProps = {
   title: string;
   published: string;

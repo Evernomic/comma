@@ -66,7 +66,7 @@ export function Filter({
           variant="secondary"
           aria-expanded={open}
           className={cn(
-            "w-max max-w-36 justify-between data-[state=open]:bg-gray-2 text-secondary text-xs",
+            "w-max max-w-36 justify-between font-normal data-[state=open]:bg-gray-2 text-secondary text-xs",
             className,
             selectedValues.length && "bg-gray-3",
           )}

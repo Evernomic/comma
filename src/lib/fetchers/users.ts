@@ -6,6 +6,9 @@ import getCurrentUser from "../session";
 
 export async function getUser() {
   const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return null;
+  }
   return await db.user.findUnique({
     where: {
       id: session?.user.id,

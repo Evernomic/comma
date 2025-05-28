@@ -8,6 +8,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import type * as z from "zod";
 import MagicLinkEmail from "../../emails/magic-link";
+import { isAdmin } from "./actions/admin";
 import { db } from "./db";
 import { getUser } from "./fetchers/users";
 import log from "./log";
@@ -148,6 +149,7 @@ export const guard = <
   {
     requiredPlan,
     schemas = {},
+    admin = false,
   }: {
     requiredPlan?: Plan["title"];
     schemas?: {
@@ -155,6 +157,7 @@ export const guard = <
       contextSchema?: TContext;
       searchParamsSchema?: TParams;
     };
+    admin?: boolean;
   } = {},
 ) => {
   return async (req: Request, context: any) => {
@@ -162,6 +165,14 @@ export const guard = <
     if (!user) {
       return new Response(null, { status: 401 });
     }
+
+    if (admin) {
+      const admin = await isAdmin();
+      if (!admin) {
+        return new Response("Forbidden", { status: 403 });
+      }
+    }
+
     const plan = await getUserSubscription(user.id);
 
     if (requiredPlan && requiredPlan === "Pro" && !plan.isPro) {
