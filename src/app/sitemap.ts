@@ -23,6 +23,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
       },
       {
+        url: `${url}/explore/callouts`,
+        lastModified: new Date(),
+      },
+      {
+        url: `${url}/changelog`,
+        lastModified: new Date(),
+      },
+      {
         url: `${url}/privacy`,
         lastModified: new Date(),
       },
