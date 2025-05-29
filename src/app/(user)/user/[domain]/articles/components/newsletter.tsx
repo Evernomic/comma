@@ -18,7 +18,7 @@ export default function Newsletter({
   return (
     <dl
       className={cn(
-        "section-container gap-3 rounded-md not-prose bg-gray-3 border border-gray-2 p-[35px]",
+        "section-container gap-3 rounded-md not-prose bg-gray-3 border  p-[35px]",
         className,
       )}
     >

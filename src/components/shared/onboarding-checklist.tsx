@@ -110,7 +110,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
     <div className="fixed left-0 bottom-0 w-full pb-10 mx-auto flex justify-center max-sm:hidden">
       <BlurEffect />
       <Popover>
-        <PopoverTrigger className="bg-gray-3 z-50 cursor-pointer border border-gray-2 text-center px-3 py-2 flex items-center gap-2  rounded-full transition-colors hover:bg-gray-2 data-[state=open]:bg-gray-2">
+        <PopoverTrigger className="bg-gray-3 z-50 cursor-pointer border  text-center px-3 py-2 flex items-center gap-2  rounded-full transition-colors hover:bg-gray-2 data-[state=open]:bg-gray-2">
           <Gauge value={completedTasksRate} />
           <div className="text-sm">Getting started</div>
         </PopoverTrigger>
@@ -140,7 +140,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
             </p>
           </div>
           <div className="p-3">
-            <ul className="text-sm border border-gray-2 rounded-md overflow-hidden divide-y-[1px] divide-gray-2">
+            <ul className="text-sm border  rounded-md overflow-hidden divide-y-[1px] divide-gray-2">
               {tasks.map((task) => (
                 <Link href={task.href!} key={task.title!.trim().toLowerCase()}>
                   <li

@@ -20,7 +20,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-5 w-full items-center text-secondary! justify-between whitespace-nowrap gap-1 rounded-md border border-gray-2 bg-transparent px-2 py-2 text-sm shadow-xs placeholder:text-gray-3 focus:outline-hidden  disabled:cursor-not-allowed data-[state=open]:bg-gray-3 disabled:bg-gray-3 [&>span]:line-clamp-1",
+      "flex h-5 w-full items-center text-secondary! justify-between whitespace-nowrap gap-1 rounded-md border  bg-transparent px-2 py-2 text-sm shadow-xs placeholder:text-gray-3 focus:outline-hidden  disabled:cursor-not-allowed data-[state=open]:bg-gray-3 disabled:bg-gray-3 [&>span]:line-clamp-1",
       className,
       error && "border-danger!",
     )}
@@ -77,7 +77,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 max-h-64 min-w-[8rem] overflow-hidden rounded-md border border-gray-2 bg-gray-3 text-gray-1 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "relative z-50 max-h-64 min-w-[8rem] overflow-hidden rounded-md border  bg-gray-3 text-gray-1 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className,

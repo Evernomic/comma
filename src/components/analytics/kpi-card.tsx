@@ -10,7 +10,7 @@ export default function KPICard({ title, value, className }: KPICardProps) {
   return (
     <div
       className={cn(
-        "bg-gray-3 border flex flex-col gap-1 p-3 rounded-md border-gray-2",
+        "bg-gray-3 border flex flex-col gap-1 p-3 rounded-md ",
         className,
       )}
     >

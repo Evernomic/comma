@@ -60,7 +60,7 @@ export default function Project({ project, admin }: Props) {
               <Balancer>{project.title}</Balancer>
             )}
 
-            <p className="text-gray-4">{project.year}</p>
+            <p className="text-gray-4 text-xs">{project.year}</p>
 
             {project.isPinned && (
               <Pin size={15} className="text-gray-4 -ml-1" />

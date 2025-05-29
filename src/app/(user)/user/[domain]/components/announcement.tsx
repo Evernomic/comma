@@ -28,7 +28,7 @@ export default async function Announcement({
     <div
       role="alert"
       className={cn(
-        "rounded-md mb-16 border border-gray-2 bg-gray-3 flex gap-4   items-center break-words py-2 pl-4 pr-6",
+        "rounded-md mb-16 border  bg-gray-3 flex gap-4   items-center break-words py-2 pl-4 pr-6",
         className,
       )}
     >

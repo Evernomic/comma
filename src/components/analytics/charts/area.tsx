@@ -72,7 +72,7 @@ export default function AreaChart({
 function Tooltip({ payload, active }: any) {
   if (active && payload && payload.length) {
     return (
-      <div className="flex min-w-20 flex-col  gap-1 rounded-md border border-gray-2  bg-gray-3 px-3 py-2">
+      <div className="flex min-w-20 flex-col  gap-1 rounded-md border   bg-gray-3 px-3 py-2">
         <b className="text-gray-4">{payload[0].payload.start}</b>
         <p className="text-secondary">
           <b>{payload?.[0]?.value}</b> {payload?.[0]?.name}

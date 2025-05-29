@@ -26,7 +26,7 @@ export default function Newsletter({ checked }: { checked: boolean }) {
 
   return (
     <form action={formAction} className="flex items-center gap-2">
-      <label htmlFor="newsletter-toggle" className="text-xs text-gray-4">
+      <label htmlFor="newsletter-toggle" className="text-xs font-medium">
         Newsletter
       </label>
 

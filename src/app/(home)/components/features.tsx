@@ -42,7 +42,7 @@ export default function Features() {
           const Icon = Icons[f.icon];
           return (
             <div
-              className="text-gray-4 last:[&_img]:scale-110  w-full flex relative aspect-100/90 max-md:aspect-90/100 bg-primary flex-col border overflow-hidden border-gray-2  p-5 justify-between  gap-3  text-sm rounded-md  cursor-default"
+              className="text-gray-4 last:[&_img]:scale-110  w-full flex relative aspect-100/90 max-md:aspect-90/100 bg-primary flex-col border overflow-hidden   p-5 justify-between  gap-3  text-sm rounded-md  cursor-default"
               key={f.title}
             >
               <div className="flex flex-col gap-2">

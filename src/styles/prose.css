@@ -9,11 +9,11 @@
 }
 
 .prose blockquote {
-  @apply border-gray-2 border-l-4 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
+  @apply  border-l-4 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
 }
 
 .prose pre {
-  @apply border-gray-2 bg-gray-3 text-secondary rounded-lg border;
+  @apply  bg-gray-3 text-secondary rounded-lg border;
 }
 
 .prose pre code {
@@ -21,7 +21,7 @@
 }
 
 .prose code {
-  @apply border-gray-2 bg-gray-3 text-secondary rounded-lg border px-1 py-0.5 font-normal;
+  @apply  bg-gray-3 text-secondary rounded-lg border px-1 py-0.5 font-normal;
 }
 
 .prose ul {

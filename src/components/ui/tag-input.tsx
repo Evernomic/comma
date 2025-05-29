@@ -21,7 +21,7 @@ const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
     };
 
     return (
-      <div className=" max-w-[400px] border border-gray-2 text-gray-4 rounded-md text-xs   p-2 flex  items-center flex-wrap gap-2">
+      <div className=" max-w-[400px] border  text-gray-4 rounded-md text-xs   p-2 flex  items-center flex-wrap gap-2">
         {value.length > 0
           ? value.map((item, idx) => (
               <Badge className="flex gap-1 items-center px-1 " key={idx}>

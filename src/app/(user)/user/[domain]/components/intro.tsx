@@ -18,8 +18,8 @@ export default function Intro({ user }: { user: User }) {
           </AvatarFallback>
         </Avatar>
         <div className="flex  flex-col items-start">
-          <h1 className="text-lg">{user.name}</h1>
-          <h2 className="text-gray-4 text-sm">{user.title}</h2>
+          <div className="text-lg font-medium">{user.name}</div>
+          <p className="text-gray-4 text-sm font-normal">{user.title}</p>
         </div>
       </dt>
     </dl>

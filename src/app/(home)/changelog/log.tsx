@@ -4,7 +4,7 @@ import type { Changelog } from "@prisma/client";
 
 export default function Log({ log }: { log: Changelog }) {
   return (
-    <article className="w-full flex max-md:flex-col max-md:gap-10 border-b border-gray-2 py-16  last:border-0">
+    <article className="w-full flex max-md:flex-col max-md:gap-10 border-b  py-16  last:border-0">
       <div className="w-1/4 max-md:w-full font-medium text-gray-4">
         {formatDate(log.publishedAt)}
       </div>

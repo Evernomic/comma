@@ -1,6 +1,7 @@
 "use client";
 
 import { appConfig } from "@/config/app";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import AppHeader from "./header";
 import NavButton from "./nav-button";
@@ -19,9 +20,10 @@ export default function SettingsNav() {
               href={link.href}
               key={link.title}
               size="sm"
-              buttonClassname={
-                link.href === path ? "bg-gray-2! text-secondary!" : ""
-              }
+              buttonClassname={cn(
+                "font-normal",
+                link.href === path ? "bg-gray-2! text-secondary!" : "",
+              )}
               buttonVariant="ghost"
             >
               {link.title}

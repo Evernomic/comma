@@ -21,7 +21,7 @@
 }
 
 .ProseMirror-selectednode {
-  @apply border border-gray-2;
+  @apply border ;
 }
 
 .ProseMirror img {

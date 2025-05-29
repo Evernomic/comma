@@ -20,10 +20,11 @@ export default function ViewAllBarlist({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="absolute items-center bg-linear-to-t outline-0 from-gray-3 to-transparent rounded-b-md bottom-0 z-30 flex py-1 w-full justify-center">
+        <div className="absolute items-center bg-linear-to-t outline-0 from-primary to-transparent rounded-b-md bottom-0 z-30 flex py-1 w-full justify-center">
           <Button
             className="rounded-full"
             size="sm"
+            variant="secondary"
             aria-label={`View all ${title}`}
           >
             View all

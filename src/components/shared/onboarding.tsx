@@ -251,7 +251,7 @@ function Plans() {
         </p>
       </div>
 
-      <div className="bg-gray-3 border border-gray-2 rounded-md p-2 mt-5 w-max justify-self-end text-xs text-gray-4 flex items-center gap-1">
+      <div className="bg-gray-3 border  rounded-md p-2 mt-5 w-max justify-self-end text-xs text-gray-4 flex items-center gap-1">
         <label htmlFor="plan-switch">Monthly</label>
         <Switch
           id="plan-switch"
@@ -263,7 +263,7 @@ function Plans() {
         />
         <label htmlFor="plan-switch">Yearly</label>
       </div>
-      <div className="bg-gray-3 flex flex-col gap-4  border border-gray-2 rounded-md p-3">
+      <div className="bg-gray-3 flex flex-col gap-4  border  rounded-md p-3">
         <header className="w-full flex justify-between items-center">
           <div className="space-y-1">
             <div>{title}</div>

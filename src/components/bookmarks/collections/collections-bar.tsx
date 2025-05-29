@@ -13,11 +13,11 @@ export default function CollectionBar({
     history: "push",
   });
   return (
-    <div className="flex flex-row flex-wrap gap-2">
+    <div className="flex flex-row flex-wrap gap-2 mb-2">
       <Button
         onClick={() => setCollection(null)}
         className={cn(
-          "rounded-md cursor-pointer h-4  border w-max border-gray-2  px-1 text-xs text-gray-4",
+          "rounded-md cursor-pointer h-4  border w-max   px-1 text-xs text-gray-4",
           !collection ? "bg-gray-2 text-secondary" : "",
         )}
         size="sm"
@@ -28,7 +28,7 @@ export default function CollectionBar({
         <Button
           onClick={() => setCollection(item.name)}
           className={cn(
-            "rounded-md cursor-pointer h-4  border w-max border-gray-2  px-1 text-xs text-gray-4",
+            "rounded-md cursor-pointer h-4  border w-max   px-1 text-xs text-gray-4",
             collection === item.name ? "bg-gray-2 text-secondary" : "",
           )}
           key={item.id}

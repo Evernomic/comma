@@ -10,10 +10,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-gray-2 bg-inherit text-gray-4 text-sm enabled:hover:bg-gray-2",
+          "border  bg-inherit text-gray-4 text-sm enabled:hover:bg-gray-2",
         destructive: "bg-danger text-primary",
         secondary:
-          "bg-gray-3 enabled:hover:bg-gray-2 border border-gray-2 text-gray-4 enabled:hover:text-secondary ",
+          "bg-gray-3 enabled:hover:bg-gray-2 border  text-gray-4 enabled:hover:text-secondary ",
         ghost:
           "enabled:hover:bg-gray-2! bg-inherit text-gray-4 enabled:hover:text-secondary! data-[state=open]:bg-gray-2 data-[state=open]:text-secondary",
         primary:

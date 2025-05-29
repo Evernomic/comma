@@ -2,7 +2,6 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import MDX from "@/components/markdown/mdx";
 import { Icons } from "@/components/shared/icons";
-import { Badge } from "@/components/ui/badge";
 import { getProject, getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import {
@@ -109,9 +108,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </AppHeader>
       <div className="w-full flex-1 text-sm text-gray-4 flex items-center justify-between mb-4">
         <p>{project.description}</p>
-        <Badge className="text-secondary bg-inherit font-medium ">
-          {project.year}
-        </Badge>
+        <p className="text-gray-4 text-sm font-medium ">{project.year}</p>
       </div>
       <MDX source={project.content} />
     </AppShell>

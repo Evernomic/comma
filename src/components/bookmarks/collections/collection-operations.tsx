@@ -49,7 +49,7 @@ export default function CollectionOperations({
           <Icons.more size={15} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border border-gray-2">
+      <DropdownMenuContent className="border ">
         <AddEditCollectionModal collection={collection} edit />
         <Button
           size="sm"

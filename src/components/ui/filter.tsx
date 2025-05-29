@@ -91,7 +91,7 @@ export function Filter({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="ml-0 size-auto p-0 border-0" align="end">
-        <Command className="border border-gray-2 flex flex-col bg-gray-3 text-gray-1 pb-0 w-[16rem]">
+        <Command className="border  flex flex-col bg-gray-3 text-gray-1 pb-0 w-[16rem]">
           <CommandInput placeholder="Search..." className="h-10 items-center">
             <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>
               Done

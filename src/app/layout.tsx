@@ -8,7 +8,7 @@ import localFont from "next/font/local";
 
 const inter = localFont({
   src: "../../public/fonts/InterVariable.woff2",
-  weight: "450 500 600 700",
+  weight: "400 500 600 700",
   display: "swap",
 });
 

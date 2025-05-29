@@ -95,7 +95,7 @@ export default function UploadImage({
   if (inline) {
     return (
       <div
-        className="border border-gray-2 gap-2 h-5 rounded-md cursor-pointer hover:border-gray-1 text-gray-1 text-sm flex items-center px-2"
+        className="border  gap-2 h-5 rounded-md cursor-pointer hover:border-gray-1 text-gray-1 text-sm flex items-center px-2"
         onClick={() => inputRef.current?.click()}
       >
         {saving ? (
@@ -122,7 +122,7 @@ export default function UploadImage({
   }
 
   return (
-    <div className="overflow-hidden rounded-md border border-gray-2">
+    <div className="overflow-hidden rounded-md border ">
       <div className="flex flex-col justify-between  gap-3 p-4 ">
         <div className="flex flex-col gap-1">
           <div className="font-medium">{title}</div>
@@ -202,7 +202,7 @@ export default function UploadImage({
             height={previewImageSize ?? 0}
             sizes="100vw"
             className={cn(
-              "rounded-md border border-gray-2 p-2",
+              "rounded-md border  p-2",
               !previewImageSize && "w-full p-0",
             )}
             alt={title as string}
@@ -210,7 +210,7 @@ export default function UploadImage({
           />
         )}
       </div>
-      <footer className="flex h-auto flex-row items-center justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
+      <footer className="flex h-auto flex-row items-center justify-between border-t  bg-gray-3 px-4 py-2">
         <div className="py-1 text-sm text-gray-4">{helpText}</div>
       </footer>
     </div>

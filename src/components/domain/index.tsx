@@ -91,7 +91,7 @@ export default function CustomDomain({
 
   return (
     <form
-      className="overflow-hidden rounded-md relative border border-gray-2"
+      className="overflow-hidden rounded-md relative border "
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-1 p-4">
@@ -169,7 +169,7 @@ export default function CustomDomain({
         </div>
       )}
 
-      <footer className="flex h-auto flex-row items-center justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
+      <footer className="flex h-auto flex-row items-center justify-between border-t  bg-gray-3 px-4 py-2">
         <div className={cn("text-sm text-gray-4", error ? "text-danger" : "")}>
           {status === "Valid Configuration" && "Your domain is approved."}
           {error && error}

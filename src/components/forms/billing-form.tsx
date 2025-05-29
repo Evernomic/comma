@@ -44,9 +44,9 @@ export default function BillingForm({ subscriptionPlan }: Props) {
   }
 
   return (
-    <div className="flex flex-col  border border-gray-3 divide-y divide-gray-3 rounded-md">
-      <div className="grid grid-cols-2 relative max-md:grid-cols-1  divide-gray-3 max-md:divide-y max-md:divide-x-0">
-        <div className="absolute right-3 top-3 text-xs text-gray-4 flex items-center gap-1">
+    <div className="flex flex-col gap-2  rounded-md">
+      <div className="grid grid-cols-2 gap-2 relative max-md:grid-cols-1 ">
+        <div className="absolute z-20 right-3 top-3 text-xs font-medium text-gray-4 flex items-center gap-1">
           <Checkbox
             id="plan-switch"
             className="size-[18px]"
@@ -61,18 +61,15 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           </label>
         </div>
         {marketingConfig.plans.map((plan) => (
-          <div
-            className="flex flex-col divide-y divide-gray-3 border-r last:border-none"
-            key={plan.title}
-          >
+          <div className="flex flex-col border rounded-md" key={plan.title}>
             <div
               className={cn(
-                "p-3 -z-10",
+                "py-4  z-10 pl-4 border-b",
                 plan.title === isPro ? "bg-gray-3" : "",
               )}
             >
-              <div className="flex gap-2">
-                <Badge className="text-secondary">{plan.title}</Badge>
+              <div className="flex gap-2 items-center">
+                <p className="font-medium ">{plan.title}</p>
                 {plan.title === subscriptionPlan.title && (
                   <Badge className="text-gray-4 border-none p-0">
                     Current plan
@@ -80,15 +77,15 @@ export default function BillingForm({ subscriptionPlan }: Props) {
                 )}
               </div>
               <div className="flex items-center mt-2">
-                <p className="text-xl  text-secondary tracking-wider  flex items-baseline gap-1">
+                <p className="text-xl  text-secondary font-medium tracking-wider  flex items-baseline gap-1">
                   ${plan.price[period]}
-                  <span className="text-xs text-gray-1">
+                  <span className="text-xs text-gray-4">
                     / {period === "monthly" ? "month" : "year"}
                   </span>
                 </p>
               </div>
             </div>
-            <div className="grid grid-rows-6 divide-y divide-gray-3">
+            <div className="grid grid-rows-6 p-2">
               {plan.features.map((feature) => {
                 const Icon = Icons[feature.icon];
                 return (
@@ -110,7 +107,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           </div>
         ))}
       </div>
-      <div className="flex max-md:flex-col max-md:items-stretch gap-3   justify-between items-center p-3 text-xs text-gray-4">
+      <div className="flex max-md:flex-col max-md:items-stretch gap-3 border font-medium rounded-md bg-gray-3    justify-between items-center p-3 text-xs text-gray-4">
         {subscriptionPlan.isPro ? (
           <p className="max-md:text-center">
             {subscriptionPlan.status === "cancelled" &&
@@ -135,7 +132,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
         <form onSubmit={billing} className="flex flex-col gap-2 ">
           <Button
             type="submit"
-            variant="secondary"
+            variant="primary"
             isPending={isLoading}
             size="sm"
           >
