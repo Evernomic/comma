@@ -7,7 +7,7 @@ export default function CTA() {
   return (
     <section className="section-container">
       <div className="flex flex-col items-center text-center justify-center gap-5">
-        <div className="text-3xl font-semibold whitespace-pre-line">
+        <div className="text-3xl font-semibold max-md:font-medium whitespace-pre-line">
           <Balancer>{marketingConfig.cta}</Balancer>
         </div>
         <NavButton

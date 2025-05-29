@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="section-container  min-h-1/2 flex items-center justify-center">
       <div className="flex flex-col items-center gap-2 ">
-        <div className="min-w-1/2 max-md:w-full  text-3xl font-semibold text-center whitespace-pre-line">
+        <div className="min-w-1/2 max-md:w-full max-md:font-medium  text-3xl font-semibold text-center whitespace-pre-line">
           <Balancer>{marketingConfig.headline}</Balancer>
         </div>
         <div className="grid grid-cols-2 *:w-full mt-5 mb-2 gap-3 ">
