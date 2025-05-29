@@ -89,25 +89,25 @@ export default function Client() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[250px]">Name</TableHead>
+            <TableHead className="max-w-[200px] ">Name</TableHead>
             <TableHead>Username</TableHead>
             <TableHead>Email</TableHead>
             <TableHead className="text-right">Joined</TableHead>
-            <TableHead className="w-[100px]" />
+            <TableHead />
           </TableRow>
         </TableHeader>
         <TableBody>
           {data &&
             data.data.map((user) => (
               <TableRow key={user.id}>
-                <TableCell className="w-[250px] flex gap-2  truncate">
+                <TableCell className="max-w-[200px] flex gap-2  truncate">
                   {user.image ? (
                     <Image
                       src={user.image}
                       width={0}
                       height={0}
                       sizes="100vw"
-                      className="rounded-full size-4 "
+                      className="rounded-full size-4 max-base:hidden"
                       alt={`${user.username}'s avatar`}
                     />
                   ) : (
@@ -124,7 +124,7 @@ export default function Client() {
                     addSuffix: true,
                   })}
                 </TableCell>
-                <TableCell className="w-[100px] flex justify-end">
+                <TableCell className="flex justify-end">
                   <Actions user={user} refetch={() => refetch()} />
                 </TableCell>
               </TableRow>

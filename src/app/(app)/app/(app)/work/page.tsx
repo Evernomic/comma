@@ -20,10 +20,10 @@ export default async function Work() {
         <AddEditExperienceModal />
       </AppHeader>
       <div>
-        {experiences.map((experience) => (
+        {sortedExperiences.map((experience) => (
           <WorkExperience experience={experience} key={experience.id} admin />
         ))}
-        {!experiences.length && <NoExperiencesPlaceholder />}
+        {!sortedExperiences.length && <NoExperiencesPlaceholder />}
       </div>
     </AppShell>
   );

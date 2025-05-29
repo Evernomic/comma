@@ -1,3 +1,4 @@
+"use client";
 import {
   Area,
   AreaChart as RechartsChart,
@@ -42,7 +43,7 @@ export default function AreaChart({
           dataKey="start"
           dy={15}
           axisLine={false}
-          stroke="var(--gray-1)"
+          stroke="var(--gray-4)"
           tickLine={false}
         />
         <YAxis
@@ -50,7 +51,7 @@ export default function AreaChart({
           axisLine={false}
           allowDecimals={false}
           tickLine={false}
-          stroke="var(--gray-1)"
+          stroke="var(--gray-4)"
         />
         <RechartsTooltip
           content={<Tooltip />}

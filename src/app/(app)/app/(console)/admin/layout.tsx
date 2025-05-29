@@ -21,7 +21,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="mx-auto relative flex min-h-screen w-[1000px] flex-col max-base:w-full max-base:px-4 pt-10 py-40">
+    <div className="mx-auto relative flex min-h-screen w-[900px] flex-col max-base:w-full max-base:px-4 pt-10 py-40">
       <ThemeProvider>
         <div className="flex flex-col flex-1">
           <NuqsAdapter>

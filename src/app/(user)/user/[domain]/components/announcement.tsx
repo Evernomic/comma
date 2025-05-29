@@ -1,17 +1,29 @@
 import MDX from "@/components/markdown/mdx";
 import { cn } from "@/lib/utils";
 import { Info } from "lucide-react";
+import { cookies } from "next/headers";
+import Hide from "./hide";
 
-export default function Announcement({
+export default async function Announcement({
   text,
   className,
+  hideIcon = false,
+  showHideButton = false,
 }: {
   text: string | null;
   className?: string;
+  hideIcon?: boolean;
+  showHideButton?: boolean;
 }) {
   if (!text) {
     return null;
   }
+  const cookie = (await cookies()).get("hide-announcement")?.value;
+
+  if (cookie === "true") {
+    return null;
+  }
+
   return (
     <div
       role="alert"
@@ -20,8 +32,13 @@ export default function Announcement({
         className,
       )}
     >
-      <Info className="min-w-[18px]" />
-      <MDX source={text} className="text-gray-4! text-sm pr-2" />
+      {!hideIcon && <Info className="min-w-[18px]" />}
+      <MDX
+        source={text}
+        className="text-gray-4! text-sm prose-headings:mb-2! pr-2"
+      />
+
+      {showHideButton && <Hide />}
     </div>
   );
 }

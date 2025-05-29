@@ -241,12 +241,11 @@ export default function Form({
               <TagInput value={value} onValueChange={setValue} />
             ) : (
               <Textarea
-                className="w-[350px] max-md:w-full"
-                value={value}
+                {...textareaData}
+                className="max-w-[400px] max-md:w-full"
                 onChange={(e) => {
                   setValue(e.target.value);
                 }}
-                {...textareaData}
               />
             )}
           </div>

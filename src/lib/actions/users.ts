@@ -7,6 +7,7 @@ import type {
   UserCategory,
   UserPageTheme,
 } from "@prisma/client";
+import { cookies } from "next/headers";
 import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
@@ -259,5 +260,16 @@ export async function deleteCallout(calloutId: string, userId: string) {
       id: calloutId,
       userId,
     },
+  });
+}
+
+export async function hideAnnouncement() {
+  const oneDayFromNow = new Date();
+  oneDayFromNow.setDate(oneDayFromNow.getDate() + 1);
+
+  (await cookies()).set("hide-announcement", "true", {
+    httpOnly: true,
+    secure: true,
+    expires: oneDayFromNow,
   });
 }

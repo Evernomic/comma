@@ -1,8 +1,5 @@
 import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
-
-const redis = Redis.fromEnv();
-
+import { redis } from "./redis";
 export const rateLimit = {
   bookmark: new Ratelimit({
     redis,
