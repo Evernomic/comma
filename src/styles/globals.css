@@ -72,7 +72,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--gray-2, currentColor);
   }
 }
 
@@ -87,7 +87,7 @@
 }
 
 @utility section-title {
-  @apply relative flex items-center justify-between text-base;
+  @apply relative flex items-center justify-between font-medium text-base;
   &.link {
     @apply hover:bg-gray-3 -mx-2 rounded-md p-2 transition-colors;
   }
@@ -151,7 +151,7 @@
     --background-color: #0d0d0d;
     --foreground: #fff;
     --gray-1: #555555;
-    --gray-2: #282828;
+    --gray-2: #202020;
     --gray-3: #121212;
     --gray-4:  #9e9e9e;
     --overlay: rgba(var(--background-color), 0.2);

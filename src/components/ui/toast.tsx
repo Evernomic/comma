@@ -26,7 +26,7 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "border border-gray-2 bg-primary text-secondary",
+        default: "border  bg-primary text-secondary",
         destructive: "border border-danger text-danger bg-primary",
       },
     },
@@ -58,7 +58,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "group-[.destructive]:border-gray-2 hover:group-[.destructive]:border-gray-1 hover:group-[.destructive]:bg-danger hover:group-[.destructive]:text-primary inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-50",
+      "group-[.destructive]: hover:group-[.destructive]:border-gray-1 hover:group-[.destructive]:bg-danger hover:group-[.destructive]:text-primary inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-50",
       className,
     )}
     {...props}

@@ -47,7 +47,7 @@ export default async function Unsubscribe({ searchParams }: Props) {
 
   return (
     <div className="mx-auto px-2 w-[450px] max-[450px]:w-full min-h-screen flex items-center justify-center">
-      <div className="w-full bg-gray-3 border border-gray-2 rounded-md p-5 flex flex-col items-center gap-3 justify-center">
+      <div className="w-full bg-gray-3 border  rounded-md p-5 flex flex-col items-center gap-3 justify-center">
         {data.success ? (
           <p className="text-gray-4 text-center">
             You&apos;ve successfully been unsubscribed from{" "}

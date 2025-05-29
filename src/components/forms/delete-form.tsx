@@ -100,7 +100,7 @@ export default function DeleteForm({
             >
               <Input
                 type="text"
-                placeholder="type here.."
+                placeholder={keyword}
                 autoComplete="off"
                 autoCapitalize="off"
                 autoCorrect="off"

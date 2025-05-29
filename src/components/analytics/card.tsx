@@ -26,11 +26,11 @@ export default function Card({
   return (
     <div
       className={cn(
-        "h-[200px] flex flex-col  rounded-md border overflow-hidden border-gray-2 ",
+        "h-[200px] flex flex-col  rounded-md border overflow-hidden  ",
         className,
       )}
     >
-      <header className="rounded-se-md rounded-t-md h-5  flex items-center justify-between  border-b border-gray-2 p-2 backdrop-blur-md">
+      <header className="rounded-se-md rounded-t-md h-5  flex items-center justify-between  border-b  p-2 backdrop-blur-md">
         {loading ? (
           <Skeleton className="w-32 h-4" />
         ) : (
@@ -43,9 +43,9 @@ export default function Card({
                 title={tab}
                 variant="ghost"
                 className={cn(
-                  "h-4.4 text-xs w-max! px-2",
+                  "h-4.4 text-xs w-max! px-2 border border-transparent",
                   tab.toLowerCase() === activeTab
-                    ? "bg-gray-3 text-secondary"
+                    ? "bg-gray-3 border-gray-2 text-secondary"
                     : "",
                 )}
                 onClick={() => setTab?.(tab.toLowerCase())}

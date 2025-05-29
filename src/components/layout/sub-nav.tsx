@@ -27,8 +27,10 @@ export default function SubNav({ links }: Props) {
             variant="text"
             size="sm"
             className={cn(
-              "rounded-md cursor-pointer  w-max  h-[25px] flex items-center justify-center px-1.5 text-xs text-gray-4",
-              link.href === pathname ? "bg-gray-2 text-secondary" : "",
+              "rounded-md cursor-pointer  w-max  h-[25px] hover:bg-gray-2 border border-transparent  flex items-center justify-center px-1.5 text-xs text-gray-4",
+              link.href === pathname
+                ? "bg-gray-3 border-gray-2 text-secondary"
+                : "",
             )}
             buttonVariant="ghost"
           >

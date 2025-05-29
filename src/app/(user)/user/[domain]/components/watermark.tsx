@@ -14,7 +14,7 @@ export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
       target="_blank"
       aria-label="Powered by Comma"
       buttonVariant="ghost"
-      className=" z-[90] bg-gray-3 border border-gray-2 p-1 rounded-full "
+      className=" z-[90] bg-gray-3 border  p-1 rounded-full "
       buttonClassname="size-5! rounded-full"
       iconSize={20}
       icon="logo"

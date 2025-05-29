@@ -51,7 +51,7 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-full justify-between px-2 data-[state=open]:bg-gray-3 text-secondary text-sm hover:bg-inherit! disabled:bg-gray-3 disabled:opacity-100",
+            "w-full justify-between px-2 data-[state=open]:bg-gray-3 text-secondary font-normal text-sm hover:bg-inherit! disabled:bg-gray-3 disabled:opacity-100",
             className,
           )}
           disabled={disabled}
@@ -63,7 +63,7 @@ export function Combobox({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="ml-0 size-auto p-0 border-0">
-        <Command className="border border-gray-2 bg-gray-3 text-gray-1 pb-0">
+        <Command className="border  bg-gray-3 text-gray-1 pb-0">
           <CommandInput placeholder="Search..." className="h-10" />
           <CommandList className="max-h-48 min-w-[10rem]">
             <CommandEmpty>No results.</CommandEmpty>

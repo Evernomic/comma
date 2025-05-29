@@ -38,7 +38,7 @@ export default function UserNav({ user }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="size-4.5 rounded-lg border-2 border-transparent bg-gray-2   outline-hidden data-[state=open]:border-gray-2"
+        className="size-4.5 rounded-lg border-2 border-transparent bg-gray-2   outline-hidden data-[state=open]:"
         aria-label={name!}
       >
         <Avatar>

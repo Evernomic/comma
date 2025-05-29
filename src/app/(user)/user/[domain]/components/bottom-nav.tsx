@@ -9,7 +9,7 @@ export default function BottomNav({ user }: { user: User }) {
   return (
     <footer className="fixed left-0 bottom-0 flex items-center gap-2 justify-center  w-full z-40 h-44">
       <BlurEffect />
-      <div className="relative bg-gray-3 flex gap-1 border border-gray-2 p-1 w-auto max-w-max  rounded-full z-[90] pointer-events-auto">
+      <div className="relative bg-gray-3 flex gap-1 border  p-1 w-auto max-w-max  rounded-full z-[90] pointer-events-auto">
         <Suspense>
           <NewsletterModalWrapper user={user} />
         </Suspense>

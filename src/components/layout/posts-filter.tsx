@@ -10,12 +10,12 @@ export default function PostsFilter({
   current?: string;
 }) {
   return (
-    <div className="flex flex-row flex-wrap gap-2">
+    <div className="flex flex-row flex-wrap gap-2 mb-2">
       {appConfig.filters.postsFilter.map((filter) => (
         <Link
           href={filter.href === "/" ? `/${segment}` : filter.href}
           className={cn(
-            "rounded-md cursor-pointer  border w-max border-gray-2 h-4 flex items-center justify-center px-1 text-xs text-gray-4",
+            "rounded-md cursor-pointer  border w-max  h-4 flex items-center justify-center px-1 text-xs text-gray-4",
             current === filter.value ? "bg-gray-2 text-secondary " : "",
           )}
           key={filter.title}

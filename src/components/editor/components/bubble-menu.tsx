@@ -77,7 +77,7 @@ export default function BubbleMenu() {
       }}
     >
       <div
-        className="relative z-50 flex flex-row gap-2 rounded-lg border border-gray-2 bg-gray-3 p-1"
+        className="relative z-50 flex flex-row gap-2 rounded-lg border  bg-gray-3 p-1"
         ref={containerRef}
       >
         <NodeSelector

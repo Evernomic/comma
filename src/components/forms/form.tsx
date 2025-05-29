@@ -133,7 +133,7 @@ export default function Form({
   const formId = useId();
   return (
     <Comp
-      className="overflow-hidden relative rounded-md border border-gray-2"
+      className="overflow-hidden relative rounded-md border "
       onSubmit={(e) => (!asChild ? onSubmit(e) : e.preventDefault())}
       id={formId}
     >
@@ -197,7 +197,7 @@ export default function Form({
                 ) : (
                   <div className="flex items-center relative w-max">
                     {prefix && (
-                      <span className="h-5 rounded-l-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-r-0 text-sm text-gray-4">
+                      <span className="h-5 rounded-l-md bg-gray-3 flex items-center justify-center px-2 border  border-r-0 text-sm text-gray-4">
                         {prefix}
                       </span>
                     )}
@@ -230,7 +230,7 @@ export default function Form({
                       </span>
                     )}
                     {suffix && (
-                      <span className="h-5 rounded-r-md bg-gray-3 flex items-center justify-center px-2 border border-gray-2 border-l-0 text-sm text-gray-4">
+                      <span className="h-5 rounded-r-md bg-gray-3 flex items-center justify-center px-2 border  border-l-0 text-sm text-gray-4">
                         {suffix}
                       </span>
                     )}
@@ -253,7 +253,7 @@ export default function Form({
           cloneElement(children as any, { startTransition })
         ) : null}
       </div>
-      <footer className="flex h-auto flex-row items-center   justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
+      <footer className="flex h-auto flex-row items-center   justify-between border-t  bg-gray-3 px-4 py-2">
         <div className={cn("text-sm text-gray-4", error ? "text-danger" : "")}>
           {(saving && toggle) || (asChild && saving) ? (
             <Icons.spinner className="animate-spin" size={15} />

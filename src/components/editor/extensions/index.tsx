@@ -74,24 +74,24 @@ export const TiptapExtensions = [
     },
     blockquote: {
       HTMLAttributes: {
-        class: " border-l-4 border-gray-2 italic font-medium",
+        class: " border-l-4  italic font-medium",
       },
     },
     codeBlock: {
       HTMLAttributes: {
-        class: "rounded-lg border border-gray-2 bg-gray-3 text-secondary",
+        class: "rounded-lg border  bg-gray-3 text-secondary",
       },
     },
     code: {
       HTMLAttributes: {
         class:
-          "rounded-lg border border-gray-2 bg-gray-3 px-1 py-0.5 font-normal text-secondary",
+          "rounded-lg border  bg-gray-3 px-1 py-0.5 font-normal text-secondary",
         spellcheck: "false",
       },
     },
     horizontalRule: {
       HTMLAttributes: {
-        class: "border-gray-2",
+        class: "",
       },
     },
     bold: {

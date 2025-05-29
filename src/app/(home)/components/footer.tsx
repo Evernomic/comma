@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between  max-md:flex-col max-md:gap-15 items-start border-t border-gray-2 py-20 pb-30">
+    <footer className="flex justify-between  max-md:flex-col max-md:gap-15 items-start border-t  py-20 pb-30">
       <Link href={siteConfig.links.home}>
         <Icons.logo size={30} />
       </Link>

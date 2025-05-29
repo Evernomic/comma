@@ -43,7 +43,7 @@ export default function Pricing() {
           return (
             <div
               className={cn(
-                "border border-gray-2 rounded-md p-4.4 flex flex-col gap-5",
+                "border  rounded-md p-4.4 flex flex-col gap-5",
                 isProPlan && "bg-gray-3",
               )}
               key={plan.title}

@@ -13,7 +13,7 @@ export default function EditHomePageClient({
 
   return (
     <div className="min-h-screen pb-20">
-      <header className="sticky top-3  p-1   gap-3 bg-gray-3 border border-gray-2 flex mb-2 z-50  items-center rounded-md">
+      <header className="sticky top-3  p-1   gap-3 bg-gray-3 border  flex mb-2 z-50  items-center rounded-md">
         <NavButton href="/settings/customize" icon="arrowLeft" size="icon" />
         <div className="flex-1 flex justify-end gap-3">
           <span className="flex w-max  items-center gap-1 text-xs text-gray-4">

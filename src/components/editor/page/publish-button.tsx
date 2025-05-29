@@ -25,7 +25,7 @@ export default function PublishButton({
   const router = useRouter();
 
   return (
-    <div className="flex items-center border border-gray-2 rounded-md overflow-hidden">
+    <div className="flex items-center border  rounded-md overflow-hidden">
       <Button
         title={post.published ? "Unpublish" : "Publish"}
         size="sm"
@@ -65,7 +65,7 @@ export default function PublishButton({
             <Button
               size="icon"
               variant="ghost"
-              className="border-l border-gray-2 rounded-none data-[state=open]:bg-gray-3"
+              className="border-l  rounded-none data-[state=open]:bg-gray-3"
               aria-label="Send newsletter"
             >
               <Icons.chevronDown size={15} />

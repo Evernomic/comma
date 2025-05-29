@@ -7,7 +7,7 @@ export function EmptyPlaceholder({ className, children, ...props }: Props) {
   return (
     <div
       className={cn(
-        "flex min-h-[200px] flex-col items-center justify-center rounded-md border border-dashed border-gray-2  p-8 text-center",
+        "flex min-h-[200px] flex-col items-center justify-center rounded-md border  bg-gray-3  p-8 text-center",
         className,
       )}
       {...props}
@@ -25,7 +25,7 @@ EmptyPlaceholder.Title = function EmptyPlaceholderTitle({
   className,
   ...props
 }: TitleProps) {
-  return <h2 className={cn("text-lg font-normal", className)} {...props} />;
+  return <h2 className={cn("text-lg font-medium", className)} {...props} />;
 };
 
 interface DescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
@@ -36,7 +36,7 @@ EmptyPlaceholder.Description = function EmptyPlaceholderDescription({
 }: DescriptionProps) {
   return (
     <p
-      className={cn("text-md mb-8 mt-2 text-center text-gray-4", className)}
+      className={cn("text-md mt-1 text-center text-sm text-gray-4", className)}
       {...props}
     />
   );

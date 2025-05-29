@@ -65,7 +65,7 @@ export default function SelectThemeStyle({
         >
           <div
             className={cn(
-              "relative border flex-1 border-gray-2 p-4.4 rounded-md transition-colors  cursor-pointer hover:bg-gray-3  text-gray-1 w-50 min-h-64 flex justify-center items-center",
+              "relative border flex-1  p-4.4 rounded-md transition-colors  cursor-pointer hover:bg-gray-3  text-gray-1 w-50 min-h-64 flex justify-center items-center",
               {
                 "bg-gray-3": selectedTheme === option.value,
               },
