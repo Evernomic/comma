@@ -26,11 +26,11 @@ export default function Card({
   return (
     <div
       className={cn(
-        "h-[200px] flex flex-col  rounded-md border overflow-hidden border-gray-2 dark:border-gray-3",
+        "h-[200px] flex flex-col  rounded-md border overflow-hidden border-gray-2 ",
         className,
       )}
     >
-      <header className="rounded-se-md rounded-t-md h-5  flex items-center justify-between  border-b border-gray-2 dark:border-gray-3 p-2 backdrop-blur-md">
+      <header className="rounded-se-md rounded-t-md h-5  flex items-center justify-between  border-b border-gray-2 p-2 backdrop-blur-md">
         {loading ? (
           <Skeleton className="w-32 h-4" />
         ) : (

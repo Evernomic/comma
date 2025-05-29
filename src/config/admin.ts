@@ -17,5 +17,10 @@ export const adminConfig: AdminConfig = {
       href: "/admin/changelog",
       icon: "book",
     },
+    {
+      title: "Settings",
+      href: "/admin/settings",
+      icon: "settings",
+    },
   ],
 } as const;

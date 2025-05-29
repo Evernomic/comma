@@ -10,7 +10,7 @@ import Referrers from "./referer";
 import Timeseries from "./timeseries";
 import Pages from "./top-pages";
 
-export type IndexProps = "visitors" | "views" | "clicks";
+export type IndexProps = "visitors" | "views" | "clicks" | "users";
 export type Interval = keyof typeof intervalData;
 
 export const AnalyticsContext = createContext<{
