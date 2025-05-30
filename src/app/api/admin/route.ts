@@ -1,10 +1,12 @@
 import { guard } from "@/lib/auth";
 import { redis } from "@/lib/redis";
-import { configSchema } from "@/lib/validations/admin";
+import { type AdminConfig, configSchema } from "@/lib/validations/admin";
 
 export const PATCH = guard(
   async ({ body }) => {
-    await redis.json.set("config", "$", body);
+    const currentConfig = await redis.json.get<AdminConfig>("config");
+
+    await redis.json.set("config", "$", { ...currentConfig, ...body });
 
     return new Response(null, { status: 200 });
   },
