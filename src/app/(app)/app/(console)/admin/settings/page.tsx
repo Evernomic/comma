@@ -5,6 +5,7 @@ import { redis } from "@/lib/redis";
 import { AdminConfig } from "@/lib/validations/admin";
 
 import type { Metadata } from "next";
+import AdSpots from "./components/ad-spots";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -15,7 +16,7 @@ export default async function Settings() {
   return (
     <AppShell>
       <AppHeader title="Settings" />
-      <div>
+      <div className="flex flex-col gap-2">
         <Form
           type="textarea"
           endpoint="admin"
@@ -29,6 +30,9 @@ export default async function Settings() {
           }}
           required={false}
         />
+        <Form endpoint="/" title="Ad spots" asChild>
+          <AdSpots initialAdSpots={config?.adspots ?? []} />
+        </Form>
       </div>
     </AppShell>
   );
