@@ -2,6 +2,7 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import { siteConfig } from "@/config/site";
+import { getAdminConfig } from "@/lib/fetchers/admin";
 import { generateSEO } from "@/lib/utils";
 import { Suspense } from "react";
 import Client from "./client";
@@ -12,6 +13,8 @@ export const metadata = generateSEO({
 });
 
 export default async function ExplorePage() {
+  const config = await getAdminConfig();
+  const adspots = config?.adspots?.filter((ad) => ad.place === "explore") ?? [];
   return (
     <AppShell className="pt-10 gap-5 min-h-screen">
       <AppHeader
@@ -44,7 +47,7 @@ export default async function ExplorePage() {
       </AppHeader>
       <QueryProvider>
         <Suspense>
-          <Client />
+          <Client adspots={adspots} />
         </Suspense>
       </QueryProvider>
     </AppShell>

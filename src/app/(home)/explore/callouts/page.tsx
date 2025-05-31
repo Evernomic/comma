@@ -1,6 +1,7 @@
 import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
+import { getAdminConfig } from "@/lib/fetchers/admin";
 import { generateSEO } from "@/lib/utils";
 import { Suspense } from "react";
 import QueryProvider from "../query-provider";
@@ -10,7 +11,11 @@ export const metadata = generateSEO({
   title: "Callouts",
 });
 
-export default function CalloutsPage() {
+export default async function CalloutsPage() {
+  const config = await getAdminConfig();
+  const adspots =
+    config?.adspots?.filter((ad) => ad.place === "callouts") ?? [];
+
   return (
     <AppShell className="pt-10 gap-5 min-h-screen">
       <AppHeader
@@ -33,7 +38,7 @@ export default function CalloutsPage() {
       </AppHeader>
       <QueryProvider>
         <Suspense>
-          <Client />
+          <Client adspots={adspots} />
         </Suspense>
       </QueryProvider>
     </AppShell>
