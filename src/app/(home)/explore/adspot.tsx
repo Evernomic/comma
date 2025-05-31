@@ -1,4 +1,5 @@
 import { Icons } from "@/components/shared/icons";
+import { Badge } from "@/components/ui/badge";
 import type { AdSpot } from "@/lib/validations/admin";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +28,11 @@ export default function AdSpotItem({ adspot }: { adspot: AdSpot }) {
           </span>
         )}
         <div className="grow">
+          <div className="flex items-center gap-2">
+
           <h3>{adspot.title}</h3>
+          <Badge className="bg-gray-2 font-normal text-secondary ">Promoted</Badge>
+          </div>
           <p className="text-gray-4 text-sm">{adspot.description}</p>
         </div>
         <div>
