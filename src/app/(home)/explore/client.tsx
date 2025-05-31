@@ -2,12 +2,14 @@
 import Button from "@/components/ui/button";
 import { EmptyPlaceholder } from "@/components/ui/empty-placeholder";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { AdSpot } from "@/lib/validations/admin";
 import type { User as _User } from "@prisma/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ky from "ky";
 import { createSerializer, useQueryStates } from "nuqs";
 import React from "react";
 import { useDebounce } from "use-debounce";
+import AdSpotItem from "./adspot";
 import ExplorePageFilters from "./filters";
 import { filterSearchParams } from "./searchParams";
 import User from "./user";
@@ -17,7 +19,7 @@ export type ExplorePageUser = Pick<
   "name" | "title" | "username" | "domain" | "image" | "category" | "location"
 >;
 
-export default function Client() {
+export default function Client({ adspots }: { adspots: AdSpot[] }) {
   const [filters] = useQueryStates(filterSearchParams, { history: "push" });
   const debouncedFilters = useDebounce(filters, 250);
   const { status, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -53,9 +55,12 @@ export default function Client() {
       <div>
         {data?.pages.map((page) => (
           <React.Fragment key={page.nextId}>
-            {page.data.map((user) => (
-              <User user={user} key={user.username} />
-            ))}
+            {mix(page.data, adspots).map((item) => {
+              if (isAdSpot(item)) {
+                return <AdSpotItem adspot={item} key={item.id} />;
+              }
+              return <User user={item} key={item.username} />;
+            })}
           </React.Fragment>
         ))}
         {!data?.pages.every((p) => p.data.length) && status !== "pending" && (
@@ -77,4 +82,26 @@ export default function Client() {
       )}
     </div>
   );
+}
+
+type Mix = AdSpot | ExplorePageUser;
+
+function isAdSpot(input: Mix): input is AdSpot {
+  return (input as AdSpot).place !== undefined;
+}
+function mix(users: ExplorePageUser[], adspots: AdSpot[]) {
+  const result: Mix[] = [...users];
+
+  if (!adspots || adspots.length === 0) {
+    return result;
+  }
+
+  adspots.map((ad, i) => {
+    const insertIndex = (i + 1) * 5 + i;
+    if (insertIndex <= result.length) {
+      result.splice(insertIndex, 0, ad);
+    }
+  });
+
+  return result;
 }

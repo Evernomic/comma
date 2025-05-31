@@ -14,7 +14,7 @@ import { useQueryStates } from "nuqs";
 import { useDebouncedCallback } from "use-debounce";
 import { filterSearchParams } from "./searchParams";
 
-export default function ExplorePageFilters() {
+export default function CalloutsFilters() {
   const [filters, setFilters] = useQueryStates(filterSearchParams, {
     history: "push",
   });

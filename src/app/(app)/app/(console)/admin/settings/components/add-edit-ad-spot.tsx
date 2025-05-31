@@ -184,7 +184,7 @@ export default function AddEditAdSpotModal({
                 width={0}
                 height={0}
                 sizes="100vw"
-                className={cn("size-7 h-auto  rounded-md")}
+                className={cn("size-7 h-auto border  rounded-md")}
                 alt="Cover image"
                 unoptimized
               />
