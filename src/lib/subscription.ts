@@ -1,5 +1,5 @@
 import { freePlan, proPlan } from "@/config/subscriptions";
-import type { UserSubscriptionPlan } from "@/types";
+import type { Period, UserSubscriptionPlan } from "@/types";
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import { getServerSession } from "next-auth";
 import authOptions from "./auth";
@@ -53,10 +53,16 @@ export async function getUserSubscription(
   const {
     data: {
       data: {
-        attributes: { status },
+        attributes: { status, product_id, variant_name },
       },
     },
   } = subscription;
+
+  const period = variant_name.endsWith("Yearly")
+    ? "yearly"
+    : ("monthly" as Period);
+
+  const currentProductId = Number(process.env.NUCELO_PRO_ID!);
 
   const isPro =
     !!user.lsId &&
@@ -67,7 +73,15 @@ export async function getUserSubscription(
     status !== "unpaid" &&
     status !== "paused";
 
-  const plan = isPro ? proPlan : freePlan;
+  const plan = isPro
+    ? {
+        ...proPlan,
+        period,
+        ...(product_id !== currentProductId && {
+          price: { monthly: 4, yearly: 40 },
+        }),
+      }
+    : freePlan;
   return {
     ...plan,
     ...user,
