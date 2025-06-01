@@ -95,6 +95,7 @@ export type PlanFeature = {
 };
 export type Plan = {
   title: "Free" | "Pro";
+  period?: "monthly" | "yearly";
   description: string;
   price: {
     monthly: number;

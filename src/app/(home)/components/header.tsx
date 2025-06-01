@@ -9,11 +9,11 @@ import Link from "next/link";
 const links: NavItem[] = [
   {
     title: "Features",
-    href: "#features",
+    href: "/home#features",
   },
   {
     title: "Pricing",
-    href: "#pricing",
+    href: "/home#pricing",
   },
   {
     title: "Changelog",
@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header className="w-full  sticky top-4 mx-auto h-12 px-3 backdrop-blur-2xl bg-gray-3 rounded-md z-[100] flex justify-between items-center ">
       <div className="flex-1">
-        <Link href={siteConfig.links.home}>
+        <Link href="/">
           <div className="font-semibold text-lg flex items-center gap-2">
             <Icons.logo size={24} />
             Comma

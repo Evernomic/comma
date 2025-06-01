@@ -17,8 +17,9 @@ interface Props {
 export default function BillingForm({ subscriptionPlan }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
-
-  const [period, setPeriod] = useState<Period>("monthly");
+  const [period, setPeriod] = useState<Period>(
+    subscriptionPlan.period ?? "monthly",
+  );
   async function billing(e: FormEvent) {
     e.preventDefault();
     startTransition(async () => {
@@ -78,7 +79,10 @@ export default function BillingForm({ subscriptionPlan }: Props) {
               </div>
               <div className="flex items-center mt-2">
                 <p className="text-xl  text-secondary font-medium tracking-wider  flex items-baseline gap-1">
-                  ${plan.price[period]}
+                  $
+                  {subscriptionPlan.title === plan.title
+                    ? subscriptionPlan.price[period]
+                    : plan.price[period]}
                   <span className="text-xs text-gray-4">
                     / {period === "monthly" ? "month" : "year"}
                   </span>
@@ -124,7 +128,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           <p className="max-md:text-center">
             {subscriptionPlan.status === "past_due" && "Past due"}
             {subscriptionPlan.status === "expired" && "Expired"}
-            {!!subscriptionPlan.status &&
+            {!subscriptionPlan.status &&
               "Upgrade plan to Pro to use all features."}
           </p>
         )}
