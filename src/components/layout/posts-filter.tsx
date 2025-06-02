@@ -15,8 +15,10 @@ export default function PostsFilter({
         <Link
           href={filter.href === "/" ? `/${segment}` : filter.href}
           className={cn(
-            "rounded-md cursor-pointer  border w-max  h-4 flex items-center justify-center px-1 text-xs text-gray-4",
-            current === filter.value ? "bg-gray-2 text-secondary " : "",
+            "rounded-md cursor-pointer  border w-max hover:bg-gray-3 transition-colors  h-4 flex items-center justify-center px-1.5 text-xs text-gray-4",
+            current === filter.value
+              ? "bg-gray-2 font-medium text-secondary "
+              : "",
           )}
           key={filter.title}
         >
