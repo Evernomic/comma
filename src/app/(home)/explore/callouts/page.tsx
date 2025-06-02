@@ -21,7 +21,7 @@ export default async function CalloutsPage() {
       <AppHeader
         title="Callouts"
         description="You can follow the calls of Comma users here."
-        className="[&_.title]:multi-[text-3xl;font-semibold] [&_.description]:text-base max-md:multi-[flex-col;items-start;gap-5]"
+        className="[&_.title]:multi-['text-3xl;font-semibold'] [&_.description]:text-base max-md:multi-['flex-col;items-start;gap-5']"
       >
         <div className="flex gap-2">
           <NavButton

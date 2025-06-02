@@ -38,7 +38,7 @@ export default async function Subscribers() {
     <AppShell>
       {user.newsletter ? (
         <>
-          <div className="w-full flex max-md:multi-[flex-col;gap-4;items-start] justify-between items-center mb-3">
+          <div className="w-full flex max-md:multi-['flex-col;gap-4;items-start'] justify-between items-center mb-3">
             <div className="flex gap-2 max-md:flex-col">
               <EditNewsletterCTA defaultNewsletterCta={user.newsletterCta} />
               <ExportButton

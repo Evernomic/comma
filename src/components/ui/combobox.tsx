@@ -72,7 +72,7 @@ export function Combobox({
                 <CommandItem
                   key={`option--${option.value}`}
                   className={cn(
-                    "py-1.5 px-2 text-sm text-gray-1 outline-hidden hover:multi-[bg-gray-2;text-secondary] flex-row-reverse justify-between",
+                    "py-1.5 px-2 text-sm text-gray-1 outline-hidden hover:multi-['bg-gray-2;text-secondary'] flex-row-reverse justify-between",
                     value === option.value && "bg-gray-2 text-secondary",
                   )}
                   value={option.title}

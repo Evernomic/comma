@@ -10,7 +10,8 @@ import type {
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import Announcement from "../announcement";
-import Carousel from "./carousel";
+import LinkCarousel from "./link-carousel";
+
 export default function LinkInBioIntro({ user }: { user: User }) {
   const socialLinks = getLinks(user);
   const links = user.linkInBioLinks as _LinkInBioLink[];
@@ -48,7 +49,7 @@ export default function LinkInBioIntro({ user }: { user: User }) {
           })}
         </div>
       </div>
-      <Carousel
+      <LinkCarousel
         links={links}
         type={(user.linkInBioLinksViewType as LinkInBioLinkType) ?? "wide"}
       />

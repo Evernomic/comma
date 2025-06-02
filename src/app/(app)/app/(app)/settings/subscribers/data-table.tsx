@@ -62,7 +62,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md overflow-hidden flex flex-col gap-3">
-      <div className="flex gap-2 items-center max-md:multi-[flex-col;items-start]">
+      <div className="flex gap-2 items-center max-md:multi-['flex-col;items-start']">
         <Badge className="h-4.5 ">{data.length} Subscribers</Badge>
 
         <Input

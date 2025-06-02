@@ -20,7 +20,7 @@ export default async function ExplorePage() {
       <AppHeader
         title="Explore"
         description="You can search for Comma writers here."
-        className="[&_.title]:multi-[text-3xl;font-semibold] [&_.description]:text-base max-md:multi-[flex-col;items-start;gap-5]"
+        className="[&_.title]:multi-['text-3xl;font-semibold'] [&_.description]:text-base max-md:multi-['flex-col;items-start;gap-5']"
       >
         <div className="flex gap-2">
           <NavButton
@@ -30,6 +30,7 @@ export default async function ExplorePage() {
             buttonVariant="ghost"
             buttonClassname="gap-2"
             aria-label="Go to App"
+            prefetch={false}
           >
             Go to App
           </NavButton>
