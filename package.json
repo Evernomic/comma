@@ -69,6 +69,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "date-fns": "^4.1.0",
+    "embla-carousel-react": "^8.6.0",
     "feed": "^4.2.2",
     "framer-motion": "^12.5.0",
     "json-2-csv": "^5.5.6",

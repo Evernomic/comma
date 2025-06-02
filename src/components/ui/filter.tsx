@@ -125,7 +125,7 @@ export function Filter({
                 <CommandItem
                   key={`option--${option.value}`}
                   className={cn(
-                    "py-1.5 px-2 text-sm outline-hidden  hover:multi-[bg-gray-2;text-secondary] text-gray-1 flex-row-reverse justify-between",
+                    "py-1.5 px-2 text-sm outline-hidden  hover:multi-['bg-gray-2;text-secondary'] text-gray-1 flex-row-reverse justify-between",
                     selectedValues.includes(option.value) && "text-secondary!",
                   )}
                   value={option.title}

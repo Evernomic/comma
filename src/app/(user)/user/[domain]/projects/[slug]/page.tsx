@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           >
             {project.title}{" "}
             <Icons.arrowUpRight
-              className="group-hover:multi-[-translate-y-0.5;translate-x-0.5] transition"
+              className="group-hover:multi-['-translate-y-0.5;translate-x-0.5'] transition"
               size={18}
             />
           </Link>

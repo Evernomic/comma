@@ -158,7 +158,7 @@ export default async function OnboardingChecklist({ user }: { user?: User }) {
                     </p>
                     <Icons.arrowRight
                       size={20}
-                      className="transition-all group-hover:multi-[translate-x-1;text-secondary]"
+                      className="transition-all group-hover:multi-['translate-x-1;text-secondary']"
                     />
                   </li>
                 </Link>

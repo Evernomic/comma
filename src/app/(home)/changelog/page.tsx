@@ -15,7 +15,7 @@ export default async function ChangelogPage() {
     <AppShell className="pt-10 gap-10 min-h-screen">
       <AppHeader
         title="Changelog"
-        className="[&_.title]:multi-[text-3xl;font-semibold] [&_.description]:text-base max-md:multi-[flex-col;items-start;gap-5]"
+        className="[&_.title]:multi-['text-3xl;font-semibold'] [&_.description]:text-base max-md:multi-['flex-col;items-start;gap-5']"
       />
 
       <div>

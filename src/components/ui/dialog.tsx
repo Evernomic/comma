@@ -18,7 +18,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/30 backdrop-blur-xs data-[state=open]:animate-in data-[state=open]:fade-in-0  data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+      "fixed inset-0 z-50 bg-black/20 backdrop-blur-xs data-[state=open]:multi-['animate-in;fade-in-0'] data-[state=closed]:multi-['animate-out;fade-out-0']",
       className,
     )}
     {...props}
@@ -35,7 +35,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed z-50 max-h-[600px] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]   flex w-full max-w-lg flex-col outline-0 justify-center gap-4  rounded-md  bg-primary dark:bg-gray-3 border    p-4  outline-hidden max-md:rounded-b-none data-[state=open]:multi-[animate-in;fade-in-0;slide-in-from-left-1/2;slide-in-from-bottom-[-48%]] data-[state=closed]:multi-[animate-out;fade-out-0;slide-out-to-left-1/2;slide-out-to-bottom-[-48%]] ",
+        "fixed z-50 max-h-[600px] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]   flex w-full max-w-lg flex-col outline-0 justify-center gap-4  rounded-md  bg-primary dark:bg-gray-3 border    p-4  outline-hidden max-md:rounded-b-none data-[state=open]:multi-['animate-in;fade-in-0;slide-in-from-left-1/2;slide-in-from-bottom-[-48%]'] data-[state=closed]:multi-['animate-out;fade-out-0;slide-out-to-left-1/2;slide-out-to-bottom-[-48%]'] ",
         className,
       )}
       {...props}
