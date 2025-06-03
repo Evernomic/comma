@@ -53,11 +53,11 @@ export default function Features() {
               const Icon = Icons[f.icon];
               return (
                 <CarouselItem className=" select-none " key={f.title}>
-                  <div className="text-gray-4  min-w-[560px] max-[560px]:min-w-[400px]  aspect-90/100  last:[&_img]:scale-110    w-full flex relative bg-primary flex-col border overflow-hidden   p-5 justify-between  gap-5  text-sm rounded-md ">
-                    <div className="flex flex-col gap-2">
+                  <div className="text-gray-4 shadow-inner  min-w-[560px] max-[560px]:multi-['min-w-full!;w-full!'] aspect-90/100  last:[&_img]:scale-110    w-full flex relative bg-primary flex-col border overflow-hidden    justify-between  gap-5  text-sm rounded-md ">
+                    <div className="flex flex-col gap-2 p-5 pb-0">
                       <div className="flex items-center gap-2">
                         <Icon size={20} className="text-secondary" />
-                        <div className="text-secondary font-semibold text-lg">
+                        <div className="text-secondary font-medium text-lg">
                           {f.title}
                         </div>
                       </div>
@@ -65,7 +65,7 @@ export default function Features() {
                         <Balancer>{f.description}</Balancer>
                       </p>
                     </div>
-                    <div className="flex-1">
+                    <div className=" flex-1 relative overflow-hidden ">
                       <CustomImage src={`${f.image}.png`} alt={f.title} />
                       <CustomImage src={`${f.image}-light.png`} alt={f.title} />
                     </div>
@@ -75,12 +75,12 @@ export default function Features() {
             })}
           </CarouselContent>
         </Carousel>
-        <div className="flex gap-2 items-center justify-center pt-10">
+        <div className="flex gap-2 items-center justify-center pt-12">
           {marketingConfig.features.slice(0, -1).map((f, i) => {
             return (
               <span
                 className={cn(
-                  "block size-3.5 cursor-pointer rounded-full bg-gray-2",
+                  "block size-2.5 cursor-pointer rounded-full bg-gray-2",
                   {
                     "bg-secondary": current === i,
                   },
@@ -108,7 +108,7 @@ export const CustomImage = ({
   return (
     <div
       className={cn(
-        "w-full hidden  rounded-md scale-95 max-md:scale-100",
+        "w-full hidden shadow-inner  rounded-md scale-90",
         src.includes("light") ? "dark:hidden block" : "dark:block",
         className,
       )}

@@ -76,6 +76,23 @@ export const marketingConfig: MarketingConfig = {
   ],
   plans: [freePlan, proPlan],
   footerSections: [
+        {
+      name: "Product",
+      links: [
+        {
+          name: "Features",
+          href: "/home#features",
+        },
+        {
+          name: "Pricing",
+          href: "/home#pricing",
+        },
+                {
+          name: "Changelog",
+          href: "/changelog",
+        },
+      ],
+    },
     {
       name: "Legal",
       links: [
