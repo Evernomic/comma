@@ -48,12 +48,12 @@ export default function Features() {
             skipSnaps: true,
           }}
         >
-          <CarouselContent className="cursor-w-resize! ">
+          <CarouselContent className="cursor-w-resize!">
             {marketingConfig.features.map((f) => {
               const Icon = Icons[f.icon];
               return (
                 <CarouselItem className=" select-none " key={f.title}>
-                  <div className="text-gray-4  min-w-[560px] max-[560px]:min-w-[400px]  last:[&_img]:scale-110    w-full flex relative bg-primary flex-col border overflow-hidden   p-5 justify-between  gap-5  text-sm rounded-md ">
+                  <div className="text-gray-4  min-w-[560px] max-[560px]:min-w-[400px]  aspect-90/100  last:[&_img]:scale-110    w-full flex relative bg-primary flex-col border overflow-hidden   p-5 justify-between  gap-5  text-sm rounded-md ">
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
                         <Icon size={20} className="text-secondary" />

@@ -62,7 +62,7 @@ export default function PopularUsers({
             skipSnaps: true,
           }}
         >
-          <CarouselContent className="cursor-w-resize! ">
+          <CarouselContent className="cursor-w-resize!">
             {sliced.map((u) => {
               return (
                 <CarouselItem className="cursor-pointer" key={u.username}>
@@ -87,8 +87,8 @@ export default function PopularUsers({
                             <Icons.user size={18} />
                           </span>
                         )}
-                        <div className="text-secondary font-semibold text-lg">
-                          {u.name ?? u.username}
+                        <div className="text-secondary font-medium text-lg">
+                          <Balancer>{u.name ?? u.username}</Balancer>
                         </div>
                       </div>
                       <p className="max-w-96 max-md:text-sm text-base font-medium ">
