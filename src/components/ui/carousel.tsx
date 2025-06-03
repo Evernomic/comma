@@ -138,12 +138,12 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="overflow-hidden "
       data-slot="carousel-content"
     >
       <div
         className={cn(
-          "flex gap-3 cursor-grab",
+          "flex gap-3",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
 
           className,
@@ -163,7 +163,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       aria-roledescription="slide"
       data-slot="carousel-item"
       className={cn(
-        "size-auto",
+        "size-auto cursor-w-resize",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className,
       )}

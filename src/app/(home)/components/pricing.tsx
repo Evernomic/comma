@@ -17,6 +17,8 @@ export default function Pricing() {
       id="pricing"
       className="section-container flex flex-col gap-15 justify-center items-center"
     >
+      <div className="text-4xl text-center font-medium">Pricing</div>
+
       <div className="text-gray-4 text-base font-medium flex items-center gap-3 transition-colors">
         <label
           className={cn(period === "monthly" && "text-secondary")}
