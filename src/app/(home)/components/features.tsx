@@ -44,7 +44,7 @@ export default function Features() {
         <Carousel
           setApi={setApi}
           opts={{
-            align: "start",
+            align: "center",
             skipSnaps: true,
           }}
         >
@@ -53,8 +53,8 @@ export default function Features() {
               const Icon = Icons[f.icon];
               return (
                 <CarouselItem className=" select-none " key={f.title}>
-                  <div className="text-gray-4 shadow-inner  min-w-[560px] max-[560px]:multi-['min-w-full!;w-full!'] aspect-90/100  last:[&_img]:scale-110    w-full flex relative bg-primary flex-col border overflow-hidden    justify-between  gap-5  text-sm rounded-md ">
-                    <div className="flex flex-col gap-2 p-5 pb-0">
+                  <div className="text-gray-4  aspect-80/100  min-w-110 max-md:min-w-96! flex relative bg-primary flex-col border overflow-hidden    justify-between  gap-5  text-sm rounded-md ">
+                    <div className="flex flex-col gap-2  p-5 pb-0">
                       <div className="flex items-center gap-2">
                         <Icon size={20} className="text-secondary" />
                         <div className="text-secondary font-medium text-lg">
@@ -65,7 +65,7 @@ export default function Features() {
                         <Balancer>{f.description}</Balancer>
                       </p>
                     </div>
-                    <div className=" flex-1 relative overflow-hidden ">
+                    <div className=" flex-1 relative   px-2">
                       <CustomImage src={`${f.image}.png`} alt={f.title} />
                       <CustomImage src={`${f.image}-light.png`} alt={f.title} />
                     </div>
@@ -108,7 +108,7 @@ export const CustomImage = ({
   return (
     <div
       className={cn(
-        "w-full hidden shadow-inner  rounded-md scale-90",
+        "w-full hidden rounded-md ",
         src.includes("light") ? "dark:hidden block" : "dark:block",
         className,
       )}

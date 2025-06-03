@@ -58,7 +58,7 @@ export default function PopularUsers({
         <Carousel
           setApi={setApi}
           opts={{
-            align: "center",
+            align: "start",
             skipSnaps: true,
           }}
         >
