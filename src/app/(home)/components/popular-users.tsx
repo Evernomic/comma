@@ -106,12 +106,12 @@ export default function PopularUsers({
             })}
           </CarouselContent>
         </Carousel>
-        <div className="flex gap-2 items-center justify-center pt-15">
+        <div className="flex gap-2 items-center justify-center pt-12">
           {sliced.map((u, i) => {
             return (
               <span
                 className={cn(
-                  "block size-3.5 cursor-pointer rounded-full bg-gray-2",
+                  "block size-2.5 cursor-pointer rounded-full bg-gray-2",
                   {
                     "bg-secondary": current === i,
                   },
