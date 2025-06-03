@@ -50,18 +50,16 @@ export default function Features() {
         >
           <CarouselContent className="cursor-w-resize!">
             {marketingConfig.features.map((f) => {
-              const Icon = Icons[f.icon];
               return (
                 <CarouselItem className=" select-none " key={f.title}>
                   <div className="text-gray-4  aspect-80/100  min-w-110 max-md:min-w-96! flex relative bg-primary flex-col border overflow-hidden    justify-between  gap-5  text-sm rounded-md ">
                     <div className="flex flex-col gap-2  p-5 pb-0">
                       <div className="flex items-center gap-2">
-                        <Icon size={20} className="text-secondary" />
-                        <div className="text-secondary font-medium text-lg">
+                        <div className="text-secondary font-medium text-xl">
                           {f.title}
                         </div>
                       </div>
-                      <p className="max-w-96 max-md:text-sm text-base font-medium ">
+                      <p className="max-w-96 text-lg font-medium ">
                         <Balancer>{f.description}</Balancer>
                       </p>
                     </div>

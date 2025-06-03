@@ -11,11 +11,13 @@ export default function ThemeToggle({
   onlyText = false,
   className,
   iconSize = 15,
+  size =  4.5
 }: {
   compact?: boolean;
   onlyText?: boolean;
   className?: string;
   iconSize?: number;
+  size?: number;
 }) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -51,6 +53,9 @@ export default function ThemeToggle({
         "justify-start text-secondary hover:text-secondary gap-2 dark:[&_.moon-icon]:hidden [&_.sun-icon]:hidden dark:[&_.sun-icon]:inline",
         compact ? "justify-center text-gray-4" : "",
         className,
+        {
+          "size-5": compact && size === 5
+        }
       )}
       size={compact ? "icon" : "sm"}
       variant="ghost"

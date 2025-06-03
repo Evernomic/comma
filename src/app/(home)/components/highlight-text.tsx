@@ -18,8 +18,8 @@ export default function HighlightText() {
         .timeline({
           scrollTrigger: {
             trigger: ".highlight-text",
-            start: "top -55%",
-            end: "+=150%",
+            start: "top -70%",
+            end: "+=110%",
             scrub: 2,
           },
         })
@@ -36,7 +36,7 @@ export default function HighlightText() {
   return (
     <div className="h-[250vh] -mb-[60vh]">
       <div
-        className="split highlight-text h-[100vh] text-balance max-md:text-3xl max-base:text-4xl  text-center sticky top-100 text-gray-2 text-5xl leading-snug font-medium"
+        className="split highlight-text h-[100vh] max-md:text-3xl max-base:text-4xl  text-center sticky top-100 text-gray-2 text-5xl leading-snug font-medium"
         ref={ref}
       >
         Publish articles, projects and bookmarks. Grow your audience with

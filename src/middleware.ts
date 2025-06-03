@@ -27,6 +27,10 @@ export default async function middleware(req: NextRequest) {
     ".vercel.app",
   ];
 
+  if(hostname === "172.20.0.110:3000") {
+    return NextResponse.rewrite(new URL('/home', req.url))
+  }
+
   if (
     hostname.endsWith(legacyAppDomain) ||
     hostname.endsWith(legacyUserDomain)
