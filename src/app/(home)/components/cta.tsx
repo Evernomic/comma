@@ -6,8 +6,8 @@ import Balancer from "react-wrap-balancer";
 export default function CTA() {
   return (
     <section className="section-container">
-      <div className="flex flex-col items-center text-center justify-center gap-5">
-        <div className="text-3xl font-semibold max-md:font-medium whitespace-pre-line">
+      <div className="flex flex-col items-center text-center justify-center gap-12">
+        <div className="text-5xl  max-md:text-3xl leading-snug font-medium whitespace-pre-line">
           <Balancer>{marketingConfig.cta}</Balancer>
         </div>
         <NavButton

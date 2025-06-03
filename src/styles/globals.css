@@ -172,6 +172,10 @@
     @apply bg-gray-2 text-gray-4;
   }
 
+  [id] {
+    scroll-margin-top: 100px;
+  }
+
   hr {
     @apply border-gray-2 w-full;
   }

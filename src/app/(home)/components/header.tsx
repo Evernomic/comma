@@ -23,11 +23,11 @@ const links: NavItem[] = [
 
 export default function Header() {
   return (
-    <header className="w-full  sticky top-4 mx-auto h-12 px-3 backdrop-blur-2xl bg-gray-3 rounded-md z-[100] flex justify-between items-center ">
+    <header className="w-[700px] max-[700px]:w-full  sticky top-4 mx-auto h-[75px] p-4  backdrop-blur-3xl bg-gray-3 rounded-md z-[100] flex justify-between items-center ">
       <div className="flex-1">
-        <Link href="/">
-          <div className="font-semibold text-lg flex items-center gap-2">
-            <Icons.logo size={24} />
+        <Link href="/home">
+          <div className="font-semibold text-xl flex items-center gap-2">
+            <Icons.logo size={28} />
             Comma
           </div>
         </Link>
@@ -48,23 +48,12 @@ export default function Header() {
         <NavButton
           href={siteConfig.links.login}
           size="sm"
-          buttonVariant="ghost"
+          buttonVariant="primary"
           direction="ltr"
           buttonClassname="gap-2"
           aria-label="Log in to Comma"
         >
           Log in
-        </NavButton>
-        <NavButton
-          href={siteConfig.links.signup}
-          size="sm"
-          buttonVariant="primary"
-          direction="ltr"
-          buttonClassname="gap-2"
-          aria-label="Sign up to Comma"
-          className="max-md:hidden"
-        >
-          Sign up
         </NavButton>
         <MobileNav links={links} />
       </div>
