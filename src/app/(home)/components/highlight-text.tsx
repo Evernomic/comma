@@ -14,21 +14,21 @@ export default function HighlightText() {
   useGSAP(
     () => {
       const split = new SplitText(".split");
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: ".highlight-text",
-      start: "top -55%",
-      end: "+=150%",       // Daha geniş scroll alanı: animasyon yavaş ilerler
-      scrub: 2,             // Scroll’a daha yavaş yanıt verir
-    },
-  })
-  .to(split.chars, {
-    color: "var(--foreground)",
-    duration: 4,           // Her harfin rengi 4 saniyede değişir
-    stagger: 0.4,          // Harfler arası geçiş süresi artar
-    ease: "power1.inOut",  // Çok yumuşak geçiş
-  });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".highlight-text",
+            start: "top -55%",
+            end: "+=150%",
+            scrub: 2,
+          },
+        })
+        .to(split.chars, {
+          color: "var(--foreground)",
+          duration: 4,
+          stagger: 0.4,
+          ease: "power1.inOut",
+        });
     },
     { scope: ref },
   );

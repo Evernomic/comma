@@ -1,9 +1,7 @@
-import MobileNav from "@/components/layout/mobile-nav";
 import NavButton from "@/components/layout/nav-button";
 import ThemeToggle from "@/components/layout/theme-toggle";
 import { Icons } from "@/components/shared/icons";
 import { siteConfig } from "@/config/site";
-import type { NavItem } from "@/types";
 import Link from "next/link";
 
 export default function Header() {
@@ -29,7 +27,7 @@ export default function Header() {
         >
           Log in
         </NavButton>
-                <NavButton
+        <NavButton
           href={siteConfig.links.signup}
           size="sm"
           buttonVariant="primary"
@@ -37,7 +35,7 @@ export default function Header() {
           buttonClassname="gap-2"
           aria-label="Sign up to Comma"
         >
-         Sign up
+          Sign up
         </NavButton>
       </div>
     </header>
