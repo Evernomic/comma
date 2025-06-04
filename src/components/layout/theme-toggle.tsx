@@ -11,7 +11,7 @@ export default function ThemeToggle({
   onlyText = false,
   className,
   iconSize = 15,
-  size =  4.5
+  size = 4.5,
 }: {
   compact?: boolean;
   onlyText?: boolean;
@@ -54,8 +54,8 @@ export default function ThemeToggle({
         compact ? "justify-center text-gray-4" : "",
         className,
         {
-          "size-5": compact && size === 5
-        }
+          "size-5": compact && size === 5,
+        },
       )}
       size={compact ? "icon" : "sm"}
       variant="ghost"

@@ -30,8 +30,7 @@ export default function Header() {
         <NavButton
           href={siteConfig.links.signup}
           buttonVariant="primary"
-                    size="wide"
-
+          size="wide"
           direction="ltr"
           buttonClassname="gap-2"
           aria-label="Sign up to Comma"

@@ -21,7 +21,7 @@ async function getPopularUsers(): Promise<Array<ExplorePageUser> | null> {
 export default async function Home() {
   const users = await getPopularUsers();
   return (
-    <div className="flex flex-col gap-60 py-30 *:py-10">
+    <div className="flex flex-col gap-60 pb-30  *:pb-10">
       <Hero />
       <HighlightText />
       <Features />

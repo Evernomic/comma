@@ -20,8 +20,8 @@ export default function PopularUsers({
   users: Array<ExplorePageUser> | null;
 }) {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     if (!api) {
