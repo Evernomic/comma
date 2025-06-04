@@ -1,5 +1,4 @@
 "use client";
-import { Icons } from "@/components/shared/icons";
 import {
   Carousel,
   CarouselContent,
@@ -14,8 +13,8 @@ import Balancer from "react-wrap-balancer";
 
 export default function Features() {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     if (!api) {
@@ -59,11 +58,11 @@ export default function Features() {
                           {f.title}
                         </div>
                       </div>
-                      <p className="max-w-96 text-lg font-medium ">
+                      <p className="max-w-96 text-base font-medium ">
                         <Balancer>{f.description}</Balancer>
                       </p>
                     </div>
-                    <div className=" flex-1 relative   px-2">
+                    <div className=" flex-1 relative border-t px-1 pt-3 ">
                       <CustomImage src={`${f.image}.png`} alt={f.title} />
                       <CustomImage src={`${f.image}-light.png`} alt={f.title} />
                     </div>
@@ -74,7 +73,7 @@ export default function Features() {
           </CarouselContent>
         </Carousel>
         <div className="flex gap-2 items-center justify-center pt-12">
-          {marketingConfig.features.slice(0, -1).map((f, i) => {
+          {marketingConfig.features.map((f, i) => {
             return (
               <span
                 className={cn(
