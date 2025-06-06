@@ -111,7 +111,7 @@ export default function PopularUsers({
             return (
               <span
                 className={cn(
-                  "block size-2.5 cursor-pointer rounded-full bg-gray-2",
+                  "block size-1.5 cursor-pointer rounded-full bg-gray-2",
                   {
                     "bg-secondary": current === i,
                   },

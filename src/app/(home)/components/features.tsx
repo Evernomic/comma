@@ -51,8 +51,8 @@ export default function Features() {
             {marketingConfig.features.map((f) => {
               return (
                 <CarouselItem className=" select-none " key={f.title}>
-                  <div className="text-gray-4  aspect-80/100  min-w-110 max-md:min-w-96! flex relative bg-primary flex-col border overflow-hidden    justify-between  gap-5  text-sm rounded-md ">
-                    <div className="flex flex-col gap-2  p-5 pb-0">
+                  <div className="text-gray-4  aspect-80/100  min-w-110 max-md:min-w-96! flex relative bg-primary flex-col border overflow-hidden    justify-between    text-sm rounded-md ">
+                    <div className="flex flex-col  bg-gray-3 gap-2  p-5">
                       <div className="flex items-center gap-2">
                         <div className="text-secondary font-medium text-xl">
                           {f.title}
@@ -77,7 +77,7 @@ export default function Features() {
             return (
               <span
                 className={cn(
-                  "block size-2.5 cursor-pointer rounded-full bg-gray-2",
+                  "block size-1.5 cursor-pointer rounded-full bg-gray-2",
                   {
                     "bg-secondary": current === i,
                   },
