@@ -34,7 +34,7 @@ export default function HighlightText() {
   );
 
   return (
-    <div className="w-[88%] mx-auto h-[250vh] -mb-[60vh]">
+    <div className="w-[1000px] max-[1100px]:w-full  mx-auto h-[250vh] -mb-[60vh]">
       <div
         className="split highlight-text h-[100vh] max-md:text-3xl max-base:text-4xl  text-center sticky top-100 text-gray-2 text-5xl leading-snug font-medium"
         ref={ref}
