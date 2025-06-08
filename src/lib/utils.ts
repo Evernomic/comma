@@ -164,7 +164,12 @@ export function sortPages(pages: Page[], published?: string) {
 
 export function sortWorkExperiences(experiences: WorkExperience[]) {
   return experiences.sort(
-    (a, b) => b.from - (a.to === "present" ? 1 : Number(a.to)),
+    (a, b) => {
+      if(a.to === "present" || b.to === "present") {
+        return (Number(b.to === "present")  -  Number(a.to === "present"))
+      }
+      return (b.from - a.from) 
+    }
   );
 }
 
