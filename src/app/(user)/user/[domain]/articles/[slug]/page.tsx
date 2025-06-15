@@ -5,6 +5,7 @@ import MDX from "@/components/markdown/mdx";
 import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import {
+  cn,
   formatDate,
   generateSEO,
   getArticleOgImage,
@@ -92,9 +93,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <AppShell>
       <AppHeader
         title={article?.title as string}
-        className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
+        className={cn("gap-2 flex-col items-start mb-4 [&_.title]:text-xl", {
+          "!gap-1": !!article.subTitle,
+        })}
       >
-        <div className="w-full flex gap-2 text-sm text-gray-4">
+        <div className="w-full flex-col flex gap-3 text-sm text-gray-4">
+          {article.subTitle && <p className="text-base">{article.subTitle}</p>}
           <p>{formatDate(article.publishedAt)}</p>
         </div>
       </AppHeader>

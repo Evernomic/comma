@@ -21,19 +21,25 @@ const TagInput = forwardRef<HTMLInputElement, TagInputProps>(
     };
 
     return (
-      <div className=" max-w-[400px] border  text-gray-4 rounded-md text-xs   p-2 flex  items-center flex-wrap gap-2">
-        {value.length > 0
-          ? value.map((item, idx) => (
-              <Badge className="flex gap-1 items-center px-1 " key={idx}>
-                {item}
+      <div className=" max-w-[400px] border  text-gray-4 rounded-md text-sm p-1 flex  items-center flex-wrap gap-1">
+        {value.length > 0 ? (
+          value.map((item, idx) => (
+            <Badge
+              className="flex gap-1 items-center text-sm px-2 py-1.5 "
+              key={idx}
+            >
+              {item}
 
-                <Icons.x
-                  size={15}
-                  onClick={() => onValueChange(value.filter((i) => i !== item))}
-                />
-              </Badge>
-            ))
-          : "No tags here yet"}
+              <Icons.x
+                size={15}
+                className="cursor-pointer"
+                onClick={() => onValueChange(value.filter((i) => i !== item))}
+              />
+            </Badge>
+          ))
+        ) : (
+          <p className="px-2">No tags here yet</p>
+        )}
         <Input
           value={pendingDataPoint}
           placeholder="Enter tag name"

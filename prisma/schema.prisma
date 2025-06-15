@@ -142,6 +142,7 @@ model Subscriber {
 model Article {
   id                   String    @id @default(cuid())
   title                String
+  subTitle             String?
   content              String?   @db.Text
   published            Boolean   @default(false)
   slug                 String    @default(cuid())

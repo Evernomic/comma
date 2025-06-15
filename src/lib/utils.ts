@@ -163,14 +163,12 @@ export function sortPages(pages: Page[], published?: string) {
 }
 
 export function sortWorkExperiences(experiences: WorkExperience[]) {
-  return experiences.sort(
-    (a, b) => {
-      if(a.to === "present" || b.to === "present") {
-        return (Number(b.to === "present")  -  Number(a.to === "present"))
-      }
-      return (b.from - a.from) 
+  return experiences.sort((a, b) => {
+    if (a.to === "present" || b.to === "present") {
+      return Number(b.to === "present") - Number(a.to === "present");
     }
-  );
+    return b.from - a.from;
+  });
 }
 
 export function sortChangelog(logs: Changelog[], published?: string) {
