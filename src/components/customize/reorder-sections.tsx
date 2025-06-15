@@ -3,7 +3,6 @@ import { userPageConfig } from "@/config/user-page";
 import { cn, sortUserPageSections } from "@/lib/utils";
 import { UserPageSection } from "@/types";
 import { Reorder, useDragControls } from "framer-motion";
-import ky from "ky";
 import { useRouter } from "next/navigation";
 import {
   Dispatch,
@@ -34,21 +33,28 @@ export default function ReorderSections({
   async function onDragEnd() {
     if (!isDragging) {
       startTransition?.(async () => {
-        const res = await ky.patch("/api/user", {
-          json: { sections },
-        });
-        if (!res.ok) {
-          const error = await res.text();
-          toast({
-            title: "Something went wrong.",
-            description: error,
-            variant: "destructive",
+        try {
+          const res = await fetch("/api/user", {
+            method: "PATCH",
+            body: JSON.stringify({
+              sections,
+            }),
           });
-        } else {
-          router.refresh();
-          toast({
-            title: "Saved",
-          });
+          if (!res.ok) {
+            const error = await res.text();
+            throw new Error(error);
+          } else {
+            router.refresh();
+            toast({
+              title: "Saved",
+            });
+          }
+        } catch (err) {
+          if (err instanceof Error) {
+            toast({ title: err.message, variant: "destructive" });
+          } else {
+            toast({ title: "Something went wrong", variant: "destructive" });
+          }
         }
       });
     }
@@ -190,7 +196,7 @@ function Section({
             >
               <p className="text-secondary">{section.title}</p>
               {section.subTitle && (
-                <p className="text-xs">{section.subTitle}</p>
+                <p className="text-xs max-w-[400px]">{section.subTitle}</p>
               )}
             </div>
             {section.isTitleEditable !== false && (

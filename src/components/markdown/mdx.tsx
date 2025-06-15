@@ -1,5 +1,5 @@
 import { userPageConfig } from "@/config/user-page";
-import { cn, getSectionTitle } from "@/lib/utils";
+import { cn, getSectionProps } from "@/lib/utils";
 import "@/styles/prose.css";
 import type {
   BookmarkWithCollection as _Bookmark,
@@ -131,43 +131,40 @@ export default async function MDX({
               <NavTabs user={allData.user} pages={userPageConfig.pages} />
             ),
             About: () => (
-              <About title={getSectionTitle(1, sections)} user={allData.user} />
+              <About {...getSectionProps(1, sections)} user={allData.user} />
             ),
             Articles: () => (
               <Articles
-                title={getSectionTitle(3, sections)}
+                {...getSectionProps(3, sections)}
                 articles={allData.articles}
               />
             ),
             Projects: () => (
               <Projects
-                title={getSectionTitle(4, sections)}
+                {...getSectionProps(4, sections)}
                 projects={allData.projects}
               />
             ),
             Bookmarks: () => (
               <Bookmarks
-                title={getSectionTitle(5, sections)}
+                {...getSectionProps(5, sections)}
                 bookmarks={allData.bookmarks}
               />
             ),
             WorkExperiences: () => (
               <WorkExperiences
-                title={getSectionTitle(2, sections)}
+                {...getSectionProps(2, sections)}
                 experiences={allData.experiences}
               />
             ),
             Newsletter: () => (
               <Newsletter
-                title={getSectionTitle(0, sections)}
+                {...getSectionProps(0, sections)}
                 user={allData.user}
               />
             ),
             Connect: () => (
-              <Connect
-                title={getSectionTitle(6, sections)}
-                user={allData.user}
-              />
+              <Connect {...getSectionProps(6, sections)} user={allData.user} />
             ),
           }),
         }}

@@ -9,7 +9,7 @@ import {
   formatDate,
   generateSEO,
   getArticleOgImage,
-  getSectionTitle,
+  getSectionProps,
   getUserFavicon,
   getUserPageURL,
 } from "@/lib/utils";
@@ -118,7 +118,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       ) : null}
       <div className="mt-5">
         <Newsletter
-          title={getSectionTitle(0, user.sections as UserPageSection[])}
+          {...getSectionProps(0, user.sections as UserPageSection[])}
           user={user}
         />
       </div>

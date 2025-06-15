@@ -470,17 +470,18 @@ export function sortUserNavItems(
   return defaultOrder;
 }
 
-export function getSectionTitle(position: number, sections: UserPageSection[]) {
+export function getSectionProps(position: number, sections: UserPageSection[]) {
   if (sections) {
-    return (
-      sortUserPageSections(userPageConfig.sections, sections)?.find(
-        (s) => s.position === position,
-      )?.title ?? ""
-    );
+    const sorted = sortUserPageSections(userPageConfig.sections, sections);
+    return {
+      title: sorted?.find((s) => s.position === position)?.title ?? "",
+      subTitle: sorted?.find((s) => s.position === position)?.subTitle ?? "",
+    };
   }
-  return (
-    userPageConfig.sections.find((s) => s.position === position)?.title ?? ""
-  );
+  return {
+    title:
+      userPageConfig.sections.find((s) => s.position === position)?.title ?? "",
+  };
 }
 
 export function getPageHref(page: Page) {

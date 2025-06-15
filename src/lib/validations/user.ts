@@ -15,17 +15,29 @@ const themeValues = themeStyles.map((t) => t.value) as [string, ...string[]];
 export const locationValues = Object.keys(countries) as [string, ...string[]];
 
 export const socialLinkSchema = z.object({
-  title: z.string().min(1).max(25),
+  title: z
+    .string()
+    .min(1)
+    .max(40, { message: "Title can be up to max 40 characters" }),
   url: z.string().url(),
   username: z.string().optional().nullable(),
 });
 
 export const linkInBioLinkSchema = z.object({
-  title: z.string().min(1).max(25),
+  title: z
+    .string()
+    .min(1)
+    .max(60, { message: "Title can be up to max 60 characters" }),
   url: z.string().url(),
   image: z.string().url().or(z.null()).default(null),
-  contentTitle: z.string().min(1).max(40),
-  description: z.string().min(1).max(120),
+  contentTitle: z
+    .string()
+    .min(1)
+    .max(60, { message: "Content title can be up to max 60 characters" }),
+  description: z
+    .string()
+    .min(1)
+    .max(120, { message: "Description can be up to max 120 characters" }),
 });
 
 export const updateUserSchema = z
@@ -70,9 +82,15 @@ export const updateUserSchema = z
     sections: z
       .array(
         z.object({
-          title: z.string().min(1).max(56),
-          subTitle: z.string().max(100).optional().nullable(),
-
+          title: z
+            .string()
+            .min(1)
+            .max(60, { message: "Title can be up to max 60 characters" }),
+          subTitle: z
+            .string()
+            .max(100, { message: "Subtitle can be up to max 300 characters" })
+            .optional()
+            .nullable(),
           position: z.number().min(0).max(8),
         }),
       )
@@ -90,7 +108,10 @@ export const updateUserSchema = z
     navLinks: z
       .array(
         z.object({
-          title: z.string().min(1).max(25),
+          title: z
+            .string()
+            .min(1)
+            .max(25, { message: "Title can be up to max 25 characters" }),
           href: z
             .string()
             .or(z.string().min(1).startsWith("/"))
