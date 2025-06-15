@@ -72,6 +72,7 @@ export type SiteConfig = {
 
 export type UserPageSection = {
   title: string;
+  subTitle?: string | null;
   position: number;
   component?: JSX.Element | any;
   isTitleEditable?: boolean;

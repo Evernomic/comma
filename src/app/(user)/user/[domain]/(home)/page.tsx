@@ -89,6 +89,7 @@ export default async function Home({ params }: PageProps) {
             ).map((section) => (
               <section.component
                 title={section.title}
+                subTitle={section.subTitle}
                 user={user}
                 pages={userPageConfig.pages}
                 articles={articles}

@@ -6,9 +6,12 @@ import NewsletterForm from "./newsletter-form";
 export default function Newsletter({
   user,
   title,
+  subTitle,
   className,
 }: {
   title: string;
+  subTitle?: string;
+
   className?: string;
   user: Pick<User, "username" | "newsletter" | "newsletterCta">;
 }) {
@@ -23,7 +26,10 @@ export default function Newsletter({
       )}
     >
       <dt className="section-title flex-col items-start  gap-1">
-        <h3>{title}</h3>
+        <div className="flex flex-col gap-1">
+          <h3>{title}</h3>
+          {subTitle && <p className="section-subtitle">{subTitle}</p>}
+        </div>
         {user.newsletterCta && (
           <MDX source={user.newsletterCta} className="text-gray-4! text-sm" />
         )}

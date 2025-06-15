@@ -93,6 +93,9 @@
   }
 }
 
+@utility section-subtitle {
+  @apply text-sm font-normal text-gray-4;
+}
 
 @utility link {
   &.section-title {

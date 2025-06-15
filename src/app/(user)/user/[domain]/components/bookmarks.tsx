@@ -7,9 +7,12 @@ import Link from "next/link";
 
 export default function Bookmarks({
   title,
+  subTitle,
   bookmarks,
 }: {
   title: string;
+  subTitle?: string;
+
   bookmarks: BookmarkWithCollection[];
 }) {
   if (!bookmarks.length) {
@@ -27,7 +30,10 @@ export default function Bookmarks({
             aria-label="View All Bookmarks"
           />
         ) : null}
-        <h3>{title}</h3>
+        <div className="flex flex-col gap-1">
+          <h3>{title}</h3>
+          {subTitle && <p className="section-subtitle">{subTitle}</p>}
+        </div>
         <Icons.arrowRight
           size={16}
           className={cn(

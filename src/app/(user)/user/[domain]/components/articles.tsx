@@ -6,9 +6,12 @@ import Link from "next/link";
 
 export default async function Articles({
   title,
+  subTitle,
   articles,
 }: {
   title: string;
+  subTitle?: string;
+
   articles: _Article[];
 }) {
   if (!articles.length) {
@@ -26,7 +29,10 @@ export default async function Articles({
             aria-label="View All Articles"
           />
         ) : null}
-        <h3>{title}</h3>
+        <div className="flex flex-col gap-1">
+          <h3>{title}</h3>
+          {subTitle && <p className="section-subtitle">{subTitle}</p>}
+        </div>
         <Icons.arrowRight
           size={16}
           className={cn(

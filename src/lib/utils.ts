@@ -432,6 +432,8 @@ export function sortUserPageSections(
           ...s,
           title:
             sections.find((o) => o.position === s.position)?.title ?? s.title,
+          subTitle:
+            sections.find((o) => o.position === s.position)?.subTitle ?? null,
         };
       });
   }
