@@ -27,7 +27,7 @@ export default function SelectThemeStyle({
   }, []);
 
   useEffect(() => {
-    const controller = new AbortController()
+    const controller = new AbortController();
     if (isMounted) {
       startTransition?.(async () => {
         const res = await fetch("/api/user", {
@@ -35,7 +35,7 @@ export default function SelectThemeStyle({
           body: JSON.stringify({
             theme: selectedTheme,
           }),
-          signal: controller.signal
+          signal: controller.signal,
         });
         if (!res.ok) {
           const error = await res.text();
@@ -53,10 +53,9 @@ export default function SelectThemeStyle({
       });
     }
 
-
     return () => {
-      controller.abort()
-    }
+      controller.abort();
+    };
   }, [selectedTheme]);
   return (
     <RadioGroup
