@@ -88,7 +88,7 @@ export const updateUserSchema = z
             .max(60, { message: "Title can be up to max 60 characters" }),
           subTitle: z
             .string()
-            .max(100, { message: "Subtitle can be up to max 300 characters" })
+            .max(240, { message: "Subtitle can be up to max 240 characters" })
             .optional()
             .nullable(),
           position: z.number().min(0).max(8),
