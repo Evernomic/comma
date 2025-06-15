@@ -54,11 +54,11 @@
 }
 
 .prose ul[class="contains-task-list"] > li > p {
-  @apply flex items-center;
+  @apply  leading-4.5
 }
 
 .prose ul[class="contains-task-list"] > li > p > input[type="checkbox"] {
-  @apply bg-gray-2 relative m-0 mr-1.5 flex size-4 appearance-none items-center justify-center rounded-md border border-transparent transition-colors marker:list-none;
+  @apply bg-gray-2 relative -mb-1 mr-1.5 inline-flex size-4 appearance-none items-center justify-center rounded-md border border-transparent transition-colors marker:list-none;
 }
 
 .prose
