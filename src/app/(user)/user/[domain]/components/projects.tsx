@@ -8,10 +8,12 @@ type ProjectType = Omit<ProjectPrisma, "password"> & { isProtected: boolean };
 
 export default function Projects({
   title,
+  subTitle,
   projects,
 }: {
   title: string;
   projects: ProjectType[];
+  subTitle?: string;
 }) {
   if (!projects.length) {
     return null;
@@ -28,7 +30,10 @@ export default function Projects({
             aria-label="View All Projects"
           />
         ) : null}
-        <h3>{title}</h3>
+        <div className="flex flex-col gap-1">
+          <h3>{title}</h3>
+          {subTitle && <p className="section-subtitle">{subTitle}</p>}
+        </div>
         <Icons.arrowRight
           size={16}
           className={cn(

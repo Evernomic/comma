@@ -71,6 +71,8 @@ export const updateUserSchema = z
       .array(
         z.object({
           title: z.string().min(1).max(56),
+          subTitle: z.string().max(100).optional().nullable(),
+
           position: z.number().min(0).max(8),
         }),
       )

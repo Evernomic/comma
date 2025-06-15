@@ -103,14 +103,16 @@ function Section({
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsEditing(false);
-    const { sectionTitle } = Object.fromEntries(
+    const { sectionTitle, subTitle } = Object.fromEntries(
       new FormData(e.currentTarget).entries(),
-    ) as { sectionTitle: string };
+    ) as { sectionTitle: string; subTitle?: string };
 
-    if (sectionTitle !== section.title) {
+    if (sectionTitle !== section.title || subTitle !== section?.subTitle) {
       setSections((prev) =>
         prev.map((s) =>
-          s.position === section.position ? { ...s, title: sectionTitle } : s,
+          s.position === section.position
+            ? { ...s, title: sectionTitle, subTitle }
+            : s,
         ),
       );
     }
@@ -127,7 +129,7 @@ function Section({
       }}
       dragControls={controls}
     >
-      <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 h-4.7  min-w-[220px] max-w-[300px] max-[300px]:w-full bg-gray-3">
+      <div className="rounded-md flex gap-2   items-center text-sm text-gray-4 px-1 min-h-4.7  min-w-max w-[300px] max-w-[350px] max-[300px]:w-full bg-gray-3">
         {isEditing ? (
           <form className="w-full flex justify-center" onSubmit={onSubmit}>
             <Input
@@ -138,6 +140,12 @@ function Section({
               minLength={1}
               autoFocus
               required
+            />
+            <Input
+              placeholder="Enter subtitle (optional)"
+              name="subTitle"
+              className="border-0 h-4.4"
+              defaultValue={section.subTitle ?? undefined}
             />
             <div className="flex gap-1">
               <Button
@@ -175,7 +183,16 @@ function Section({
             >
               <Icons.gripVertical size={15} />
             </Button>
-            <p className="select-none grow truncate">{section.title}</p>
+            <div
+              className={cn("select-none grow truncate", {
+                "py-1": !!section.subTitle,
+              })}
+            >
+              <p className="text-secondary">{section.title}</p>
+              {section.subTitle && (
+                <p className="text-xs">{section.subTitle}</p>
+              )}
+            </div>
             {section.isTitleEditable !== false && (
               <Button
                 variant="ghost"

@@ -5,9 +5,11 @@ import Link from "next/link";
 
 export default function Connect({
   title,
+  subTitle,
   user,
 }: {
   title: string;
+  subTitle?: string;
   user: User;
 }) {
   const links = getLinks(user);
@@ -18,7 +20,10 @@ export default function Connect({
   return (
     <dl className="section-container not-prose">
       <dt className="section-title">
-        <h3>{title}</h3>
+        <div className="flex flex-col gap-1">
+          <h3>{title}</h3>
+          {subTitle && <p className="section-subtitle">{subTitle}</p>}
+        </div>
       </dt>
       <dd className="section-content flex flex-col">
         {links.map((link) => {

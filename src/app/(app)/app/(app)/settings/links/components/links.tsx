@@ -119,7 +119,7 @@ function Link({
         >
           <Icons.gripVertical size={15} />
         </Button>
-        <p className="select-none grow truncate">{link.title}</p>
+        <p className="select-none grow truncate text-secondary">{link.title}</p>
         <div className="flex gap-2">
           <Button
             type="button"
