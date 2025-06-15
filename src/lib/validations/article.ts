@@ -9,6 +9,7 @@ export const articlePatchSchema = z
   .object({
     slug: z.string().min(1),
     title: z.string().min(1).max(70),
+    subTitle: z.string().max(120),
     content: z.string(),
     seoTitle: z.string().max(60).nullable(),
     seoDescription: z.string().max(160).nullable(),

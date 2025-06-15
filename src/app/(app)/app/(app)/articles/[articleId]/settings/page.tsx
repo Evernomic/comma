@@ -43,6 +43,18 @@ export default async function ArticleSettings({
       </AppHeader>
       <div className="flex flex-col gap-2">
         <Form
+          type="textarea"
+          title="Article subtitle"
+          description="This is the subtitle for this article."
+          endpoint={endpoint}
+          helpText="Optional, max 120 characters."
+          textareaData={{
+            name: "subTitle",
+            placeholder: "My sub title",
+            defaultValue: article.subTitle ?? undefined,
+          }}
+        />
+        <Form
           title="Article slug"
           description="This is the URL slug for this article."
           endpoint={endpoint}

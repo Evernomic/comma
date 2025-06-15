@@ -92,9 +92,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <AppShell>
       <AppHeader
         title={article?.title as string}
-        className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
+        className="gap-1 flex-col items-start mb-4 [&_.title]:text-xl"
       >
-        <div className="w-full flex gap-2 text-sm text-gray-4">
+        <div className="w-full flex-col flex gap-3 text-sm text-gray-4">
+          {article.subTitle && <p className="text-base">{article.subTitle}</p>}
           <p>{formatDate(article.publishedAt)}</p>
         </div>
       </AppHeader>
