@@ -53,6 +53,7 @@ export default async function ArticleSettings({
             placeholder: "My sub title",
             defaultValue: article.subTitle ?? undefined,
           }}
+          required={false}
         />
         <Form
           title="Article slug"

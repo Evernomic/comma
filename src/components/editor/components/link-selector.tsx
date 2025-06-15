@@ -63,38 +63,53 @@ export default function LinkSelector({
         </Button>
       </PopoverTrigger>
       <PopoverPortal container={containerRef.current}>
-        <PopoverContent excludePortal align="start" className="mt-1">
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-1 flex">
-            <Input
-              type="text"
-              placeholder="url"
-              defaultValue={editor.getAttributes("link").href}
-              className={cn("h-4.5", errors?.link ? "border-danger" : "")}
-              {...register("link")}
-            />
-            {editor.getAttributes("link").href ? (
-              <Button
-                type="button"
-                onClick={() => {
-                  editor.chain().focus().unsetLink().run();
-                  reset();
-                }}
-                size="icon"
-                className="min-w-4.5x"
-                variant="destructive"
-              >
-                <Icons.trash size={15} />
-              </Button>
-            ) : (
-              <Button
-                type="submit"
-                className="min-w-4.5"
-                variant="ghost"
-                size="icon"
-              >
-                <Icons.check size={18} />
-              </Button>
-            )}
+        <PopoverContent excludePortal align="start" className="mt-1 p-2">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full flex flex-col gap-1"
+          >
+            <div className="gap-1 flex">
+              <Input
+                type="text"
+                placeholder="URL or path"
+                defaultValue={editor.getAttributes("link").href}
+                className={cn("h-4.5", errors?.link ? "border-danger" : "")}
+                {...register("link")}
+              />
+              {editor.getAttributes("link").href ? (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    editor.chain().focus().unsetLink().run();
+                    reset();
+                  }}
+                  size="icon"
+                  className="min-w-4.5x"
+                  variant="destructive"
+                >
+                  <Icons.trash size={15} />
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="min-w-4.5"
+                  variant="secondary"
+                  size="icon"
+                >
+                  <Icons.check size={18} />
+                </Button>
+              )}
+            </div>
+            <ul className="text-xs text-gray-4 !my-0 !py-0 list-disc [&_li]:[&_b]:multi-['font-medium;text-secondary']">
+              <li>
+                {" "}
+                Use <b>https://</b> for external pages
+              </li>
+              <li>
+                {" "}
+                Use <b>/</b> for internal pages
+              </li>
+            </ul>
           </form>
         </PopoverContent>
       </PopoverPortal>
