@@ -1,10 +1,10 @@
 import MDX from "@/components/markdown/mdx";
-import { getSectionTitle } from "@/lib/utils";
+import { getSectionProps } from "@/lib/utils";
 import type { User, UserPageSection } from "@/types";
 import NewsletterFormModal from "./newsletter-form-modal";
 
 export default function NewsletterModalWrapper({ user }: { user: User }) {
-  const title = getSectionTitle(0, user.sections as UserPageSection[]);
+  const title = getSectionProps(0, user.sections as UserPageSection[]).title;
 
   return (
     <NewsletterFormModal user={user} title={title}>
