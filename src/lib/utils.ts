@@ -395,6 +395,9 @@ export function getPostPageURL(
 export function getUserOgImage(
   user: Pick<User, "ogImage" | "username" | "name">,
 ) {
+  if(user.ogImage && user.ogImage?.length > 0) {
+    return user.ogImage;
+  }
   return `${process.env.NEXT_PUBLIC_URL}/api/og/user?username=${user.name ?? user.username}`;
 }
 
@@ -402,6 +405,9 @@ export function getArticleOgImage(
   article: Pick<Project, "ogImage" | "title">,
   user: Pick<User, "username" | "domain" | "name">,
 ) {
+  if(article.ogImage && article.ogImage?.length > 0) {
+    return article.ogImage
+  }
   return `${process.env.NEXT_PUBLIC_URL}/api/og/post?title=${article.title}&username=${user.name ?? user.username}`;
 }
 
@@ -409,6 +415,9 @@ export function getProjectOgImage(
   project: Pick<Project, "ogImage" | "title"> & { isProtected?: boolean },
   user: Pick<User, "username" | "domain" | "name">,
 ) {
+    if(project.ogImage && project.ogImage?.length > 0) {
+    return project.ogImage
+  }
   return `${process.env.NEXT_PUBLIC_URL}/api/og/post?title=${project.title}&username=${user.name ?? user.username}${project.isProtected ? "&locked=true" : ""}`;
 }
 

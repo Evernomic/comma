@@ -9,7 +9,7 @@
 }
 
 .prose blockquote {
-  @apply  border-l-4 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
+  @apply  border-l-4 border-gray-2 italic [&_p]:font-medium [&_p]:before:hidden [&_p]:after:hidden;
 }
 
 .prose pre {
