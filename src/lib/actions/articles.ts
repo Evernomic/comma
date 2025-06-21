@@ -44,7 +44,7 @@ export async function updateArticle(
     },
     data: {
       ...rest,
-      slug: (data.title || slug) ? slug ?? slugify(data.title) : undefined,
+      slug: data.title || slug ? (slug ?? slugify(data.title)) : undefined,
       publishedAt: publishedAt ? new Date(publishedAt) : undefined,
     },
   });

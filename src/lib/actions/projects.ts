@@ -35,7 +35,7 @@ export async function updateProject(
     },
     data: {
       ...rest,
-      slug: (data.title || slug) ? slug ?? slugify(data.title) : undefined,
+      slug: data.title || slug ? (slug ?? slugify(data.title)) : undefined,
     },
   });
 }

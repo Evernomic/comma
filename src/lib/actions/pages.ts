@@ -32,7 +32,7 @@ export async function updatePage(
     },
     data: {
       ...rest,
-      slug: (data.title || slug) ? slug ?? slugify(data.title) : undefined,
+      slug: data.title || slug ? (slug ?? slugify(data.title)) : undefined,
       visibility: visibility as PageVisibility,
       updatedAt: new Date(),
     },

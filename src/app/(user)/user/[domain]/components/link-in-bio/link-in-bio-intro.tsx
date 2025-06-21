@@ -1,3 +1,4 @@
+import MDX from "@/components/markdown/mdx";
 import { Icons } from "@/components/shared/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getLinks } from "@/config/user-page";
@@ -8,7 +9,6 @@ import type {
   User,
 } from "@/types";
 import Link from "next/link";
-import Balancer from "react-wrap-balancer";
 import Announcement from "../announcement";
 import LinkCarousel from "./link-carousel";
 
@@ -28,9 +28,10 @@ export default function LinkInBioIntro({ user }: { user: User }) {
       <div className="space-y-4 max-w-[600px] max-md:w-full">
         <Announcement text={user.announcementText} />
         <h1 className="text-3xl font-medium">{user.name}</h1>
-        <p className="text-gray-4 text-base">
-          <Balancer>{user.about ?? user.title ?? user.category}</Balancer>
-        </p>
+        <MDX
+          className="text-gray-4 text-base"
+          source={user.about ?? user.title ?? user.category}
+        />
         <div className="flex gap-3 items-center flex-wrap mt-18">
           {socialLinks?.map((link) => {
             return (
