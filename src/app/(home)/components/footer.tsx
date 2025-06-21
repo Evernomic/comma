@@ -6,11 +6,11 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between  max-md:flex-col max-md:gap-15 items-start border-t  py-20 pb-30">
+    <footer className="flex justify-between  max-md:flex-col max-md:gap-15 items-start border-t  max-md:pr-10 py-20 pb-30">
       <Link href={siteConfig.links.home}>
         <Icons.logo size={30} />
       </Link>
-      <div className="flex gap-20 ">
+      <div className="grid grid-cols-3 gap-20 max-md:grid-cols-2 max-md:gap-10">
         {marketingConfig.footerSections.map((section) => (
           <div className="flex flex-col gap-3" key={section.name}>
             <div className="text-secondary font-medium  text-sm">

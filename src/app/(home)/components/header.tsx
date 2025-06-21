@@ -16,13 +16,14 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex gap-2 flex-1 justify-end">
-        <ThemeToggle compact iconSize={18} size={5} />
+        <ThemeToggle className="max-sm:hidden" compact iconSize={18} size={5} />
         <NavButton
           href={siteConfig.links.login}
           buttonVariant="ghost"
           size="wide"
           direction="ltr"
           buttonClassname="gap-2"
+          className="max-smd:hidden"
           aria-label="Log in to Comma"
         >
           Log in

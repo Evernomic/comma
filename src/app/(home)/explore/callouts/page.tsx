@@ -17,7 +17,7 @@ export default async function CalloutsPage() {
     config?.adspots?.filter((ad) => ad.place === "callouts") ?? [];
 
   return (
-    <AppShell className="pt-10 gap-5 min-h-screen">
+    <AppShell className="pt-10 gap-5 min-h-screen w-[700px] max-md:w-full mx-auto">
       <AppHeader
         title="Callouts"
         description="You can follow the calls of Comma users here."
