@@ -170,5 +170,6 @@ export const updateUserSchema = z
     linkInBioLinksViewType: z.enum(
       linkInBioLinkTypes.map((l) => l.value) as [string, ...string[]],
     ),
+    linkInBioTitle: z.string().max(100).nullable(),
   })
   .partial();

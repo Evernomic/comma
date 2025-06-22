@@ -115,15 +115,15 @@ export default async function Settings() {
         asChild
       >
         <NavButton
-            buttonVariant="secondary"
-            icon="edit"
-            direction="ltr"
-            iconSize={14}
-            buttonClassname="gap-2"
-            href="/settings/about"
-          >
-            Edit with editor
-          </NavButton>
+          buttonVariant="secondary"
+          icon="edit"
+          direction="ltr"
+          iconSize={14}
+          buttonClassname="gap-2"
+          href="/settings/about"
+        >
+          Edit with editor
+        </NavButton>
       </Form>
       <UploadAvatar
         defaultValue={user?.image as string}
