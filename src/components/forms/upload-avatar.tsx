@@ -62,7 +62,7 @@ export default function UploadAvatar({ defaultValue, name }: Props) {
     <div className="overflow-hidden rounded-md border ">
       <div className="flex flex-row justify-between  gap-1 p-4 max-md:flex-col   max-md:items-center max-md:gap-3  ">
         <div className="flex flex-col self-start gap-1">
-          <h1>Avatar</h1>
+          <div className="font-medium">Avatar</div>
           <p className="text-sm text-gray-4">
             Click on the avatar to upload a custom one from your files.
           </p>

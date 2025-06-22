@@ -4,6 +4,7 @@ import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
 import AppShell from "@/components/layout/app-shell";
+import NavButton from "@/components/layout/nav-button";
 import { siteConfig } from "@/config/site";
 import { userCategories, userLocations } from "@/lib/constants";
 import { getUser } from "@/lib/fetchers/users";
@@ -111,7 +112,19 @@ export default async function Settings() {
           maxLength: 400,
         }}
         required={false}
-      />
+        asChild
+      >
+        <NavButton
+            buttonVariant="secondary"
+            icon="edit"
+            direction="ltr"
+            iconSize={14}
+            buttonClassname="gap-2"
+            href="/settings/about"
+          >
+            Edit with editor
+          </NavButton>
+      </Form>
       <UploadAvatar
         defaultValue={user?.image as string}
         name={user?.name as string}

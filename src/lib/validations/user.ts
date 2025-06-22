@@ -54,7 +54,7 @@ export const updateUserSchema = z
         "Username is not available",
       ),
     title: z.string().max(32).nullable(),
-    about: z.string().max(400).nullable(),
+    about: z.string().nullable(),
     image: z.string().url().nullable(),
     email: z.string().email(),
     seoTitle: z.string().max(60).nullable(),
