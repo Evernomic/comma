@@ -51,7 +51,7 @@ export const appConfig: AppConfig = {
       title: "General",
       href: "/settings",
     },
-        {
+    {
       title: "Edit about",
       href: "/settings/about",
       isVisible: false,

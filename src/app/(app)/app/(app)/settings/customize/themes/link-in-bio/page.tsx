@@ -21,6 +21,19 @@ export default async function LinkInBioSettings() {
     <AppShell>
       <Form
         endpoint="user"
+        title="Title"
+        description="This title will be displayed instead of the main title on your link in bio page."
+        helpText="Please use 100 characters at maximum."
+        inputData={{
+          name: "linkInBioTitle",
+          placeholder: "Title",
+          defaultValue: user.linkInBioTitle ?? "",
+          maxLength: 100,
+        }}
+        required={false}
+      />
+      <Form
+        endpoint="user"
         title="Links view type"
         selectOptions={linkInBioLinkTypes}
         inputData={{

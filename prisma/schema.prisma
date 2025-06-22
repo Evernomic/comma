@@ -93,6 +93,7 @@ model User {
   sections               Json?
   navLinks               Json?
   links                  Json?
+  linkInBioTitle         String?
   linkInBioLinks         Json?
   linkInBioLinksViewType String?
   showOnExplore          Boolean          @default(true)
