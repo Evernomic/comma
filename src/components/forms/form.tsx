@@ -140,9 +140,9 @@ export default function Form({
       {proFeature && <Upgrade />}
       <div className="flex flex-col gap-1 p-4">
         <div className="font-medium">{title}</div>
-        <p className="text-sm text-gray-4">{description}</p>
+        <p className="text-sm text-gray-4 mb-2">{description}</p>
         {!asChild ? (
-          <div className="mt-2">
+          <div>
             {type === "input" ? (
               <>
                 {toggle ? (
