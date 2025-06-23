@@ -17,7 +17,8 @@ export default function LinkInBioLink({
       className={cn(
         "aspect-100/125  relative min-w-80 h-auto border border-gray-3  overflow-hidden p-4.4 rounded-md flex flex-col justify-between",
         {
-          "aspect-125/80 p-4 min-w-[300px] justify-baseline gap-5": isCompact,
+          "aspect-125/80 p-4 min-w-[300px] max-w-[350px] h-[200px] justify-between": isCompact,
+          "max-w-[320px]": !isCompact
         },
       )}
     >
@@ -29,7 +30,9 @@ export default function LinkInBioLink({
           href={url}
           target="_blank"
           buttonVariant="ghost"
-          buttonClassname="rounded-full text-primary dark:text-secondary"
+          buttonClassname={cn("rounded-full text-primary dark:text-secondary", {
+            "text-secondary": !image
+          })}
         >
           See more
         </NavButton>
@@ -56,11 +59,14 @@ export default function LinkInBioLink({
             priority
           />
         )}
-        <div className="flex flex-col gap-1 flex-1 z-50 text-primary dark:text-secondary">
+        <div className={cn("flex flex-col gap-1 flex-1 z-50 text-primary dark:text-secondary", {
+          "text-secondary": !image
+        })}>
           <div className="text-sm  font-medium  ">{contentTitle}</div>
           <p
-            className={cn("text-xs  ", {
-              "text-gray-4": isCompact,
+            className={cn("text-xs  break-words", {
+              "text-gray-4": isCompact || !image,
+              
             })}
           >
             {description}

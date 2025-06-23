@@ -62,7 +62,7 @@ export default async function UserLayout({ children, params }: LayoutProps) {
       className={cn(
         "mx-auto flex min-h-screen w-[640px] flex-col  max-md:w-full pt-28 pb-48 max-md:pt-20 max-md:px-4 ",
         {
-          "w-full px-20 py-10": user.theme === "linkInBio",
+          "w-full px-20 pt-10 pb-100": user.theme === "linkInBio",
         },
       )}
     >
