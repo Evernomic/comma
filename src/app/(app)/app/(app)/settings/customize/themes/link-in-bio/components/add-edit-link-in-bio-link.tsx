@@ -138,7 +138,7 @@ export default function AddEditLinkInBioLinkModal({
           />
           <UploadImage
             inline
-            helpText={`Click to ${imageURL ? "update image" : "upload image"} (Max 4MB)`}
+            helpText={`Click to ${(imageURL || link?.image) ? "update image" : "upload image"} (Max 4MB)`}
             onUploadCompleted={(url) => {
               flushSync(() => {
                 setValue("image", url);
@@ -149,10 +149,10 @@ export default function AddEditLinkInBioLinkModal({
           <p className="text-gray-4 text-xs">
             Please add large resolution image for best view
           </p>
-          {imageURL && (
+          {(imageURL || link?.image) && (
             <div className="flex gap-2 ">
               <Image
-                src={imageURL}
+                src={imageURL ?? link?.image!}
                 width={0}
                 height={0}
                 sizes="100vw"

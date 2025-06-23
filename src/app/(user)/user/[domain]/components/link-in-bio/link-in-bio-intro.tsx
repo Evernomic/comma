@@ -16,8 +16,8 @@ export default function LinkInBioIntro({ user }: { user: User }) {
   const socialLinks = getLinks(user);
   const links = user.linkInBioLinks as _LinkInBioLink[];
   return (
-    <div className="flex flex-col justify-start gap-25 w-full">
-      <Avatar className="rounded-md size-12 mb-10">
+    <div className="flex flex-col justify-start gap-20 w-full">
+      <Avatar className="rounded-md size-15 mb-10">
         {user.image && (
           <AvatarImage src={user.image} alt={`Avatar of ${user.username}`} />
         )}
