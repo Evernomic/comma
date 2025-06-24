@@ -16,7 +16,7 @@ export default async function ExplorePage() {
   const config = await getAdminConfig();
   const adspots = config?.adspots?.filter((ad) => ad.place === "explore") ?? [];
   return (
-    <AppShell className="pt-10 gap-5 min-h-screen w-[700px] max-md:w-full mx-auto">
+    <AppShell className="pt-10 gap-5 min-h-screen w-[900px] max-[960px]:w-full mx-auto">
       <AppHeader
         title="Explore"
         description="You can search for Comma writers here."
