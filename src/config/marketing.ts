@@ -14,6 +14,26 @@ export const marketingConfig: MarketingConfig = {
       image: "/_static/previews/editor",
     },
     {
+      title: "Collect emails",
+      description:
+        "Build your email list by collecting subscriber emails for newsletters.",
+      icon: "mail",
+      image: "/_static/previews/newsletter",
+    },
+    {
+      title: "Themes",
+      description:
+        "Pick a theme you love and give your profile a fresh, beautiful new look!",
+      icon: "swatchBook",
+      image: "/_static/previews/themes",
+    },
+    {
+      title: "Custom domain",
+      description: "Connect your own domain or subdomain to your webste.",
+      icon: "globe",
+      image: "/_static/previews/domain",
+    },
+    {
       title: "Work experience",
       description:
         "Showcase your past roles, responsibilities, and achievements to highlight your professional journey.",
@@ -27,36 +47,10 @@ export const marketingConfig: MarketingConfig = {
       image: "/_static/previews/analytics",
     },
     {
-      title: "Collect emails",
-      description:
-        "Build your email list by collecting subscriber emails for newsletters.",
-      icon: "mail",
-      image: "/_static/previews/newsletter",
-    },
-    {
       title: "SEO",
       description: "Optimize your page with customizable Open Graph settings.",
       icon: "search",
       image: "/_static/previews/seo",
-    },
-    {
-      title: "Custom domain",
-      description: "Connect your own domain or subdomain to your webste.",
-      icon: "globe",
-      image: "/_static/previews/domain",
-    },
-    {
-      title: "Password Protection",
-      description: "Secure your website or special projects with a password.",
-      icon: "locked",
-      image: "/_static/previews/protection",
-    },
-    {
-      title: "Themes",
-      description:
-        "Pick a theme you love and give your profile a fresh, beautiful new look!",
-      icon: "swatchBook",
-      image: "/_static/previews/themes",
     },
     {
       title: "Explore",
@@ -65,7 +59,6 @@ export const marketingConfig: MarketingConfig = {
       icon: "search",
       image: "/_static/previews/explore",
     },
-
     {
       title: "Callouts",
       description:
