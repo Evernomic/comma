@@ -3,9 +3,12 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { marketingConfig } from "@/config/marketing";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -15,6 +18,8 @@ export default function Features() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(1);
   const [count, setCount] = useState(1);
+
+  const matches = useMediaQuery("(min-width: 960px)");
 
   useEffect(() => {
     if (!api) {
@@ -39,15 +44,17 @@ export default function Features() {
 
   return (
     <section id="features" className="section-container">
-      <div className="section-content  md:marquee">
+      <div className="section-content">
         <Carousel
           setApi={setApi}
           opts={{
             align: "center",
-            skipSnaps: true,
+            active: !!matches,
+            slidesToScroll: 2,
+            dragFree: true,
           }}
         >
-          <CarouselContent className="max-md:flex-col">
+          <CarouselContent className="max-md:flex-col gap-0   max-md:gap-10">
             {marketingConfig.features.map((f) => {
               return (
                 <CarouselItem className=" select-none " key={f.title}>
@@ -71,22 +78,26 @@ export default function Features() {
               );
             })}
           </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
         <div className="flex gap-2 items-center justify-center pt-12 max-md:hidden">
-          {marketingConfig.features.map((f, i) => {
-            return (
-              <span
-                className={cn(
-                  "block size-1.5 cursor-pointer rounded-full bg-gray-2",
-                  {
-                    "bg-secondary": current === i,
-                  },
-                )}
-                key={f.title}
-                onClick={() => onDotClick(i)}
-              />
-            );
-          })}
+          {Array.from({ length: count })
+            .fill(true)
+            .map((_, i) => {
+              return (
+                <span
+                  className={cn(
+                    "block size-1.5 cursor-pointer rounded-full bg-gray-2",
+                    {
+                      "bg-secondary": current === i,
+                    },
+                  )}
+                  key={`carousel${i}`}
+                  onClick={() => onDotClick(i)}
+                />
+              );
+            })}
         </div>
       </div>
     </section>
