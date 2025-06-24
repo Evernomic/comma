@@ -34,7 +34,7 @@ export default function LinkInBioIntro({ user }: { user: User }) {
           className="text-gray-4 text-base"
           source={user.about ?? user.title ?? user.category}
         />
-        <div className="flex gap-3 items-center flex-wrap mt-18">
+        <div className="flex gap-3 items-center flex-wrap mt-15">
           {socialLinks?.map((link) => {
             return (
               <Link

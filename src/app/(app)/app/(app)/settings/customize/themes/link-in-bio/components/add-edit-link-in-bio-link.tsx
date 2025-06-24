@@ -45,6 +45,7 @@ export default function AddEditLinkInBioLinkModal({
   const [showAddEditLinkModal, setShowAddEditLinkModal] =
     useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [imageURL, setImageURL] = useState<string | null>(
     edit && link ? (link.image ?? null) : null,
   );
@@ -75,11 +76,15 @@ export default function AddEditLinkInBioLinkModal({
   });
 
   useEffect(() => {
-    if (!showAddEditLinkModal) {
+    if (!showAddEditLinkModal && isMounted && !edit) {
       reset();
       setImageURL(null);
     }
   }, [showAddEditLinkModal]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
@@ -138,7 +143,7 @@ export default function AddEditLinkInBioLinkModal({
           />
           <UploadImage
             inline
-            helpText={`Click to ${(imageURL || link?.image) ? "update image" : "upload image"} (Max 4MB)`}
+            helpText={`Click to ${imageURL ? "update image" : "upload image"} (Max 4MB)`}
             onUploadCompleted={(url) => {
               flushSync(() => {
                 setValue("image", url);
@@ -149,10 +154,10 @@ export default function AddEditLinkInBioLinkModal({
           <p className="text-gray-4 text-xs">
             Please add large resolution image for best view
           </p>
-          {(imageURL || link?.image) && (
+          {imageURL && (
             <div className="flex gap-2 ">
               <Image
-                src={imageURL ?? link?.image!}
+                src={imageURL}
                 width={0}
                 height={0}
                 sizes="100vw"

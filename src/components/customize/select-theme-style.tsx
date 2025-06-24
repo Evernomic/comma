@@ -46,8 +46,10 @@ export default function SelectThemeStyle({
           });
         } else {
           router.refresh();
-          if(selectedTheme !== "default") {
-            router.push(`/settings/customize${selectedTheme === "linkInBio" ? "/themes/link-in-bio" :  "/home" }`)
+          if (selectedTheme !== "default") {
+            router.push(
+              `/settings/customize${selectedTheme === "linkInBio" ? "/themes/link-in-bio" : "/home"}`,
+            );
           }
           toast({
             title: "Saved",

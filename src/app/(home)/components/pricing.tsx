@@ -15,7 +15,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="section-container flex flex-col gap-15 justify-center items-center"
+      className="section-container w-[900px] max-[960px]:w-full mx-auto flex flex-col gap-15 justify-center items-center"
     >
       <div className="text-4xl text-center font-medium">Pricing</div>
 
@@ -38,7 +38,7 @@ export default function Pricing() {
         </label>
       </div>
 
-      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-3 section-content">
+      <div className="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3 section-content">
         {marketingConfig.plans.map((plan) => {
           const isProPlan = plan.title === "Pro";
 

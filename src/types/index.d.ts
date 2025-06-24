@@ -122,8 +122,8 @@ export type FooterSection = {
 
 export type Preview = {
   title: string;
-  icon?: Icon;
-  image: string;
+  description: string;
+  src: string;
 };
 export type MarketingConfig = {
   headline: string;
