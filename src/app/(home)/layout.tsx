@@ -13,7 +13,7 @@ export default async function MarketingPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto min-h-screen flex flex-col  w-[1300px] pt-4 max-[1300px]:px-8 max-[1300px]:w-full">
+    <div className="mx-auto min-h-screen flex flex-col   pt-4 w-[900px] max-[960px]:multi-['w-full;px-8']">
       <ThemeProvider>
         <NuqsAdapter>
           <Header />

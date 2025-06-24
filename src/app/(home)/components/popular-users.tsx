@@ -23,9 +23,9 @@ export default function PopularUsers({
   };
 
   return (
-    <section id="features" className="section-container">
-      <div className="section-content  gap-4 marquee overflow-hidden">
-        <Marquee {...options} speed={60}>
+    <section className="section-container">
+      <div className="section-content  w-[1300px] max-[1400px]:multi-['w-full;-translate-x-0;right-0;left-0'] relative right-1/2 left-1/2 -translate-x-1/2 gap-4 md:marquee overflow-hidden">
+        <Marquee {...options} speed={55}>
           {users.slice(0, 10).map((u) => {
             return <Item user={u} key={u.username} />;
           })}

@@ -15,7 +15,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="section-container w-[900px] max-[960px]:w-full mx-auto flex flex-col gap-15 justify-center items-center"
+      className="section-container w-full mx-auto flex flex-col gap-15 justify-center items-center"
     >
       <div className="text-4xl text-center font-medium">Pricing</div>
 

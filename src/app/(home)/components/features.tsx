@@ -39,7 +39,7 @@ export default function Features() {
 
   return (
     <section id="features" className="section-container">
-      <div className="section-content w-[900px] max-[960px]:w-full  mx-auto md:marquee">
+      <div className="section-content  md:marquee">
         <Carousel
           setApi={setApi}
           opts={{

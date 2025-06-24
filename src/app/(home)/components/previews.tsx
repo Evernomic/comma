@@ -33,7 +33,7 @@ export default function Previews() {
 
   return (
     <section id="themes" className="section-container">
-      <div className="w-[900px] max-[960px]:w-full mx-auto section-content gap-20">
+      <div className="w-full section-content gap-20">
         {marketingConfig.previews.map((p, i) => {
           const isSingle = i % 2 !== 0;
           return (
