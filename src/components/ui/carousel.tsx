@@ -3,6 +3,7 @@
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as React from "react";
 
@@ -56,7 +57,11 @@ function Carousel({
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
     },
-    plugins,
+    (plugins = [
+      WheelGesturesPlugin({
+        forceWheelAxis: "y",
+      }),
+    ]),
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -138,7 +143,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden "
+      className="overflow-clip"
       data-slot="carousel-content"
     >
       <div
@@ -163,7 +168,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       aria-roledescription="slide"
       data-slot="carousel-item"
       className={cn(
-        "size-auto cursor-w-resize",
+        "size-auto",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className,
       )}

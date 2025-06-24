@@ -72,7 +72,9 @@ export default async function UserLayout({ children, params }: LayoutProps) {
           <NuqsAdapter>{children}</NuqsAdapter>
         </main>
         <Track />
-        {user.showBottomNav ? <BottomNav user={user} /> : null}
+        {user.showBottomNav ? (
+          <BottomNav user={user} hideBlur={user.theme === "linkInBio"} />
+        ) : null}
       </ThemeProvider>
     </div>
   );

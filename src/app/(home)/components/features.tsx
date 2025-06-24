@@ -39,7 +39,7 @@ export default function Features() {
 
   return (
     <section id="features" className="section-container">
-      <div className="section-content">
+      <div className="section-content w-[900px] max-[960px]:w-full  mx-auto md:marquee">
         <Carousel
           setApi={setApi}
           opts={{
@@ -47,11 +47,11 @@ export default function Features() {
             skipSnaps: true,
           }}
         >
-          <CarouselContent className="cursor-w-resize!">
+          <CarouselContent className="max-md:flex-col">
             {marketingConfig.features.map((f) => {
               return (
                 <CarouselItem className=" select-none " key={f.title}>
-                  <div className="text-gray-4  aspect-80/100  min-w-110 max-md:min-w-96! flex relative bg-primary flex-col border overflow-hidden    justify-between    text-sm rounded-md ">
+                  <div className="text-gray-4  aspect-80/100  min-w-110 max-md:multi-['aspect-auto;min-w-full'] flex relative bg-primary flex-col border overflow-hidden    justify-between    text-sm rounded-md ">
                     <div className="flex flex-col  bg-gray-3 gap-2  p-5">
                       <div className="flex items-center gap-2">
                         <div className="text-secondary font-medium text-xl">
@@ -72,7 +72,7 @@ export default function Features() {
             })}
           </CarouselContent>
         </Carousel>
-        <div className="flex gap-2 items-center justify-center pt-12">
+        <div className="flex gap-2 items-center justify-center pt-12 max-md:hidden">
           {marketingConfig.features.map((f, i) => {
             return (
               <span

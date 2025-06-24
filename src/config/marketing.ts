@@ -74,11 +74,35 @@ export const marketingConfig: MarketingConfig = {
       image: "/_static/previews/callouts",
     },
   ],
+  previews: [
+    {
+      title: "Resume",
+      description:
+        "A minimal LinkedIn alternative to showcase your work, projects, articles and more.",
+      src: "/_static/previews/resume",
+    },
+    {
+      title: "Link in bio",
+      description:
+        "A place to showcase all your important links in style. Your bio deserves better.",
+      src: "/_static/previews/link-in-bio",
+    },
+    {
+      title: "Freestyle",
+      description:
+        "Feeling creative? Use our editor and widgets to craft your own way to showcase who you are.",
+      src: "/_static/previews/freestyle",
+    },
+  ],
   plans: [freePlan, proPlan],
   footerSections: [
     {
       name: "Product",
       links: [
+        {
+          name: "Themes",
+          href: "/home#themes",
+        },
         {
           name: "Features",
           href: "/home#features",
@@ -127,32 +151,6 @@ export const marketingConfig: MarketingConfig = {
           href: siteConfig.links.twitter,
         },
       ],
-    },
-  ],
-  previews: [
-    {
-      title: "Articles",
-      image: "/_static/previews/articles",
-    },
-    {
-      title: "Bookmarks",
-      image: "/_static/previews/bookmarks",
-    },
-    {
-      title: "Analytics",
-      image: "/_static/previews/analytics",
-    },
-    {
-      title: "Editor",
-      image: "/_static/previews/editor",
-    },
-    {
-      title: "Command",
-      image: "/_static/previews/command",
-    },
-    {
-      title: "Work experience",
-      image: "/_static/previews/work",
     },
   ],
 } as const;

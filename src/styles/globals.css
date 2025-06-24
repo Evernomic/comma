@@ -116,7 +116,9 @@
     display: none;
   }
 }
-
+@utility marquee {
+  mask-image: linear-gradient(90deg, transparent,var(--background-color) 3%, var(--foreground) 97%, transparent);
+}
 @utility custom-underline {
   @apply underline underline-offset-4 decoration-gray-2 decoration-[2px];
 }

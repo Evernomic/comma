@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { LinkInBioLink, LinkInBioLinkType } from "@/types";
 import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 import NavButton from "../layout/nav-button";
 
 export default function LinkInBioLink({
@@ -17,8 +18,9 @@ export default function LinkInBioLink({
       className={cn(
         "aspect-100/125  relative min-w-80 h-auto border border-gray-3  overflow-hidden p-4.4 rounded-md flex flex-col justify-between",
         {
-          "aspect-125/80 p-4 min-w-[300px] max-w-[350px] h-[200px] justify-between": isCompact,
-          "max-w-[320px]": !isCompact
+          "aspect-200/100 p-4 min-w-[300px]  h-[200px] justify-between":
+            isCompact,
+          "max-w-[320px]": !isCompact,
         },
       )}
     >
@@ -31,7 +33,7 @@ export default function LinkInBioLink({
           target="_blank"
           buttonVariant="ghost"
           buttonClassname={cn("rounded-full text-primary dark:text-secondary", {
-            "text-secondary": !image
+            "text-secondary": !image || isCompact,
           })}
         >
           See more
@@ -39,8 +41,8 @@ export default function LinkInBioLink({
       </div>
 
       <div
-        className={cn("flex justify-between items-center gap-5", {
-          "pr-5": isCompact,
+        className={cn("flex justify-between items-start gap-3.5", {
+          "pr-2": isCompact,
         })}
       >
         {image && (
@@ -59,24 +61,30 @@ export default function LinkInBioLink({
             priority
           />
         )}
-        <div className={cn("flex flex-col gap-1 flex-1 z-50 text-primary dark:text-secondary", {
-          "text-secondary": !image
-        })}>
-          <div className="text-sm  font-medium  ">{contentTitle}</div>
+        <div
+          className={cn(
+            "flex flex-col gap-1 flex-1 z-50 text-primary dark:text-secondary",
+            {
+              "text-secondary": !image || isCompact,
+            },
+          )}
+        >
+          <div className="text-sm  font-medium  ">
+            <Balancer>{contentTitle}</Balancer>
+          </div>
           <p
             className={cn("text-xs  break-words", {
               "text-gray-4": isCompact || !image,
-              
             })}
           >
-            {description}
+            <Balancer>{description}</Balancer>
           </p>
         </div>
       </div>
 
       <div
         className={cn(
-          " size-full absolute bg-secondary/20 dark:bg-primary/40 left-0 top-0 z-30 ",
+          " size-full absolute bg-secondary/40 dark:bg-primary/40 left-0 top-0 z-30 ",
           {
             "bg-gray-3! z-0!": isCompact || !image,
           },

@@ -10,7 +10,6 @@ import type {
   LinkInBioLink as _LinkInBioLink,
   LinkInBioLinkType,
 } from "@/types";
-import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 
 export default function LinkCarousel({
   links,
@@ -23,9 +22,7 @@ export default function LinkCarousel({
     return null;
   }
   return (
-    <Carousel  plugins={[WheelGesturesPlugin({
-     forceWheelAxis: "y",
-    })]}>
+    <Carousel>
       <CarouselContent>
         {links.map((link) => {
           return (

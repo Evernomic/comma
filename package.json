@@ -93,6 +93,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-email": "^4.0.2",
+    "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.56.4",
     "react-moveable": "^0.56.0",
     "react-textarea-autosize": "^8.5.6",
