@@ -9,7 +9,7 @@ export default function Intro({ user }: { user: User }) {
   return (
     <dl className="section-container flex-row justify-between items-center not-prose">
       <dt className="section-title gap-4">
-        <Avatar className="rounded-full size-20">
+        <Avatar className="rounded-md size-20">
           {user.image && (
             <AvatarImage src={user.image} alt={`Avatar of ${user.username}`} />
           )}
