@@ -1,15 +1,8 @@
 version: 2
-registries:
-  tiptap-pro:
-    type: npm-registry
-    url: https://registry.tiptap.dev/
-    token: ${{secrets.TIPTAP_TOKEN}}
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     open-pull-requests-limit: 2
-    registries:
-      - tiptap-pro
     schedule:
       interval: "monthly"
     ignore:

@@ -1,7 +1,7 @@
 import { allowedMimeTypes } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Mathematics from "@aarkue/tiptap-math-extension";
-import FileHandler from "@tiptap-pro/extension-file-handler";
+import FileHandler from "@tiptap/extension-file-handler";
 import TiptapImage from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
