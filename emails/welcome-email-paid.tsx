@@ -30,7 +30,7 @@ const WelcomeEmailPaid = ({ name = "John" }: { name: string }) => (
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
           Welcome to Comma Pro
         </Heading>
-        <Text>Hi, {name}</Text>
+        <Text>Hi {name}</Text>
         <Text></Text>
         <Text>
           Thanks for upgrading to Comma Pro! You now have all our features
