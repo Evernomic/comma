@@ -1,6 +1,7 @@
 import { track } from "@/lib/tinybird";
 import type { NextRequest } from "next/server";
 import * as z from "zod";
+import { checkBotId } from 'botid/server';
 
 export const runtime = "edge";
 
@@ -14,6 +15,12 @@ const eventSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const verification = await checkBotId();
+ 
+    if (verification.isBot) {
+      return new Response("Access denied", { status: 403 });
+    }
+
     const data = await req.json();
 
     const body = eventSchema.safeParse(data);
