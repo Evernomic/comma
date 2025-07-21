@@ -1,6 +1,7 @@
 import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import MDX from "@/components/markdown/mdx";
+import { siteConfig } from "@/config/site";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getPage } from "@/lib/fetchers/pages";
@@ -9,11 +10,14 @@ import {
   getUserByDomain,
   getWorkExperiencesByUser,
 } from "@/lib/fetchers/users";
+import { getJSONLDScript } from "@/lib/json-ld";
 import {
   generateSEO,
+  getJSONLD,
   getPostPageURL,
   getProjectOgImage,
   getUserFavicon,
+  getUserPageURL,
 } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -85,6 +89,8 @@ export default async function Page({ params }: ProjectPageProps) {
     return notFound();
   }
 
+  const url = getPostPageURL("pages", slug, user);
+
   const [articles, projects, bookmarks, experiences] = await Promise.all([
     getArticlesByAuthor(user.id),
     getProjectsByAuthor(user.id),
@@ -101,6 +107,33 @@ export default async function Page({ params }: ProjectPageProps) {
         backButton={!page.content?.includes("::Navigation::")}
       />
       <MDX source={page.content} allData={allData} withSections />
+
+      {getJSONLDScript(
+        getJSONLD({
+          type: "webPage",
+          data: {
+            "@type": "WebPage",
+            "@id": url,
+            url,
+            name: page.title,
+            description: page.seoDescription ?? undefined,
+            image: page.ogImage ?? undefined,
+            author: {
+              "@type": "Person",
+              name: user.name ?? user.username,
+              url: getUserPageURL(user),
+            },
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              logo: {
+                "@type": "ImageObject",
+                url: siteConfig.ogImage,
+              },
+            },
+          },
+        }),
+      )}
     </AppShell>
   );
 

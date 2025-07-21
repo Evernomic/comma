@@ -2,14 +2,19 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import MDX from "@/components/markdown/mdx";
 import { Icons } from "@/components/shared/icons";
+import { siteConfig } from "@/config/site";
 import { getProject, getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
+import { getJSONLDScript } from "@/lib/json-ld";
 import {
   generateSEO,
+  getJSONLD,
   getPostPageURL,
   getProjectOgImage,
   getUserFavicon,
+  getUserPageURL,
 } from "@/lib/utils";
+import { format } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -111,6 +116,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <p className="text-gray-4 text-sm font-medium ">{project.year}</p>
       </div>
       <MDX source={project.content} />
+
+      {getJSONLDScript(
+        getJSONLD({
+          type: "article",
+          data: {
+            "@type": "Article",
+            url: getPostPageURL("projects", slug, user),
+            headline: project.title,
+            author: {
+              "@type": "Person",
+              name: user.name ?? user.username,
+              url: getUserPageURL(user),
+            },
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              logo: {
+                "@type": "ImageObject",
+                url: siteConfig.ogImage,
+              },
+            },
+            datePublished: format(project.createdAt, "yyyy-MM-dd"),
+          },
+        }),
+      )}
     </AppShell>
   );
 

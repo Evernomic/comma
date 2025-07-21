@@ -103,6 +103,7 @@
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "resend": "^3.4.0",
+    "schema-dts": "^1.1.5",
     "sharp": "^0.33.5",
     "slugify": "^1.6.6",
     "swr": "^2.3.0",
