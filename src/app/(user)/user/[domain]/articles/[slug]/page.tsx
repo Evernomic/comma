@@ -17,7 +17,7 @@ import {
   getUserFavicon,
   getUserPageURL,
 } from "@/lib/utils";
-import { UserPageSection } from "@/types";
+import type { Social, UserPageSection } from "@/types";
 import { format } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -162,6 +162,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               "@type": "Person",
               name: user.name ?? user.username,
               url: getUserPageURL(user),
+              image: getUserFavicon(user),
+              sameAs: (user.links as Array<Social>).map((link) => link.url),
+              jobTitle: user.title ?? user.category ?? undefined,
             },
             publisher: {
               "@type": "Organization",
