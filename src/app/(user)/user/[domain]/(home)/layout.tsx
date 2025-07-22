@@ -1,10 +1,11 @@
 import { userPageConfig } from "@/config/user-page";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { getJSONLDScript } from "@/lib/json-ld";
-import { getJSONLD, getUserPageURL } from "@/lib/utils";
-import type { NavItem } from "@/types";
+import { getJSONLD, getUserFavicon, getUserPageURL } from "@/lib/utils";
+import type { NavItem, Social } from "@/types";
 import { notFound } from "next/navigation";
 import type React from "react";
+import type { Thing } from "schema-dts";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,28 @@ export default async function UserHomePageLayout({
     return notFound();
   }
 
+  const jsonLD = [
+    ...userPageConfig.pages,
+    ...((user.navLinks as Array<NavItem>) ?? []),
+  ]
+    .filter((p) => p.isVisible)
+    .map((page) => {
+      const userPageURL = getUserPageURL(user);
+      const url = `${userPageURL}${page.href}`;
+      return {
+        "@type": "WebPage",
+        "@id": url,
+        url,
+        name: page.title,
+        ...(page.href !== "/"
+          ? {
+              isPartOf: {
+                "@id": userPageURL,
+              },
+            }
+          : {}),
+      };
+    }) as Array<Thing>;
   return (
     <div>
       {children}
@@ -32,27 +55,16 @@ export default async function UserHomePageLayout({
           data: {
             "@context": "https://schema.org",
             "@graph": [
-              ...userPageConfig.pages,
-              ...((user.navLinks as Array<NavItem>) ?? []),
-            ]
-              .filter((p) => p.isVisible)
-              .map((page) => {
-                const userPageURL = getUserPageURL(user);
-                const url = `${userPageURL}${page.href}`;
-                return {
-                  "@type": "WebPage",
-                  "@id": url,
-                  url,
-                  name: page.title,
-                  ...(page.href !== "/"
-                    ? {
-                        isPartOf: {
-                          "@id": userPageURL,
-                        },
-                      }
-                    : {}),
-                };
-              }),
+              {
+                "@type": "Person",
+                name: user.name ?? user.username,
+                url: getUserPageURL(user),
+                image: getUserFavicon(user),
+                sameAs: (user.links as Array<Social>).map((link) => link.url),
+                jobTitle: user.title ?? user.category ?? undefined,
+              },
+              ...jsonLD,
+            ],
           },
         }),
       )}
