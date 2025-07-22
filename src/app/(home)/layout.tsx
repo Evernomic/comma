@@ -1,5 +1,7 @@
 import ThemeProvider from "@/components/providers/theme-provider";
-import { generateSEO } from "@/lib/utils";
+import { JSONLDHomePage } from "@/lib/constants";
+import { getJSONLDScript } from "@/lib/json-ld";
+import { generateSEO, getJSONLD } from "@/lib/utils";
 import { NuqsAdapter } from "nuqs/adapters/next";
 import Footer from "./components/footer";
 import Header from "./components/header";
@@ -21,6 +23,12 @@ export default async function MarketingPageLayout({
           <Footer />
         </NuqsAdapter>
       </ThemeProvider>
+      {getJSONLDScript(
+        getJSONLD({
+          type: "organization",
+          data: JSONLDHomePage,
+        }),
+      )}
     </div>
   );
 }

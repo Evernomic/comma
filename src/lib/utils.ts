@@ -17,6 +17,13 @@ import clsx, { type ClassValue } from "clsx";
 import { formatDate as format } from "date-fns";
 import type { Metadata } from "next";
 import type { NextRequest } from "next/server";
+import type {
+  Graph,
+  Organization,
+  Person,
+  Article as SchemaArticle,
+  WebPage,
+} from "schema-dts";
 import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import type { PropertyProps } from "./analytics";
@@ -282,7 +289,9 @@ export function generateSEO({
       type: "website",
       locale: "en_US",
       title: seoTitle || title,
-      description,
+      description:
+        description ??
+        "Create a clean personal website instantly with Comma. No coding—just simplicity.",
       images: [
         {
           url: image,
@@ -292,8 +301,10 @@ export function generateSEO({
       url,
     },
     twitter: {
-      title: seoTitle || title,
-      description,
+      title: seoTitle || title || "Create a Personal Website",
+      description:
+        description ??
+        "Comma lets you build a beautiful, fast personal website for free. Open-source, simple and clean.",
       card: "summary_large_image",
       images: [
         {
@@ -303,28 +314,19 @@ export function generateSEO({
     },
     icons,
     keywords: [
-      "blog",
-      "write",
-      "writing",
-      "blogging",
-      "publishing",
-      "journalling",
-      "minimal blog",
-      "microblogging",
-      "blogging sites",
-      "simple blogging",
-      "what is blogging",
-      "minimal blogging",
-      "blogging platform",
-      "blogging platforms",
-      "minimalist blogging",
-      "free blogging sites",
-      "how to start a blog",
-      "how to start blogging",
-      "best blogging platform",
-      "blogging for beginners",
-      "free blogging platforms",
-      "best free blogging platform",
+      "free website builder online",
+      "free site creator",
+      "free homepage builder",
+      "website builder site",
+      "carrd",
+      "web page builder",
+      "best site to make a website",
+      "free websites to make a website",
+      "personal website",
+      "CV",
+      "resume",
+      "profile",
+      "website builder",
     ],
     metadataBase: url
       ? new URL(url)
@@ -510,4 +512,47 @@ export function updateNavLinks(
   }
 
   return [link];
+}
+
+type JSONLDPerson = {
+  type: "person";
+  data: Person;
+};
+
+type JSONLDOrganization = {
+  type: "organization";
+  data: Organization;
+};
+
+type JSONLDArticle = {
+  type: "article";
+  data: SchemaArticle;
+};
+
+type JSONLDGraph = {
+  type: "graph";
+  data: Graph;
+};
+
+type JSONLDWebPage = {
+  type: "webPage";
+  data: WebPage;
+};
+
+type JSONLD =
+  | JSONLDPerson
+  | JSONLDOrganization
+  | JSONLDArticle
+  | JSONLDGraph
+  | JSONLDWebPage;
+
+export function getJSONLD({ data }: JSONLD) {
+  if (data && typeof data === "object") {
+    return {
+      "@context": "https://schema.org",
+      ...data,
+    };
+  }
+
+  throw new Error("Data must be an object");
 }

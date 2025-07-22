@@ -2,18 +2,23 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
+import { siteConfig } from "@/config/site";
 import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
+import { getJSONLDScript } from "@/lib/json-ld";
 import {
   cn,
   formatDate,
   generateSEO,
   getArticleOgImage,
+  getJSONLD,
+  getPostPageURL,
   getSectionProps,
   getUserFavicon,
   getUserPageURL,
 } from "@/lib/utils";
 import { UserPageSection } from "@/types";
+import { format } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -145,6 +150,31 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </NavButton>
         )}
       </div>
+
+      {getJSONLDScript(
+        getJSONLD({
+          type: "article",
+          data: {
+            "@type": "Article",
+            url: getPostPageURL("articles", slug, user),
+            headline: article.title,
+            author: {
+              "@type": "Person",
+              name: user.name ?? user.username,
+              url: getUserPageURL(user),
+            },
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              logo: {
+                "@type": "ImageObject",
+                url: siteConfig.ogImage,
+              },
+            },
+            datePublished: format(article.publishedAt, "yyyy-MM-dd"),
+          },
+        }),
+      )}
     </AppShell>
   );
 }

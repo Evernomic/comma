@@ -1,4 +1,8 @@
+import { userPageConfig } from "@/config/user-page";
 import { getUserByDomain } from "@/lib/fetchers/users";
+import { getJSONLDScript } from "@/lib/json-ld";
+import { getJSONLD, getUserPageURL } from "@/lib/utils";
+import type { NavItem } from "@/types";
 import { notFound } from "next/navigation";
 import type React from "react";
 
@@ -18,5 +22,40 @@ export default async function UserHomePageLayout({
   if (!user) {
     return notFound();
   }
-  return <div>{children}</div>;
+
+  return (
+    <div>
+      {children}
+      {getJSONLDScript(
+        getJSONLD({
+          type: "graph",
+          data: {
+            "@context": "https://schema.org",
+            "@graph": [
+              ...userPageConfig.pages,
+              ...((user.navLinks as Array<NavItem>) ?? []),
+            ]
+              .filter((p) => p.isVisible)
+              .map((page) => {
+                const userPageURL = getUserPageURL(user);
+                const url = `${userPageURL}${page.href}`;
+                return {
+                  "@type": "WebPage",
+                  "@id": url,
+                  url,
+                  name: page.title,
+                  ...(page.href !== "/"
+                    ? {
+                        isPartOf: {
+                          "@id": userPageURL,
+                        },
+                      }
+                    : {}),
+                };
+              }),
+          },
+        }),
+      )}
+    </div>
+  );
 }

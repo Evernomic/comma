@@ -1,5 +1,5 @@
+import { withBotId } from "botid/next/config";
 import type { NextConfig } from "next";
-import { withBotId } from 'botid/next/config';
 
 const nextConfig: NextConfig = {
   async headers() {

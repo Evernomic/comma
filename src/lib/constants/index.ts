@@ -1,9 +1,11 @@
+import { siteConfig } from "@/config/site";
 import type { LinkInBioLinkType, SelectOption } from "@/types";
 import type {
   CalloutCategory,
   PageVisibility,
   UserPageTheme,
 } from "@prisma/client";
+import { Organization } from "schema-dts";
 import type { SWRConfiguration } from "swr";
 import { countries } from "./countries";
 
@@ -116,3 +118,12 @@ export const linkInBioLinkTypes: SelectOption<LinkInBioLinkType>[] = [
     value: "compact",
   },
 ] as const;
+
+export const JSONLDHomePage: Organization = {
+  "@type": "Organization",
+  name: siteConfig.name,
+  alternateName: siteConfig.domain,
+  url: siteConfig.links.home,
+  logo: "https://uh7iqgcm0yv1ea0w.public.blob.vercel-storage.com/commab-bZyY9Zhe8uiORgKORRq0e0sYQr6Rvk",
+  sameAs: siteConfig.links.github,
+};

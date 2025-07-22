@@ -7,12 +7,12 @@ const [domain, userDomain] = [
 export const siteConfig: SiteConfig = {
   name: "Comma",
   description:
-    "Comma is an open source blogging platform with a minimal and beautiful page.",
+    "Comma.to is a free site creator and homepage builder that lets you launch your personal website in minutes. Clean, fast and open source.",
   url: "https://comma.to",
   domain,
   userDomain,
   mailDomain: `mail.${domain}`,
-  ogImage: "https://comma.to/_static/og.svg",
+  ogImage: "https://comma.to/_static/og.png",
   supportEmail: "hi@comma.to",
   links: {
     home: "https://comma.to/home",
