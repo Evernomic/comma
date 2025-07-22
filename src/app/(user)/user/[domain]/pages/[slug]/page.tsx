@@ -22,6 +22,7 @@ import {
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
+import type { Social } from "@/types";
 
 export const revalidate = 5;
 
@@ -122,6 +123,9 @@ export default async function Page({ params }: ProjectPageProps) {
               "@type": "Person",
               name: user.name ?? user.username,
               url: getUserPageURL(user),
+              image: getUserFavicon(user),
+              sameAs: (user.links as Array<Social>).map((link) => link.url),
+              jobTitle: user.title ?? user.category ?? undefined,
             },
             publisher: {
               "@type": "Organization",
