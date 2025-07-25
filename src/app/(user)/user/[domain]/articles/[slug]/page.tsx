@@ -12,6 +12,7 @@ import {
   generateSEO,
   getArticleOgImage,
   getJSONLD,
+  getPersonSchema,
   getPostPageURL,
   getSectionProps,
   getUserFavicon,
@@ -158,14 +159,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             "@type": "Article",
             url: getPostPageURL("articles", slug, user),
             headline: article.title,
-            author: {
-              "@type": "Person",
-              name: user.name ?? user.username,
-              url: getUserPageURL(user),
-              image: getUserFavicon(user),
-              sameAs: (user.links as Array<Social>).map((link) => link.url),
-              jobTitle: user.title ?? user.category ?? undefined,
-            },
+            author: getPersonSchema(user),
             publisher: {
               "@type": "Organization",
               name: siteConfig.name,

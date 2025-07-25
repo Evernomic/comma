@@ -9,6 +9,7 @@ import { getJSONLDScript } from "@/lib/json-ld";
 import {
   generateSEO,
   getJSONLD,
+  getPersonSchema,
   getPostPageURL,
   getProjectOgImage,
   getUserFavicon,
@@ -125,14 +126,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             "@type": "Article",
             url: getPostPageURL("projects", slug, user),
             headline: project.title,
-            author: {
-              "@type": "Person",
-              name: user.name ?? user.username,
-              url: getUserPageURL(user),
-              image: getUserFavicon(user),
-              sameAs: (user.links as Array<Social>).map((link) => link.url),
-              jobTitle: user.title ?? user.category ?? undefined,
-            },
+            author: getPersonSchema(user),
             publisher: {
               "@type": "Organization",
               name: siteConfig.name,
