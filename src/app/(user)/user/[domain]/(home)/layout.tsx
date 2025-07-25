@@ -1,7 +1,7 @@
 import { userPageConfig } from "@/config/user-page";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { getJSONLDScript } from "@/lib/json-ld";
-import { getJSONLD, getUserFavicon, getUserPageURL } from "@/lib/utils";
+import { getJSONLD, getPersonSchema, getUserFavicon, getUserPageURL } from "@/lib/utils";
 import type { NavItem, Social } from "@/types";
 import { notFound } from "next/navigation";
 import type React from "react";
@@ -29,7 +29,7 @@ export default async function UserHomePageLayout({
     ...((user.navLinks as Array<NavItem>) ?? []),
   ]
     .filter((p) => p.isVisible)
-    .map((page) => {
+    ?.map((page) => {
       const userPageURL = getUserPageURL(user);
       const url = `${userPageURL}${page.href}`;
       return {
@@ -39,10 +39,10 @@ export default async function UserHomePageLayout({
         name: page.title,
         ...(page.href !== "/"
           ? {
-              isPartOf: {
-                "@id": userPageURL,
-              },
-            }
+            isPartOf: {
+              "@id": userPageURL,
+            },
+          }
           : {}),
       };
     }) as Array<Thing>;
@@ -55,14 +55,7 @@ export default async function UserHomePageLayout({
           data: {
             "@context": "https://schema.org",
             "@graph": [
-              {
-                "@type": "Person",
-                name: user.name ?? user.username,
-                url: getUserPageURL(user),
-                image: getUserFavicon(user),
-                sameAs: (user.links as Array<Social>).map((link) => link.url),
-                jobTitle: user.title ?? user.category ?? undefined,
-              },
+              getPersonSchema(user),
               ...jsonLD,
             ],
           },
