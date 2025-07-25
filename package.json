@@ -117,7 +117,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.12",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.13.0",
     "@types/node-forge": "^1.3.11",
