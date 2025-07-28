@@ -8,7 +8,7 @@ import {
 } from "@lemonsqueezy/lemonsqueezy.js";
 import { z } from "zod";
 
-const billingUrl = absoluteUrl("/settings/billing");
+const billingUrl = absoluteUrl("/settings/billing?payment=success");
 
 const bodySchema = z.object({
   plan: z.enum(["pro"]),

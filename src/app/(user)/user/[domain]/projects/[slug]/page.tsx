@@ -13,14 +13,12 @@ import {
   getPostPageURL,
   getProjectOgImage,
   getUserFavicon,
-  getUserPageURL,
 } from "@/lib/utils";
 import { format } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
-import type { Social } from "@/types";
 
 export const revalidate = 5;
 

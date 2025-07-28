@@ -18,7 +18,7 @@ import {
   getUserFavicon,
   getUserPageURL,
 } from "@/lib/utils";
-import type { Social, UserPageSection } from "@/types";
+import type { UserPageSection } from "@/types";
 import { format } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
