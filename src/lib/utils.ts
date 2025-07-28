@@ -277,14 +277,14 @@ export function generateSEO({
   return {
     ...(template
       ? {
-        title: {
-          default: title,
-          template: template ? `%s / ${template}` : "",
-        },
-      }
+          title: {
+            default: title,
+            template: template ? `%s / ${template}` : "",
+          },
+        }
       : {
-        title,
-      }),
+          title,
+        }),
     description,
     openGraph: {
       type: "website",
@@ -558,8 +558,12 @@ export function getJSONLD({ data }: JSONLD) {
   throw new Error("Data must be an object");
 }
 
-
-export function getPersonSchema(user: Pick<User, "name" | "username" | "links" | "category" | "title" | "domain">): Person {
+export function getPersonSchema(
+  user: Pick<
+    User,
+    "name" | "username" | "links" | "category" | "title" | "domain"
+  >,
+): Person {
   return {
     "@type": "Person",
     name: user.name ?? user.username,
@@ -567,5 +571,5 @@ export function getPersonSchema(user: Pick<User, "name" | "username" | "links" |
     image: getUserFavicon(user),
     sameAs: (user.links as Array<Social>)?.map((link) => link.url) ?? undefined,
     jobTitle: user.title ?? user.category ?? undefined,
-  }
+  };
 }

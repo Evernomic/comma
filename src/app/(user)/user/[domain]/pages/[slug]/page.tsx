@@ -18,12 +18,10 @@ import {
   getPostPageURL,
   getProjectOgImage,
   getUserFavicon,
-  getUserPageURL,
 } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
-import type { Social } from "@/types";
 
 export const revalidate = 5;
 

@@ -1,8 +1,8 @@
 import { userPageConfig } from "@/config/user-page";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { getJSONLDScript } from "@/lib/json-ld";
-import { getJSONLD, getPersonSchema, getUserFavicon, getUserPageURL } from "@/lib/utils";
-import type { NavItem, Social } from "@/types";
+import { getJSONLD, getPersonSchema, getUserPageURL } from "@/lib/utils";
+import type { NavItem } from "@/types";
 import { notFound } from "next/navigation";
 import type React from "react";
 import type { Thing } from "schema-dts";
@@ -39,10 +39,10 @@ export default async function UserHomePageLayout({
         name: page.title,
         ...(page.href !== "/"
           ? {
-            isPartOf: {
-              "@id": userPageURL,
-            },
-          }
+              isPartOf: {
+                "@id": userPageURL,
+              },
+            }
           : {}),
       };
     }) as Array<Thing>;
@@ -54,10 +54,7 @@ export default async function UserHomePageLayout({
           type: "graph",
           data: {
             "@context": "https://schema.org",
-            "@graph": [
-              getPersonSchema(user),
-              ...jsonLD,
-            ],
+            "@graph": [getPersonSchema(user), ...jsonLD],
           },
         }),
       )}
