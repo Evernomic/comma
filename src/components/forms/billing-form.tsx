@@ -1,13 +1,9 @@
 "use client";
 
 import { marketingConfig } from "@/config/marketing";
-import { siteConfig } from "@/config/site";
-import { proPlan } from "@/config/subscriptions";
 import { cn, formatDate } from "@/lib/utils";
 import type { Period, UserSubscriptionPlan } from "@/types";
-import { sendGTMEvent } from "@next/third-parties/google";
-import { useSearchParams } from "next/navigation";
-import { type FormEvent, useEffect, useState, useTransition } from "react";
+import { type FormEvent, useState, useTransition } from "react";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
 import Button from "../ui/button";
@@ -21,34 +17,9 @@ interface Props {
 export default function BillingForm({ subscriptionPlan }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
-  const searchParams = useSearchParams();
   const [period, setPeriod] = useState<Period>(
     subscriptionPlan.period ?? "monthly",
   );
-
-
-  useEffect(() => {
-    const payment = searchParams.get("payment");
-    if (
-      payment &&
-      payment === "success" &&
-      subscriptionPlan.isPro
-    ) {
-      sendGTMEvent({
-        event: "purchase",
-        transactionId: subscriptionPlan.lsId,
-        value: subscriptionPlan.price[period],
-        currency: "USD",
-        items: [
-          {
-            item_id: `${proPlan.title}_${period}`,
-            item_name: `${siteConfig.name} ${proPlan.title}`,
-            price: subscriptionPlan.price[period],
-          },
-        ],
-      });
-    }
-  }, []);
 
   async function billing(e: FormEvent) {
     e.preventDefault();
@@ -68,25 +39,6 @@ export default function BillingForm({ subscriptionPlan }: Props) {
       } else {
         const data = await res.json();
         if (data) {
-          const path = new URL(data.url).pathname;
-
-          if (path.startsWith("/checkout")) {
-            sendGTMEvent({
-              event: "begin_checkout",
-              ecommerce: {
-                currency: "USD",
-                value: proPlan.price[period],
-                items: [
-                  {
-                    item_id: `${proPlan.title}_${period}`,
-                    item_name: `${siteConfig.name} ${proPlan.title}`,
-                    price: proPlan.price[period],
-                  },
-                ],
-              },
-            });
-          }
-
           window.location.href = data.url;
         }
       }
