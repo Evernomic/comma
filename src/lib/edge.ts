@@ -1,12 +1,9 @@
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
 import { squeezy } from "./squeezy";
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const adapter = new PrismaNeon(pool);
-
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL });
 export const dbEdge = new PrismaClient({ adapter });
 
 export async function getUserViaEdge(
