@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { cn, generateSEO } from "@/lib/utils";
 import "@/styles/globals.css";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
 import localFont from "next/font/local";
@@ -34,7 +34,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <GoogleTagManager gtmId="AW-17396745022" />
       <body className={cn("antialiased", inter.className)}>
         {children}
         <Analytics />
