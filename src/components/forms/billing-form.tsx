@@ -46,17 +46,9 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           if (path.startsWith("/checkout")) {
             sendGTMEvent({
               event: "begin_checkout",
-              ecommerce: {
-                currency: "USD",
-                value: proPlan.price[period],
-                items: [
-                  {
-                    item_id: `${proPlan.title}_${period}`,
-                    item_name: `${siteConfig.name} ${proPlan.title}`,
-                    price: proPlan.price[period],
-                  },
-                ],
-              },
+              send_to: "AW-17396745022/W2jICOXH4fgaEL6GtedA",
+              currency: "USD",
+              value: proPlan.price[period]
             });
           }
           window.location.href = data.url;
