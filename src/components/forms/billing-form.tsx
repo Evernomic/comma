@@ -45,7 +45,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
             sendGTMEvent({
-              event: "begin_checkout",
+              event: "conversion",
               send_to: "AW-17396745022/W2jICOXH4fgaEL6GtedA",
               currency: "USD",
               value: proPlan.price[period]
