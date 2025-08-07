@@ -9,6 +9,9 @@ import { Badge } from "../ui/badge";
 import Button from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { toast } from "../ui/use-toast";
+import { sendGTMEvent } from "@next/third-parties/google";
+import { proPlan } from "@/config/subscriptions";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;
@@ -39,6 +42,15 @@ export default function BillingForm({ subscriptionPlan }: Props) {
       } else {
         const data = await res.json();
         if (data) {
+          const path = new URL(data.url).pathname;
+          if (path.startsWith("/checkout")) {
+            sendGTMEvent({
+              event: "begin_checkout",
+              send_to: "AW-17396745022/W2jICOXH4fgaEL6GtedA",
+              currency: "USD",
+              value: proPlan.price[period]
+            });
+          }
           window.location.href = data.url;
         }
       }
