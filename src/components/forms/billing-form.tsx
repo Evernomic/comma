@@ -11,7 +11,6 @@ import { Checkbox } from "../ui/checkbox";
 import { toast } from "../ui/use-toast";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { proPlan } from "@/config/subscriptions";
-import { siteConfig } from "@/config/site";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;

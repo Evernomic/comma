@@ -13,6 +13,7 @@ export const siteConfig: SiteConfig = {
   userDomain,
   mailDomain: `mail.${domain}`,
   ogImage: "https://comma.to/_static/og.png",
+  gtmId: "AW-17396745022",
   supportEmail: "hi@comma.to",
   links: {
     home: "https://comma.to/home",
