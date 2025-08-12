@@ -9,8 +9,8 @@ import { Badge } from "../ui/badge";
 import Button from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { toast } from "../ui/use-toast";
-import { sendGTMEvent } from "@next/third-parties/google";
 import { proPlan } from "@/config/subscriptions";
+import { useGTM } from "@/hooks/use-gtm";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;
@@ -19,6 +19,7 @@ interface Props {
 export default function BillingForm({ subscriptionPlan }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
+  const { triggerBeginCheckoutEvent } = useGTM()
   const [period, setPeriod] = useState<Period>(
     subscriptionPlan.period ?? "monthly",
   );
@@ -43,14 +44,11 @@ export default function BillingForm({ subscriptionPlan }: Props) {
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            sendGTMEvent({
-              event: "conversion",
-              send_to: "AW-17396745022/W2jICOXH4fgaEL6GtedA",
-              currency: "USD",
-              value: proPlan.price[period]
-            });
+            triggerBeginCheckoutEvent(proPlan.price[period])
           }
-          window.location.href = data.url;
+          setTimeout(() => {
+            window.location.href = data.url;
+          }, 1000)
         }
       }
     });
