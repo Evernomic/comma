@@ -2,29 +2,26 @@
 import { siteConfig } from "@/config/site";
 
 export function useGTM() {
-    function sendGTMEvent(name: "begin_checkout" | "conversion", data: object) {
+    function sendGTMEvent(data: object) {
         if (typeof window !== undefined) {
-            window.dataLayer?.push({
-                event: name,
-                ...data
-            })
+            window.gtag("event", "conversion", data)
         }
     }
 
     function triggerBeginCheckoutEvent(price: number) {
-        sendGTMEvent("begin_checkout", {
-            'sendTo': `${siteConfig.gtmId}/W2jICOXH4fgaEL6GtedA`,
+        sendGTMEvent({
+            'send_to': `${siteConfig.gtmId}/W2jICOXH4fgaEL6GtedA`,
             'value': price,
             'currency': "USD",
         })
     }
 
     function triggerConversionEvent(price: number, transactionId: string) {
-        sendGTMEvent("conversion", {
-            'sendTo': `${siteConfig.gtmId}/cKoSCKnH4fgaEL6GtedA`,
+        sendGTMEvent({
+            'send_to': `${siteConfig.gtmId}/cKoSCKnH4fgaEL6GtedA`,
             'currency': "USD",
             'value': price,
-            'transactionId': transactionId
+            'transaction_id': transactionId
         })
     }
 

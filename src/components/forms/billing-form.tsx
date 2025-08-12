@@ -3,7 +3,7 @@
 import { marketingConfig } from "@/config/marketing";
 import { cn, formatDate } from "@/lib/utils";
 import type { Period, UserSubscriptionPlan } from "@/types";
-import { type FormEvent, useState, useTransition } from "react";
+import { type FormEvent, useEffect, useState, useTransition } from "react";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
 import Button from "../ui/button";
@@ -11,6 +11,7 @@ import { Checkbox } from "../ui/checkbox";
 import { toast } from "../ui/use-toast";
 import { proPlan } from "@/config/subscriptions";
 import { useGTM } from "@/hooks/use-gtm";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;
@@ -19,10 +20,18 @@ interface Props {
 export default function BillingForm({ subscriptionPlan }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
-  const { triggerBeginCheckoutEvent } = useGTM()
+  const { triggerBeginCheckoutEvent, triggerConversionEvent } = useGTM()
   const [period, setPeriod] = useState<Period>(
     subscriptionPlan.period ?? "monthly",
   );
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const isPaymentSuccess = searchParams.get("payment") === "success"
+    if (isPaymentSuccess && subscriptionPlan.lsId && subscriptionPlan.isPro) {
+      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId)
+    }
+  }, [])
 
   async function billing(e: FormEvent) {
     e.preventDefault();
