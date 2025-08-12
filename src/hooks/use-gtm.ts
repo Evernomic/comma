@@ -21,7 +21,7 @@ export function useGTM() {
             'send_to': `${siteConfig.gtmId}/cKoSCKnH4fgaEL6GtedA`,
             'currency': "USD",
             'value': price,
-            'transactionId': transactionId
+            'transaction_id': transactionId
         })
     }
 
