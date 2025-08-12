@@ -37,8 +37,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtmId}`} />
-        <Script dangerouslySetInnerHTML={{
+        <Script id="_next-gtm-init" async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtmId}`} />
+        <Script id="_next-gtm" dangerouslySetInnerHTML={{
           __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
