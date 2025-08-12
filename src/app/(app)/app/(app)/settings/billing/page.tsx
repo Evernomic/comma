@@ -1,7 +1,6 @@
 import BillingForm from "@/components/forms/billing-form";
 import AppShell from "@/components/layout/app-shell";
 import { getUserSubscription } from "@/lib/subscription";
-import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +11,6 @@ export default async function BillingPage() {
 
   return (
     <AppShell>
-      <GoogleTagManager gtmId="AW-17396745022" />
       <BillingForm subscriptionPlan={subscription} />
     </AppShell>
   );

@@ -55,6 +55,7 @@ export type SiteConfig = {
   domain: string;
   userDomain: string;
   mailDomain: string;
+  gtmId: string;
   supportEmail: string;
   ogImage: string;
   links: {
