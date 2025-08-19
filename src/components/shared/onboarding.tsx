@@ -31,6 +31,7 @@ import {
 } from "../ui/select";
 import { Switch } from "../ui/switch";
 import { Icons } from "./icons";
+import { useGTM } from "@/hooks/use-gtm";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -216,7 +217,7 @@ function Plans() {
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   const { title, description } = proPlan;
-
+  const { triggerBeginCheckoutEvent } = useGTM()
   async function billing(e: FormEvent) {
     e.preventDefault();
     startTransition(async () => {
@@ -235,6 +236,10 @@ function Plans() {
       } else {
         const data = await res.json();
         if (data) {
+          const path = new URL(data.url).pathname;
+          if (path.startsWith("/checkout")) {
+            triggerBeginCheckoutEvent(proPlan.price[period])
+          }
           window.location.href = data.url;
         }
       }
