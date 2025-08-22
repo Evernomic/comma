@@ -5,9 +5,9 @@ import { hideAnnouncement } from "@/lib/actions/users";
 import { X } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
-export default function Hide() {
+export default function Hide({ text }: { text: string }) {
   return (
-    <form className="absolute right-4.4" action={hideAnnouncement}>
+    <form className="absolute right-4.4" action={() => hideAnnouncement(text)}>
       <Action />
     </form>
   );

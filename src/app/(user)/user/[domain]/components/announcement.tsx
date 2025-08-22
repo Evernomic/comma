@@ -18,9 +18,9 @@ export default async function Announcement({
   if (!text) {
     return null;
   }
-  const cookie = (await cookies()).get("hide-announcement")?.value;
+  const cookieText = (await cookies()).get("hide-announcement")?.value;
 
-  if (cookie === "true") {
+  if (cookieText === text) {
     return null;
   }
 
@@ -38,7 +38,7 @@ export default async function Announcement({
         className="text-gray-4! text-sm prose-headings:mb-2! pr-2"
       />
 
-      {showHideButton && <Hide />}
+      {showHideButton && <Hide text={text} />}
     </div>
   );
 }
