@@ -5,7 +5,7 @@ import type {
   PageVisibility,
   UserPageTheme,
 } from "@prisma/client";
-import { Organization } from "schema-dts";
+import { HowTo, Organization } from "schema-dts";
 import type { SWRConfiguration } from "swr";
 import { countries } from "./countries";
 
@@ -127,3 +127,73 @@ export const JSONLDHomePage: Organization = {
   logo: "https://uh7iqgcm0yv1ea0w.public.blob.vercel-storage.com/commab-bZyY9Zhe8uiORgKORRq0e0sYQr6Rvk",
   sameAs: siteConfig.links.github,
 };
+
+export const JSONLDHowTo: HowTo = {
+  "@type": "HowTo",
+  "name": "How to Build Your Personal Website with Comma",
+  "description": "Learn how to create a professional personal website using Comma's minimal website builder in just a few simple steps.",
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "0"
+  },
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Computer or mobile device with internet connection"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Email address for account creation"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Comma website builder platform"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Sign up for Comma",
+      "text": "Visit comma.to and create your free account using your email address. No credit card required to get started.",
+      "url": "https://app.comma.to/login",
+      "image": "https://comma.to/_static/previews/explore-light.png"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Choose your template and customize",
+      "text": "Select from our minimal, clean templates and customize the design to match your personal brand and style preferences.",
+      "url": "https://app.comma.to/settings/customize",
+      "image": "https://comma.to/_static/previews/themes-light.png"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add your content",
+      "text": "Use our Notion-like rich text editor to add your bio, projects, work experience, articles, and bookmarks. Drag and drop to organize sections as needed.",
+      "url": "https://app.comma.to",
+      "image": "https://comma.to/_static/previews/editor-light.png"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Set up your newsletter",
+      "text": "Add newsletter signup forms to your website to collect email subscribers and start building your audience directly.",
+      "url": "https://app.comma.to/settings/subscribers",
+      "image": "https://comma.to/_static/previews/newsletter-light.png"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Connect your custom domain (optional)",
+      "text": "Connect your own domain name to your Comma website for a professional, branded web presence.",
+      "url": "https://app.comma.to/settings",
+      "image": "https://comma.to/_static/previews/domain-light.png"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Publish and share",
+      "text": "Publish your website and share it with the world. Use our Explore page to connect with other creators and grow your network."
+    }
+  ]
+} 

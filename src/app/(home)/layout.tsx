@@ -1,5 +1,5 @@
 import ThemeProvider from "@/components/providers/theme-provider";
-import { JSONLDHomePage } from "@/lib/constants";
+import { JSONLDHomePage, JSONLDHowTo } from "@/lib/constants";
 import { getJSONLDScript } from "@/lib/json-ld";
 import { generateSEO, getJSONLD } from "@/lib/utils";
 import { NuqsAdapter } from "nuqs/adapters/next";
@@ -25,8 +25,14 @@ export default async function MarketingPageLayout({
       </ThemeProvider>
       {getJSONLDScript(
         getJSONLD({
-          type: "organization",
-          data: JSONLDHomePage,
+          type: "graph",
+          data: {
+            "@context": "https://schema.org",
+            "@graph": [
+              JSONLDHomePage,
+              JSONLDHowTo
+            ]
+          }
         }),
       )}
     </div>
