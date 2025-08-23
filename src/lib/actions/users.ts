@@ -263,13 +263,13 @@ export async function deleteCallout(calloutId: string, userId: string) {
   });
 }
 
-export async function hideAnnouncement() {
-  const oneDayFromNow = new Date();
-  oneDayFromNow.setDate(oneDayFromNow.getDate() + 1);
+export async function hideAnnouncement(text: string) {
+  const expires = new Date();
+  expires.setDate(expires.getDate() + 10000);
 
-  (await cookies()).set("hide-announcement", "true", {
+  (await cookies()).set("hide-announcement", text, {
     httpOnly: true,
     secure: true,
-    expires: oneDayFromNow,
+    expires,
   });
 }
