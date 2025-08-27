@@ -50,6 +50,19 @@ export default async function PageSettings({ params }: PageSettingsProps) {
           }}
         />
         <Form
+          type="textarea"
+          title="Page subtitle"
+          description="This is the subtitle for this page."
+          endpoint={endpoint}
+          helpText="Optional, max 150 characters."
+          textareaData={{
+            name: "subTitle",
+            placeholder: "My sub title",
+            defaultValue: page.subTitle ?? undefined,
+          }}
+          required={false}
+        />
+        <Form
           endpoint={endpoint}
           title="Page visibility"
           description="Change the visibility of this page."

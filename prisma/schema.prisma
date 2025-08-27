@@ -225,6 +225,7 @@ enum PageVisibility {
 model Page {
   id             String         @id @default(cuid())
   title          String
+  subTitle       String?
   content        String?        @db.Text
   published      Boolean        @default(false)
   visibility     PageVisibility @default(visible)

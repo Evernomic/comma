@@ -12,6 +12,7 @@ import {
 } from "@/lib/fetchers/users";
 import { getJSONLDScript } from "@/lib/json-ld";
 import {
+  cn,
   generateSEO,
   getJSONLD,
   getPersonSchema,
@@ -99,12 +100,16 @@ export default async function Page({ params }: ProjectPageProps) {
   ]);
 
   const allData = { user, articles, projects, bookmarks, experiences };
-
+  const hasNavigation = page.content?.includes("::Navigation::")
   const Content = (
     <AppShell>
       <AppHeader
-        className="flex-row items-center justify-normal mb-3  [&_.title]:text-xl"
-        backButton={!page.content?.includes("::Navigation::")}
+        title={page.title}
+        description={(!hasNavigation && page.subTitle) ? page.subTitle : undefined}
+        className={cn("flex-row items-center justify-normal mb-3  [&_.title]:text-xl", {
+          "flex-col items-start gap-3": !hasNavigation
+        })}
+        backButton={!hasNavigation}
       />
       <MDX source={page.content} allData={allData} withSections />
 
