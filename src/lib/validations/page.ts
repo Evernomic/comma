@@ -9,6 +9,7 @@ export const pagePatchSchema = z
   .object({
     slug: z.string().min(1),
     title: z.string().min(1).max(70),
+    subTitle: z.string().max(150).nullable(),
     content: z.string(),
     visibility: z.enum(["visible", "unlisted"]),
     seoTitle: z.string().max(60).nullable(),

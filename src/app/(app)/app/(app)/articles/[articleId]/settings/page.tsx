@@ -47,7 +47,7 @@ export default async function ArticleSettings({
           title="Article subtitle"
           description="This is the subtitle for this article."
           endpoint={endpoint}
-          helpText="Optional, max 120 characters."
+          helpText="Optional, max 150 characters."
           textareaData={{
             name: "subTitle",
             placeholder: "My sub title",
