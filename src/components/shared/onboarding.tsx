@@ -48,7 +48,7 @@ export default function Onboarding({ user }: { user: User }) {
   return (
     <div className="w-[400px] max-[400px]:w-full mx-auto p-10 flex flex-col items-center justify-center min-h-screen ">
       {isProfileCompleted ? (
-        <Plans />
+        <Plans user={user} />
       ) : (
         <CompleteProfile
           user={user}
@@ -212,7 +212,12 @@ function CompleteProfile({
   );
 }
 
-function Plans() {
+function Plans({
+  user,
+}: {
+  user: User;
+}
+) {
   const [period, setPeriod] = useState<Period>("monthly");
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
@@ -238,7 +243,7 @@ function Plans() {
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period])
+            triggerBeginCheckoutEvent(proPlan.price[period], user.email, user.name ?? user.username)
           }
           window.location.href = data.url;
         }

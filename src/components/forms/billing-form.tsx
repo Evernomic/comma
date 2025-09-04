@@ -12,12 +12,14 @@ import { toast } from "../ui/use-toast";
 import { proPlan } from "@/config/subscriptions";
 import { useGTM } from "@/hooks/use-gtm";
 import { useSearchParams } from "next/navigation";
+import type { User } from "@prisma/client";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;
+  user: User
 }
 
-export default function BillingForm({ subscriptionPlan }: Props) {
+export default function BillingForm({ subscriptionPlan, user }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
   const { triggerBeginCheckoutEvent, triggerConversionEvent } = useGTM()
@@ -29,7 +31,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
   useEffect(() => {
     const isPaymentSuccess = searchParams.get("payment") === "success"
     if (isPaymentSuccess && subscriptionPlan.lsId && subscriptionPlan.isPro) {
-      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId)
+      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId, user.email, user.name ?? user.username)
     }
   }, [])
 
@@ -53,7 +55,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period])
+            triggerBeginCheckoutEvent(proPlan.price[period], user.email, user.name ?? user.username)
           }
           setTimeout(() => {
             window.location.href = data.url;
