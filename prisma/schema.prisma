@@ -128,6 +128,8 @@ model WorkExperience {
   description String?
   user        User    @relation(fields: [userId], references: [id])
   userId      String
+
+  @@map("work_experiences")
 }
 
 model Subscriber {
@@ -277,4 +279,6 @@ model Changelog {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @map("updated_at")
   publishedAt DateTime @default(now())
+
+  @@map("changelog")
 }
