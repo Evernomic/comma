@@ -243,7 +243,7 @@ function Plans({
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period], user.email, user.name ?? user.username)
+            triggerBeginCheckoutEvent(proPlan.price[period])
           }
           window.location.href = data.url;
         }

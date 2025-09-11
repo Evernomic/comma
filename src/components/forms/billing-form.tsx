@@ -31,7 +31,7 @@ export default function BillingForm({ subscriptionPlan, user }: Props) {
   useEffect(() => {
     const isPaymentSuccess = searchParams.get("payment") === "success"
     if (isPaymentSuccess && subscriptionPlan.lsId && subscriptionPlan.isPro) {
-      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId, user.email, user.name ?? user.username)
+      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId)
     }
   }, [])
 
@@ -55,7 +55,7 @@ export default function BillingForm({ subscriptionPlan, user }: Props) {
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period], user.email, user.name ?? user.username)
+            triggerBeginCheckoutEvent(proPlan.price[period])
           }
           setTimeout(() => {
             window.location.href = data.url;
