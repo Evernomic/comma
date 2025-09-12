@@ -5,6 +5,7 @@ import {
     Head,
     Heading,
     Html,
+    Link,
     Preview,
     Text,
 } from "@react-email/components";
@@ -36,7 +37,7 @@ const WelcomeEmail = ({ name = "John" }: { name?: string }) => (
                     Welcome to Comma, good to have you here!
                     <br />
                     <br />
-                    Here's what you can do:
+                    <b>Here's what you can do:</b>
                     <br />
                     <br />
                     • Create your first article
@@ -52,10 +53,10 @@ const WelcomeEmail = ({ name = "John" }: { name?: string }) => (
                     • Use built-in SEO tools
                     <br />
                     <br />
-                    Ready to start? Click here and start building.
+                    Ready to start? <Link href="https://app.comma.to/">Click here</Link> and start building.
                     <br />
                     <br />
-                    Want more? Upgrade anytime for unlimited content, custom themes, and email collection.
+                    <b>Want more?</b> Upgrade anytime for unlimited content, custom themes, and email collection.
 
                     Questions? Just reply to this email. I read every one.
                     <br />

@@ -5,6 +5,7 @@ import {
   Head,
   Heading,
   Html,
+  Link,
   Preview,
   Text,
 } from "@react-email/components";
@@ -31,6 +32,8 @@ const WelcomeEmailPaid = ({ name = "John" }: { name?: string }) => (
           Welcome to Comma Pro 🎉
         </Heading>
         <Text>Hi{(name && name?.length > 0) ? ` ${name},` : ","}</Text>
+        <Text>Thanks for upgrading to <Link href="https://app.comma.to">Comma Pro</Link>! You now have everything unlocked.</Text>
+
         <Text>
           <b>Here's what you get:</b><br /><br />
 
