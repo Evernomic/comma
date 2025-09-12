@@ -27,6 +27,11 @@ export async function getUserByDomain(domain: string) {
           username: domain,
         },
       ],
+      NOT: [
+        {
+          username: "evernomic"
+        }
+      ]
     },
     omit: {
       email: true,
