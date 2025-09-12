@@ -10,7 +10,7 @@ import {
 } from "@react-email/components";
 import Footer from "./components/footer";
 
-const WelcomeEmailPaid = ({ name = "John" }: { name: string }) => (
+const WelcomeEmailPaid = ({ name = "John" }: { name?: string }) => (
   <Html>
     <Head>
       <Font
@@ -24,23 +24,32 @@ const WelcomeEmailPaid = ({ name = "John" }: { name: string }) => (
         fontStyle="normal"
       />
     </Head>
-    <Preview>Welcome to Comma Pro</Preview>
+    <Preview>Welcome to Comma Pro 🎉</Preview>
     <Body style={{ ...main, fontFamily: "Inter" }}>
       <Container style={container}>
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
-          Welcome to Comma Pro
+          Welcome to Comma Pro 🎉
         </Heading>
-        <Text>Hi {name}</Text>
-        <Text></Text>
+        <Text>Hi{(name && name?.length > 0) ? ` ${name},` : ","}</Text>
         <Text>
-          Thanks for upgrading to Comma Pro! You now have all our features
-          unlocked. <br />
-          <br />
-          We built Comma based on what users like you actually want. We'd love
-          to hear what you think! <br />
-          <br />
-          Got ideas for new features? Found something not working right? Let us
-          know! <br />
+          <b>Here's what you get:</b><br /><br />
+
+          • <b>Unlimited content</b> — Articles, projects, bookmarks, and pages<br />
+          • <b>Custom themes</b> — Make your site look unique<br />
+          • <b>Email collection</b> — Build your email list<br />
+          • <b>Custom domain</b> — Use your own domain<br />
+          • <b>Open calls</b> — Post opportunities to our community<br />
+          • <b>Advanced analytics</b> — See detailed visitor stats<br />
+          • <b>No watermark</b> — Clean, professional look<br />
+          • <b>Priority support</b> — Get help faster<br /><br />
+
+          <b>Quick tip:</b> Start by adding your custom domain in settings and picking a custom theme you like.<br /><br />
+
+          I built Comma based on what users want. Got ideas for new features? Found a bug? Just reply to this email.<br /><br />
+
+          Thanks for supporting Comma,<br />
+          Arian
+
         </Text>
         <Footer />
       </Container>

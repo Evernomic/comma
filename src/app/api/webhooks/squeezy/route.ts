@@ -63,8 +63,10 @@ export async function POST(req: Request) {
           from: `Comma <system@mail.comma.to>`,
           to: user.email,
           reply_to: siteConfig.supportEmail,
-          subject: "Welcome to Comma Pro",
-          react: WelcomeEmailPaid({ name: user.name ?? user.username }),
+          subject: "Welcome to Comma Pro 🎉",
+          react: WelcomeEmailPaid({
+            name: user.name ?? user.username
+          }),
         });
       }
       if (eventName === "subscription_updated") {

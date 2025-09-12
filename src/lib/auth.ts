@@ -15,6 +15,7 @@ import log from "./log";
 import { addContact, resend } from "./resend";
 import { getUserSubscription } from "./subscription";
 import { getSearchParams } from "./utils";
+import WelcomeEmail from "@/emails/welcome-email";
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 const authOptions: NextAuthOptions = {
@@ -108,6 +109,15 @@ const authOptions: NextAuthOptions = {
       if (message.isNewUser) {
         await Promise.allSettled([
           addContact(user.email!, user.name ?? undefined),
+          resend.emails.send({
+            from: `Comma <system@mail.comma.to>`,
+            to: user.email!,
+            reply_to: siteConfig.supportEmail,
+            subject: "Welcome to Comma 👋",
+            react: WelcomeEmail({
+              name: user.name ?? undefined
+            }),
+          }),
           log(
             "New user logged in",
             `${user.email} new user logged in`,
