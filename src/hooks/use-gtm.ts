@@ -25,9 +25,15 @@ export function useGTM() {
         })
     }
 
-    return {
-        triggerBeginCheckoutEvent,
-        triggerConversionEvent
+    function triggerSignUpEvent() {
+        sendGTMEvent({
+            'send_to': `${siteConfig.gtmId}/fhb5CNHK6JgbEL6GtedA`,
+        })
     }
 
+    return {
+        triggerBeginCheckoutEvent,
+        triggerConversionEvent,
+        triggerSignUpEvent
+    }
 }
