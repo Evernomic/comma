@@ -41,6 +41,7 @@ export default async function Subscribers() {
         helpText="It will be stored encrypted in the database."
         inputData={{
           name: "beehiivKey",
+          type: "password",
           placeholder: "Your API key",
           defaultValue: key ?? "",
         }}
