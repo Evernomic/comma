@@ -83,13 +83,18 @@ export async function POST(req: NextRequest) {
       const client = new BeehiivClient({ token });
 
       try {
-        await client.subscriptions.create(publicationId, {
+        const sub = await client.subscriptions.create(publicationId, {
           email,
           sendWelcomeEmail: true,
           utmSource: "Comma",
           utmMedium: "organic",
           referringSite: getUserPageURL(user),
-        });
+        })
+      
+        await client.subscriptionTags.create(publicationId, sub.data.id, {
+          tags: (user.username === "arian" || user.username === "arianadeli") ? ["arian"] : ["comma"]
+        })
+        
       } catch (err) {
         console.log("Beehiiv subscription failed:", err);
       }
