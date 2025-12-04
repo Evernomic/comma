@@ -3,13 +3,13 @@ import { redis } from "./redis";
 export const rateLimit = {
   bookmark: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(1, "1 h"),
+    limiter: Ratelimit.slidingWindow(1, "24 h"),
     prefix: "clicks",
     analytics: true,
   }),
   analytics: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(1, "5 h"),
+    limiter: Ratelimit.slidingWindow(1, "24 h"),
     prefix: "analytics",
     analytics: true,
   }),
@@ -27,7 +27,7 @@ export const rateLimit = {
   }),
   protection: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(10, "1 h"),
+    limiter: Ratelimit.slidingWindow(5, "1 h"),
     prefix: "unlock",
     analytics: true,
   }),
