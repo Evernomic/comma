@@ -25,7 +25,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Newsletter from "../components/newsletter";
 
-export const revalidate = 5;
+export const revalidate = 1;
 
 interface ArticlePageProps {
   params: Promise<{ slug: string; domain: string }>

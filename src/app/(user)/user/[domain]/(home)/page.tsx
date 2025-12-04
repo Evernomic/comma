@@ -18,7 +18,7 @@ import LinkInBioIntro from "../components/link-in-bio/link-in-bio-intro";
 import { NothingPlaceholder } from "../components/nothing-placeholder";
 import sections from "../components/sections";
 
-export const revalidate = 5;
+export const revalidate = 1;
 
 interface PageProps {
   params: Promise<{

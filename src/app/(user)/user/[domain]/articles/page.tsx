@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";
-export const revalidate = 5;
+export const revalidate = 1;
 
 export const metadata: Metadata = {
   title: "Articles",

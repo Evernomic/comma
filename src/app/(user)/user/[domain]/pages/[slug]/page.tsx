@@ -24,7 +24,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
 
-export const revalidate = 5;
+export const revalidate = 1;
 
 interface ProjectPageProps {
   params: Promise<{ slug: string; domain: string }>;
