@@ -16,6 +16,7 @@ interface BookmarksPageProps {
     domain: string;
   }>;
 }
+export const dynamic = "force-dynamic"
 
 export default async function Bookmarks({ params }: BookmarksPageProps) {
   const { domain: userDomain } = await params;

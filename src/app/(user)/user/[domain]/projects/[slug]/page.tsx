@@ -20,7 +20,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Protection from "./protection";
 
-export const revalidate = 1;
+// export const revalidate = 1;
+export const dynamic = "force-dynamic"
 
 type PageParams = { slug: string; domain: string };
 
@@ -64,15 +65,15 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams({ params }: { params: PageParams }) {
-  const domain = decodeURIComponent(params.domain);
-  const user = await getUserByDomain(domain);
-  const projects = await getProjectsByAuthor(user?.id as string);
+// export async function generateStaticParams({ params }: { params: PageParams }) {
+//   const domain = decodeURIComponent(params.domain);
+//   const user = await getUserByDomain(domain);
+//   const projects = await getProjectsByAuthor(user?.id as string);
 
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
+//   return projects.map((project) => ({
+//     slug: project.slug,
+//   }));
+// }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug, domain: userDomain } = await params;
