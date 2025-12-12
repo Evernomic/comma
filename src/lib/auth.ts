@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import WelcomeEmail from "@/emails/welcome-email";
 import type { Plan, UserSubscriptionPlan } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { User } from "@prisma/client";
@@ -15,7 +16,6 @@ import log from "./log";
 import { addContact, resend } from "./resend";
 import { getUserSubscription } from "./subscription";
 import { getSearchParams } from "./utils";
-import WelcomeEmail from "@/emails/welcome-email";
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 const authOptions: NextAuthOptions = {
@@ -115,7 +115,7 @@ const authOptions: NextAuthOptions = {
             reply_to: siteConfig.supportEmail,
             subject: "Welcome to Comma 👋",
             react: WelcomeEmail({
-              name: user.name ?? undefined
+              name: user.name ?? undefined,
             }),
           }),
           log(

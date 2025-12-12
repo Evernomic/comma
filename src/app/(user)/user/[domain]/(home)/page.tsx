@@ -20,8 +20,7 @@ import sections from "../components/sections";
 
 export const revalidate = 1;
 
-
-type PageParams = { domain: string }
+type PageParams = { domain: string };
 
 interface PageProps {
   params: Promise<PageParams>;

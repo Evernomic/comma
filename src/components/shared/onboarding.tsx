@@ -4,6 +4,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { proPlan } from "@/config/subscriptions";
+import { useGTM } from "@/hooks/use-gtm";
 import { userCategories, userLocations } from "@/lib/constants";
 import { categoryValues, locationValues } from "@/lib/validations/user";
 import { Period } from "@/types";
@@ -31,7 +32,6 @@ import {
 } from "../ui/select";
 import { Switch } from "../ui/switch";
 import { Icons } from "./icons";
-import { useGTM } from "@/hooks/use-gtm";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -212,17 +212,12 @@ function CompleteProfile({
   );
 }
 
-function Plans({
-  user,
-}: {
-  user: User;
-}
-) {
+function Plans({ user }: { user: User }) {
   const [period, setPeriod] = useState<Period>("monthly");
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
   const { title, description } = proPlan;
-  const { triggerBeginCheckoutEvent } = useGTM()
+  const { triggerBeginCheckoutEvent } = useGTM();
   async function billing(e: FormEvent) {
     e.preventDefault();
     startTransition(async () => {
@@ -243,7 +238,7 @@ function Plans({
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period])
+            triggerBeginCheckoutEvent(proPlan.price[period]);
           }
           window.location.href = data.url;
         }

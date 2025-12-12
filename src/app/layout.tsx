@@ -41,14 +41,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script id="_next-gtm-init" async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtmId}`} />
-        <Script id="_next-gtm" dangerouslySetInnerHTML={{
-          __html: `
+        <Script
+          id="_next-gtm-init"
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gtmId}`}
+        />
+        <Script
+          id="_next-gtm"
+          dangerouslySetInnerHTML={{
+            __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${siteConfig.gtmId}');
-          `}} />
+          `,
+          }}
+        />
       </head>
       <body className={cn("antialiased", inter.className)}>
         {children}

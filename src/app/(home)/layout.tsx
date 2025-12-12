@@ -28,12 +28,8 @@ export default async function MarketingPageLayout({
           type: "graph",
           data: {
             "@context": "https://schema.org",
-            "@graph": [
-              JSONLDHomePage,
-              JSONLDHowTo,
-              JSONLDFAQ
-            ]
-          }
+            "@graph": [JSONLDHomePage, JSONLDHowTo, JSONLDFAQ],
+          },
         }),
       )}
     </div>

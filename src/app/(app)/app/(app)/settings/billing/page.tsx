@@ -9,10 +9,13 @@ export const metadata: Metadata = {
   title: "Billing",
 };
 export default async function BillingPage() {
-  const [subscription, user] = await Promise.all([getUserSubscription(), getUser()])
+  const [subscription, user] = await Promise.all([
+    getUserSubscription(),
+    getUser(),
+  ]);
 
   if (!user) {
-    return notFound()
+    return notFound();
   }
 
   return (
