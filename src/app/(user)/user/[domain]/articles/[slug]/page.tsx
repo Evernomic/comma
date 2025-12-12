@@ -27,8 +27,9 @@ import Newsletter from "../components/newsletter";
 
 export const revalidate = 1;
 
+type PageParams = { slug: string; domain: string }
 interface ArticlePageProps {
-  params: Promise<{ slug: string; domain: string }>
+  params: Promise<PageParams>
 }
 
 export async function generateMetadata({
@@ -68,8 +69,8 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams({ params }: ArticlePageProps) {
-  const identifier = (await params).domain
+export async function generateStaticParams({ params }: {params: PageParams}) {
+  const identifier = params.domain
   const domain = decodeURIComponent(identifier);
   const user = await getUserByDomain(domain);
   const articles = await getArticlesByAuthor(user?.id as string);
