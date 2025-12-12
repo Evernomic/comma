@@ -1,10 +1,10 @@
 import NavButton from "@/components/layout/nav-button";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
-import { db } from "@/lib/db";
+// import { db } from "@/lib/db";
 import Balancer from "react-wrap-balancer";
 import type { ExplorePageUser } from "../explore/client";
-import PopularUsers from "./popular-users";
+// import PopularUsers from "./popular-users";
 
 // async function getPopularUsers(): Promise<Array<ExplorePageUser> | null> {
 //   const allUsers = await db.user.findMany({
