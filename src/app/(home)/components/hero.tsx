@@ -1,14 +1,94 @@
 import NavButton from "@/components/layout/nav-button";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
+import { db } from "@/lib/db";
 import Balancer from "react-wrap-balancer";
 import type { ExplorePageUser } from "../explore/client";
 import PopularUsers from "./popular-users";
 
 async function getPopularUsers(): Promise<Array<ExplorePageUser> | null> {
-  const res = await fetch(`${siteConfig.url}/api/explore?page=1&sort=popular`);
-  const data = (await res.json()) as { data: Array<ExplorePageUser> };
-  return !data.data.length ? null : data.data;
+  const allUsers = await db.user.findMany({
+    select: {
+      showOnExplore: true,
+      name: true,
+      title: true,
+      username: true,
+      category: true,
+      location: true,
+      image: true,
+      domain: true,
+      articles: {
+        select: {
+          views: true,
+        },
+      },
+      projects: {
+        select: {
+          views: true,
+        },
+      },
+      bookmarks: {
+        select: {
+          clicks: true,
+        },
+      },
+    },
+  });
+  let usersWithPopularity = allUsers.map((user) => {
+    const articleViews = user.articles.reduce(
+      (sum, article) => sum + article.views,
+      0,
+    );
+    const projectViews = user.projects.reduce(
+      (sum, project) => sum + project.views,
+      0,
+    );
+    const bookmarkClicks = user.bookmarks.reduce(
+      (sum, bookmark) => sum + bookmark.clicks,
+      0,
+    );
+
+    const popularityScore = Math.floor(
+      (articleViews + projectViews + bookmarkClicks) / 3,
+    );
+    const { articles, projects, bookmarks, ...rest } = user;
+    return {
+      ...rest,
+      popularityScore,
+    };
+  });
+
+  const mergedPopularityUsers = process.env.MERGED_POPULARITY_USERS!;
+
+  if (
+    mergedPopularityUsers &&
+    Array.isArray(JSON.parse(mergedPopularityUsers))
+  ) {
+    const pairs = JSON.parse(mergedPopularityUsers) as Array<{
+      from: string;
+      to: string;
+    }>;
+
+    pairs.forEach((pair) => {
+      const from = usersWithPopularity.find((u) => u.username === pair.from);
+      const to = usersWithPopularity.find((u) => u.username === pair.to);
+
+      if (from && to) {
+        const mergedScore = from.popularityScore + to.popularityScore;
+        usersWithPopularity = usersWithPopularity.map((u) =>
+          u.username === to.username
+            ? { ...u, popularityScore: mergedScore }
+            : u,
+        );
+      }
+    });
+  }
+
+  const sortUsersByPopularity = usersWithPopularity
+    .sort((a, b) => b.popularityScore - a.popularityScore)
+    .slice(0, 40);
+
+  return sortUsersByPopularity;
 }
 
 export default async function Hero() {

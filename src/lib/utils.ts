@@ -277,14 +277,14 @@ export function generateSEO({
   return {
     ...(template
       ? {
-        title: {
-          default: title,
-          template: template ? `%s / ${template}` : "",
-        },
-      }
+          title: {
+            default: title,
+            template: template ? `%s / ${template}` : "",
+          },
+        }
       : {
-        title,
-      }),
+          title,
+        }),
     description,
     openGraph: {
       type: "website",

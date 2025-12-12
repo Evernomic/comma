@@ -22,7 +22,7 @@ import Protection from "./protection";
 
 export const revalidate = 1;
 
-type PageParams = { slug: string; domain: string }
+type PageParams = { slug: string; domain: string };
 
 interface ProjectPageProps {
   params: Promise<PageParams>;
@@ -64,7 +64,7 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams({ params }: {params: PageParams}) {
+export async function generateStaticParams({ params }: { params: PageParams }) {
   const domain = decodeURIComponent(params.domain);
   const user = await getUserByDomain(domain);
   const projects = await getProjectsByAuthor(user?.id as string);

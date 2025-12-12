@@ -89,12 +89,14 @@ export async function POST(req: NextRequest) {
           utmSource: "Comma",
           utmMedium: "organic",
           referringSite: getUserPageURL(user),
-        })
-      
+        });
+
         await client.subscriptionTags.create(publicationId, sub.data.id, {
-          tags: (user.username === "arian" || user.username === "arianadeli") ? ["arian"] : ["comma"]
-        })
-        
+          tags:
+            user.username === "arian" || user.username === "arianadeli"
+              ? ["arian"]
+              : ["comma"],
+        });
       } catch (err) {
         console.log("Beehiiv subscription failed:", err);
       }

@@ -1,39 +1,42 @@
 "use client";
 
 import { marketingConfig } from "@/config/marketing";
+import { proPlan } from "@/config/subscriptions";
+import { useGTM } from "@/hooks/use-gtm";
 import { cn, formatDate } from "@/lib/utils";
 import type { Period, UserSubscriptionPlan } from "@/types";
+import type { User } from "@prisma/client";
+import { useSearchParams } from "next/navigation";
 import { type FormEvent, useEffect, useState, useTransition } from "react";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
 import Button from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { toast } from "../ui/use-toast";
-import { proPlan } from "@/config/subscriptions";
-import { useGTM } from "@/hooks/use-gtm";
-import { useSearchParams } from "next/navigation";
-import type { User } from "@prisma/client";
 
 interface Props {
   subscriptionPlan: UserSubscriptionPlan;
-  user: User
+  user: User;
 }
 
 export default function BillingForm({ subscriptionPlan, user }: Props) {
   const [isLoading, startTransition] = useTransition();
   const isPro = subscriptionPlan.isPro ? "Pro" : "Free";
-  const { triggerBeginCheckoutEvent, triggerConversionEvent } = useGTM()
+  const { triggerBeginCheckoutEvent, triggerConversionEvent } = useGTM();
   const [period, setPeriod] = useState<Period>(
     subscriptionPlan.period ?? "monthly",
   );
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const isPaymentSuccess = searchParams.get("payment") === "success"
+    const isPaymentSuccess = searchParams.get("payment") === "success";
     if (isPaymentSuccess && subscriptionPlan.lsId && subscriptionPlan.isPro) {
-      triggerConversionEvent(subscriptionPlan.price[subscriptionPlan.period ?? "monthly"], subscriptionPlan.lsId)
+      triggerConversionEvent(
+        subscriptionPlan.price[subscriptionPlan.period ?? "monthly"],
+        subscriptionPlan.lsId,
+      );
     }
-  }, [])
+  }, []);
 
   async function billing(e: FormEvent) {
     e.preventDefault();
@@ -55,11 +58,11 @@ export default function BillingForm({ subscriptionPlan, user }: Props) {
         if (data) {
           const path = new URL(data.url).pathname;
           if (path.startsWith("/checkout")) {
-            triggerBeginCheckoutEvent(proPlan.price[period])
+            triggerBeginCheckoutEvent(proPlan.price[period]);
           }
           setTimeout(() => {
             window.location.href = data.url;
-          }, 1000)
+          }, 1000);
         }
       }
     });

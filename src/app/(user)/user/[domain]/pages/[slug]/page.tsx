@@ -26,7 +26,7 @@ import Protection from "./protection";
 
 export const revalidate = 1;
 
-type PageParams = { slug: string; domain: string }
+type PageParams = { slug: string; domain: string };
 
 interface ProjectPageProps {
   params: Promise<PageParams>;
@@ -65,7 +65,7 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams({ params }: {params: PageParams}) {
+export async function generateStaticParams({ params }: { params: PageParams }) {
   const domain = decodeURIComponent(params.domain);
   const user = await getUserByDomain(domain);
   const projects = await getProjectsByAuthor(user?.id as string);
@@ -102,15 +102,20 @@ export default async function Page({ params }: ProjectPageProps) {
   ]);
 
   const allData = { user, articles, projects, bookmarks, experiences };
-  const hasNavigation = page.content?.includes("::Navigation::")
+  const hasNavigation = page.content?.includes("::Navigation::");
   const Content = (
     <AppShell>
       <AppHeader
         title={page.title}
-        description={(!hasNavigation && page.subTitle) ? page.subTitle : undefined}
-        className={cn("flex-row items-center justify-normal mb-3  [&_.title]:text-xl", {
-          "flex-col items-start gap-3": !hasNavigation
-        })}
+        description={
+          !hasNavigation && page.subTitle ? page.subTitle : undefined
+        }
+        className={cn(
+          "flex-row items-center justify-normal mb-3  [&_.title]:text-xl",
+          {
+            "flex-col items-start gap-3": !hasNavigation,
+          },
+        )}
         backButton={!hasNavigation}
       />
       <MDX source={page.content} allData={allData} withSections />

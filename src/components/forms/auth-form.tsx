@@ -1,5 +1,6 @@
 "use client";
 
+import { useGTM } from "@/hooks/use-gtm";
 import { capitalize, cn } from "@/lib/utils";
 import { authFormSchema } from "@/lib/validations/auth";
 import type { Icon } from "@/types";
@@ -14,7 +15,6 @@ import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import Input from "../ui/input";
 import { toast } from "../ui/use-toast";
-import { useGTM } from "@/hooks/use-gtm";
 
 type FormData = z.infer<typeof authFormSchema>;
 
@@ -57,7 +57,7 @@ export default function AuthForm() {
     resolver: zodResolver(authFormSchema),
   });
   const [isLoading, setIsLoading] = useState<string | boolean>();
-  const { triggerSignUpEvent } = useGTM()
+  const { triggerSignUpEvent } = useGTM();
   const onSubmit = async (data: FormData) => {
     setIsLoading("email");
 
@@ -75,7 +75,7 @@ export default function AuthForm() {
       });
     }
 
-    triggerSignUpEvent()
+    triggerSignUpEvent();
     setIsMailSent(true);
     setAuthMethod(undefined);
   };
@@ -137,7 +137,7 @@ export default function AuthForm() {
                     onClick={() => {
                       if (method !== "email") {
                         setIsLoading(method);
-                        triggerSignUpEvent()
+                        triggerSignUpEvent();
                         signIn(method);
                       } else {
                         setAuthMethod(method);

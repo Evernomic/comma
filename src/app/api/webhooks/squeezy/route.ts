@@ -65,7 +65,7 @@ export async function POST(req: Request) {
           reply_to: siteConfig.supportEmail,
           subject: "Welcome to Comma Pro 🎉",
           react: WelcomeEmailPaid({
-            name: user.name ?? user.username
+            name: user.name ?? user.username,
           }),
         });
       }
