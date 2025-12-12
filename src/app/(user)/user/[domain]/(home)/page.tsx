@@ -20,10 +20,11 @@ import sections from "../components/sections";
 
 export const revalidate = 1;
 
+
+type PageParams = { domain: string }
+
 interface PageProps {
-  params: Promise<{
-    domain: string;
-  }>;
+  params: Promise<PageParams>;
 }
 
 export const metadata: Metadata = {
