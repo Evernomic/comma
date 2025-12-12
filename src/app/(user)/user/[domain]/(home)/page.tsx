@@ -18,9 +18,11 @@ import LinkInBioIntro from "../components/link-in-bio/link-in-bio-intro";
 import { NothingPlaceholder } from "../components/nothing-placeholder";
 import sections from "../components/sections";
 
-export const revalidate = 1;
+// export const revalidate = 1;
 
 type PageParams = { domain: string };
+
+export const dynamic = "force-dynamic"
 
 interface PageProps {
   params: Promise<PageParams>;
@@ -30,23 +32,23 @@ export const metadata: Metadata = {
   title: "Home",
 };
 
-export async function generateStaticParams() {
-  const allDomains = await getAllUserDomains();
+// export async function generateStaticParams() {
+//   const allDomains = await getAllUserDomains();
 
-  const domains = allDomains
-    .flatMap(({ username, domain }) => [
-      domain
-        ? {
-            domain,
-          }
-        : {
-            domain: username,
-          },
-    ])
-    .filter(Boolean);
+//   const domains = allDomains
+//     .flatMap(({ username, domain }) => [
+//       domain
+//         ? {
+//             domain,
+//           }
+//         : {
+//             domain: username,
+//           },
+//     ])
+//     .filter(Boolean);
 
-  return domains;
-}
+//   return domains;
+// }
 
 export default async function Home({ params }: PageProps) {
   const domain = decodeURIComponent((await params).domain);
